@@ -2,11 +2,6 @@
 #include "system/system.h"
 #include "Player.h"
 #include "level/Level.h"
-#include "Mikyan.h"
-
-
-//Mikyanのスマートポインタの別名定義。
-using MikyanPtr = std::unique_ptr< Mikyan >;
 
 ///////////////////////////////////////////////////////////////////
 // ウィンドウプログラムのメイン関数。
