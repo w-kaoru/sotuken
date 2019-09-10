@@ -3,11 +3,5 @@
 #include "GameObjectManager.h"
 
 
-IGameObject::IGameObject()
-{
-}
-
-
-IGameObject::~IGameObject()
-{
+namespace GameEngine {
 }

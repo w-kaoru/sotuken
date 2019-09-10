@@ -33,11 +33,13 @@
 #include "graphics/SkinModel.h"
 #include "graphics/Skeleton.h"
 
+#include "gameObject/GameObjectManager.h"
+#include "gameObject/IGameObject.h"
 #include "graphics/animation/Animation.h"
 #include "graphics/animation/AnimationClip.h"
 #include "graphics/Camera.h"
 
 const float FRAME_BUFFER_W = 1280.0f;				//フレームバッファの幅。
 const float FRAME_BUFFER_H = 720.0f;				//フレームバッファの高さ。
-
+using namespace GameEngine;
 static const int MAX_BONE = 512;	//!<ボーンの最大数。
