@@ -31,6 +31,9 @@
     <Filter Include="system">
       <UniqueIdentifier>{48b58c60-bbe2-40d8-9d2f-e81d065b6820}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{e8ff9b67-7ce6-42dd-a221-d2be94a00c35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="math\Vector.cpp">
@@ -108,11 +111,15 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="GameObject\GameObjectManager.cpp" />
-    <ClCompile Include="GameObject\IGameObject.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="graphics\GameFont.cpp">
       <Filter>graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\GameObjectManager.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\IGameObject.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,11 +206,15 @@
     </ClInclude>
     <ClInclude Include="Player.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="GameObject\GameObjectManager.h" />
-    <ClInclude Include="GameObject\IGameObject.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="graphics\GameFont.h">
       <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\IGameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\GameObjectManager.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
