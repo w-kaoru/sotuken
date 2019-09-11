@@ -24,6 +24,7 @@
 #include "DirectXTK/Inc/DDSTextureLoader.h"
 
 #include "physics/Physics.h"
+#include "NoncCopyable/NonCopyable.h"
 #include "HID/Pad.h"
 
 #include "math/Vector.h"

@@ -2,34 +2,50 @@
 #include "GameObjectManager.h"
 
 namespace GameEngine {
+	GameObjectManager::GameObjectManager()
+	{
+	}
+	GameObjectManager::~GameObjectManager()
+	{
+	}
+	void GameObjectManager::Init(int gameObjectPrioMax)
+	{
+		if (gameObjectPrioMax > GAME_OBJECT_PRIO_MAX)
+		{
+			gameObjectPrioMax = GAME_OBJECT_PRIO_MAX;
+		}
+		m_gameObjectList.resize(gameObjectPrioMax);
+		m_deleteObjectList[0].resize(gameObjectPrioMax);
+		m_deleteObjectList[1].resize(gameObjectPrioMax);
+	}
 	void GameObjectManager::Execute()
 	{
 		{
-			for (auto& objList : m_gameObjectList) {
-				for (auto& obj : objList) {
+			for (GameObjectList objList : m_gameObjectList) {
+				for (IGameObject* obj : objList) {
 					obj->StartWrapper();
 				}
 			}
 
-			for (auto& objList : m_gameObjectList) {
-				for (auto& obj : objList) {
+			for (GameObjectList objList : m_gameObjectList) {
+				for (IGameObject* obj : objList) {
 					obj->UpdateWrapper();
 				}
 			}
 		}
 		{
-			for (auto& objList : m_gameObjectList) {
-				for (auto& obj : objList) {
+			for (GameObjectList objList : m_gameObjectList) {
+				for (IGameObject* obj : objList) {
 					obj->PreDrawWrapper();
 				}
 			}
-			for (auto& objList : m_gameObjectList) {
-				for (auto& obj : objList) {
+			for (GameObjectList objList : m_gameObjectList) {
+				for (IGameObject* obj : objList) {
 					obj->DrawWrapper();
 				}
 			}
-			for (auto& objList : m_gameObjectList) {
-				for (auto& obj : objList) {
+			for (GameObjectList objList : m_gameObjectList) {
+				for (IGameObject* obj : objList) {
 					obj->PostDrawWrapper();
 				}
 			}
@@ -47,8 +63,8 @@ namespace GameEngine {
 				GameObjectPrio prio = go->GetPriority();
 				GameObjectList& goExecList = m_gameObjectList.at(prio);
 				auto it = std::find(goExecList.begin(), goExecList.end(), go);
-				goExecList.erase(it);
 				delete (*it);
+				goExecList.erase(it);
 			}
 			goList.clear();
 		}

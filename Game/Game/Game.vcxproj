@@ -100,6 +100,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="character\CharacterController.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject\GameObjectManager.cpp" />
     <ClCompile Include="GameObject\IGameObject.cpp" />
     <ClCompile Include="graphics\animation\Animation.cpp" />
@@ -134,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character\CharacterController.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject\GameObjectManager.h" />
     <ClInclude Include="GameObject\IGameObject.h" />
     <ClInclude Include="graphics\animation\Animation.h" />
@@ -154,6 +156,7 @@
     <ClInclude Include="math\kMath.h" />
     <ClInclude Include="math\Matrix.h" />
     <ClInclude Include="math\Vector.h" />
+    <ClInclude Include="NoncCopyable\NonCopyable.h" />
     <ClInclude Include="physics\ICollider.h" />
     <ClInclude Include="physics\MeshCollider.h" />
     <ClInclude Include="physics\Physics.h" />

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "system/system.h"
-#include "Player.h"
-#include "level/Level.h"
+#include "Game.h"
 
 ///////////////////////////////////////////////////////////////////
 // ウィンドウプログラムのメイン関数。
@@ -15,8 +14,10 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	g_camera3D.SetPosition({ 0.0f, 100.0f, 300.0f });
 	g_camera3D.SetTarget({ 0.0f, 100.0f, 0.0f });
 	g_camera3D.SetFar(10000.0f);
+
+	GOManager().Init(50);
 	
-	NewGO<Player>(0, "Player");
+	NewGO<Game>(0, "Game");
 
 	//ゲームループ。
 	while (DispatchWindowMessage() == true)
@@ -31,6 +32,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		GOManager().Execute();
 		//物理エンジンの更新。
 		g_physics.Update();
+		//カメラの更新。
+		g_camera3D.Update();
 		//描画終了。
 		g_graphicsEngine->EndRender();
 	}

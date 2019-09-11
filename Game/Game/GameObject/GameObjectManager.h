@@ -3,13 +3,16 @@
 #include "util/Util.h"
 
 namespace GameEngine {
-	class GameObjectManager
+	class GameObjectManager:public NoncCopyable
 	{
 	public:
-		GameObjectManager() {
-			m_gameObjectList.resize(10);
-		};
-		~GameObjectManager() {};
+		GameObjectManager();
+		~GameObjectManager();
+		/*!
+		 *@brief	初期化。
+		 *@param[in]	gameObjectPrioMax	ゲームオブジェクトの優先度の最大値。(255まで)
+		 */
+		void Init(int gameObjectPrioMax);
 		//実行
 		void Execute();
 		void DeleteExecute();
@@ -39,7 +42,6 @@ namespace GameEngine {
 		T * NewGameObject(int prio = 0, const char* name = "NULL")
 		{
 			T * newObj = new T();
-			//newObj->SetName(name);
 			m_gameObjectList.at(prio).push_back(newObj);
 			unsigned int hash = MakeGameObjectNameKey(name);
 			newObj->m_priority = prio;
@@ -82,6 +84,7 @@ namespace GameEngine {
 		std::vector<GameObjectList>	m_deleteObjectList[2];
 		bool startDed = false;
 		int m_deleteNo = 0;
+		static const unsigned char 			GAME_OBJECT_PRIO_MAX = 255;		//!<ゲームオブジェクトの優先度の最大値。
 	};
 	static inline GameObjectManager& GOManager()
 	{
@@ -96,7 +99,7 @@ namespace GameEngine {
 	template<class T>
 	static inline T* NewGO(int priority, const char* objectName = "NULL")
 	{
-		return GameObjectManager().NewGameObject<T>(priority, objectName);
+		return GOManager().NewGameObject<T>(priority, objectName);
 	}
 	/*!
 	*@brief	ゲームオブジェクトの検索関数。
@@ -109,7 +112,7 @@ namespace GameEngine {
 	template<class T>
 	static inline T* FindGO(const char* objectName)
 	{
-		return GameObjectManager().FindGameObject<T>(objectName);
+		return GOManager().FindGameObject<T>(objectName);
 	}
 	/*!
 	 *@brief	ゲームオブジェクト削除のヘルパー関数。
@@ -118,7 +121,7 @@ namespace GameEngine {
 	 */
 	static inline void DeleteGO(IGameObject* go)
 	{
-		GameObjectManager().DeleteGameObject(go);
+		GOManager().DeleteGameObject(go);
 	}
 	/*!
 	 *@brief	ゲームオブジェクト削除の関数。
@@ -130,6 +133,6 @@ namespace GameEngine {
 	static inline void DeleteGO(const char* objectName)
 	{
 		IGameObject* go = FindGO<IGameObject>(objectName);
-		GameObjectManager().DeleteGameObject(go);
+		GOManager().DeleteGameObject(go);
 	}
 };

@@ -34,6 +34,9 @@
     <Filter Include="GameObject">
       <UniqueIdentifier>{8a4002c5-1b66-4612-a865-65b87f7ce67c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="NoncCopyable">
+      <UniqueIdentifier>{93ab9986-0726-41b9-9fd2-50bb3100ff3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="math\Vector.cpp">
@@ -117,6 +120,7 @@
     <ClCompile Include="GameObject\IGameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -209,6 +213,10 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="util\Util.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="NoncCopyable\NonCopyable.h">
+      <Filter>NoncCopyable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">

@@ -1,7 +1,7 @@
 #pragma once
 namespace GameEngine {
 	typedef unsigned char	GameObjectPrio;
-	class IGameObject
+	class IGameObject:public NoncCopyable
 	{
 	public:
 		virtual ~IGameObject() {};
