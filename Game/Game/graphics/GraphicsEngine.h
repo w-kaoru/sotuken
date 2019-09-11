@@ -30,6 +30,36 @@ public:
 	{
 		return m_pd3dDeviceContext;
 	}
+	/// <summary>
+	/// ゲームでデフォルトのフォントを取得
+	/// </summary>
+	/// <returns>
+	/// フォントデータ（DirectX::SpriteFont*）
+	/// </returns>
+	DirectX::SpriteFont* GetSpriteFont()
+	{
+		return m_SpriteFont;
+	}
+	/// <summary>
+	/// フォント表示に必要なクラスを取得
+	/// </summary>
+	/// <returns>
+	/// フォント表示に必要なクラス（DirectX::SpriteBatch*）
+	/// </returns>
+	DirectX::SpriteBatch* GetSpriteBatch()
+	{
+		return m_SpriteBatch;
+	}
+	/// <summary>
+	/// ラスタライザステートのゲット
+	/// </summary>
+	/// <returns>
+	/// ラスタライザステート（ID3D11RasterizerState* ）
+	/// </returns>
+	ID3D11RasterizerState* GetRasterizerState()
+	{
+		return m_rasterizerState;
+	}
 	/*!
 	 *@brief	描画開始。
 	 */
@@ -47,6 +77,8 @@ private:
 	ID3D11RasterizerState*	m_rasterizerState = NULL;	//ラスタライザステート。
 	ID3D11Texture2D*		m_depthStencil = NULL;		//デプスステンシル。
 	ID3D11DepthStencilView* m_depthStencilView = NULL;	//デプスステンシルビュー。
+	DirectX::SpriteFont*    m_SpriteFont = NULL;		//ゲームのデフォルトのフォントデータ
+	DirectX::SpriteBatch*   m_SpriteBatch = NULL;		//ゲームのデフォルトのフォント表示用データ
 
 };
 
