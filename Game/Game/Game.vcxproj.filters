@@ -121,6 +121,10 @@
     <ClCompile Include="GameObject\IGameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="sound\WaveFileBank.cpp" />
+    <ClCompile Include="sound\WaveFile.cpp" />
+    <ClCompile Include="sound\SoundSource.cpp" />
+    <ClCompile Include="sound\SoundEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -216,6 +220,10 @@
     <ClInclude Include="GameObject\GameObjectManager.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="sound\WaveFileBank.h" />
+    <ClInclude Include="sound\WaveFile.h" />
+    <ClInclude Include="sound\SoundSource.h" />
+    <ClInclude Include="sound\SoundEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">

@@ -16,7 +16,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	g_camera3D.SetFar(10000.0f);
 
 	GOManager().Init(50);
-	
+	CSoundEngine soundEngine;				//サウンドエンジン。
+	soundEngine.Init();
 	NewGO<Game>(0, "Game");
 
 	//ゲームループ。
@@ -30,6 +31,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		}
 		//ゲームオブジェクトの更新。
 		GOManager().Execute();
+		//サウンドエンジンの更新
+		soundEngine.Update();
 		//物理エンジンの更新。
 		g_physics.Update();
 		//カメラの更新。
