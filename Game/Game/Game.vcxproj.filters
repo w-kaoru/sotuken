@@ -34,6 +34,12 @@
     <Filter Include="GameObject">
       <UniqueIdentifier>{e8ff9b67-7ce6-42dd-a221-d2be94a00c35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sound">
+      <UniqueIdentifier>{513d2149-620a-42a3-a5d9-dce14db7842b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\sprite">
+      <UniqueIdentifier>{d03b7011-2cee-433c-8bca-30fb98084834}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="math\Vector.cpp">
@@ -121,10 +127,20 @@
     <ClCompile Include="GameObject\IGameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="sound\WaveFileBank.cpp" />
-    <ClCompile Include="sound\WaveFile.cpp" />
-    <ClCompile Include="sound\SoundSource.cpp" />
-    <ClCompile Include="sound\SoundEngine.cpp" />
+    <ClCompile Include="graphics\RenderTarget.cpp" />
+    <ClCompile Include="graphics\Sprite.cpp" />
+    <ClCompile Include="sound\SoundEngine.cpp">
+      <Filter>sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\SoundSource.cpp">
+      <Filter>sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\WaveFile.cpp">
+      <Filter>sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sound\WaveFileBank.cpp">
+      <Filter>sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -220,14 +236,29 @@
     <ClInclude Include="GameObject\GameObjectManager.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="sound\WaveFileBank.h" />
-    <ClInclude Include="sound\WaveFile.h" />
-    <ClInclude Include="sound\SoundSource.h" />
-    <ClInclude Include="sound\SoundEngine.h" />
+    <ClInclude Include="graphics\RenderTarget.h" />
+    <ClInclude Include="graphics\Sprite.h" />
+    <ClInclude Include="sound\SoundSource.h">
+      <Filter>sound</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\SoundEngine.h">
+      <Filter>sound</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\WaveFileBank.h">
+      <Filter>sound</Filter>
+    </ClInclude>
+    <ClInclude Include="sound\WaveFile.h">
+      <Filter>sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\title.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
   </ItemGroup>
 </Project>

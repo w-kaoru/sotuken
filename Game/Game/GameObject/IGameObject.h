@@ -71,16 +71,6 @@ namespace GameEngine {
 				}
 			}
 		}
-		//オブジェクトの名前のゲッター
-		//const std::string& GetName()const
-		//{
-		//	return m_Name;
-		//}
-		////オブジェクトの名前のセッター
-		//void SetName(const std::string& Name)
-		//{
-		//	m_Name = Name;
-		//}
 		/*!
 		*@brief	死亡フラグを立てる。
 		*@details
@@ -102,7 +92,6 @@ namespace GameEngine {
 		GameObjectPrio m_priority;			//!<実行優先度
 		bool m_isStart;						//!<Startの開始フラグ。
 		bool m_isDead;						//!<死亡フラグ。
-		//std::string m_Name = "NULL";     	//!<インスタンスの名前
 		unsigned int m_nameKey = 0;			//!<名前キー。
 	};
 };
