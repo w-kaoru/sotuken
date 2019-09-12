@@ -56,6 +56,16 @@ void GraphicsEngine::Release()
 		m_pd3dDevice->Release();
 		m_pd3dDevice = NULL;
 	}
+	if (m_effekseerManager != NULL)
+	{
+		m_effekseerManager->Release();
+		m_effekseerManager = NULL;
+	}
+	if (m_effekseerRenderer != NULL)
+	{
+		m_effekseerRenderer->Destroy();
+		m_effekseerRenderer = NULL;
+	}
 }
 void GraphicsEngine::Init(HWND hWnd)
 {
@@ -138,7 +148,30 @@ void GraphicsEngine::Init(HWND hWnd)
 	desc.FillMode = D3D11_FILL_SOLID;
 	desc.DepthClipEnable = true;
 	desc.MultisampleEnable = true;
+	//InitEffekseer()
+	{
+		//レンダラーを初期化。
+		m_effekseerRenderer = EffekseerRendererDX11::Renderer::Create(
+			g_graphicsEngine->GetD3DDevice(),			//D3Dデバイス。
+			g_graphicsEngine->GetD3DDeviceContext(),	//D3Dデバイスコンテキスト。
+			20000										//板ポリの最大数。
+		);
+		//エフェクトマネージャを初期化。
+		m_effekseerManager = Effekseer::Manager::Create(10000);
 
+		// 描画用インスタンスから描画機能を設定
+		m_effekseerManager->SetSpriteRenderer(m_effekseerRenderer->CreateSpriteRenderer());
+		m_effekseerManager->SetRibbonRenderer(m_effekseerRenderer->CreateRibbonRenderer());
+		m_effekseerManager->SetRingRenderer(m_effekseerRenderer->CreateRingRenderer());
+		m_effekseerManager->SetTrackRenderer(m_effekseerRenderer->CreateTrackRenderer());
+		m_effekseerManager->SetModelRenderer(m_effekseerRenderer->CreateModelRenderer());
+
+		// 描画用インスタンスからテクスチャの読込機能を設定
+		// 独自拡張可能、現在はファイルから読み込んでいる。
+		m_effekseerManager->SetTextureLoader(m_effekseerRenderer->CreateTextureLoader());
+		m_effekseerManager->SetModelLoader(m_effekseerRenderer->CreateModelLoader());
+
+	}
 	//ラスタライザとビューポートを初期化。
 	m_pd3dDevice->CreateRasterizerState(&desc, &m_rasterizerState);
 

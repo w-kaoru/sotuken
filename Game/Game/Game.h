@@ -13,6 +13,8 @@ private:
 	wchar_t moji[256];
 	GameFont m_font;
 	float m_fontsize = 1.0f; //フォントサイズ
-	CSoundSource m_testbgm;
+	CSoundSource m_testbgm;//テストBGM
+	Effekseer::Effect* m_testEffect = nullptr;//テストエフェクト
+	Effekseer::Handle m_testEffectHandle = -1;
 };
 

@@ -239,6 +239,14 @@ public:
 			DirectX::XMMatrixTranspose(*this)
 		);
 	}
+	/// <summary>
+	/// Effekseerの行列型の変数に行列の各要素をコピーする。
+	/// </summary>
+	/// <param name="efMat">コピー先</param>
+	void CopyTo(Effekseer::Matrix44& efMat) const
+	{
+		memcpy(efMat.Values, m, sizeof(efMat.Values));
+	}
 	static const CMatrix Identity()
 	{
 		static const CMatrix identity(

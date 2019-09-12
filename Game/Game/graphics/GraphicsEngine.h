@@ -68,6 +68,37 @@ public:
 	 *@brief	描画終了。
 	 */
 	void EndRender();
+	/// <summary>
+	/// エフェクトのマネージャークラスの取得
+	/// </summary>
+	/// <returns>
+	/// エフェクトのマネージャークラス（Effekseer::Manager*）
+	/// </returns>
+	Effekseer::Manager* GetEffekseerManager()
+	{
+		return m_effekseerManager;
+	}
+	void EffectUpdate()
+	{
+		//まずはEffeseerの行列型の変数に、カメラ行列とプロジェクション行列をコピー。
+		Effekseer::Matrix44 efCameraMat;
+		g_camera3D.GetViewMatrix().CopyTo(efCameraMat);
+		Effekseer::Matrix44 efProjMat;
+		g_camera3D.GetProjectionMatrix().CopyTo(efProjMat);
+		//カメラ行列とプロジェクション行列を設定。
+		m_effekseerRenderer->SetCameraMatrix(efCameraMat);
+		m_effekseerRenderer->SetProjectionMatrix(efProjMat);
+		//Effekseerを更新。
+		m_effekseerManager->Update();
+		EffectDraw();
+	}
+	void EffectDraw()
+	{
+		//エフェクトは不透明オブジェクトを描画した後で描画する。
+		m_effekseerRenderer->BeginRendering();
+		m_effekseerManager->Draw();
+		m_effekseerRenderer->EndRendering();
+	}
 private:
 	D3D_FEATURE_LEVEL		m_featureLevel;				//Direct3D デバイスのターゲットとなる機能セット。
 	ID3D11Device*			m_pd3dDevice = NULL;		//D3D11デバイス。
@@ -79,6 +110,8 @@ private:
 	ID3D11DepthStencilView* m_depthStencilView = NULL;	//デプスステンシルビュー。
 	DirectX::SpriteFont*    m_SpriteFont = NULL;		//ゲームのデフォルトのフォントデータ
 	DirectX::SpriteBatch*   m_SpriteBatch = NULL;		//ゲームのデフォルトのフォント表示用データ
+	Effekseer::Manager*	m_effekseerManager = nullptr;	//エフェクトマネージャークラス
+	EffekseerRenderer::Renderer*	m_effekseerRenderer = nullptr;  //エフェクトレンダラークラス
 
 };
 

@@ -16,9 +16,13 @@
 #include <x3daudio.h>
 #include <xaudio2fx.h>
 
+
 #include "btBulletDynamicsCommon.h"
 #include "BulletCollision\CollisionDispatch\btGhostObject.h"
 
+//Effekseerのヘッダーファイルをインクルード
+#include "Effekseer.h"
+#include "EffekseerRendererDX11.h"
 //DirectXTKのインクルードファイル。
 #include "DirectXTK/Inc/Model.h"
 #include "DirectXTK/Inc/Effects.h"	
@@ -32,6 +36,7 @@
 
 #include "math/Vector.h"
 #include "math/Matrix.h"
+#include "graphics/Camera.h"
 #include "graphics/GraphicsEngine.h"
 
 #include "graphics/SkinModel.h"
@@ -43,7 +48,6 @@
 #include "graphics/animation/AnimationClip.h"
 #include "sound/SoundEngine.h"
 #include "sound/SoundSource.h"
-#include "graphics/Camera.h"
 
 #include "graphics/GameFont.h"
 const float FRAME_BUFFER_W = 1280.0f;				//フレームバッファの幅。
