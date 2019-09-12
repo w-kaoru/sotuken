@@ -68,7 +68,7 @@
       <AdditionalDependencies>DirectXTK.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;d3d11.lib;d3dcompiler.lib;%(AdditionalDependencies);xinput.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib</AdditionalDependencies>
     </Link>
     <ImageContentTask>
-      <ContentOutput>$(ProjectDir)\Resource\sprite\%(Filename).dds</ContentOutput>
+      <ContentOutput>$(ProjectDir)\Assets/sprite/%(Filename).dds</ContentOutput>
     </ImageContentTask>
     <MeshContentTask>
       <ContentOutput>$(ProjectDir)\Assets\modelData\%(Filename).cmo</ContentOutput>
@@ -92,7 +92,7 @@
       <AdditionalDependencies>DirectXTK.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;d3d11.lib;d3dcompiler.lib;%(AdditionalDependencies);xinput.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;dxguid.lib</AdditionalDependencies>
     </Link>
     <ImageContentTask>
-      <ContentOutput>$(ProjectDir)\Resource\sprite\%(Filename).dds</ContentOutput>
+      <ContentOutput>$(ProjectDir)\Assets/sprite/%(Filename).dds</ContentOutput>
     </ImageContentTask>
     <MeshContentTask>
       <ContentOutput>$(ProjectDir)\Assets\modelData\%(Filename).cmo</ContentOutput>
@@ -109,12 +109,14 @@
     <ClCompile Include="graphics\Camera.cpp" />
     <ClCompile Include="graphics\GameFont.cpp" />
     <ClCompile Include="graphics\GraphicsEngine.cpp" />
+    <ClCompile Include="graphics\RenderTarget.cpp" />
     <ClCompile Include="graphics\Shader.cpp" />
     <ClCompile Include="graphics\ShaderResources.cpp" />
     <ClCompile Include="graphics\Skeleton.cpp" />
     <ClCompile Include="graphics\SkinModel.cpp" />
     <ClCompile Include="graphics\SkinModelDataManager.cpp" />
     <ClCompile Include="graphics\SkinModelEffect.cpp" />
+    <ClCompile Include="graphics\Sprite.cpp" />
     <ClCompile Include="HID\Pad.cpp" />
     <ClCompile Include="level\Level.cpp" />
     <ClCompile Include="level\MapChip.cpp" />
@@ -145,6 +147,7 @@
     <ClInclude Include="graphics\Camera.h" />
     <ClInclude Include="graphics\GameFont.h" />
     <ClInclude Include="graphics\GraphicsEngine.h" />
+    <ClInclude Include="graphics\RenderTarget.h" />
     <ClInclude Include="graphics\Shader.h" />
     <ClInclude Include="graphics\ShaderResources.h" />
     <ClInclude Include="graphics\Skeleton.h" />
@@ -152,6 +155,7 @@
     <ClInclude Include="graphics\SkinModelDataManager.h" />
     <ClInclude Include="graphics\SkinModelEffect.h" />
     <ClInclude Include="graphics\SkinModelShaderConst.h" />
+    <ClInclude Include="graphics\Sprite.h" />
     <ClInclude Include="HID\Pad.h" />
     <ClInclude Include="level\Level.h" />
     <ClInclude Include="level\MapChip.h" />
@@ -174,6 +178,9 @@
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\Assets\modelData\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)\Assets\modelData\%(Filename).cmo</ContentOutput>
     </MeshContentTask>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\title.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

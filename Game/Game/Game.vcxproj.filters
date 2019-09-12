@@ -121,6 +121,12 @@
     <ClCompile Include="GameObject\IGameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\RenderTarget.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\Sprite.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -216,10 +222,19 @@
     <ClInclude Include="GameObject\GameObjectManager.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\RenderTarget.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\Sprite.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\title.png" />
   </ItemGroup>
 </Project>
