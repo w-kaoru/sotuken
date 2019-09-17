@@ -117,7 +117,6 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="graphics\GameFont.cpp">
       <Filter>graphics</Filter>
     </ClCompile>
@@ -141,6 +140,7 @@
     <ClCompile Include="sound\WaveFileBank.cpp">
       <Filter>sound</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
