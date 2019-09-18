@@ -6,7 +6,7 @@ class Player:public IGameObject
 public:
 	Player();
 	~Player();
-	bool Start();
+	bool Start() override;
 	void Update();
 	void Draw();
 	void PostDraw();
