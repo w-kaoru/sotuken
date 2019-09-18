@@ -26,7 +26,7 @@ namespace GameEngine {
 		/*!
 		*@brief	消去。
 		*/
-		virtual void Destroy() {};
+		virtual void OnDestroy() {};
 
 		/*!
 		*@brief	Draw関数が実行される前に呼ばれる描画処理。
@@ -70,6 +70,11 @@ namespace GameEngine {
 					m_isStart = true;
 				}
 			}
+		}
+		void OnDestroyWrapper()
+		{
+			OnDestroy();
+
 		}
 		/*!
 		*@brief	死亡フラグを立てる。

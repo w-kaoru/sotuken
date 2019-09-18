@@ -65,6 +65,7 @@ namespace GameEngine {
 			if (gameObject != nullptr)
 			{
 				gameObject->SetDeadMark();
+				gameObject->OnDestroyWrapper();
 				m_deleteObjectList[m_deleteNo].at(gameObject->GetPriority()).push_back(gameObject);
 				gameObject = nullptr;
 			}
