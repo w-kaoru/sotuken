@@ -11,5 +11,6 @@ public:
 	void Draw();
 private:
 	std::vector<Bullet*> m_bulletList;
+	int i = 0;
 };
 
