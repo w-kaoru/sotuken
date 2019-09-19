@@ -99,6 +99,8 @@
     </MeshContentTask>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletManeger.cpp" />
     <ClCompile Include="character\BulletController.cpp" />
     <ClCompile Include="character\CharacterController.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -142,6 +144,8 @@
     <ClCompile Include="system\system.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletManeger.h" />
     <ClInclude Include="character\BulletController.h" />
     <ClInclude Include="character\CharacterController.h" />
     <ClInclude Include="Game.h" />
@@ -185,6 +189,7 @@
     <ClInclude Include="util\Util.h" />
   </ItemGroup>
   <ItemGroup>
+    <MeshContentTask Include="Assets\modelData\bullet.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\Assets\modelData\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)\Assets\modelData\%(Filename).cmo</ContentOutput>

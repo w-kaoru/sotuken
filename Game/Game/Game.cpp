@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "Player.h"
+#include "BulletManeger.h"
 
 Game::Game()
 {
@@ -18,15 +19,16 @@ Game::~Game()
 bool Game::Start()
 {
 	m_player = NewGO<Player>(1, "Player");
+	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
 	return true;
 }
 
 void Game::Update()
 {
-	if (g_pad[0].IsTrigger(enButtonA))
-	{
-		DeleteGO(m_player);
-	}
+	//if (g_pad[0].IsTrigger(enButtonA))
+	//{
+	//	DeleteGO(m_player);
+	//}
 	if (g_pad[0].IsTrigger(enButtonB))
 	{
 		//エフェクトを再生する。
