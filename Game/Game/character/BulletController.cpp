@@ -9,7 +9,7 @@ namespace GameEngine {
 			bool isHit = false;
 			bool E_bulletisHit = false;          //敵弾とプレイヤーの衝突フラグ。//衝突フラグ。
 			CVector3 hitPos = CVector3(0.0f, -FLT_MAX, 0.0f);	//衝突点。
-			CVector3 startPos = CVector3::Zero();					//レイの始点。
+			CVector3 startPos = CVector3::Zero();				//レイの始点。
 			CVector3 hitNormal = CVector3::Zero();				//衝突点の法線。
 			btCollisionObject* me = nullptr;					//自分自身。自分自身との衝突を除外するためのメンバ。
 			float dist = FLT_MAX;								//衝突点までの距離。一番近い衝突点を求めるため。FLT_MAXは単精度の浮動小数点が取りうる最大の値。

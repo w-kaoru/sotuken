@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "BulletManeger.h"
+#include "BackGround.h"
 
 Game::Game()
 {
@@ -17,7 +18,8 @@ Game::~Game()
 }
 
 bool Game::Start()
-{
+{	
+	m_backgeound = NewGO<BackGround>(1, "BackGround");
 	m_player = NewGO<Player>(1, "Player");
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
 	return true;

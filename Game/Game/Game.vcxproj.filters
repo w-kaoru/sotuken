@@ -147,6 +147,7 @@
     <ClCompile Include="character\BulletController.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManeger.cpp" />
+    <ClCompile Include="BackGround.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -262,12 +263,14 @@
     <ClInclude Include="character\BulletController.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManeger.h" />
+    <ClInclude Include="BackGround.h" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\bullet.FBX" />
+    <MeshContentTask Include="Assets\modelData\TestGround.fbx" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\title.png">
