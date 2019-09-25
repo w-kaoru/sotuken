@@ -271,6 +271,7 @@
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\bullet.FBX" />
     <MeshContentTask Include="Assets\modelData\TestGround.fbx" />
+    <MeshContentTask Include="Assets\modelData\tanktest.fbx" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\title.png">

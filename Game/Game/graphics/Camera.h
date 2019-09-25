@@ -94,6 +94,16 @@ public:
 	{
 		m_viewAngle = angle;
 	}
+	//	カメラの前方方向を取得。
+	const CVector3& GetForward() const
+	{
+		return m_forward;
+	}
+	//	カメラの右方向を取得。
+	const CVector3& GetRight() const
+	{
+		return m_right;
+	}
 	/// <summary>
 	/// 平行投影の幅を設定。
 	/// </summary>
