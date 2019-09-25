@@ -23,6 +23,8 @@ private:
 	GameFont m_font;
 	float m_fontsize = 1.0f;							//フォントサイズ
 	Sprite m_sprite;
+
+	CVector3 m_forward = CVector3::Zero();
 	CVector3 m_pos = CVector3::Zero();
 	CVector3 m_moveSpeed = CVector3::Zero();			//移動速度。
 	CQuaternion m_rot = CQuaternion::Identity();		//回転。

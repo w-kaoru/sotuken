@@ -23,24 +23,23 @@ bool Player::Start()
 void Player::FireBullets(float speed)
 {
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
-	CMatrix rotMatrix = m_model.GetRotationMatrix();
-	CVector3 forward;
-	forward.x = rotMatrix.m[2][0];
-	forward.y = rotMatrix.m[2][1];
-	forward.z = rotMatrix.m[2][2];
+	CVector3 f = m_moveSpeed;
+	f.Normalize();
 	Bullet* bullet = m_bulletmaneger->NewBullet();
-	bullet->SetMoveSpeed(forward*10.0f);
+	bullet->SetMoveSpeed(m_forward * speed);
 	CVector3 pos = m_pos;
-	pos.y += speed;
+	pos.y += 50.0f;
 	bullet->SetPosition(pos);
 }
 
 void Player::Update()
 {
-	if (g_pad[0].IsTrigger(enButtonA))
-	{
-		FireBullets(50.0f);
-	}
+	CMatrix rotMatrix/* = m_model.GetRotationMatrix()*/; 
+	rotMatrix.MakeRotationFromQuaternion(m_rot);
+	m_forward.x = rotMatrix.m[2][0];
+	m_forward.y = rotMatrix.m[2][1];
+	m_forward.z = rotMatrix.m[2][2];
+	m_forward.Normalize();
 	m_moveSpeed.x = 0.0f;
 	m_moveSpeed.z = 0.0f;
 	//プレイヤーの移動処理。
@@ -59,6 +58,10 @@ void Player::Update()
 	if (g_pad[0].IsPress(enButtonDown)) {
 		//Sキーが押された。
 		m_moveSpeed.z += 50.0f;
+	}
+	if (g_pad[0].IsTrigger(enButtonA))
+	{
+		FireBullets(10.0f);
 	}
 
 	m_moveSpeed.y -= 10.0f;
