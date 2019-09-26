@@ -148,6 +148,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManeger.cpp" />
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="GameCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -264,6 +265,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManeger.h" />
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="GameCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
@@ -271,7 +273,6 @@
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\bullet.FBX" />
     <MeshContentTask Include="Assets\modelData\TestGround.fbx" />
-    <MeshContentTask Include="Assets\modelData\tanktest.fbx" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\title.png">

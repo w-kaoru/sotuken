@@ -13,6 +13,10 @@ public:
 	void Update();
 	void Draw();
 	void PostDraw();
+	CVector3 GetPosition()
+	{
+		return m_pos;
+	}
 private:
 
 

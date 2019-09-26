@@ -31,24 +31,7 @@ void Player::FireBullets(float speed)
 
 void Player::Move()
 {
-	////プレイヤーの移動処理。
-	//if (g_pad[0].IsPress(enButtonRight)) {
-	//	//Dキーが押された。
-	//	m_moveSpeed.x -= 50.0f;
-	//}
-	//if (g_pad[0].IsPress(enButtonLeft)) {
-	//	//Aキーが押された。
-	//	m_moveSpeed.x += 50.0f;
-	//}
-	//if (g_pad[0].IsPress(enButtonUp)) {
-	//	//Wキーが押された。
-	//	m_moveSpeed.z -= 50.0f;
-	//}
-	//if (g_pad[0].IsPress(enButtonDown)) {
-	//	//Sキーが押された。
-	//	m_moveSpeed.z += 50.0f;
-	//}
-	auto MOVE_SPEED = 2500.0f;
+	auto MOVE_SPEED = 10000.0;
 	//左スティックの入力量を受け取る。
 	 StX = g_pad[0].GetLStickYF();
 	 StY = g_pad[0].GetLStickXF();
@@ -60,17 +43,14 @@ void Player::Move()
 	cameraForward.Normalize();
 	cameraRight.y = 0.0f;
 	cameraRight.Normalize();
-	cameraForward *= StX * MOVE_SPEED * m_deltatime;
-	cameraRight *= StY * MOVE_SPEED * m_deltatime;
-	//加速度を加える。
-	m_moveSpeed += cameraForward;
-	m_moveSpeed += cameraRight;
+	m_moveSpeed += cameraForward * StX * MOVE_SPEED * m_deltatime;
+	m_moveSpeed += cameraRight * StY * MOVE_SPEED * m_deltatime;
 	m_moveSpeed.y += -1800.0f * m_deltatime;
 }
 
 void Player::Update()
 {
-	CMatrix rotMatrix/* = m_model.GetRotationMatrix()*/; 
+	CMatrix rotMatrix; 
 	rotMatrix.MakeRotationFromQuaternion(m_rot);
 	m_forward.x = rotMatrix.m[2][0];
 	m_forward.y = rotMatrix.m[2][1];
@@ -96,8 +76,6 @@ void Player::Update()
 
 void Player::Turn()
 {
-	/*float angle = atan2f(m_moveSpeed.x, m_moveSpeed.z);
-	m_rot.SetRotation(CVector3::AxisY(), angle);*/
 	//向きを変える。
 	if (fabsf(m_moveSpeed.x) > 0.1f
 		|| fabsf(m_moveSpeed.z) > 0.1f) {
