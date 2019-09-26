@@ -120,6 +120,9 @@
     <ClCompile Include="HID\Pad.cpp" />
     <ClCompile Include="level\Level.cpp" />
     <ClCompile Include="level\MapChip.cpp" />
+    <ClCompile Include="Light\DirectionLight.cpp" />
+    <ClCompile Include="Light\LightBase.cpp" />
+    <ClCompile Include="Light\LightManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math\kMath.cpp" />
     <ClCompile Include="math\Matrix.cpp" />
@@ -163,6 +166,10 @@
     <ClInclude Include="HID\Pad.h" />
     <ClInclude Include="level\Level.h" />
     <ClInclude Include="level\MapChip.h" />
+    <ClInclude Include="Light\DirectionLight.h" />
+    <ClInclude Include="Light\Light.h" />
+    <ClInclude Include="Light\LightBase.h" />
+    <ClInclude Include="Light\LightManager.h" />
     <ClInclude Include="math\kMath.h" />
     <ClInclude Include="math\Matrix.h" />
     <ClInclude Include="math\Vector.h" />

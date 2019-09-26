@@ -16,10 +16,10 @@
 #include <x3daudio.h>
 #include <xaudio2fx.h>
 
-
 #include "btBulletDynamicsCommon.h"
 #include "BulletCollision\CollisionDispatch\btGhostObject.h"
 
+#include "NoncCopyable/NonCopyable.h"
 //Effekseerのヘッダーファイルをインクルード
 #include "Effekseer.h"
 #include "EffekseerRendererDX11.h"
@@ -31,8 +31,11 @@
 #include "DirectXTK/Inc/DDSTextureLoader.h"
 
 #include "physics/Physics.h"
-#include "NoncCopyable/NonCopyable.h"
 #include "HID/Pad.h"
+//ゲームオブジェクトのインクルード
+#include "gameObject/GameObjectManager.h"
+#include "gameObject/IGameObject.h"
+
 
 #include "math/Vector.h"
 #include "math/Matrix.h"
@@ -42,8 +45,6 @@
 #include "graphics/SkinModel.h"
 #include "graphics/Skeleton.h"
 
-#include "gameObject/GameObjectManager.h"
-#include "gameObject/IGameObject.h"
 #include "graphics/animation/Animation.h"
 #include "graphics/animation/AnimationClip.h"
 #include "sound/SoundEngine.h"
