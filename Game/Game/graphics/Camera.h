@@ -94,6 +94,16 @@ public:
 	{
 		m_viewAngle = angle;
 	}
+	//	カメラの前方方向を取得。
+	const CVector3& GetForward() const
+	{
+		return m_forward;
+	}
+	//	カメラの右方向を取得。
+	const CVector3& GetRight() const
+	{
+		return m_right;
+	}
 	/// <summary>
 	/// 平行投影の幅を設定。
 	/// </summary>
@@ -126,6 +136,7 @@ public:
 	}
 private:
 	CMatrix	m_viewMatrix = CMatrix::Identity();		//ビュー行列。
+	CMatrix		m_viewMatrixInv;					//ビュー行列の逆行列。
 	CMatrix m_projMatrix = CMatrix::Identity();		//プロジェクション行列。
 	CVector3 m_target = CVector3::Zero();			//注視点。
 	CVector3 m_position = CVector3::Zero();			//視点。
