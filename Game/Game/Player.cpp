@@ -44,26 +44,25 @@ void Player::Update()
 	m_moveSpeed.x = 0.0f;
 	m_moveSpeed.z = 0.0f;
 	//プレイヤーの移動処理。
-	if (g_pad[0].IsPress(enButtonRight)) {
-		//Dキーが押された。
+	if (g_pad[0].IsPress(enButtonRight)) 
+	{
 		m_moveSpeed.x -= 50.0f;
 	}
-	if (g_pad[0].IsPress(enButtonLeft)) {
-		//Aキーが押された。
+	if (g_pad[0].IsPress(enButtonLeft)) 
+	{
 		m_moveSpeed.x += 50.0f;
 	}
-	if (g_pad[0].IsPress(enButtonUp)) {
-		//Wキーが押された。
+	if (g_pad[0].IsPress(enButtonUp)) 
+	{
 		m_moveSpeed.z -= 50.0f;
 	}
-	if (g_pad[0].IsPress(enButtonDown)) {
-		//Sキーが押された。
+	if (g_pad[0].IsPress(enButtonDown)) 
+	{
 		m_moveSpeed.z += 50.0f;
 	}
 
 	m_moveSpeed.y -= 10.0f;
 	m_pos = m_charaCon.Execute(1.0 / 30.0, m_moveSpeed);
-	//m_pos = m_moveSpeed;
 	m_sprite.Update({ 0.0f,0.0f,0.0f }, CQuaternion::Identity(), CVector3::One());
 	Turn();
 	//ワールド行列の更新。
@@ -72,7 +71,7 @@ void Player::Update()
 
 void Player::Turn()
 {
-	float angle = atan2(m_moveSpeed.x, m_moveSpeed.z);
+	float angle = atan2(m_pos.x, m_pos.z);
 	m_rot.SetRotation(CVector3::AxisY(), angle);
 }
 
