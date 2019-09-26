@@ -79,6 +79,13 @@ public:
 		enSkinModelSRVReg_DiffuseTexture = 0,		//!<ディフューズテクスチャ。
 		enSkinModelSRVReg_BoneMatrix,				//!<ボーン行列。
 	};
+	/*!
+	*@brief	回転行列を取得。
+	*/
+	CMatrix GetRotationMatrix() const
+	{
+		return m_rotMatrix;
+	}
 private:
 	/*!
 	*@brief	サンプラステートの初期化。
@@ -105,6 +112,7 @@ private:
 	ID3D11Buffer*		m_cb = nullptr;					//!<定数バッファ。
 	Skeleton			m_skeleton;						//!<スケルトン。
 	CMatrix				m_worldMatrix;					//!<ワールド行列。
+	CMatrix				m_rotMatrix = CMatrix::Identity();		//!<回転行列。
 	DirectX::Model*		m_modelDx;						//!<DirectXTKが提供するモデルクラス。
 	ID3D11SamplerState* m_samplerState = nullptr;		//!<サンプラステート。
 };

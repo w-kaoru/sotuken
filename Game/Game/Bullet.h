@@ -1,0 +1,31 @@
+#pragma once
+class Bullet:public IGameObject
+{
+public:
+	Bullet();
+	~Bullet();
+	bool Start();
+	void Update();
+	void Draw();
+	/// <summary>
+	/// 弾のポジションを設定
+	/// </summary>
+	/// <param name="pos"></param>
+	void SetPosition(CVector3 pos)
+	{
+		m_position = pos;
+	}
+	/// <summary>
+	/// 弾の速度を設定
+	/// </summary>
+	/// <param name="speed"></param>
+	void SetMoveSpeed(CVector3 speed)
+	{
+		m_moveSpeed += speed;
+	}
+private:
+	SkinModel m_model;
+	CVector3 m_position = CVector3::Zero();		//座標
+	CVector3 m_moveSpeed = CVector3::Zero();	//移動速度
+};
+
