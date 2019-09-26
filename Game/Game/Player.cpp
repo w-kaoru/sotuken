@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Bullet.h"
 #include "BulletManeger.h"
+#include "Define.h"
 Player::Player()
 {
 }
@@ -31,7 +32,6 @@ void Player::FireBullets(float speed)
 
 void Player::Move()
 {
-	auto MOVE_SPEED = 10000.0;
 	//左スティックの入力量を受け取る。
 	 StX = g_pad[0].GetLStickYF();
 	 StY = g_pad[0].GetLStickXF();

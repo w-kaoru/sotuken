@@ -266,6 +266,7 @@
     <ClInclude Include="BulletManeger.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="Define.h" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">

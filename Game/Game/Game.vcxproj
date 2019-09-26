@@ -151,6 +151,7 @@
     <ClInclude Include="BulletManeger.h" />
     <ClInclude Include="character\BulletController.h" />
     <ClInclude Include="character\CharacterController.h" />
+    <ClInclude Include="Define.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameObject\GameObjectManager.h" />
