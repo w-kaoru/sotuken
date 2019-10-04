@@ -1,5 +1,6 @@
 #pragma once
 class Player;
+class TestEnemy;
 class BulletManeger;
 class BackGround;
 class GameCamera;
@@ -20,6 +21,7 @@ public:
 	}
 private:
 	Player* m_player = nullptr;
+	TestEnemy* m_testenemy = nullptr;
 	BulletManeger* m_bulletmaneger = nullptr;
 	BackGround* m_backgeound = nullptr;
 	GameCamera* m_gamecamera = nullptr;
