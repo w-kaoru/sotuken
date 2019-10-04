@@ -93,6 +93,9 @@ namespace GameEngine {
 	void LightManager::Render()
 	{
 		ID3D11DeviceContext* d3dDeviceContext = g_graphicsEngine->GetD3DDeviceContext();
+		d3dDeviceContext->UpdateSubresource(m_directionLightSB.GetBody(), 0, nullptr, &m_rawDirectionLights, 0, 0);
+		d3dDeviceContext->UpdateSubresource(m_lightParamCB.GetBody(), 0, nullptr, &m_lightParam, 0, 0);
+
 		d3dDeviceContext->VSSetConstantBuffers(1, 1, &m_lightParamCB.GetBody());
 		d3dDeviceContext->PSSetConstantBuffers(1, 1, &m_lightParamCB.GetBody());
 		d3dDeviceContext->VSSetShaderResources(100, 1, &m_directionLightSB.GetSRV().GetBody());

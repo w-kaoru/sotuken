@@ -4,9 +4,11 @@
 #include "BulletManeger.h"
 #include "BackGround.h"
 #include "GameCamera.h"
+#include "Light/DirectionLight.h"
 
 Game::Game()
 {
+	InitLight();
 	m_testbgm.Init(L"Assets/sound/coinGet.wav");
 	//m_testbgm.Play(true);
 	m_testEffect = Effekseer::Effect::Create(g_graphicsEngine->GetEffekseerManager(),
@@ -18,12 +20,23 @@ Game::~Game()
 {
 }
 
+void Game::InitLight()
+{
+	//ライトを配置。
+	CVector3 dir = { 0.0f, -1.0f, 0.0f };
+	dir.Normalize();
+	m_directionLight = NewGO<prefab::DirectionLight>(0, nullptr);
+	m_directionLight->SetDirection(dir);
+	m_directionLight->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+}
+
 bool Game::Start()
-{	
+{
 	m_backgeound = NewGO<BackGround>(1, "BackGround");
 	m_player = NewGO<Player>(1, "Player");
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
 	m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
+	//InitLight();
 	return true;
 }
 

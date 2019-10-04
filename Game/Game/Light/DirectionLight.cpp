@@ -21,8 +21,5 @@ namespace GameEngine {
 		void DirectionLight::Update()
 		{
 		}
-		void DirectionLight::UpdateSubResource()
-		{
-		}
 	}
 }

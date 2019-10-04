@@ -30,7 +30,7 @@ cbuffer VSPSCb : register(b0){
 
 cbuffer LightParam : register(b10)
 {
-	float4 eyepos;
+	float3 eyepos;
 	int numDirectionLight;
 }
 
@@ -164,9 +164,12 @@ PSInput VSMainSkin( VSInputNmTxWeights In )
 float3 CalcDiffuseLight(float3 normal)
 {
 	float3 lig = 0.0f;
-	for (int i = 0; i < numDirectionLight; i++) {
+	//numDirectionLightvの値が取れていない。
+	//for (int i = 0; i < numDirectionLight; i++) {
+	//とりあえず。一本で当ててる。
+	for (int i = 0; i < 1; i++) {
 		//ランバート拡散反射。
-		lig += max(0.0f, dot(normal * -1.0f, DirectionLightSB[i].direction)) * DirectionLightSB[i].color;
+		lig += max(0.5f, dot(normal * -1.0f, DirectionLightSB[i].direction)) * DirectionLightSB[i].color;
 	}
 	return lig;
 }
@@ -179,7 +182,8 @@ float4 PSMain( PSInput In ) : SV_Target0
 	float4 albedoColor = albedoTexture.Sample(Sampler, In.TexCoord);
 
 
-	float3 lig = 0.0f;
+	float3 lig = 0.0f; 
+	//ラインバート拡散反射
 	lig += CalcDiffuseLight(In.Normal);
 	float4 finalColor = float4(0.0f, 0.0f, 0.0f, 1.0f);
 	finalColor.xyz = albedoColor.xyz * lig;

@@ -8,6 +8,7 @@ class Game:public IGameObject
 public:
 	Game();
 	~Game();
+	void InitLight();
 	bool Start();
 	void Update();
 	void Draw();
@@ -29,5 +30,6 @@ private:
 	CSoundSource m_testbgm;//テストBGM
 	Effekseer::Effect* m_testEffect = nullptr;//テストエフェクト
 	Effekseer::Handle m_testEffectHandle = -1;
+	prefab::DirectionLight* m_directionLight = nullptr;
 };
 

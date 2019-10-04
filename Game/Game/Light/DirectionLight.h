@@ -11,7 +11,6 @@ namespace GameEngine {
 			~DirectionLight();
 			bool StartSub() override final;
 			void Update() override final;
-			void UpdateSubResource();
 			void SetDirection(const CVector3& dir) {
 				m_light.direction = dir;
 			}
