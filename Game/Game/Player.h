@@ -9,7 +9,7 @@ public:
 	bool Start() override;
 	void FireBullets(float speed);
 	void Move();						//移動処理
-	void Turn();										//回転処理。　
+	void Turn();						//回転処理。　
 	void Update();
 	void Draw();
 	void PostDraw();
