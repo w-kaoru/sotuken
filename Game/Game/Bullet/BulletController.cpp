@@ -20,10 +20,33 @@ namespace GameEngine {
 				if (convexResult.m_hitCollisionObject == me
 					|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Character
 					) {
+					//isHit = true;
 					//自分に衝突した。or キャラクタ属性のコリジョンと衝突した。
 					return 0.0f;
 				}
-				isHit = true;
+				//衝突点の法線を引っ張ってくる。
+				CVector3 hitNormalTmp;
+				hitNormalTmp.Set(convexResult.m_hitNormalLocal);
+				//上方向と衝突点の法線のなす角度を求める。
+				float angle = fabsf(acosf(hitNormalTmp.Dot(CVector3::Up())));
+				if (angle >= CMath::PI * 0.3f		//地面の傾斜が54度以上なので壁とみなす。
+					|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Character	//もしくはコリジョン属性がキャラクタなので壁とみなす。
+					) {
+					isHit = true;
+					CVector3 hitPosTmp;
+					hitPosTmp.Set(convexResult.m_hitPointLocal);
+					//交点との距離を調べる。
+					CVector3 vDist;
+					vDist.Subtract(hitPosTmp, startPos);
+					vDist.y = 0.0f;
+					float distTmp = vDist.Length();
+					if (distTmp < dist) {
+						//この衝突点の方が近いので、最近傍の衝突点を更新する。
+						hitPos = hitPosTmp;
+						dist = distTmp;
+						hitNormal = hitNormalTmp;
+					}
+				}
 			}
 		};
 	}
@@ -56,12 +79,12 @@ namespace GameEngine {
 		rbInfo.collider = &m_collider;
 		rbInfo.mass = 0.0f;
 		m_rigidBody.Create(rbInfo);
-		btTransform& trans = m_rigidBody.GetBody()->getWorldTransform();
-		//剛体の位置を更新。
-		trans.setOrigin(btVector3(position.x, position.y, position.z));
-		//@todo 未対応。trans.setRotation(btQuaternion(rotation.x, rotation.y, rotation.z));
-		m_rigidBody.GetBody()->setUserIndex(enCollisionAttr_Character);
-		m_rigidBody.GetBody()->setCollisionFlags(btCollisionObject::CF_CHARACTER_OBJECT);
+		//btTransform& trans = m_rigidBody.GetBody()->getWorldTransform();
+		////剛体の位置を更新。
+		//trans.setOrigin(btVector3(position.x, position.y, position.z));
+		////@todo 未対応。trans.setRotation(btQuaternion(rotation.x, rotation.y, rotation.z));
+		//m_rigidBody.GetBody()->setUserIndex(enCollisionAttr_Character);
+		//m_rigidBody.GetBody()->setCollisionFlags(btCollisionObject::CF_CHARACTER_OBJECT);
 		g_physics.AddRigidBody(m_rigidBody);
 
 	}
@@ -126,7 +149,7 @@ namespace GameEngine {
 		//剛体を動かす。
 		btBody->setActivationState(DISABLE_DEACTIVATION);
 		btTransform& trans = btBody->getWorldTransform();
-		//剛体の位置を更新。
+		////剛体の位置を更新。
 		trans.setOrigin(btVector3(m_position.x, m_position.y, m_position.z));
 		//@todo 未対応。 trans.setRotation(btQuaternion(rotation.x, rotation.y, rotation.z));
 		return m_position;
@@ -138,7 +161,7 @@ namespace GameEngine {
 	void BulletController::RemoveRigidBoby()
 	{
 		//if (m_rigidBody.GetBody() != nullptr) {
-		g_physics.RemoveRigidBody(m_rigidBody);
+			g_physics.RemoveRigidBody(m_rigidBody);
 		//}
 		dethFlag = true;
 	}

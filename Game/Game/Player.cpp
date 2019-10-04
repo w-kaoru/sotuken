@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Bullet.h"
 #include "BulletManeger.h"
+#include "Define.h"
 Player::Player()
 {
 }
@@ -31,7 +32,6 @@ void Player::FireBullets(float speed)
 
 void Player::Move()
 {
-	auto MOVE_SPEED = 10000.0;
 	//左スティックの入力量を受け取る。
 	 StX = g_pad[0].GetLStickYF();
 	 StY = g_pad[0].GetLStickXF();
@@ -67,7 +67,6 @@ void Player::Update()
 
 	//m_moveSpeed.y -= 10.0f;
 	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed);
-	//m_pos = m_moveSpeed;
 	m_sprite.Update({ 0.0f,0.0f,0.0f }, CQuaternion::Identity(), CVector3::One());
 	
 	//ワールド行列の更新。

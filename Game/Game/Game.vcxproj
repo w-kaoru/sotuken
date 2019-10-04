@@ -100,9 +100,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="BulletManeger.cpp" />
-    <ClCompile Include="character\BulletController.cpp" />
+    <ClCompile Include="Bullet\Bullet.cpp" />
+    <ClCompile Include="Bullet\BulletController.cpp" />
+    <ClCompile Include="Bullet\BulletManeger.cpp" />
     <ClCompile Include="character\CharacterController.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameCamera.cpp" />
@@ -152,13 +152,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="system\system.cpp" />
+    <ClCompile Include="TestEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="BulletManeger.h" />
-    <ClInclude Include="character\BulletController.h" />
+    <ClInclude Include="Bullet\Bullet.h" />
+    <ClInclude Include="Bullet\BulletController.h" />
+    <ClInclude Include="Bullet\BulletManeger.h" />
     <ClInclude Include="character\CharacterController.h" />
+    <ClInclude Include="Define.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameObject\GameObjectManager.h" />
@@ -207,6 +209,7 @@
     <ClInclude Include="sound\WaveFileBank.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="system\system.h" />
+    <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="util\Util.h" />
   </ItemGroup>
   <ItemGroup>

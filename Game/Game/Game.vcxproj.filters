@@ -44,10 +44,13 @@
       <UniqueIdentifier>{a24486e4-e93a-4cc7-84e4-efe0680e63f2}</UniqueIdentifier>
     </Filter>
     <Filter Include="graphics\GPUBufferView">
-      <UniqueIdentifier>{14047a87-50a8-490b-a4af-a20f1a11d972}</UniqueIdentifier>
+      <UniqueIdentifier>{9f7f13cf-a7cd-4c3e-b916-d3c765c4288a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Light">
-      <UniqueIdentifier>{736a7763-acd9-49d1-a8c6-097fba3e95ba}</UniqueIdentifier>
+      <UniqueIdentifier>{f8389c68-2d13-4420-a146-3598af43f68c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bullet">
+      <UniqueIdentifier>{71b7ef26-3219-4558-a18f-4cd0ff47606f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -135,8 +138,6 @@
     <ClCompile Include="GameObject\IGameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\RenderTarget.cpp" />
-    <ClCompile Include="graphics\Sprite.cpp" />
     <ClCompile Include="sound\SoundEngine.cpp">
       <Filter>sound</Filter>
     </ClCompile>
@@ -150,11 +151,9 @@
       <Filter>sound</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="character\BulletController.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="BulletManeger.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="GameCamera.cpp" />
+    <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="graphics\GPUBufferView\ConstantBuffer.cpp">
       <Filter>graphics\GPUBufferView</Filter>
     </ClCompile>
@@ -170,6 +169,12 @@
     <ClCompile Include="graphics\GPUBufferView\UnorderedAccessView.cpp">
       <Filter>graphics\GPUBufferView</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\RenderTarget.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\Sprite.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
     <ClCompile Include="Light\DirectionLight.cpp">
       <Filter>Light</Filter>
     </ClCompile>
@@ -178,6 +183,15 @@
     </ClCompile>
     <ClCompile Include="Light\LightManager.cpp">
       <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet\Bullet.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet\BulletController.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet\BulletManeger.cpp">
+      <Filter>Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -274,8 +288,6 @@
     <ClInclude Include="GameObject\GameObjectManager.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\RenderTarget.h" />
-    <ClInclude Include="graphics\Sprite.h" />
     <ClInclude Include="sound\SoundSource.h">
       <Filter>sound</Filter>
     </ClInclude>
@@ -291,11 +303,10 @@
     <ClInclude Include="util\Util.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="character\BulletController.h" />
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="BulletManeger.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="Define.h" />
+    <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="graphics\GPUBufferView\ConstantBuffer.h">
       <Filter>graphics\GPUBufferView</Filter>
     </ClInclude>
@@ -311,6 +322,12 @@
     <ClInclude Include="graphics\GPUBufferView\UnorderedAccessView.h">
       <Filter>graphics\GPUBufferView</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\RenderTarget.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\Sprite.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
     <ClInclude Include="Light\DirectionLight.h">
       <Filter>Light</Filter>
     </ClInclude>
@@ -323,13 +340,26 @@
     <ClInclude Include="Light\LightManager.h">
       <Filter>Light</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet\Bullet.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet\BulletController.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet\BulletManeger.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\bullet.FBX" />
-    <MeshContentTask Include="Assets\modelData\TestGround.fbx" />
+    <MeshContentTask Include="Assets\modelData\TestGround.fbx">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\bullet.FBX">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\title.png">

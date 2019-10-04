@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "Player.h"
-#include "BulletManeger.h"
+#include "TestEnemy.h"
+#include "Bullet/BulletManeger.h"
 #include "BackGround.h"
 #include "GameCamera.h"
 #include "Light/DirectionLight.h"
@@ -34,6 +35,7 @@ bool Game::Start()
 {
 	m_backgeound = NewGO<BackGround>(1, "BackGround");
 	m_player = NewGO<Player>(1, "Player");
+	m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
 	m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
 	//InitLight();

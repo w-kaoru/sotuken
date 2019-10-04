@@ -1,4 +1,5 @@
 #pragma once
+#include "BulletController.h"
 class Bullet:public IGameObject
 {
 public:
@@ -23,8 +24,14 @@ public:
 	{
 		m_moveSpeed += speed;
 	}
+	bool GetHit()
+	{
+		return HitFlag;
+	}
 private:
 	SkinModel m_model;
+	BulletController m_testes;
+	bool HitFlag = false;
 	CVector3 m_position = CVector3::Zero();		//ç¿ïW
 	CVector3 m_moveSpeed = CVector3::Zero();	//à⁄ìÆë¨ìx
 };
