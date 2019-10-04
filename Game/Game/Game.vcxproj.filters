@@ -43,6 +43,12 @@
     <Filter Include="util">
       <UniqueIdentifier>{a24486e4-e93a-4cc7-84e4-efe0680e63f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="graphics\GPUBufferView">
+      <UniqueIdentifier>{14047a87-50a8-490b-a4af-a20f1a11d972}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{736a7763-acd9-49d1-a8c6-097fba3e95ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="math\Vector.cpp">
@@ -149,6 +155,30 @@
     <ClCompile Include="BulletManeger.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="GameCamera.cpp" />
+    <ClCompile Include="graphics\GPUBufferView\ConstantBuffer.cpp">
+      <Filter>graphics\GPUBufferView</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\GPUBufferView\GPUBuffer.cpp">
+      <Filter>graphics\GPUBufferView</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\GPUBufferView\ShaderResourceView.cpp">
+      <Filter>graphics\GPUBufferView</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\GPUBufferView\StructuredBuffer.cpp">
+      <Filter>graphics\GPUBufferView</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\GPUBufferView\UnorderedAccessView.cpp">
+      <Filter>graphics\GPUBufferView</Filter>
+    </ClCompile>
+    <ClCompile Include="Light\DirectionLight.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Light\LightBase.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Light\LightManager.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -266,6 +296,33 @@
     <ClInclude Include="BulletManeger.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="graphics\GPUBufferView\ConstantBuffer.h">
+      <Filter>graphics\GPUBufferView</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\GPUBufferView\GPUBuffer.h">
+      <Filter>graphics\GPUBufferView</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\GPUBufferView\ShaderResourceView.h">
+      <Filter>graphics\GPUBufferView</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\GPUBufferView\StructuredBuffer.h">
+      <Filter>graphics\GPUBufferView</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\GPUBufferView\UnorderedAccessView.h">
+      <Filter>graphics\GPUBufferView</Filter>
+    </ClInclude>
+    <ClInclude Include="Light\DirectionLight.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Light\Light.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Light\LightBase.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Light\LightManager.h">
+      <Filter>Light</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">

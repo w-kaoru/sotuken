@@ -158,7 +158,8 @@ void GraphicsEngine::Init(HWND hWnd)
 		);
 		//エフェクトマネージャを初期化。
 		m_effekseerManager = Effekseer::Manager::Create(10000);
-
+		//ライトの初期化
+		m_ligManager.Init();
 		// 描画用インスタンスから描画機能を設定
 		m_effekseerManager->SetSpriteRenderer(m_effekseerRenderer->CreateSpriteRenderer());
 		m_effekseerManager->SetRibbonRenderer(m_effekseerRenderer->CreateRibbonRenderer());

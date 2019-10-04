@@ -1,5 +1,6 @@
 #pragma once
 #include "Sprite.h"
+#include "../Light/LightManager.h"
 /*!
  *@brief	グラフィックスエンジン。
  */
@@ -62,6 +63,13 @@ public:
 		return m_rasterizerState;
 	}
 	/*!
+	*@brief	ライトの管理者を取得。
+	*/
+	GameEngine::LightManager& GetLightManager()
+	{
+		return m_ligManager;
+	}
+	/*!
 	 *@brief	描画開始。
 	 */
 	void BegineRender();
@@ -101,6 +109,7 @@ public:
 		m_effekseerRenderer->EndRendering();
 	}
 private:
+	GameEngine::LightManager	m_ligManager;
 	D3D_FEATURE_LEVEL		m_featureLevel;				//Direct3D デバイスのターゲットとなる機能セット。
 	ID3D11Device*			m_pd3dDevice = NULL;		//D3D11デバイス。
 	IDXGISwapChain*			m_pSwapChain = NULL;		//スワップチェイン。

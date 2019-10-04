@@ -28,10 +28,27 @@ cbuffer VSPSCb : register(b0){
 	float4x4 mProj;
 };
 
+cbuffer LightParam : register(b10)
+{
+	float4 eyepos;
+	int numDirectionLight;
+}
+
+
 
 /////////////////////////////////////////////////////////////
 //各種構造体
 /////////////////////////////////////////////////////////////
+
+/*!
+ * @brief	ディレクションライト用の構造体。
+ */
+struct SDirectionLight {
+	float4 color;			//!<ライトのカラー。
+	float3 direction;		//!<ライトの方向。
+};
+
+StructuredBuffer <SDirectionLight>DirectionLightSB:register(t100);
 /*!
  * @brief	スキンなしモデルの頂点構造体。
  */
@@ -63,6 +80,7 @@ struct PSInput{
 	float3 Normal		: NORMAL;
 	float3 Tangent		: TANGENT;
 	float2 TexCoord 	: TEXCOORD0;
+	float4 posInLVP		: TEXCOORD1;	//ライトビュープロジェクション空間での座標。
 };
 /*!
  *@brief	スキン行列を計算。
@@ -91,6 +109,7 @@ PSInput VSMain( VSInputNmTxVcTangent In )
 	pos = mul(mView, pos);
 	pos = mul(mProj, pos);
 	psInput.Position = pos;
+
 	psInput.TexCoord = In.TexCoord;
 	psInput.Normal = normalize(mul(mWorld, In.Normal));
 	psInput.Tangent = normalize(mul(mWorld, In.Tangent));
@@ -134,13 +153,35 @@ PSInput VSMainSkin( VSInputNmTxWeights In )
 	pos = mul(mView, pos);
 	pos = mul(mProj, pos);
 	psInput.Position = pos;
+
 	psInput.TexCoord = In.TexCoord;
     return psInput;
+}
+
+/// <summary>
+/// ラインバート拡散反射を計算する。
+/// </summary>
+float3 CalcDiffuseLight(float3 normal)
+{
+	float3 lig = 0.0f;
+	for (int i = 0; i < numDirectionLight; i++) {
+		//ランバート拡散反射。
+		lig += max(0.0f, dot(normal * -1.0f, DirectionLightSB[i].direction)) * DirectionLightSB[i].color;
+	}
+	return lig;
 }
 //--------------------------------------------------------------------------------------
 // ピクセルシェーダーのエントリ関数。
 //--------------------------------------------------------------------------------------
 float4 PSMain( PSInput In ) : SV_Target0
 {
-	return albedoTexture.Sample(Sampler, In.TexCoord);
+	//albedoテクスチャからカラーをフェッチする。
+	float4 albedoColor = albedoTexture.Sample(Sampler, In.TexCoord);
+
+
+	float3 lig = 0.0f;
+	lig += CalcDiffuseLight(In.Normal);
+	float4 finalColor = float4(0.0f, 0.0f, 0.0f, 1.0f);
+	finalColor.xyz = albedoColor.xyz * lig;
+	return finalColor;
 }

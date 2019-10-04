@@ -66,7 +66,7 @@ void Player::Update()
 	}
 
 	//m_moveSpeed.y -= 10.0f;
-	m_pos = m_charaCon.Execute(1.0 / 30.0, m_moveSpeed);
+	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed);
 	//m_pos = m_moveSpeed;
 	m_sprite.Update({ 0.0f,0.0f,0.0f }, CQuaternion::Identity(), CVector3::One());
 	

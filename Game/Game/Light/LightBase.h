@@ -7,7 +7,7 @@ namespace GameEngine {
 			bool Start() override final;
 			void OnDestroy() override final;
 		private:
-			virtual bool StartSub() {};
+			virtual bool StartSub() { return true; };
 			virtual void OnDestroySub() {};
 
 		};
