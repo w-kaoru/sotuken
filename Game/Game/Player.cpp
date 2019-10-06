@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
-#include "Bullet.h"
-#include "BulletManeger.h"
+#include "Bullet/Bullet.h"
+#include "Bullet/BulletManeger.h"
 #include "Define.h"
 Player::Player()
 {
