@@ -38,7 +38,7 @@ void BulletManeger::Update()
 {
 
 	for (auto& bullet : m_bulletList) {
-		bullet->Update();
+		bullet->BulletMove();
 	}
 	DeleteBullet();
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "character/CharacterController.h"
 class BulletManeger;
+class Bullet;
 class TestEnemy :public IGameObject
 {
 public:
@@ -12,6 +13,10 @@ public:
 	void Turn();										//回転処理。　
 	void Update();
 	void Draw();
+	CVector3 GetPosition()
+	{
+		return m_pos;
+	}
 private:
 
 	SkinModel m_model;									//スキンモデル。
@@ -21,6 +26,7 @@ private:
 	CQuaternion m_rot = CQuaternion::Identity();		//回転。
 	CVector3 m_scale = CVector3::One();					//スケール。
 	BulletManeger* m_bulletmaneger = nullptr;
+	Bullet* m_bullet = nullptr;
 	float m_deltatime = 1.0f / 30.0f;                   //1フレームの経過時間
 	CharacterController m_charaCon;						//キャラクターコントローラーを追加。
 

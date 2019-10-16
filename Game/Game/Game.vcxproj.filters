@@ -193,6 +193,9 @@
     <ClCompile Include="Bullet\BulletManeger.cpp">
       <Filter>Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="physics\SphereCollider.cpp">
+      <Filter>physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -349,6 +352,9 @@
     <ClInclude Include="Bullet\BulletManeger.h">
       <Filter>Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="physics\SphereCollider.h">
+      <Filter>physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
@@ -360,6 +366,7 @@
     <MeshContentTask Include="Assets\modelData\bullet.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\BTR80A.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\title.png">

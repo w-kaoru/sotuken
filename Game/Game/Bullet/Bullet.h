@@ -1,5 +1,6 @@
 #pragma once
 #include "BulletController.h"
+class TestEnemy;
 class Bullet:public IGameObject
 {
 public:
@@ -8,6 +9,7 @@ public:
 	bool Start();
 	void Update();
 	void Draw();
+	void BulletMove();
 	/// <summary>
 	/// 弾のポジションを設定
 	/// </summary>
@@ -28,11 +30,16 @@ public:
 	{
 		return HitFlag;
 	}
+	BulletController* GetBulletController()
+	{
+		return &m_testes;
+	}
 private:
 	SkinModel m_model;
 	BulletController m_testes;
 	bool HitFlag = false;
 	CVector3 m_position = CVector3::Zero();		//座標
 	CVector3 m_moveSpeed = CVector3::Zero();	//移動速度
+	TestEnemy* m_enemy = nullptr;
 };
 

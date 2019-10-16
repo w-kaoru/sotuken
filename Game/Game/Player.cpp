@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include "Physics/CollisionAttr.h"
 #include "Bullet/Bullet.h"
 #include "Bullet/BulletManeger.h"
 #include "Define.h"
