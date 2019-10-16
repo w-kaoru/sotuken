@@ -44,6 +44,7 @@ bool Game::Start()
 
 void Game::Update()
 {
+	g_graphicsEngine->GetLightManager().SetEyePos(m_gamecamera->GetCameraPos());
 	//if (g_pad[0].IsTrigger(enButtonA))
 	//{
 	//	DeleteGO(m_player);

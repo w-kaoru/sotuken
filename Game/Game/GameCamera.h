@@ -12,6 +12,10 @@ public:
 	{
 		m_player = player;
 	}
+	CVector3 GetCameraPos() 
+	{
+		return g_camera3D.GetPosition();
+	}
 private:
 	Player* m_player = nullptr;
 

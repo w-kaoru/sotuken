@@ -26,6 +26,10 @@ namespace GameEngine {
 			m_lightParam.eyePos = eyePos;
 			m_lightParam.numDirectionLight = directionLightNum;
 		}
+		void SetEyePos(CVector3 pos) 
+		{
+			m_lightParam.eyePos = pos;
+		}
 	private:
 		static const int MAX_DIRECTION_LIGHT = 4;						//!<ディレクションライトの最大数。
 		/*!
