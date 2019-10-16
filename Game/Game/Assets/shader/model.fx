@@ -167,7 +167,7 @@ float3 CalcDiffuseLight(float3 normal)
 	//numDirectionLightvの値が取れていない。
 	//for (int i = 0; i < numDirectionLight; i++) {
 	//とりあえず。一本で当ててる。
-	for (int i = 0; i < 1; i++) {
+	for (int i = 0; i < numDirectionLight; i++) {
 		//ランバート拡散反射。
 		lig += max(0.5f, dot(normal * -1.0f, DirectionLightSB[i].direction)) * DirectionLightSB[i].color;
 	}
@@ -182,10 +182,11 @@ float4 PSMain( PSInput In ) : SV_Target0
 	float4 albedoColor = albedoTexture.Sample(Sampler, In.TexCoord);
 
 
-	float3 lig = 0.0f; 
+	float3 lig = 0.0f;
 	//ラインバート拡散反射
 	lig += CalcDiffuseLight(In.Normal);
 	float4 finalColor = float4(0.0f, 0.0f, 0.0f, 1.0f);
 	finalColor.xyz = albedoColor.xyz * lig;
 	return finalColor;
+
 }
