@@ -206,20 +206,23 @@ float4 PSMain( PSInput In ) : SV_Target0
 			//強さが一定値以下(今回は0.2)なら暗いテクスチャを使う。
 			//それ以上なら明るいテクスチャを使う。
 			float3 color = 0.0f;
-			if (dot(-DirectionLightSB[i].direction, In.Normal) < 0.1f) {
-				color = albedoColor.xyz * 0.5f;
-			}
-			else {
-				color = albedoColor.xyz * 1.0f;
-			}
+			color = max(
+				0.4f,
+				dot(DirectionLightSB[i].direction,
+					normalize(
+						mul(In.Normal, In.Position)
+					)
+				)
+			) * albedoColor.xyz;
+			
 			//リムを当てる。
-			float3 eyeDir = normalize(eyepos - In.worldPos);
-			float lim = (1.0f - dot(-In.Normal, eyeDir)) * 1.0f;								//カメラの方向と垂直な場合逆光の強さが強くなる。
-			lim *= max(0.0f, dot(eyeDir, -DirectionLightSB[i].direction));						//完全に逆行していたらbaseLimの値がそのままでる。
-			if (lim > 0.85f) {
-				//逆光が発生している。
-				color = albedoColor.xyz;
-			}
+			//float3 eyeDir = normalize(eyepos - In.worldPos);
+			//float lim = (1.0f - dot(-In.Normal, eyeDir)) * 2.0f;								//カメラの方向と垂直な場合逆光の強さが強くなる。
+			//lim *= max(0.0f, dot(eyeDir, -DirectionLightSB[i].direction));						//完全に逆行していたらbaseLimの値がそのままでる。
+			//if (lim > 0.7f) {
+			//	//逆光が発生している。
+			//	color = albedoColor.xyz;
+			//}
 			finalColor = float4(color.xyz, 1.0f);
 		}
 	}
