@@ -25,12 +25,13 @@ bool TestEnemy::Start()
 	m_charaCon.Init(50.0f, 50.0f, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Enemy);
 	//m_bullet->GetBulletController()->GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Enemy);
+	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	return true;
 }
 
 void TestEnemy::FireBullets(float speed)
 {
-	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
+	
 	Bullet* bullet = m_bulletmaneger->NewBullet();
 	bullet->SetMoveSpeed(m_forward * speed);
 	CVector3 pos = m_pos;

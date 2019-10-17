@@ -31,8 +31,22 @@ public:
 	//void erasebullet();
 	////不要なプレイヤーの弾の全削除。
 	//void erasebullet_All();
+
+	/*!
+	*@brief	インスタンスの取得。
+	*/
+	/*static BulletManeger& Instance()
+	{
+		static BulletManeger instance;//BulletManegerのインスタンスを生成。
+		return instance;
+	}*/
 private:
 	std::vector<Bullet*> m_bulletList;
 	int m_bulletDeleteTime = 0;
 };
 
+/*//BulletManegerのインスタンスを取得。
+static inline BulletManeger& G_BulletManager()
+{
+	return BulletManeger::Instance();
+}*/

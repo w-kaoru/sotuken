@@ -18,11 +18,12 @@ bool Player::Start()
 	//cmoファイルの読み込み。
 	m_model.Init(L"Assets/modelData/unityChan.cmo");
 	m_charaCon.Init(10.0f, 50.0f, m_pos);
+	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	return true;
 }
 void Player::FireBullets(float speed)
 {
-	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
+	
 	Bullet* bullet = m_bulletmaneger->NewBullet();
 	bullet->SetMoveSpeed(m_forward * speed);
 	CVector3 pos = m_pos;
@@ -62,7 +63,7 @@ void Player::Update()
 	Turn();
 	if (g_pad[0].IsTrigger(enButtonA))
 	{
-		FireBullets(10.0f);
+		FireBullets(800.0f);
 	}
 
 	//m_moveSpeed.y -= 10.0f;

@@ -38,14 +38,14 @@ void BulletManeger::Update()
 {
 
 	for (auto& bullet : m_bulletList) {
-		bullet->BulletMove();
+		//bullet->BulletMove();
 	}
 	DeleteBullet();
 }
 
 void BulletManeger::Draw()
 {
-	for (auto& bullet : m_bulletList) {
+	/*for (auto& bullet : m_bulletList) {
 		bullet->Draw();
-	}
+	}*/
 }

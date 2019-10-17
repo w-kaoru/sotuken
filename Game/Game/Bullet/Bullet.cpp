@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Bullet.h"
 #include "TestEnemy.h"
+#include "Physics/CollisionAttr.h"
 
 Bullet::Bullet()
 {
@@ -15,12 +16,14 @@ bool Bullet::Start()
 {
 	m_model.Init(L"Assets/modelData/bullet.cmo");
 	m_testes.Init(10.0f, m_position);
+	m_testes.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_PlayerBullet);
 	m_enemy = FindGO<TestEnemy>("TestEnemy");
 	return true;
 }
 void Bullet::BulletMove()
 {
-	m_position += m_moveSpeed;
+	m_position = m_testes.Execute(1.0f / 30.0f, m_moveSpeed);
+	
 	m_model.UpdateWorldMatrix(m_position, CQuaternion::Identity(), CVector3::One());
 }
 void Bullet::Update()
@@ -31,11 +34,11 @@ void Bullet::Update()
 	//{
 	//	HitFlag = true;
 	//}
+
+	BulletMove();
 	if (m_testes.GetE_bullethit() == true) {
 		HitFlag = true;
 	}
-	BulletMove();
-	m_testes.Execute(1.0f / 30.0f, m_position);
 }
 
 void Bullet::Draw()

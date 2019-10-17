@@ -65,9 +65,9 @@ public:
 	/*!
 	*@brief	ライトの管理者を取得。
 	*/
-	GameEngine::LightManager& GetLightManager()
+	GameEngine::LightManager* GetLightManager()
 	{
-		return m_ligManager;
+		return &m_ligManager;
 	}
 	/*!
 	 *@brief	描画開始。
