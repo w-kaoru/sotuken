@@ -24,11 +24,11 @@ Game::~Game()
 void Game::InitLight()
 {
 	//ライトを配置。
-	CVector3 dir = { 0.0f, -1.0f, 0.0f };
+	CVector3 dir = { 1.0f, -1.0f, 0.0f };
 	dir.Normalize();
 	m_directionLight = NewGO<prefab::DirectionLight>(0, nullptr);
 	m_directionLight->SetDirection(dir);
-	m_directionLight->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+	m_directionLight->SetColor({ 2.0f, 2.0f, 2.0f, 1.0f });
 }
 
 bool Game::Start()

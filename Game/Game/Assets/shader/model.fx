@@ -81,6 +81,7 @@ struct PSInput{
 	float3 Tangent		: TANGENT;
 	float2 TexCoord 	: TEXCOORD0;
 	float4 posInLVP		: TEXCOORD1;	//ライトビュープロジェクション空間での座標。
+	float3 worldPos	: TEXCOORD2;	//ワールド座標。
 };
 /*!
  *@brief	スキン行列を計算。
@@ -105,8 +106,13 @@ float4x4 CalcSkinMatrix(VSInputNmTxWeights In)
 PSInput VSMain( VSInputNmTxVcTangent In ) 
 {
 	PSInput psInput = (PSInput)0;
+	//ローカル座標系からワールド座標系に変換する。
 	float4 pos = mul(mWorld, In.Position);
+	//ワールド座標をピクセルシェーダーに渡す。
+	psInput.worldPos = pos.xyz;
+	//ワールド座標系からカメラ座標系に変換する。
 	pos = mul(mView, pos);
+	//カメラ座標系からスクリーン座標系に変換する。
 	pos = mul(mProj, pos);
 	psInput.Position = pos;
 
@@ -147,6 +153,7 @@ PSInput VSMainSkin( VSInputNmTxWeights In )
 		//mulは乗算命令。
 	    pos = mul(skinning, In.Position);
 	}
+	psInput.worldPos = pos.xyz;
 	psInput.Normal = normalize( mul(skinning, In.Normal) );
 	psInput.Tangent = normalize( mul(skinning, In.Tangent) );
 	
@@ -173,6 +180,10 @@ float3 CalcDiffuseLight(float3 normal)
 	}
 	return lig;
 }
+float3 Toon(float3 normal)
+{
+
+}
 //--------------------------------------------------------------------------------------
 // ピクセルシェーダーのエントリ関数。
 //--------------------------------------------------------------------------------------
@@ -184,9 +195,34 @@ float4 PSMain( PSInput In ) : SV_Target0
 
 	float3 lig = 0.0f;
 	//ラインバート拡散反射
-	lig += CalcDiffuseLight(In.Normal);
+	//lig += CalcDiffuseLight(In.Normal);
 	float4 finalColor = float4(0.0f, 0.0f, 0.0f, 1.0f);
-	finalColor.xyz = albedoColor.xyz * lig;
-	return finalColor;
+	//finalColor.xyz = albedoColor.xyz * lig;
 
+	{
+		for (int i = 0; i < numDirectionLight; i++) {
+			//2階調の陰影を求める。
+			//ライトの方向と法線の内積を取るとライトの強さが求まる。
+			//強さが一定値以下(今回は0.2)なら暗いテクスチャを使う。
+			//それ以上なら明るいテクスチャを使う。
+			float3 color = 0.0f;
+			if (dot(-DirectionLightSB[i].direction, In.Normal) < 0.1f) {
+				color = albedoColor.xyz * 0.5f;
+			}
+			else {
+				color = albedoColor.xyz * 1.0f;
+			}
+			//リムを当てる。
+			float3 eyeDir = normalize(eyepos - In.worldPos);
+			float lim = (1.0f - dot(-In.Normal, eyeDir)) * 1.0f;								//カメラの方向と垂直な場合逆光の強さが強くなる。
+			lim *= max(0.0f, dot(eyeDir, -DirectionLightSB[i].direction));						//完全に逆行していたらbaseLimの値がそのままでる。
+			if (lim > 0.85f) {
+				//逆光が発生している。
+				color = albedoColor.xyz;
+			}
+			finalColor = float4(color.xyz, 1.0f);
+		}
+	}
+
+	return finalColor;
 }
