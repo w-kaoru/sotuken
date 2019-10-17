@@ -32,7 +32,7 @@ namespace GameEngine {
 					obj->UpdateWrapper();
 				}
 			}
-			g_graphicsEngine->GetLightManager().Update();
+			g_graphicsEngine->GetLightManager()->Update();
 		}
 		{
 			for (GameObjectList objList : m_gameObjectList) {
@@ -45,7 +45,7 @@ namespace GameEngine {
 					obj->DrawWrapper();
 				}
 			}
-			g_graphicsEngine->GetLightManager().Render();
+			g_graphicsEngine->GetLightManager()->Render();
 			for (GameObjectList objList : m_gameObjectList) {
 				for (IGameObject* obj : objList) {
 					obj->PostDrawWrapper();
