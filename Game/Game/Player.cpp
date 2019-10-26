@@ -17,7 +17,6 @@ bool Player::Start()
 {
 	//cmoファイルの読み込み。
 	m_model.Init(L"Assets/modelData/unityChan.cmo");
-	m_sprite.Init(L"Assets/sprite/title.dds", 1.0f, 1.0f);
 	m_charaCon.Init(10.0f, 50.0f, m_pos);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	return true;
@@ -69,7 +68,6 @@ void Player::Update()
 
 	//m_moveSpeed.y -= 10.0f;
 	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed);
-	m_sprite.Update({ 0.0f,0.0f,0.0f }, CQuaternion::Identity(), CVector3::One());
 	
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
@@ -96,10 +94,6 @@ void Player::Draw()
 
 void Player::PostDraw()
 {
-	m_sprite.Draw(
-		g_camera2D.GetViewMatrix(),
-		g_camera2D.GetProjectionMatrix()
-	);
 	m_font.BeginDraw();
 	swprintf_s(moji, L"HELLO");
 	m_font.Draw
