@@ -14,7 +14,9 @@ namespace GameEngine {
 	void LightManager::Init()
 	{
 		InitDirectionLightStructuredBuffer();
-		m_lightParamCB.Create(&m_lightParam, sizeof(m_lightParam));
+		InitDirectionLightShaderResourceView();
+		InitLightParamConstantBuffer();
+		//m_lightParamCB.Create(&m_lightParam, sizeof(m_lightParam));
 	}
 
 	void LightManager::AddLight(prefab::LightBase * lig)
@@ -59,9 +61,28 @@ namespace GameEngine {
 		desc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
 		desc.StructureByteStride = stride;
 
-		m_directionLightSB.Create(NULL, desc);
+		//m_directionLightSB.Create(NULL, desc);
+		g_graphicsEngine->GetD3DDevice()->CreateBuffer(&desc, NULL, &m_directionLightSB);
 	}
-	/*void LightManager::InitLightParamConstantBuffer()
+
+	void LightManager::InitDirectionLightShaderResourceView()
+	{
+		D3D11_BUFFER_DESC descBuf;
+		ZeroMemory(&descBuf, sizeof(descBuf));
+		m_directionLightSB->GetDesc(&descBuf);
+
+		D3D11_SHADER_RESOURCE_VIEW_DESC desc;
+		ZeroMemory(&desc, sizeof(desc));
+		desc.ViewDimension = D3D11_SRV_DIMENSION_BUFFEREX;
+		desc.BufferEx.FirstElement = 0;
+
+		desc.Format = DXGI_FORMAT_UNKNOWN;
+		desc.BufferEx.NumElements = descBuf.ByteWidth / descBuf.StructureByteStride;
+
+		g_graphicsEngine->GetD3DDevice()->CreateShaderResourceView(m_directionLightSB, &desc, &m_directionLightSRV);
+	}
+
+	void LightManager::InitLightParamConstantBuffer()
 	{
 		//作成するバッファのサイズをsizeof演算子で求める。
 		int bufferSize = sizeof(SLightParam);
@@ -77,7 +98,8 @@ namespace GameEngine {
 																	//CPUアクセスが不要な場合は0。
 		//続いて、ライト用の定数バッファを作成。		//SDirectionLightは16byteの倍数になっているので、切り上げはやらない。
 		g_graphicsEngine->GetD3DDevice()->CreateBuffer(&bufferDesc, NULL, &m_lightParamCB);
-	}*/
+	}
+
 	void LightManager::Update()
 	{
 		//ディレクションライトのストラクチャーバッファを更新。
@@ -93,12 +115,24 @@ namespace GameEngine {
 	void LightManager::Render()
 	{
 		ID3D11DeviceContext* d3dDeviceContext = g_graphicsEngine->GetD3DDeviceContext();
-		d3dDeviceContext->UpdateSubresource(m_directionLightSB.GetBody(), 0, nullptr, &m_rawDirectionLights, 0, 0);
-		d3dDeviceContext->UpdateSubresource(m_lightParamCB.GetBody(), 0, nullptr, &m_lightParam, 0, 0);
 
-		d3dDeviceContext->VSSetConstantBuffers(10, 1, &m_lightParamCB.GetBody());
-		d3dDeviceContext->PSSetConstantBuffers(10, 1, &m_lightParamCB.GetBody());
-		d3dDeviceContext->VSSetShaderResources(100, 1, &m_directionLightSB.GetSRV().GetBody());
-		d3dDeviceContext->PSSetShaderResources(100, 1, &m_directionLightSB.GetSRV().GetBody());
+		//d3dDeviceContext->UpdateSubresource(m_directionLightSB.GetBody(), 0, nullptr, &m_rawDirectionLights, 0, 0);
+		d3dDeviceContext->UpdateSubresource(m_directionLightSB, 0, nullptr, &m_rawDirectionLights, 0, 0);
+
+		//d3dDeviceContext->UpdateSubresource(m_lightParamCB.GetBody(), 0, nullptr, &m_lightParam, 0, 0);
+
+		d3dDeviceContext->UpdateSubresource(m_lightParamCB, 0, nullptr, &m_lightParam, 0, 0);
+
+		//d3dDeviceContext->VSSetConstantBuffers(10, 1, &m_lightParamCB.GetBody());
+		//d3dDeviceContext->PSSetConstantBuffers(10, 1, &m_lightParamCB.GetBody());
+
+		d3dDeviceContext->VSSetConstantBuffers(10, 1, &m_lightParamCB);
+		d3dDeviceContext->PSSetConstantBuffers(10, 1, &m_lightParamCB);
+
+		//d3dDeviceContext->VSSetShaderResources(100, 1, &m_directionLightSB.GetSRV().GetBody());
+		//d3dDeviceContext->PSSetShaderResources(100, 1, &m_directionLightSB.GetSRV().GetBody());
+
+		d3dDeviceContext->VSSetShaderResources(100, 1, &m_directionLightSRV);
+		d3dDeviceContext->PSSetShaderResources(100, 1, &m_directionLightSRV);
 	}
 }
