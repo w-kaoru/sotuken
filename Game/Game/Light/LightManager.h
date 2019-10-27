@@ -22,12 +22,12 @@ namespace GameEngine {
 		void Update();
 		//描画シーケンスから呼ばれる処理。
 		void Render();
-		void SetLightParam(CVector3 eyePos,int directionLightNum)
+		void SetLightParam(CVector3 eyePos, int directionLightNum)
 		{
 			m_lightParam.eyePos = eyePos;
 			m_lightParam.numDirectionLight = directionLightNum;
 		}
-		void SetEyePos(CVector3 pos) 
+		void SetEyePos(CVector3 pos)
 		{
 			m_lightParam.eyePos = pos;
 		}
