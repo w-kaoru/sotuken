@@ -7,7 +7,7 @@ namespace GameEngine {
 		struct SweepResultBullet : public btCollisionWorld::ConvexResultCallback
 		{
 			bool isHit = false;						//衝突フラグ。
-			bool E_bulletisHit = false;          //敵弾とプレイヤーの衝突フラグ。
+			bool E_bulletisHit = false;					//敵弾とプレイヤーの衝突フラグ。
 			btCollisionObject* me = nullptr;					//自分自身。自分自身との衝突を除外するためのメンバ。
 																//衝突したときに呼ばれるコールバック関数。
 			virtual	btScalar	addSingleResult(btCollisionWorld::LocalConvexResult& convexResult, bool normalInWorldSpace)
