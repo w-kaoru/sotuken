@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "system/system.h"
 #include "Game.h"
+#include "Title.h"
 
 ///////////////////////////////////////////////////////////////////
 // ウィンドウプログラムのメイン関数。
@@ -19,7 +20,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	GOManager().Init(50);
 	CSoundEngine soundEngine;				//サウンドエンジン。
 	soundEngine.Init(); 
-	NewGO<Game>(0, "Game");
+	NewGO<Title>(0, "Title");
 
 	//ゲームループ。
 	while (DispatchWindowMessage() == true)

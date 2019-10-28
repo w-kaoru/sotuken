@@ -196,6 +196,7 @@
     <ClCompile Include="physics\SphereCollider.cpp">
       <Filter>physics</Filter>
     </ClCompile>
+    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -355,6 +356,7 @@
     <ClInclude Include="physics\SphereCollider.h">
       <Filter>physics</Filter>
     </ClInclude>
+    <ClInclude Include="Title.h" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
@@ -367,6 +369,7 @@
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\BTR80A.FBX" />
+    <MeshContentTask Include="Assets\modelData\untitled.fbx" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\title.png">
