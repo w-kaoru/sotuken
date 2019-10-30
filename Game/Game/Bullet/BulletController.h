@@ -41,6 +41,10 @@ namespace GameEngine {
 		{
 			return E_bullethitFlag;
 		}
+		bool GetP_bullethit()
+		{
+			return P_bullethitFlag;
+		}
 	private:
 		CVector3 m_position = CVector3::Zero();
 		SphereCollider m_collider;
@@ -49,6 +53,7 @@ namespace GameEngine {
 		float m_height = 0.0f;
 		bool hitFlag = false;
 		bool E_bullethitFlag = false;   //敵弾がプレイヤーにぶつかったことを知らせるフラグ。
+		bool P_bullethitFlag = false;
 		bool deathflag = true;   //弾が存在しているかを判定する。
 	};
 };

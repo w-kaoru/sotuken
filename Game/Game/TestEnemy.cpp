@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "TestEnemy.h"
 #include "Physics/CollisionAttr.h"
-#include "Bullet/Bullet.h"
 #include "Bullet/BulletManeger.h"
 #include "Define.h"
 
@@ -21,10 +20,8 @@ bool TestEnemy::Start()
 	m_model.Init(L"Assets/modelData/unityChan.cmo");
 	m_pos.x = 50.0f;
 	m_pos.z = -500.0f;
-	m_bullet = FindGO<Bullet>("Bullet");
-	m_charaCon.Init(50.0f, 50.0f, m_pos);
+	m_charaCon.Init(20.0f, 50.0f, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Enemy);
-	//m_bullet->GetBulletController()->GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Enemy);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	return true;
 }
@@ -52,9 +49,16 @@ void TestEnemy::Update()
 	m_forward.y = rotMatrix.m[2][1];
 	m_forward.z = rotMatrix.m[2][2];
 	m_forward.Normalize();
+	m_timier++;
 	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed);
-	//FireBullets(10.0f);
-
+	if (m_timier >= 30) {
+		FireBullets(800.0f);
+		m_timier = 0;
+	}
+	if (m_bulletmaneger->kariget() == true)
+	{
+		DeleteGO(this);
+	}
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
 }
