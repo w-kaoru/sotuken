@@ -197,6 +197,9 @@
       <Filter>physics</Filter>
     </ClCompile>
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="graphics\ShadowMap.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -357,6 +360,9 @@
       <Filter>physics</Filter>
     </ClInclude>
     <ClInclude Include="Title.h" />
+    <ClInclude Include="graphics\ShadowMap.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
