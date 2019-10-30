@@ -1,6 +1,13 @@
 #pragma once
 #include "Sprite.h"
 #include "../Light/LightManager.h"
+// レンダリングモード。
+enum EnRenderMode {
+	enRenderMode_Invalid,			//不正なレンダリングモード。
+	enRenderMode_CreateShadowMap,	//シャドウマップ生成。
+	enRenderMode_Normal,			//通常レンダリング。
+	enRenderMode_Num,				//レンダリングモードの数。
+};
 /*!
  *@brief	グラフィックスエンジン。
  */
