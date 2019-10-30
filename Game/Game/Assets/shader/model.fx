@@ -203,8 +203,6 @@ float4 PSMain( PSInput In ) : SV_Target0
 		for (int i = 0; i < numDirectionLight; i++) {
 			//2階調の陰影を求める。
 			//ライトの方向と法線の内積を取るとライトの強さが求まる。
-			//強さが一定値以下(今回は0.2)なら暗いテクスチャを使う。
-			//それ以上なら明るいテクスチャを使う。
 			float3 color = 0.0f;
 			color = max(
 				0.4f,
