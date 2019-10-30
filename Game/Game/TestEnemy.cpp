@@ -21,7 +21,7 @@ bool TestEnemy::Start()
 	m_pos.x = 50.0f;
 	m_pos.z = -500.0f;
 	m_charaCon.Init(20.0f, 50.0f, m_pos);
-	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
+	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Enemy);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	return true;
 }
@@ -55,7 +55,10 @@ void TestEnemy::Update()
 		FireBullets(800.0f);
 		m_timier = 0;
 	}
-
+	if (m_bulletmaneger->kariget() == true)
+	{
+		DeleteGO(this);
+	}
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
 }

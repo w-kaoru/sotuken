@@ -34,6 +34,10 @@ void BulletManeger::DeleteBullet()
 				m_bulletList.erase(std::remove(m_bulletList.begin(), m_bulletList.end(), bullet)
 					, m_bulletList.end());
 		}
+		if (bullet->GetEHit() == true)
+		{
+			kariflag = true;
+		}
 	}
 }
 void BulletManeger::Update()
