@@ -26,18 +26,23 @@ public:
 	{
 		m_moveSpeed += speed;
 	}
-	bool GetHit()
+	bool GetEHit()
 	{
-		return HitFlag;
+		return E_HitFlag;
+	}
+	bool GetPHit()
+	{
+		return P_HitFlag;
 	}
 	BulletController* GetBulletController()
 	{
-		return &m_testes;
+		return &m_bulletCon;
 	}
 private:
 	SkinModel m_model;
-	BulletController m_testes;
-	bool HitFlag = false;
+	BulletController m_bulletCon;
+	bool E_HitFlag = false;
+	bool P_HitFlag = false;
 	CVector3 m_position = CVector3::Zero();		//ç¿ïW
 	CVector3 m_moveSpeed = CVector3::Zero();	//à⁄ìÆë¨ìx
 	TestEnemy* m_enemy = nullptr;

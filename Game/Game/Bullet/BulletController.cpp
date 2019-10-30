@@ -8,12 +8,16 @@ namespace GameEngine {
 		{
 			bool isHit = false;						//衝突フラグ。
 			bool E_bulletisHit = false;          //敵弾とプレイヤーの衝突フラグ。
+			bool P_bulletisHit = false;
 			btCollisionObject* me = nullptr;					//自分自身。自分自身との衝突を除外するためのメンバ。
 																//衝突したときに呼ばれるコールバック関数。
 			virtual	btScalar	addSingleResult(btCollisionWorld::LocalConvexResult& convexResult, bool normalInWorldSpace)
 			{
 				if (convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Enemy) {
 					E_bulletisHit = true;
+				}
+				if (convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Player) {
+					P_bulletisHit = true;
 				}
 				if (me->getUserIndex() == enCollisionAttr_EnemyBullet
 					&& convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Player) {
@@ -79,6 +83,7 @@ namespace GameEngine {
 	{
 		//このフレームでの衝突をはかるために初期化。
 		E_bullethitFlag = false;
+		P_bullethitFlag = false;
 		hitFlag = false;
 		//次の移動先となる座標を計算する。
 		CVector3 nextPosition = m_position;
@@ -110,9 +115,12 @@ namespace GameEngine {
 				//衝突検出。
 				g_physics.ConvexSweepTest((const btConvexShape*)m_collider.GetBody(), start, end, callback);
 				if (callback.E_bulletisHit) {
-					//敵弾がプレイヤーに当たった。
+					//プレイヤー弾がエネミーに当たった。
 					//衝突したのでtrueを返す。
 					E_bullethitFlag = true;
+				}
+				if (callback.P_bulletisHit) {				
+					P_bullethitFlag = true;
 				}
 				if (callback.isHit) {
 					//当たった。
