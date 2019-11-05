@@ -48,6 +48,7 @@ private:
 	std::vector<Bullet*> m_bulletList;
 	int m_bulletDeleteTime = 0;
 	bool kariflag = false;
+	bool damageflag = false;
 };
 
 /*//BulletManegerのインスタンスを取得。
