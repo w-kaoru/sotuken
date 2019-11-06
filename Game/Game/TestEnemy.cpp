@@ -87,7 +87,7 @@ void TestEnemy::Update()
 	}
 	if (m_bulletmaneger->kariget() == true)
 	{
-		HP -= 1.0f;
+		HP -= 10.0f;
 	}
 	if (HP <= 0.0f)
 	{
