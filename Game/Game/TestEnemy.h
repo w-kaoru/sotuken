@@ -10,8 +10,10 @@ public:
 	void FireBullets(float speed);
 	void Move();										//移動処理。
 	void Turn();										//回転処理。　
+	void HPGage();
 	void Update();
 	void Draw();
+	void PostDraw();
 	CVector3 GetPosition()
 	{
 		return m_pos;
@@ -28,5 +30,9 @@ private:
 	float m_deltatime = 1.0f / 30.0f;                   //1フレームの経過時間
 	CharacterController m_charaCon;						//キャラクターコントローラーを追加。
 	int m_timier = 0;
+	Sprite m_enemyhp;
+	CVector3 m_Sprite_Front = CVector3::AxisZ()*-1;	    //テクスチャの前方向
+	CQuaternion m_Sprite_angle = CQuaternion::Identity();	//テクスチャの回転角度
+	float HP = 100.0f;
 };
 

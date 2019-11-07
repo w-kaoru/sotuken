@@ -38,6 +38,10 @@ void BulletManeger::DeleteBullet()
 		{
 			kariflag = true;
 		}
+		if (bullet->GetEHit() == false)
+		{
+			kariflag = false;
+		}
 	}
 }
 void BulletManeger::Update()
