@@ -33,5 +33,6 @@ private:
 	Effekseer::Effect* m_testEffect = nullptr;//テストエフェクト
 	Effekseer::Handle m_testEffectHandle = -1;
 	prefab::DirectionLight* m_directionLight = nullptr;
+	CVector3 m_LigDirection = CVector3::Zero();
 };
 

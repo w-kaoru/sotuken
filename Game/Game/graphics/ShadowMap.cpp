@@ -20,20 +20,8 @@ void ShadowMap::Init()
 	);
 }
 
-void ShadowMap::UpdateToPosition(CVector3 lightCameraPos, CVector3 lightCameraTarget)
+void ShadowMap::UpdateFromLightDirection(CVector3 lightCameraPos, CVector3 lightDir)
 {
-	m_lightCameraTarget = lightCameraTarget;
-	m_lightCameraPosition = lightCameraPos;
-	//ライトの方向を計算する。
-	auto lightDir = m_lightCameraTarget - m_lightCameraPosition;
-	if (lightDir.Length() < 0.0001f) {
-		//ライトカメラの注視点と視点が近すぎる。
-		//恐らくバグなので、クラッシュさせる。
-		std::abort();
-	}
-	//正規化して、方向ベクトルに変換する。
-	lightDir.Normalize();
-	
 	//ライトの方向によって、ライトカメラの上方向を決める。
 	CVector3 lightCameraUpAxis;
 	if (fabsf(lightDir.y) > 0.99998f) {
@@ -60,11 +48,11 @@ void ShadowMap::UpdateToPosition(CVector3 lightCameraPos, CVector3 lightCameraTa
 		5000.0f
 	);
 }
-
-void ShadowMap::UpdateToDirection(CVector3 lightCameraDir, CVector3 lightCameraTarget, float lightCameraLen)
+void ShadowMap::UpdateFromLightTarget(CVector3 lightCameraPos, CVector3 lightCameraTarget)
 {
+	//デバック
 	m_lightCameraTarget = lightCameraTarget;
-	m_lightCameraPosition = lightCameraDir * lightCameraLen;
+	m_lightCameraPosition = lightCameraPos;
 	//ライトの方向を計算する。
 	auto lightDir = m_lightCameraTarget - m_lightCameraPosition;
 	if (lightDir.Length() < 0.0001f) {
@@ -74,32 +62,8 @@ void ShadowMap::UpdateToDirection(CVector3 lightCameraDir, CVector3 lightCameraT
 	}
 	//正規化して、方向ベクトルに変換する。
 	lightDir.Normalize();
-
-	//ライトの方向によって、ライトカメラの上方向を決める。
-	CVector3 lightCameraUpAxis;
-	if (fabsf(lightDir.y) > 0.99998f) {
-		//ほぼ真上or真下を向いているので、1,0,0を上方向とする。
-		lightCameraUpAxis = CVector3::AxisX();
-	}
-	else {
-		//真上を向いていないときは、0,1,0を上方向とする。
-		lightCameraUpAxis = CVector3::AxisY();
-	}
-	//カメラの上方向が決まったので、ライトビュー行列を計算する。
-	m_lightViewMatrix.MakeLookAt(
-		m_lightCameraPosition,
-		m_lightCameraTarget,
-		lightCameraUpAxis
-	);
-
-	//ライトプロジェクション行列を作成する。
-	//太陽光からの影を落としたいなら、平行投影行列を作成する。
-	m_lightProjMatrix.MakeOrthoProjectionMatrix(
-		3000.0f,
-		3000.0f,
-		0.1f,
-		5000.0f
-	);
+	//
+	UpdateFromLightDirection(lightCameraPos, lightDir);
 }
 
 void ShadowMap::RenderToShadowMap()

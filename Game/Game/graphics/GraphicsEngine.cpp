@@ -20,6 +20,16 @@ void GraphicsEngine::BegineRender()
 	//バックバッファを灰色で塗りつぶす。
 	m_pd3dDeviceContext->ClearRenderTargetView(m_backBuffer, ClearColor);
 	m_pd3dDeviceContext->ClearDepthStencilView(m_depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+	//フレームバッファのレンダリングターゲットをバックアップしておく。
+	m_pd3dDeviceContext->OMGetRenderTargets(
+		1,
+		&m_frameBufferRenderTargetView,
+		&m_frameBufferDepthStencilView
+	);
+	//ビューポートもバックアップを取っておく。
+	unsigned int numViewport = 1;
+	m_pd3dDeviceContext->RSGetViewports(&numViewport, &m_frameBufferViewports);
+	ChangeMainRenderTarget();
 }
 void GraphicsEngine::EndRender()
 {
@@ -187,4 +197,69 @@ void GraphicsEngine::Init(HWND hWnd)
 	m_pd3dDeviceContext->RSSetState(m_rasterizerState);
 	m_SpriteBatch = new DirectX::SpriteBatch(m_pd3dDeviceContext);
 	m_SpriteFont = new DirectX::SpriteFont(m_pd3dDevice, L"Assets/font/font00.spritefont");
+
+	//メインレンダリングターゲット作成。
+	m_mainRenderTarget.Create(
+		FRAME_BUFFER_W,
+		FRAME_BUFFER_H,
+		DXGI_FORMAT_R16G16B16A16_FLOAT
+	);
+
+	//メインレンダリングターゲットに描かれた絵を
+	//フレームバッファにコピーするためのスプライトを初期化する。
+	m_sprite.Init(
+		g_graphicsEngine->GetMainRenderTarget()->GetRenderTargetSRV(),
+		FRAME_BUFFER_W,
+		FRAME_BUFFER_H
+	);
+	//シャドウマップをよべー。
+	m_shadowMap.Init();
+}
+
+void GraphicsEngine::ShadowDraw()
+{
+	//シャドウマップにレンダリング
+	m_shadowMap.RenderToShadowMap();
+	ChangeMainRenderTarget();
+	float clearColor[] = { 0.10f, 0.10f, 0.10f, 1.0f };
+	m_mainRenderTarget.ClearRenderTarget(clearColor);
+	//元に戻す。
+	ChangeRenderTarget(
+		m_frameBufferRenderTargetView,
+		m_frameBufferDepthStencilView,
+		&m_frameBufferViewports
+	);
+	// /*
+	m_frameBufferRenderTargetView->Release();
+	m_frameBufferDepthStencilView->Release();
+
+}
+
+void GraphicsEngine::ChangeRenderTarget(RenderTarget* renderTarget, D3D11_VIEWPORT* viewport)
+{
+	ChangeRenderTarget(
+		renderTarget->GetRenderTargetView(),
+		renderTarget->GetDepthStensilView(),
+		viewport
+	);
+}
+void GraphicsEngine::ChangeRenderTarget(ID3D11RenderTargetView* renderTarget, ID3D11DepthStencilView* depthStensil, D3D11_VIEWPORT* viewport)
+{
+	ID3D11RenderTargetView* rtTbl[] = {
+		renderTarget
+	};
+	//レンダリングターゲットの切り替え。
+	m_pd3dDeviceContext->OMSetRenderTargets(1, rtTbl, depthStensil);
+	if (viewport != nullptr) {
+		//ビューポートが指定されていたら、ビューポートも変更する。
+		m_pd3dDeviceContext->RSSetViewports(1, viewport);
+	}
+}
+
+void GraphicsEngine::ChangeMainRenderTarget()
+{
+	ChangeRenderTarget(
+		&m_mainRenderTarget,
+		m_mainRenderTarget.GetViewport()
+	);
 }

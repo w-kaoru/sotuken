@@ -72,6 +72,8 @@ void Player::Update()
 	
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
+	//シャドウキャスターを登録。
+	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
 }
 
 void Player::Turn()

@@ -15,6 +15,7 @@ bool BackGround::Start()
 	//cmoファイルの読み込み。
 	m_model.Init(L"Assets/modelData/TestGround.cmo");
 	m_staticObject.CreateMeshObject(m_model, m_pos, m_rot);
+	m_model.SetShadowReciever(true);
 	return true;
 }
 
