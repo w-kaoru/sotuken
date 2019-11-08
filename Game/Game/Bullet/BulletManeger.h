@@ -40,9 +40,20 @@ public:
 		static BulletManeger instance;//BulletManegerのインスタンスを生成。
 		return instance;
 	}*/
+	bool kariget()
+	{
+		return kariflag;
+	}
+	float GetBulletDamage()
+	{
+		return m_bulletdamage;
+	}
 private:
 	std::vector<Bullet*> m_bulletList;
 	int m_bulletDeleteTime = 0;
+	bool kariflag = false;
+	bool damageflag = false;
+	float m_bulletdamage = 10.0f;
 };
 
 /*//BulletManegerのインスタンスを取得。

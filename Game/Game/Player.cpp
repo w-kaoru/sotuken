@@ -17,7 +17,8 @@ bool Player::Start()
 {
 	//cmoファイルの読み込み。
 	m_model.Init(L"Assets/modelData/unityChan.cmo");
-	m_charaCon.Init(10.0f, 50.0f, m_pos);
+	m_charaCon.Init(20.0f, 50.0f, m_pos);
+	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	return true;
 }
@@ -71,6 +72,8 @@ void Player::Update()
 	
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
+	//シャドウキャスターを登録。
+	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
 }
 
 void Player::Turn()
@@ -87,6 +90,8 @@ void Player::Draw()
 {
 	
 	m_model.Draw(
+
+		enRenderMode_Normal,
 		g_camera3D.GetViewMatrix(), 
 		g_camera3D.GetProjectionMatrix()
 	);

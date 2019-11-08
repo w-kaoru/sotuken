@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SkinModel.h"
 #include "SkinModelDataManager.h"
+#include "SkinModelEffect.h"
 
 SkinModel::~SkinModel()
 {
@@ -104,7 +105,7 @@ void SkinModel::UpdateWorldMatrix(CVector3 position, CQuaternion rotation, CVect
 	//スケルトンの更新。
 	m_skeleton.Update(m_worldMatrix);
 }
-void SkinModel::Draw(CMatrix viewMatrix, CMatrix projMatrix)
+void SkinModel::Draw(EnRenderMode renderMode, CMatrix viewMatrix, CMatrix projMatrix)
 {
 	DirectX::CommonStates state(g_graphicsEngine->GetD3DDevice());
 
@@ -115,6 +116,15 @@ void SkinModel::Draw(CMatrix viewMatrix, CMatrix projMatrix)
 	vsCb.mWorld = m_worldMatrix;
 	vsCb.mProj = projMatrix;
 	vsCb.mView = viewMatrix;
+	//todo ライトカメラのビュー、プロジェクション行列を送る。(追加)
+	vsCb.mLightProj = g_graphicsEngine->GetShadowMap()->GetLightProjMatrix();
+	vsCb.mLightView = g_graphicsEngine->GetShadowMap()->GetLighViewMatrix();
+	if (m_isShadowReciever == true) {
+		vsCb.isShadowReciever = 1;
+	}
+	else {
+		vsCb.isShadowReciever = 0;
+	}
 	d3dDeviceContext->UpdateSubresource(m_cb, 0, nullptr, &vsCb, 0, 0);
 	//定数バッファをGPUに転送。
 	d3dDeviceContext->VSSetConstantBuffers(0, 1, &m_cb);
@@ -124,6 +134,11 @@ void SkinModel::Draw(CMatrix viewMatrix, CMatrix projMatrix)
 	//ボーン行列をGPUに転送。
 	m_skeleton.SendBoneMatrixArrayToGPU();
 
+	//エフェクトにクエリを行う。
+	m_modelDx->UpdateEffects([&](DirectX::IEffect* material) {
+		auto modelMaterial = reinterpret_cast<SkinModelEffect*>(material);
+		modelMaterial->SetRenderMode(renderMode);
+	});
 	//描画。
 	m_modelDx->Draw(
 		d3dDeviceContext,

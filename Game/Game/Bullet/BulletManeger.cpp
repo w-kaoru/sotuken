@@ -25,12 +25,22 @@ void BulletManeger::DeleteBullet()
 {
 	m_bulletDeleteTime++;
 	for (auto& bullet : m_bulletList) {
-		if (m_bulletDeleteTime > 75 ||bullet->GetHit() == true )
+		if (m_bulletDeleteTime > 75 
+			||bullet->GetEHit() == true 
+			||bullet->GetPHit() == true)
 		{
 				DeleteGO(bullet);
 				m_bulletDeleteTime = 0;
 				m_bulletList.erase(std::remove(m_bulletList.begin(), m_bulletList.end(), bullet)
 					, m_bulletList.end());
+		}
+		if (bullet->GetEHit() == true)
+		{
+			kariflag = true;
+		}
+		if (bullet->GetEHit() == false)
+		{
+			kariflag = false;
 		}
 	}
 }

@@ -15,6 +15,7 @@ bool BackGround::Start()
 	//cmoファイルの読み込み。
 	m_model.Init(L"Assets/modelData/TestGround.cmo");
 	m_staticObject.CreateMeshObject(m_model, m_pos, m_rot);
+	m_model.SetShadowReciever(true);
 	return true;
 }
 
@@ -27,6 +28,7 @@ void BackGround::Update()
 void BackGround::Draw()
 {
 	m_model.Draw(
+		enRenderMode_Normal,
 		g_camera3D.GetViewMatrix(),
 		g_camera3D.GetProjectionMatrix()
 	);

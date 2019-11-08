@@ -24,11 +24,11 @@ Game::~Game()
 void Game::InitLight()
 {
 	//ライトを配置。
-	CVector3 dir = { 1.0f, -1.0f, 0.0f };
-	dir.Normalize();
+	m_LigDirection = { 1.0f, -1.0f, 0.0f };
+	m_LigDirection.Normalize();
 	m_directionLight = NewGO<prefab::DirectionLight>(0, nullptr);
-	m_directionLight->SetDirection(dir);
-	m_directionLight->SetColor({ 2.0f, 2.0f, 2.0f, 1.0f });
+	m_directionLight->SetDirection(m_LigDirection);
+	m_directionLight->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 }
 
 bool Game::Start()
@@ -47,21 +47,31 @@ void Game::Update()
 	g_graphicsEngine->GetLightManager()->SetEyePos(m_gamecamera->GetCameraPos());
 	//if (g_pad[0].IsTrigger(enButtonA))
 	//{
-	//	DeleteGO(m_player);
+	//	DeleteGO(m_testenemy);
 	//}
 	if (g_pad[0].IsTrigger(enButtonB))
 	{
 		//エフェクトを再生する。
 		m_testEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
 			m_testEffect,
-			0.0f, 0.0f,0.0f);
+			0.0f, 0.0f, 0.0f
+		);
 		//エフェクトの大きさを変更
 		g_graphicsEngine->GetEffekseerManager()->SetScale(
-			m_testEffectHandle, 
+			m_testEffectHandle,
 			20.0f,
 			20.0f,
-			20.0f);
+			20.0f
+		);
 	}
+	CVector3 ligdir = m_LigDirection;
+	ligdir.y *= -1.0f;
+	ligdir.Normalize();
+	ligdir * 400.0f;
+	g_graphicsEngine->GetShadowMap()->UpdateFromLightTarget(
+		ligdir,
+		CVector3::Zero()
+	);
 }
 
 void Game::Draw()

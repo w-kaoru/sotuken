@@ -1,6 +1,14 @@
 #pragma once
 #include "Sprite.h"
 #include "../Light/LightManager.h"
+#include "ShadowMap.h"
+// レンダリングモード。
+enum EnRenderMode {
+	enRenderMode_Invalid,			//不正なレンダリングモード。
+	enRenderMode_CreateShadowMap,	//シャドウマップ生成。
+	enRenderMode_Normal,			//通常レンダリング。
+	enRenderMode_Num,				//レンダリングモードの数。
+};
 /*!
  *@brief	グラフィックスエンジン。
  */
@@ -108,6 +116,31 @@ public:
 		m_effekseerManager->Draw();
 		m_effekseerRenderer->EndRendering();
 	}
+	// シャドウマップクラスの取得
+	ShadowMap* GetShadowMap() {
+		return &m_shadowMap;
+	}
+	void ShadowDraw();
+	/// <summary>
+	/// レンダリングターゲットの切り替え。
+	/// </summary>
+	/// <param name="renderTarget">レンダリングターゲット</param>
+	/// <param name="viewport">ビューポート</param>
+	void ChangeRenderTarget(RenderTarget* renderTarget, D3D11_VIEWPORT* viewport);
+	void ChangeRenderTarget(ID3D11RenderTargetView* renderTarget, ID3D11DepthStencilView* depthStensil, D3D11_VIEWPORT* viewport);
+	void ChangeMainRenderTarget();
+	/// <summary>
+	/// メインレンダリングターゲットを取得。
+	/// </summary>
+	/// <returns></returns>
+	RenderTarget* GetMainRenderTarget()
+	{
+		return &m_mainRenderTarget;
+	}
+	Sprite* GetSprite()
+	{
+		return &m_sprite;
+	}
 private:
 	GameEngine::LightManager	m_ligManager;
 	D3D_FEATURE_LEVEL		m_featureLevel;				//Direct3D デバイスのターゲットとなる機能セット。
@@ -122,7 +155,13 @@ private:
 	DirectX::SpriteBatch*   m_SpriteBatch = NULL;		//ゲームのデフォルトのフォント表示用データ
 	Effekseer::Manager*	m_effekseerManager = nullptr;	//エフェクトマネージャークラス
 	EffekseerRenderer::Renderer*	m_effekseerRenderer = nullptr;  //エフェクトレンダラークラス
+	ShadowMap				m_shadowMap;					//シャドウマップ。
+	RenderTarget			m_mainRenderTarget;				//メインレンダリングターゲット。
+	Sprite					m_sprite;//メインレンダリングターゲットに描かれた絵をフレームバッファにコピーするためのスプライト。
 
+	D3D11_VIEWPORT m_frameBufferViewports;			//フレームバッファのビューポート。
+	ID3D11RenderTargetView* m_frameBufferRenderTargetView = nullptr;	//フレームバッファのレンダリングターゲットビュー。
+	ID3D11DepthStencilView* m_frameBufferDepthStencilView = nullptr;	//フレームバッファのデプスステンシルビュー。
 };
 
 extern GraphicsEngine* g_graphicsEngine;			//グラフィックスエンジン

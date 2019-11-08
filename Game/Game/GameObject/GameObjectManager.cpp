@@ -20,36 +20,37 @@ namespace GameEngine {
 	}
 	void GameObjectManager::Execute()
 	{
-		{
-			for (GameObjectList objList : m_gameObjectList) {
-				for (IGameObject* obj : objList) {
-					obj->StartWrapper();
-				}
+		for (GameObjectList objList : m_gameObjectList) {
+			for (IGameObject* obj : objList) {
+				obj->StartWrapper();
 			}
-
-			for (GameObjectList objList : m_gameObjectList) {
-				for (IGameObject* obj : objList) {
-					obj->UpdateWrapper();
-				}
-			}
-			g_graphicsEngine->GetLightManager()->Update();
 		}
-		{
-			for (GameObjectList objList : m_gameObjectList) {
-				for (IGameObject* obj : objList) {
-					obj->PreDrawWrapper();
-				}
+
+		for (GameObjectList objList : m_gameObjectList) {
+			for (IGameObject* obj : objList) {
+				obj->UpdateWrapper();
 			}
-			for (GameObjectList objList : m_gameObjectList) {
-				for (IGameObject* obj : objList) {
-					obj->DrawWrapper();
-				}
+		}
+		g_graphicsEngine->GetLightManager()->Update();
+
+
+		for (GameObjectList objList : m_gameObjectList) {
+			for (IGameObject* obj : objList) {
+				obj->PreDrawWrapper();
 			}
-			g_graphicsEngine->GetLightManager()->Render();
-			for (GameObjectList objList : m_gameObjectList) {
-				for (IGameObject* obj : objList) {
-					obj->PostDrawWrapper();
-				}
+		}
+
+		g_graphicsEngine->ShadowDraw();
+
+		for (GameObjectList objList : m_gameObjectList) {
+			for (IGameObject* obj : objList) {
+				obj->DrawWrapper();
+			}
+		}
+		g_graphicsEngine->GetLightManager()->Render();
+		for (GameObjectList objList : m_gameObjectList) {
+			for (IGameObject* obj : objList) {
+				obj->PostDrawWrapper();
 			}
 		}
 		DeleteExecute();
