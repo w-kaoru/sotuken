@@ -38,7 +38,6 @@ bool Game::Start()
 	m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
 	m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
-	//InitLight();
 	return true;
 }
 

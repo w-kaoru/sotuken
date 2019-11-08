@@ -113,11 +113,6 @@
     <ClCompile Include="graphics\animation\AnimationPlayController.cpp" />
     <ClCompile Include="graphics\Camera.cpp" />
     <ClCompile Include="graphics\GameFont.cpp" />
-    <ClCompile Include="graphics\GPUBufferView\ConstantBuffer.cpp" />
-    <ClCompile Include="graphics\GPUBufferView\GPUBuffer.cpp" />
-    <ClCompile Include="graphics\GPUBufferView\ShaderResourceView.cpp" />
-    <ClCompile Include="graphics\GPUBufferView\StructuredBuffer.cpp" />
-    <ClCompile Include="graphics\GPUBufferView\UnorderedAccessView.cpp" />
     <ClCompile Include="graphics\GraphicsEngine.cpp" />
     <ClCompile Include="graphics\RenderTarget.cpp" />
     <ClCompile Include="graphics\Shader.cpp" />
@@ -173,11 +168,6 @@
     <ClInclude Include="graphics\animation\AnimationPlayController.h" />
     <ClInclude Include="graphics\Camera.h" />
     <ClInclude Include="graphics\GameFont.h" />
-    <ClInclude Include="graphics\GPUBufferView\ConstantBuffer.h" />
-    <ClInclude Include="graphics\GPUBufferView\GPUBuffer.h" />
-    <ClInclude Include="graphics\GPUBufferView\ShaderResourceView.h" />
-    <ClInclude Include="graphics\GPUBufferView\StructuredBuffer.h" />
-    <ClInclude Include="graphics\GPUBufferView\UnorderedAccessView.h" />
     <ClInclude Include="graphics\GraphicsEngine.h" />
     <ClInclude Include="graphics\RenderTarget.h" />
     <ClInclude Include="graphics\Shader.h" />

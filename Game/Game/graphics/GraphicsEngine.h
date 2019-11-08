@@ -120,7 +120,6 @@ public:
 	ShadowMap* GetShadowMap() {
 		return &m_shadowMap;
 	}
-	void ShadowDraw();
 	/// <summary>
 	/// レンダリングターゲットの切り替え。
 	/// </summary>
@@ -128,7 +127,8 @@ public:
 	/// <param name="viewport">ビューポート</param>
 	void ChangeRenderTarget(RenderTarget* renderTarget, D3D11_VIEWPORT* viewport);
 	void ChangeRenderTarget(ID3D11RenderTargetView* renderTarget, ID3D11DepthStencilView* depthStensil, D3D11_VIEWPORT* viewport);
-	void ChangeMainRenderTarget();
+	void PreRender();
+	void PostRender();
 	/// <summary>
 	/// メインレンダリングターゲットを取得。
 	/// </summary>

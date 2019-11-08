@@ -154,21 +154,6 @@
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
-    <ClCompile Include="graphics\GPUBufferView\ConstantBuffer.cpp">
-      <Filter>graphics\GPUBufferView</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\GPUBufferView\GPUBuffer.cpp">
-      <Filter>graphics\GPUBufferView</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\GPUBufferView\ShaderResourceView.cpp">
-      <Filter>graphics\GPUBufferView</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\GPUBufferView\StructuredBuffer.cpp">
-      <Filter>graphics\GPUBufferView</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\GPUBufferView\UnorderedAccessView.cpp">
-      <Filter>graphics\GPUBufferView</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\RenderTarget.cpp">
       <Filter>graphics</Filter>
     </ClCompile>
@@ -314,21 +299,6 @@
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="TestEnemy.h" />
-    <ClInclude Include="graphics\GPUBufferView\ConstantBuffer.h">
-      <Filter>graphics\GPUBufferView</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\GPUBufferView\GPUBuffer.h">
-      <Filter>graphics\GPUBufferView</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\GPUBufferView\ShaderResourceView.h">
-      <Filter>graphics\GPUBufferView</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\GPUBufferView\StructuredBuffer.h">
-      <Filter>graphics\GPUBufferView</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\GPUBufferView\UnorderedAccessView.h">
-      <Filter>graphics\GPUBufferView</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\RenderTarget.h">
       <Filter>graphics</Filter>
     </ClInclude>

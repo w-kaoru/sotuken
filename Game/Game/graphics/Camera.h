@@ -24,6 +24,13 @@ public:
 	{
 		return m_viewMatrix;
 	}
+	//カメラ行列の回転成分の逆行列を取得
+	CMatrix GetViewRotationMatrix()
+	{
+		auto m = m_viewRotMatrix;
+		m.Inverse(m);
+		return m;
+	}
 	/*!
 	 * @brief	プロジェクション行列を取得。
 	 */

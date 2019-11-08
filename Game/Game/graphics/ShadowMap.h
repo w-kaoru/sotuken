@@ -23,7 +23,7 @@ public:
 	void UpdateFromLightTarget(CVector3 lightCameraPos, CVector3 lightCameraTarget);
 	void UpdateFromLightDirection(CVector3 lightCameraPos, CVector3 lightDir);
 	void RenderToShadowMap();
-
+	void InitConstantBuffer();
 	// シャドウキャスターを登録。
 	// この関数を使って、登録されたキャスターが
 	// シャドウマップに描画されます。
@@ -54,6 +54,11 @@ public:
 	{
 		return m_shadowMapRT.GetRenderTargetSRV();
 	}
+	struct SLightCameraParam
+	{
+		CMatrix mLightView;		//todo ライトビュー行列。
+		CMatrix mLightProj;		//todo ライトプロジェクション行列。
+	};
 private:
 	CVector3 m_lightCameraPosition = CVector3::Zero();	//ライトカメラの視点。
 	CVector3 m_lightCameraTarget = CVector3::Zero();	//ライトカメラの注視点。
@@ -61,4 +66,6 @@ private:
 	CMatrix m_lightProjMatrix = CMatrix::Identity();	//ライトプロジェクション行列。
 	RenderTarget m_shadowMapRT;							//シャドウマップを描画するレンダリングターゲット。
 	std::vector<SkinModel*> m_shadowCasters;			//シャドウキャスターの配列。
+	ID3D11Buffer* m_shadowMapCB = nullptr;
+	SLightCameraParam m_ligCamParam;
 };
