@@ -59,6 +59,10 @@ public:
 		CMatrix mLightView;		//todo ライトビュー行列。
 		CMatrix mLightProj;		//todo ライトプロジェクション行列。
 	};
+	void SetWidthHeight(float w,float h) {
+		m_width = w;
+		m_height = h;
+	}
 private:
 	CVector3 m_lightCameraPosition = CVector3::Zero();	//ライトカメラの視点。
 	CVector3 m_lightCameraTarget = CVector3::Zero();	//ライトカメラの注視点。
@@ -68,4 +72,6 @@ private:
 	std::vector<SkinModel*> m_shadowCasters;			//シャドウキャスターの配列。
 	ID3D11Buffer* m_shadowMapCB = nullptr;
 	SLightCameraParam m_ligCamParam;
+	float m_width = 1500.0f;
+	float m_height = 1500.0f;
 };

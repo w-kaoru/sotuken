@@ -66,14 +66,14 @@ void Game::Update()
 	CVector3 ligdir = m_LigDirection;
 	ligdir.y *= -1.0f;
 	ligdir.Normalize();
-	ligdir * 400.0f;
+	ligdir *= 3000.0f;
+	ligdir += m_player->GetPosition();
 	g_graphicsEngine->GetShadowMap()->UpdateFromLightTarget(
 		ligdir,
-		CVector3::Zero()
+		m_player->GetPosition()
 	);
 }
 
 void Game::Draw()
 {
-
 }
