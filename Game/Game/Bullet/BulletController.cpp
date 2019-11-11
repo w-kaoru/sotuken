@@ -50,10 +50,7 @@ namespace GameEngine {
 
 	BulletController::~BulletController()
 	{
-		if (deathflag == false)
-		{
-			RemoveRigidBoby();
-		}
+		RemoveRigidBoby();
 	}
 
 	void BulletController::Init(float radius,  const CVector3& position)
@@ -158,6 +155,5 @@ namespace GameEngine {
 		//if (m_rigidBody.GetBody() != nullptr) {
 			g_physics.RemoveRigidBody(m_rigidBody);
 		//}
-			deathflag = true;
 	}
 }

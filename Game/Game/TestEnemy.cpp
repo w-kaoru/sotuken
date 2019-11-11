@@ -70,7 +70,7 @@ void TestEnemy::Update()
 		FireBullets(800.0f);
 		m_timier = 0;
 	}
-	if (m_bulletmaneger->kariget() == true)
+	if (m_bulletmaneger->GetEnemyDamage() == true)
 	{
 		HP -= m_bulletmaneger->GetBulletDamage();
 	}

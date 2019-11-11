@@ -40,10 +40,15 @@ public:
 		static BulletManeger instance;//BulletManegerのインスタンスを生成。
 		return instance;
 	}*/
-	bool kariget()
+	bool GetEnemyDamage()
 	{
-		return kariflag;
+		return m_enemydamage;
 	}
+	bool GetPlayerDamage()
+	{
+		return m_playerdamage;
+	}
+
 	float GetBulletDamage()
 	{
 		return m_bulletdamage;
@@ -51,13 +56,7 @@ public:
 private:
 	std::vector<Bullet*> m_bulletList;
 	int m_bulletDeleteTime = 0;
-	bool kariflag = false;
-	bool damageflag = false;
+	bool m_enemydamage = false;
+	bool m_playerdamage = false;
 	float m_bulletdamage = 10.0f;
 };
-
-/*//BulletManegerのインスタンスを取得。
-static inline BulletManeger& G_BulletManager()
-{
-	return BulletManeger::Instance();
-}*/

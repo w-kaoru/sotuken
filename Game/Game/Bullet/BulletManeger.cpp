@@ -36,11 +36,20 @@ void BulletManeger::DeleteBullet()
 		}
 		if (bullet->GetEHit() == true)
 		{
-			kariflag = true;
+			m_enemydamage = true;
 		}
-		if (bullet->GetEHit() == false)
+		else 
 		{
-			kariflag = false;
+			m_enemydamage = false;
+		}
+
+		if (bullet->GetPHit() == true)
+		{
+			m_playerdamage = true;
+		}
+		else 
+		{
+			m_playerdamage = false;
 		}
 	}
 }

@@ -17,6 +17,7 @@ bool Player::Start()
 {
 	//cmoファイルの読み込み。
 	m_model.Init(L"Assets/modelData/unityChan.cmo");
+	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
 	m_charaCon.Init(20.0f, 50.0f, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
@@ -30,6 +31,18 @@ void Player::FireBullets(float speed)
 	CVector3 pos = m_pos;
 	pos.y += 50.0f;
 	bullet->SetPosition(pos);
+}
+
+void Player::HpGage()
+{
+
+	//HPスプライトの更新
+	m_playerhp.Update({400.0f,300.0f,0.0f},CQuaternion::Identity(), { m_playerHP / 10, 1.0f, 1.0f });
+	//HPスプライトの表示
+	m_playerhp.Draw(
+		g_camera2D.GetViewMatrix(),
+		g_camera2D.GetProjectionMatrix()
+	);
 }
 
 void Player::Move()
@@ -66,7 +79,10 @@ void Player::Update()
 	{
 		FireBullets(800.0f);
 	}
-
+	if (m_bulletmaneger->GetPlayerDamage() == true &&m_playerHP > 0.0f)
+	{
+		m_playerHP -= m_bulletmaneger->GetBulletDamage();
+	}
 	//m_moveSpeed.y -= 10.0f;
 	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed);
 	
@@ -111,4 +127,5 @@ void Player::PostDraw()
 		{ 0.0f,1.0f }
 	);
 	m_font.EndDraw();
+	HpGage();
 }

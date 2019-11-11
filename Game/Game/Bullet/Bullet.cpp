@@ -36,6 +36,7 @@ void Bullet::Update()
 	if (m_bulletCon.GetP_bullethit() == true)
 	{
 		P_HitFlag = true;
+		m_bulletCon.RemoveRigidBoby();
 	}
 }
 
