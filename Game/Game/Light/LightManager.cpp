@@ -16,6 +16,12 @@ namespace GameEngine {
 		InitDirectionLightStructuredBuffer();
 		InitDirectionLightShaderResourceView();
 		InitLightParamConstantBuffer();
+		//テクスチャの読み込み
+		DirectX::CreateDDSTextureFromFileEx(
+			g_graphicsEngine->GetD3DDevice(), L"Assets/sprite/lut.dds", 0,
+			D3D11_USAGE_DEFAULT, D3D11_BIND_SHADER_RESOURCE, 0, 0,
+			false, nullptr, &m_ligTex
+		);
 	}
 
 	void LightManager::AddLight(prefab::LightBase * lig)
@@ -112,6 +118,12 @@ namespace GameEngine {
 	void LightManager::Render()
 	{
 		ID3D11DeviceContext* d3dDeviceContext = g_graphicsEngine->GetD3DDeviceContext();
+
+		//ピクセルシェーダーにテクスチャを設定します。
+		ID3D11ShaderResourceView* srvArray[]{
+				m_ligTex
+		};
+		d3dDeviceContext->PSSetShaderResources(2, 1, srvArray);
 
 		d3dDeviceContext->UpdateSubresource(m_directionLightSB, 0, nullptr, &m_rawDirectionLights, 0, 0);
 

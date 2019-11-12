@@ -344,13 +344,22 @@
     <MeshContentTask Include="Assets\modelData\bullet.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\BTR80A.FBX" />
-    <MeshContentTask Include="Assets\modelData\untitled.fbx" />
+    <MeshContentTask Include="Assets\modelData\untitled.fbx">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\BTR80A.FBX">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\title.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
-    <ImageContentTask Include="Assets\sprite\hp_gauge.png" />
+    <ImageContentTask Include="Assets\sprite\lut.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\hp_gauge.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
   </ItemGroup>
 </Project>
