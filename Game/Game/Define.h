@@ -1,2 +1,2 @@
 #pragma once
-#define MOVE_SPEED  10000.0f
+#define MOVE_SPEED  50000.0f
