@@ -10,6 +10,7 @@ public:
 	void FireBullets(float speed);
 	void Move();						//移動処理
 	void Turn();						//回転処理。　
+	void HpGage();
 	void Update();
 	void Draw();
 	void PostDraw();
@@ -34,5 +35,7 @@ private:
 	BulletManeger* m_bulletmaneger = nullptr;
 	float m_deltatime = 1.0f / 30.0f;                   //1フレームの経過時間
 	CharacterController m_charaCon;						//キャラクターコントローラーを追加。
+	float m_playerHP = 100.0f;
+	Sprite m_playerhp;
 };
 

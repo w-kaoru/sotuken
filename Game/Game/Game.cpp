@@ -38,7 +38,6 @@ bool Game::Start()
 	m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
 	m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
-	//InitLight();
 	return true;
 }
 
@@ -67,14 +66,14 @@ void Game::Update()
 	CVector3 ligdir = m_LigDirection;
 	ligdir.y *= -1.0f;
 	ligdir.Normalize();
-	ligdir * 400.0f;
+	ligdir *= 3000.0f;
+	ligdir += m_player->GetPosition();
 	g_graphicsEngine->GetShadowMap()->UpdateFromLightTarget(
 		ligdir,
-		CVector3::Zero()
+		m_player->GetPosition()
 	);
 }
 
 void Game::Draw()
 {
-
 }

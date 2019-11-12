@@ -47,24 +47,9 @@ void TestEnemy::HPGage()
 	//ポジションを頭の上付近にする。
 	auto pos = m_pos;
 	pos.y += 150.0f;
-	//カメラのポジション向きのベクトルを取得。
-	CVector3 hp_angle;
-	hp_angle = g_camera3D.GetPosition() - m_pos;
-	hp_angle.y = 0;
-	hp_angle.Normalize();
-	//HPの画像がカメラに向かって前を向くようにする。
-	float angle = acos(hp_angle.Dot(m_Sprite_Front));
-	angle = CMath::RadToDeg(angle);
-	CVector3 hp_axis;
-	hp_axis.Cross(m_Sprite_Front, hp_angle);
-	if (hp_axis.y > 0) {
-		m_Sprite_angle.SetRotationDeg(CVector3::AxisY(), angle);
-	}
-	else {
-		m_Sprite_angle.SetRotationDeg(CVector3::AxisY()*-1, angle);
-	}
+	
 	//HPスプライトの更新
-	m_enemyhp.Update(pos, m_Sprite_angle, { HP / 10, 1.0f, 1.0f });
+	m_enemyhp.Update(pos, g_camera3D.GetViewRotationMatrix(), { HP / 10, 1.0f, 1.0f });
 	//HPスプライトの表示
 	m_enemyhp.Draw(
 		g_camera3D.GetViewMatrix(),
@@ -85,7 +70,7 @@ void TestEnemy::Update()
 		FireBullets(800.0f);
 		m_timier = 0;
 	}
-	if (m_bulletmaneger->kariget() == true)
+	if (m_bulletmaneger->GetEnemyDamage() == true)
 	{
 		HP -= m_bulletmaneger->GetBulletDamage();
 	}
@@ -95,6 +80,8 @@ void TestEnemy::Update()
 	}
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
+	//シャドウキャスターを登録。
+	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
 }
 
 void TestEnemy::Turn()
@@ -111,7 +98,6 @@ void TestEnemy::Draw()
 {
 
 	m_model.Draw(
-
 		enRenderMode_Normal,
 		g_camera3D.GetViewMatrix(),
 		g_camera3D.GetProjectionMatrix()

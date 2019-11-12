@@ -39,8 +39,7 @@ namespace GameEngine {
 				obj->PreDrawWrapper();
 			}
 		}
-
-		g_graphicsEngine->ShadowDraw();
+		g_graphicsEngine->PreRender();
 
 		for (GameObjectList objList : m_gameObjectList) {
 			for (IGameObject* obj : objList) {
@@ -53,6 +52,7 @@ namespace GameEngine {
 				obj->PostDrawWrapper();
 			}
 		}
+		g_graphicsEngine->PostRender();
 		DeleteExecute();
 	}
 

@@ -13,7 +13,7 @@ Title::~Title()
 
 bool Title::Start()
 {
-	m_sprite.Init(L"Assets/sprite/title.dds", 12.8f*2.0f, 7.2f*2.0f);
+	m_sprite.Init(L"Assets/sprite/title.dds", 1280.0f, 720.0f);
 
 	return true;
 }

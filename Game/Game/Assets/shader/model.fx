@@ -27,23 +27,22 @@ cbuffer VSPSCb : register(b0) {
 	float4x4 mWorld;
 	float4x4 mView;
 	float4x4 mProj;
-	float4x4 mLightView;	//ライトビュー行列。
-	float4x4 mLightProj;	//ライトプロジェクション行列。
 	int isShadowReciever;	//シャドウレシーバーフラグ。
 };
-
-cbuffer LightParam : register(b10)
-{
-	float3 eyepos;
-	int numDirectionLight;
-}
-
 
 /// <summary>
 /// シャドウマップ用の定数バッファ。
 /// </summary>
 cbuffer ShadowMapCb : register(b1) {
-	float4x4 lightViewProjMatrix;	//ライトビュープロジェクション行列。
+	float4x4 mLightView;	//ライトビュー行列。
+	float4x4 mLightProj;	//ライトプロジェクション行列。
+}
+
+
+cbuffer LightParam : register(b10)
+{
+	float3 eyepos;
+	int numDirectionLight;
 }
 
 

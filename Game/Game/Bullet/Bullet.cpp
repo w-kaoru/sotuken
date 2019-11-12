@@ -36,13 +36,13 @@ void Bullet::Update()
 	if (m_bulletCon.GetP_bullethit() == true)
 	{
 		P_HitFlag = true;
+		m_bulletCon.RemoveRigidBoby();
 	}
 }
 
 void Bullet::Draw()
 {
 	m_model.Draw(
-
 		enRenderMode_Normal,
 		g_camera3D.GetViewMatrix(),
 		g_camera3D.GetProjectionMatrix()

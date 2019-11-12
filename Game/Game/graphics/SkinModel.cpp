@@ -117,8 +117,6 @@ void SkinModel::Draw(EnRenderMode renderMode, CMatrix viewMatrix, CMatrix projMa
 	vsCb.mProj = projMatrix;
 	vsCb.mView = viewMatrix;
 	//todo ライトカメラのビュー、プロジェクション行列を送る。(追加)
-	vsCb.mLightProj = g_graphicsEngine->GetShadowMap()->GetLightProjMatrix();
-	vsCb.mLightView = g_graphicsEngine->GetShadowMap()->GetLighViewMatrix();
 	if (m_isShadowReciever == true) {
 		vsCb.isShadowReciever = 1;
 	}

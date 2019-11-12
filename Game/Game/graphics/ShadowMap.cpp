@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "ShadowMap.h"
 
-
 ShadowMap::ShadowMap()
 {
 }
@@ -17,7 +16,8 @@ void ShadowMap::Init()
 		2048,
 		2048,
 		DXGI_FORMAT_R32_FLOAT
-	);
+	); 
+	InitConstantBuffer();
 }
 
 void ShadowMap::UpdateFromLightDirection(CVector3 lightCameraPos, CVector3 lightDir)
@@ -42,8 +42,8 @@ void ShadowMap::UpdateFromLightDirection(CVector3 lightCameraPos, CVector3 light
 	//ライトプロジェクション行列を作成する。
 	//太陽光からの影を落としたいなら、平行投影行列を作成する。
 	m_lightProjMatrix.MakeOrthoProjectionMatrix(
-		3000.0f,
-		3000.0f,
+		m_width,
+		m_height,
 		0.1f,
 		5000.0f
 	);
@@ -80,7 +80,12 @@ void ShadowMap::RenderToShadowMap()
 	//一番奥のZは1.0なので、1.0で塗りつぶす。
 	float clearColor[4] = { 1.0f, 1.0f, 1.0f, 1.0f }; //red,green,blue,alpha
 	m_shadowMapRT.ClearRenderTarget(clearColor);
+	m_ligCamParam.mLightProj = m_lightProjMatrix;
+	m_ligCamParam.mLightView = m_lightViewMatrix;
+	d3dDeviceContext->UpdateSubresource(m_shadowMapCB, 0, nullptr, &m_ligCamParam, 0, 0);
 
+	d3dDeviceContext->VSSetConstantBuffers(1, 1, &m_shadowMapCB);
+	d3dDeviceContext->PSSetConstantBuffers(1, 1, &m_shadowMapCB);
 	//シャドウキャスターをシャドウマップにレンダリング。
 	for (auto& caster : m_shadowCasters) {
 		caster->Draw(
@@ -91,4 +96,22 @@ void ShadowMap::RenderToShadowMap()
 	}
 	//キャスターをクリア。
 	m_shadowCasters.clear();
+}
+
+void ShadowMap::InitConstantBuffer()
+{
+	//作成するバッファのサイズをsizeof演算子で求める。
+	int bufferSize = sizeof(SLightCameraParam);
+	//どんなバッファを作成するのかをせてbufferDescに設定する。
+	D3D11_BUFFER_DESC bufferDesc;
+	ZeroMemory(&bufferDesc, sizeof(bufferDesc));				//０でクリア。
+	bufferDesc.Usage = D3D11_USAGE_DEFAULT;						//バッファで想定されている、読み込みおよび書き込み方法。
+	bufferDesc.ByteWidth = (((bufferSize - 1) / 16) + 1) * 16;	//バッファは16バイトアライメントになっている必要がある。
+																//アライメントって→バッファのサイズが16の倍数ということです。
+	bufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;			//バッファをどのようなパイプラインにバインドするかを指定する。
+																//定数バッファにバインドするので、D3D11_BIND_CONSTANT_BUFFERを指定する。
+	bufferDesc.CPUAccessFlags = 0;								//CPU アクセスのフラグです。
+																//CPUアクセスが不要な場合は0。
+	//続いて、ライト用の定数バッファを作成。		//SDirectionLightは16byteの倍数になっているので、切り上げはやらない。
+	g_graphicsEngine->GetD3DDevice()->CreateBuffer(&bufferDesc, NULL, &m_shadowMapCB);
 }
