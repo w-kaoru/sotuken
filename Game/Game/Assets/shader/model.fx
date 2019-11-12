@@ -9,6 +9,7 @@
  //アルベドテクスチャ。
 Texture2D<float4> albedoTexture : register(t0);
 Texture2D<float4> shadowMap : register(t1);		//todo シャドウマップ。
+Texture2D<float4> lightTexture : register(t2);
 //ボーン行列
 StructuredBuffer<float4x4> boneMatrix : register(t1);
 
@@ -238,23 +239,6 @@ PSInput_ShadowMap VSMainSkin_ShadowMap(VSInputNmTxWeights In)
 }
 
 /// <summary>
-/// ラインバート拡散反射を計算する。
-/// </summary>
-float3 CalcDiffuseLight(float3 normal)
-{
-	float3 lig = 0.0f;
-	//numDirectionLightvの値が取れていない。
-	//for (int i = 0; i < numDirectionLight; i++) {
-	//とりあえず。一本で当ててる。
-	for (int i = 0; i < numDirectionLight; i++) {
-		//ランバート拡散反射。
-		lig += max(0.5f, dot(normal * -1.0f, DirectionLightSB[i].direction)) * DirectionLightSB[i].color;
-	}
-	return lig;
-}
-
-
-/// <summary>
 /// デプスシャドウマップ法を使って、影を計算する。。
 /// </summary>
 //引数にinoutをつけると参照渡しになる。
@@ -279,7 +263,7 @@ void CalcShadow(inout float3 lig, float4 posInLvp)
 			//シャドウマップに書き込まれている深度値を取得。
 			float zInShadowMap = shadowMap.Sample(Sampler, shadowMapUV);
 
-			if (zInLVP > zInShadowMap + 0.0001f) {
+			if (zInLVP > zInShadowMap + 0.001f) {
 				//影が落ちているので、光を弱くする
 				lig *= 0.5f;
 			}
@@ -291,17 +275,26 @@ void CalcToon(inout float3 lig, float3 normal, float4 pos)
 	for (int i = 0; i < numDirectionLight; i++) {
 		//2階調の陰影を求める。
 		//ライトの方向と法線の内積を取るとライトの強さが求まる。
-		float3 color = 0.0f;
+		/*float3 color = 0.0f;
+		
 		color = max(
-			0.4f,
+			0.5f,
 			dot(DirectionLightSB[i].direction,
 				normalize(
 					mul(normal, pos)
 				)
 			)
 		);
+		lig = color;*/
 
-		lig = color;
+		//拡散照明によるライティング計算
+		float p = dot(normal * -1.0f, DirectionLightSB[i].direction);
+		p = p * 0.5f + 0.5f;
+		//計算結果よりトゥーンシェーダー用のテクスチャから色をフェッチする
+		float4 Col = lightTexture.Sample(Sampler, float2(p, 0.9f));
+
+		//求まった色を乗算する
+		lig = Col.xyz * DirectionLightSB[i].color.xyz;
 	}
 
 }
@@ -322,10 +315,7 @@ float4 PSMain(PSInput In) : SV_Target0
 	//albedoテクスチャからカラーをフェッチする。
 	float4 albedoColor = albedoTexture.Sample(Sampler, In.TexCoord);
 
-
 	float3 lig = 0.0f;
-	//ラインバート拡散反射
-	//lig += CalcDiffuseLight(In.Normal);
 
 	CalcToon(lig, In.Normal, In.Position);
 

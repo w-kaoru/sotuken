@@ -47,5 +47,6 @@ namespace GameEngine {
 		ID3D11Buffer*						m_lightParamCB = nullptr;		//!<コンスタントバッファ。
 		ID3D11Buffer*						m_directionLightSB = nullptr;	//!<ストラクチャーバッファ。
 		ID3D11ShaderResourceView*			m_directionLightSRV = nullptr;	//!<SRV。
+		ID3D11ShaderResourceView*			m_ligTex = nullptr;
 	};
 }

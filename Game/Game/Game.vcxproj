@@ -211,6 +211,7 @@
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\BTR80A.FBX" />
     <MeshContentTask Include="Assets\modelData\bullet.FBX" />
+    <MeshContentTask Include="Assets\modelData\Showcase_desert.fbx" />
     <MeshContentTask Include="Assets\modelData\TestGround.fbx" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\Assets\modelData\%(Filename).cmo</ContentOutput>
@@ -223,6 +224,9 @@
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\hp_gauge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\lut.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
