@@ -350,6 +350,8 @@
     <MeshContentTask Include="Assets\modelData\BTR80A.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\Showcase_desert.fbx" />
+    <MeshContentTask Include="Assets\modelData\pz4.fbx" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\title.png">

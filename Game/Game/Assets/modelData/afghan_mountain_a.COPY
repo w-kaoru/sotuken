@@ -1,0 +1,725 @@
+Begin Object Class=/Script/Engine.Material Name="afghan_mountain_a"
+   Begin Object Class=/Script/UnrealEd.SceneThumbnailInfoWithPrimitive Name="SceneThumbnailInfoWithPrimitive_5"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_55"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_54"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_53"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_52"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_51"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_50"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_49"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_42"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_41"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_40"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_39"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_38"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_37"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_23"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_18"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureCoordinate Name="MaterialExpressionTextureCoordinate_9"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureCoordinate Name="MaterialExpressionTextureCoordinate_7"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMaterialFunctionCall Name="MaterialExpressionMaterialFunctionCall_3"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_79"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_78"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_77"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_76"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_66"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_65"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_64"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_61"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_60"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_59"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_54"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_53"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_52"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_51"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_4"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_1"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_90"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_89"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_88"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_87"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_86"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_6"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_5"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_4"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_2"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_1"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_71"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_70"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_69"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_68"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_212"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_211"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_210"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_209"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_208"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_207"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_206"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_205"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_204"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_203"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_202"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_201"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_200"
+   End Object
+   Begin Object Name="SceneThumbnailInfoWithPrimitive_5"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_55"
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/afghan_mountain_b_SPLAT.afghan_mountain_b_SPLAT"'
+      MaterialExpressionEditorX=384
+      MaterialExpressionEditorY=944
+      MaterialExpressionGuid=22B50A7F4115522FDB035E90BC46943A
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_54"
+      Coordinates=(Expression=MaterialExpressionTextureCoordinate'"afghan_mountain_a:MaterialExpressionTextureCoordinate_9"')
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/SM_snow_a_d.SM_snow_a_d"'
+      MaterialExpressionEditorX=-608
+      MaterialExpressionEditorY=-448
+      MaterialExpressionGuid=149F56F647BA8078B128A2B59C22FAA7
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_53"
+      Coordinates=(Expression=MaterialExpressionTextureCoordinate'"afghan_mountain_a:MaterialExpressionTextureCoordinate_9"')
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/SM_ground_gravel_a_d.SM_ground_gravel_a_d"'
+      MaterialExpressionEditorX=-608
+      MaterialExpressionEditorY=-688
+      MaterialExpressionGuid=AEB39535412145F9D51BF5804D2CC0C3
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_52"
+      Coordinates=(Expression=MaterialExpressionTextureCoordinate'"afghan_mountain_a:MaterialExpressionTextureCoordinate_9"')
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/SM_rock_a_d.SM_rock_a_d"'
+      MaterialExpressionEditorX=-608
+      MaterialExpressionEditorY=-928
+      MaterialExpressionGuid=0A38F2ED4694C3A35657C7883DB74709
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_51"
+      Coordinates=(Expression=MaterialExpressionTextureCoordinate'"afghan_mountain_a:MaterialExpressionTextureCoordinate_9"')
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/SM_soil_desert_a_d.SM_soil_desert_a_d"'
+      MaterialExpressionEditorX=-608
+      MaterialExpressionEditorY=-1168
+      MaterialExpressionGuid=1F41D74245BB9E6F701CCCB46992BAD3
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_50"
+      Coordinates=(Expression=MaterialExpressionTextureCoordinate'"afghan_mountain_a:MaterialExpressionTextureCoordinate_9"')
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/SM_sand_pebbles_a_d.SM_sand_pebbles_a_d"'
+      MaterialExpressionEditorX=-608
+      MaterialExpressionEditorY=-1360
+      MaterialExpressionGuid=A398B59747049DECAB4B73BBFFF9DC5C
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_49"
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/afghan_mountain_b_SPLAT.afghan_mountain_b_SPLAT"'
+      MaterialExpressionEditorX=-608
+      MaterialExpressionEditorY=-224
+      MaterialExpressionGuid=22B50A7F4115522FDB035E90BC46943A
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_42"
+      Coordinates=(Expression=MaterialExpressionTextureCoordinate'"afghan_mountain_a:MaterialExpressionTextureCoordinate_7"')
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/SM_snow_a_n.SM_snow_a_n"'
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-608
+      MaterialExpressionEditorY=1792
+      MaterialExpressionGuid=149F56F647BA8078B128A2B59C22FAA7
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_41"
+      Coordinates=(Expression=MaterialExpressionTextureCoordinate'"afghan_mountain_a:MaterialExpressionTextureCoordinate_7"')
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/SM_ground_gravel_a_n.SM_ground_gravel_a_n"'
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-608
+      MaterialExpressionEditorY=1552
+      MaterialExpressionGuid=AEB39535412145F9D51BF5804D2CC0C3
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_40"
+      Coordinates=(Expression=MaterialExpressionTextureCoordinate'"afghan_mountain_a:MaterialExpressionTextureCoordinate_7"')
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/SM_rock_a_n.SM_rock_a_n"'
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-608
+      MaterialExpressionEditorY=1312
+      MaterialExpressionGuid=0A38F2ED4694C3A35657C7883DB74709
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_39"
+      Coordinates=(Expression=MaterialExpressionTextureCoordinate'"afghan_mountain_a:MaterialExpressionTextureCoordinate_7"')
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/SM_soil_desert_a_n.SM_soil_desert_a_n"'
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-608
+      MaterialExpressionEditorY=1072
+      MaterialExpressionGuid=1F41D74245BB9E6F701CCCB46992BAD3
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_38"
+      Coordinates=(Expression=MaterialExpressionTextureCoordinate'"afghan_mountain_a:MaterialExpressionTextureCoordinate_7"')
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/SM_sand_pebbles_a_n.SM_sand_pebbles_a_n"'
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-608
+      MaterialExpressionEditorY=880
+      MaterialExpressionGuid=A398B59747049DECAB4B73BBFFF9DC5C
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_37"
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/afghan_mountain_b_SPLAT.afghan_mountain_b_SPLAT"'
+      MaterialExpressionEditorX=-608
+      MaterialExpressionEditorY=2032
+      MaterialExpressionGuid=22B50A7F4115522FDB035E90BC46943A
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_23"
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/afghan_mountain_b_n.afghan_mountain_b_n"'
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=112
+      MaterialExpressionEditorY=1216
+      MaterialExpressionGuid=CCA9623E4D274955911D9AB355F73D44
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_18"
+      Texture=Texture2D'"/Game/PhotoR_Backgrounds/Textures/afghan_mountain_b_SPLAT.afghan_mountain_b_SPLAT"'
+      MaterialExpressionEditorX=240
+      MaterialExpressionEditorY=272
+      MaterialExpressionGuid=22B50A7F4115522FDB035E90BC46943A
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureCoordinate_9"
+      UTiling=600.000000
+      VTiling=600.000000
+      MaterialExpressionEditorX=-976
+      MaterialExpressionEditorY=-848
+      MaterialExpressionGuid=22B00B10498AF417DAFC7A8D4C33C021
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureCoordinate_7"
+      UTiling=600.000000
+      VTiling=600.000000
+      MaterialExpressionEditorX=-1024
+      MaterialExpressionEditorY=1232
+      MaterialExpressionGuid=22B00B10498AF417DAFC7A8D4C33C021
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionMaterialFunctionCall_3"
+      MaterialFunction=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/Utility/BlendAngleCorrectedNormals.BlendAngleCorrectedNormals"'
+      FunctionInputs(0)=(ExpressionInputId=471965E548C55D27E606D3832C490AD3,Input=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_23"',InputName="BaseNormal",Mask=1,MaskR=1,MaskG=1,MaskB=1))
+      FunctionInputs(1)=(ExpressionInputId=7E2E487F49DE5A67E3A1EFA3FD83D041,Input=(Expression=MaterialExpressionLinearInterpolate'"afghan_mountain_a:MaterialExpressionLinearInterpolate_54"',InputName="AdditionalNormal"))
+      FunctionOutputs(0)=(ExpressionOutputId=E2F3EA0E41E2637BBAA2A4A0FEF38E6A,Output=(OutputName="Result"))
+      MaterialExpressionEditorX=256
+      MaterialExpressionEditorY=1440
+      MaterialExpressionGuid=173AE61842F166126F46B18BCDBA518F
+      Material=Material'"afghan_mountain_a"'
+      Outputs(0)=(OutputName="Result")
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_79"
+      A=(Expression=MaterialExpressionLinearInterpolate'"afghan_mountain_a:MaterialExpressionLinearInterpolate_78"')
+      B=(Expression=MaterialExpressionConstant'"afghan_mountain_a:MaterialExpressionConstant_89"')
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_18"',OutputIndex=3,Mask=1,MaskB=1)
+      MaterialExpressionEditorX=640
+      MaterialExpressionEditorY=16
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_78"
+      A=(Expression=MaterialExpressionLinearInterpolate'"afghan_mountain_a:MaterialExpressionLinearInterpolate_77"')
+      B=(Expression=MaterialExpressionConstant'"afghan_mountain_a:MaterialExpressionConstant_88"')
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_18"',OutputIndex=2,Mask=1,MaskG=1)
+      MaterialExpressionEditorX=576
+      MaterialExpressionEditorY=-128
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_77"
+      A=(Expression=MaterialExpressionConstant'"afghan_mountain_a:MaterialExpressionConstant_86"')
+      B=(Expression=MaterialExpressionConstant'"afghan_mountain_a:MaterialExpressionConstant_87"')
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_18"',OutputIndex=1,Mask=1,MaskR=1)
+      MaterialExpressionEditorX=512
+      MaterialExpressionEditorY=-272
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_76"
+      A=(Expression=MaterialExpressionLinearInterpolate'"afghan_mountain_a:MaterialExpressionLinearInterpolate_79"')
+      B=(Expression=MaterialExpressionConstant'"afghan_mountain_a:MaterialExpressionConstant_90"')
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_18"',OutputIndex=4,Mask=1,MaskA=1)
+      MaterialExpressionEditorX=688
+      MaterialExpressionEditorY=144
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_66"
+      A=(Expression=MaterialExpressionLinearInterpolate'"afghan_mountain_a:MaterialExpressionLinearInterpolate_65"')
+      B=(Expression=MaterialExpressionConstant'"afghan_mountain_a:MaterialExpressionConstant_2"')
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_55"',OutputIndex=4,Mask=1,MaskA=1)
+      MaterialExpressionEditorX=816
+      MaterialExpressionEditorY=832
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_65"
+      A=(Expression=MaterialExpressionLinearInterpolate'"afghan_mountain_a:MaterialExpressionLinearInterpolate_64"')
+      B=(Expression=MaterialExpressionConstant'"afghan_mountain_a:MaterialExpressionConstant_1"')
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_55"',OutputIndex=3,Mask=1,MaskB=1)
+      MaterialExpressionEditorX=768
+      MaterialExpressionEditorY=704
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_64"
+      A=(Expression=MaterialExpressionLinearInterpolate'"afghan_mountain_a:MaterialExpressionLinearInterpolate_4"')
+      B=(Expression=MaterialExpressionConstant'"afghan_mountain_a:MaterialExpressionConstant_6"')
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_55"',OutputIndex=2,Mask=1,MaskG=1)
+      MaterialExpressionEditorX=704
+      MaterialExpressionEditorY=560
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_61"
+      A=(Expression=MaterialExpressionLinearInterpolate'"afghan_mountain_a:MaterialExpressionLinearInterpolate_60"')
+      B=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_53"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_49"',OutputIndex=3,Mask=1,MaskB=1)
+      MaterialExpressionEditorX=-96
+      MaterialExpressionEditorY=-848
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_60"
+      A=(Expression=MaterialExpressionLinearInterpolate'"afghan_mountain_a:MaterialExpressionLinearInterpolate_59"')
+      B=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_52"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_49"',OutputIndex=2,Mask=1,MaskG=1)
+      MaterialExpressionEditorX=-144
+      MaterialExpressionEditorY=-1088
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_59"
+      A=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_50"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_51"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_49"',OutputIndex=1,Mask=1,MaskR=1)
+      MaterialExpressionEditorX=-192
+      MaterialExpressionEditorY=-1280
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_54"
+      A=(Expression=MaterialExpressionLinearInterpolate'"afghan_mountain_a:MaterialExpressionLinearInterpolate_53"')
+      B=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_42"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_37"',OutputIndex=4,Mask=1,MaskA=1)
+      MaterialExpressionEditorX=64
+      MaterialExpressionEditorY=1568
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_53"
+      A=(Expression=MaterialExpressionLinearInterpolate'"afghan_mountain_a:MaterialExpressionLinearInterpolate_52"')
+      B=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_41"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_37"',OutputIndex=3,Mask=1,MaskB=1)
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=1392
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_52"
+      A=(Expression=MaterialExpressionLinearInterpolate'"afghan_mountain_a:MaterialExpressionLinearInterpolate_51"')
+      B=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_40"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_37"',OutputIndex=2,Mask=1,MaskG=1)
+      MaterialExpressionEditorX=-224
+      MaterialExpressionEditorY=1200
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_51"
+      A=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_38"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_39"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_37"',OutputIndex=1,Mask=1,MaskR=1)
+      MaterialExpressionEditorX=-336
+      MaterialExpressionEditorY=960
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_4"
+      A=(Expression=MaterialExpressionConstant'"afghan_mountain_a:MaterialExpressionConstant_4"')
+      B=(Expression=MaterialExpressionConstant'"afghan_mountain_a:MaterialExpressionConstant_5"')
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_55"',OutputIndex=1,Mask=1,MaskR=1)
+      MaterialExpressionEditorX=640
+      MaterialExpressionEditorY=416
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_1"
+      A=(Expression=MaterialExpressionLinearInterpolate'"afghan_mountain_a:MaterialExpressionLinearInterpolate_61"')
+      B=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_54"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression=MaterialExpressionTextureSample'"afghan_mountain_a:MaterialExpressionTextureSample_49"',OutputIndex=4,Mask=1,MaskA=1)
+      MaterialExpressionEditorX=-64
+      MaterialExpressionEditorY=-672
+      MaterialExpressionGuid=1B2C6E5B4E1BBF39DCE27793267C4D24
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_90"
+      R=0.200000
+      MaterialExpressionEditorX=288
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=056A08FF4CA70D12F24DF9B17BF8B767
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_89"
+      R=-3.000000
+      MaterialExpressionEditorX=288
+      MaterialExpressionEditorY=80
+      MaterialExpressionGuid=056A08FF4CA70D12F24DF9B17BF8B767
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_88"
+      R=-3.000000
+      MaterialExpressionEditorX=288
+      MaterialExpressionGuid=F6035ABA427B44104B912EA6B6AD2E2F
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_87"
+      R=-3.000000
+      MaterialExpressionEditorX=288
+      MaterialExpressionEditorY=-96
+      MaterialExpressionGuid=66CF49A54A3302218FB869A4BDB956E2
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_86"
+      R=-3.000000
+      MaterialExpressionEditorX=288
+      MaterialExpressionEditorY=-160
+      MaterialExpressionGuid=140D68544A4F740265F1C7869F775819
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_6"
+      MaterialExpressionEditorX=432
+      MaterialExpressionEditorY=672
+      MaterialExpressionGuid=F6035ABA427B44104B912EA6B6AD2E2F
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_5"
+      MaterialExpressionEditorX=432
+      MaterialExpressionEditorY=576
+      MaterialExpressionGuid=66CF49A54A3302218FB869A4BDB956E2
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_4"
+      MaterialExpressionEditorX=432
+      MaterialExpressionEditorY=512
+      MaterialExpressionGuid=140D68544A4F740265F1C7869F775819
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_2"
+      R=1.000000
+      MaterialExpressionEditorX=432
+      MaterialExpressionEditorY=832
+      MaterialExpressionGuid=056A08FF4CA70D12F24DF9B17BF8B767
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_1"
+      MaterialExpressionEditorX=432
+      MaterialExpressionEditorY=752
+      MaterialExpressionGuid=056A08FF4CA70D12F24DF9B17BF8B767
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_71"
+      SizeX=80
+      SizeY=80
+      CommentColor=(R=0.915678,G=0.910557,B=1.000000,A=1.000000)
+      MaterialExpressionEditorX=272
+      MaterialExpressionEditorY=144
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_70"
+      SizeX=80
+      SizeY=80
+      CommentColor=(R=0.023822,G=0.000000,B=1.000000,A=1.000000)
+      MaterialExpressionEditorX=272
+      MaterialExpressionEditorY=64
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_69"
+      SizeX=80
+      SizeY=80
+      CommentColor=(R=0.099748,G=1.000000,B=0.000000,A=1.000000)
+      MaterialExpressionEditorX=272
+      MaterialExpressionEditorY=-16
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_68"
+      SizeX=80
+      SizeY=160
+      CommentColor=(R=1.000000,G=0.000000,B=0.000000,A=1.000000)
+      MaterialExpressionEditorX=272
+      MaterialExpressionEditorY=-176
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_212"
+      SizeX=208
+      SizeY=416
+      CommentColor=(R=1.000000,G=0.000000,B=0.000000,A=1.000000)
+      MaterialExpressionEditorX=-640
+      MaterialExpressionEditorY=-1392
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_211"
+      SizeX=208
+      SizeY=224
+      CommentColor=(R=0.099748,G=1.000000,B=0.000000,A=1.000000)
+      MaterialExpressionEditorX=-640
+      MaterialExpressionEditorY=-960
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_210"
+      SizeX=208
+      SizeY=224
+      CommentColor=(R=0.023822,G=0.000000,B=1.000000,A=1.000000)
+      MaterialExpressionEditorX=-640
+      MaterialExpressionEditorY=-720
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_209"
+      SizeX=208
+      SizeY=224
+      CommentColor=(R=0.915678,G=0.910557,B=1.000000,A=1.000000)
+      MaterialExpressionEditorX=-640
+      MaterialExpressionEditorY=-480
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_208"
+      SizeX=80
+      SizeY=80
+      CommentColor=(R=0.915678,G=0.910557,B=1.000000,A=1.000000)
+      MaterialExpressionEditorX=416
+      MaterialExpressionEditorY=816
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_207"
+      SizeX=80
+      SizeY=80
+      CommentColor=(R=0.023822,G=0.000000,B=1.000000,A=1.000000)
+      MaterialExpressionEditorX=416
+      MaterialExpressionEditorY=736
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_206"
+      SizeX=80
+      SizeY=80
+      CommentColor=(R=0.099748,G=1.000000,B=0.000000,A=1.000000)
+      MaterialExpressionEditorX=416
+      MaterialExpressionEditorY=656
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_205"
+      SizeX=80
+      SizeY=160
+      CommentColor=(R=1.000000,G=0.000000,B=0.000000,A=1.000000)
+      MaterialExpressionEditorX=416
+      MaterialExpressionEditorY=496
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_204"
+      SizeX=192
+      SizeY=240
+      Text="Main Normal"
+      CommentColor=(R=0.418283,G=0.379707,B=0.980392,A=1.000000)
+      MaterialExpressionEditorX=80
+      MaterialExpressionEditorY=1184
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_203"
+      SizeX=208
+      SizeY=224
+      CommentColor=(R=0.915678,G=0.910557,B=1.000000,A=1.000000)
+      MaterialExpressionEditorX=-640
+      MaterialExpressionEditorY=1760
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_202"
+      SizeX=208
+      SizeY=224
+      CommentColor=(R=0.023822,G=0.000000,B=1.000000,A=1.000000)
+      MaterialExpressionEditorX=-640
+      MaterialExpressionEditorY=1520
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_201"
+      SizeX=208
+      SizeY=224
+      CommentColor=(R=0.099748,G=1.000000,B=0.000000,A=1.000000)
+      MaterialExpressionEditorX=-640
+      MaterialExpressionEditorY=1280
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   Begin Object Name="MaterialExpressionComment_200"
+      SizeX=208
+      SizeY=416
+      CommentColor=(R=1.000000,G=0.000000,B=0.000000,A=1.000000)
+      MaterialExpressionEditorX=-640
+      MaterialExpressionEditorY=848
+      MaterialExpressionGuid=150E0B5D40FFD821DEB7D495FB1657F1
+      Material=Material'"afghan_mountain_a"'
+   End Object
+   BaseColor=(Expression=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_1"')
+   Metallic=(Expression=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_76"')
+   Specular=(Expression=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_76"')
+   Roughness=(Expression=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_66"')
+   Normal=(Expression=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_3"')
+   bUsedWithStaticLighting=True
+   EditorX=1120
+   EditorY=128
+   Expressions(0)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_1"'
+   Expressions(1)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_76"'
+   Expressions(2)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_66"'
+   Expressions(3)=MaterialExpressionMaterialFunctionCall'"MaterialExpressionMaterialFunctionCall_3"'
+   Expressions(4)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_61"'
+   Expressions(5)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_59"'
+   Expressions(6)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_49"'
+   Expressions(7)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_60"'
+   Expressions(8)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_50"'
+   Expressions(9)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_51"'
+   Expressions(10)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_52"'
+   Expressions(11)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_53"'
+   Expressions(12)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_54"'
+   Expressions(13)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_23"'
+   Expressions(14)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_51"'
+   Expressions(15)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_37"'
+   Expressions(16)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_52"'
+   Expressions(17)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_53"'
+   Expressions(18)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_54"'
+   Expressions(19)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_38"'
+   Expressions(20)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_39"'
+   Expressions(21)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_40"'
+   Expressions(22)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_41"'
+   Expressions(23)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_42"'
+   Expressions(24)=MaterialExpressionTextureCoordinate'"MaterialExpressionTextureCoordinate_9"'
+   Expressions(25)=MaterialExpressionTextureCoordinate'"MaterialExpressionTextureCoordinate_7"'
+   Expressions(26)=MaterialExpressionConstant'"MaterialExpressionConstant_4"'
+   Expressions(27)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_4"'
+   Expressions(28)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_55"'
+   Expressions(29)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_64"'
+   Expressions(30)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_65"'
+   Expressions(31)=MaterialExpressionConstant'"MaterialExpressionConstant_5"'
+   Expressions(32)=MaterialExpressionConstant'"MaterialExpressionConstant_6"'
+   Expressions(33)=MaterialExpressionConstant'"MaterialExpressionConstant_1"'
+   Expressions(34)=MaterialExpressionConstant'"MaterialExpressionConstant_2"'
+   Expressions(35)=MaterialExpressionConstant'"MaterialExpressionConstant_86"'
+   Expressions(36)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_77"'
+   Expressions(37)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_18"'
+   Expressions(38)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_78"'
+   Expressions(39)=MaterialExpressionLinearInterpolate'"MaterialExpressionLinearInterpolate_79"'
+   Expressions(40)=MaterialExpressionConstant'"MaterialExpressionConstant_87"'
+   Expressions(41)=MaterialExpressionConstant'"MaterialExpressionConstant_88"'
+   Expressions(42)=MaterialExpressionConstant'"MaterialExpressionConstant_89"'
+   Expressions(43)=MaterialExpressionConstant'"MaterialExpressionConstant_90"'
+   EditorComments(0)=MaterialExpressionComment'"MaterialExpressionComment_200"'
+   EditorComments(1)=MaterialExpressionComment'"MaterialExpressionComment_201"'
+   EditorComments(2)=MaterialExpressionComment'"MaterialExpressionComment_202"'
+   EditorComments(3)=MaterialExpressionComment'"MaterialExpressionComment_203"'
+   EditorComments(4)=MaterialExpressionComment'"MaterialExpressionComment_204"'
+   EditorComments(5)=MaterialExpressionComment'"MaterialExpressionComment_205"'
+   EditorComments(6)=MaterialExpressionComment'"MaterialExpressionComment_206"'
+   EditorComments(7)=MaterialExpressionComment'"MaterialExpressionComment_207"'
+   EditorComments(8)=MaterialExpressionComment'"MaterialExpressionComment_208"'
+   EditorComments(9)=MaterialExpressionComment'"MaterialExpressionComment_209"'
+   EditorComments(10)=MaterialExpressionComment'"MaterialExpressionComment_210"'
+   EditorComments(11)=MaterialExpressionComment'"MaterialExpressionComment_211"'
+   EditorComments(12)=MaterialExpressionComment'"MaterialExpressionComment_212"'
+   EditorComments(13)=MaterialExpressionComment'"MaterialExpressionComment_68"'
+   EditorComments(14)=MaterialExpressionComment'"MaterialExpressionComment_69"'
+   EditorComments(15)=MaterialExpressionComment'"MaterialExpressionComment_70"'
+   EditorComments(16)=MaterialExpressionComment'"MaterialExpressionComment_71"'
+   MaterialFunctionInfos(0)=(StateId=F5C2D4774BA63455E32B4B960D7674B6,Function=MaterialFunction'"/Engine/Functions/Engine_MaterialFunctions02/Utility/BlendAngleCorrectedNormals.BlendAngleCorrectedNormals"')
+   bCanMaskedBeAssumedOpaque=True
+   StateId=EFB52583486037ACE9F0C093122A6E1B
+   ReferencedTextureGuids(0)=83B86EF242E8E30F0D5A5C88D898672B
+   ReferencedTextureGuids(1)=137DFF204609BF07A0E814891D34056F
+   ReferencedTextureGuids(2)=4F36E18042F4122C88AFC5B92F8E723A
+   ReferencedTextureGuids(3)=5BF90BEF47781081747153BD4D252B3E
+   ReferencedTextureGuids(4)=80CF186545DB022618AEFEB034B77B88
+   ReferencedTextureGuids(5)=D356C75A4A5941D0534B90AE791ABC41
+   ReferencedTextureGuids(6)=B8C15BFC45A83A3E1E99C492DB6B3928
+   ReferencedTextureGuids(7)=1EEE4F5E492E97744A7E499588EBCDA7
+   ReferencedTextureGuids(8)=0E758C5B4C6CCC5506572B957ABBB91F
+   ReferencedTextureGuids(9)=09B20B89490B82E139E9C9AFBF4B78D7
+   ReferencedTextureGuids(10)=C205823744A43FDB0DE4928A5A74AE83
+   ReferencedTextureGuids(11)=E9F63A434E368B4270CB86A67187D55D
+   ThumbnailInfo=SceneThumbnailInfoWithPrimitive'"SceneThumbnailInfoWithPrimitive_5"'
+   LightingGuid=3E5A1CEC49D9D90AB8B6F89AEA84B675
+End Object

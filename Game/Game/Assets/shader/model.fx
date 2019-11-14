@@ -270,7 +270,7 @@ void CalcShadow(inout float3 lig, float4 posInLvp)
 		}
 	}
 }
-void CalcToon(inout float3 lig, float3 normal, float4 pos)
+void CalcLig(inout float3 lig, float3 normal, float4 pos)
 {
 	for (int i = 0; i < numDirectionLight; i++) {
 		//2ŠK’²‚Ì‰A‰e‚ð‹‚ß‚éB
@@ -317,7 +317,7 @@ float4 PSMain(PSInput In) : SV_Target0
 
 	float3 lig = 0.0f;
 
-	CalcToon(lig, In.Normal, In.Position);
+	CalcLig(lig, In.Normal, In.Position);
 
 	float4 finalColor = float4(0.0f, 0.0f, 0.0f, 1.0f);
 
