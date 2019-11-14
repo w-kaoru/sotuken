@@ -30,16 +30,17 @@
 #include "DirectXTK/Inc/SpriteFont.h"
 #include "DirectXTK/Inc/DDSTextureLoader.h"
 
-#include "physics/Physics.h"
-#include "HID/Pad.h"
 //ゲームオブジェクトのインクルード
 #include "gameObject/GameObjectManager.h"
 #include "gameObject/IGameObject.h"
 
+#include "HID/Pad.h"
 #include "math/Vector.h"
 #include "math/Matrix.h"
+#include "graphics/Shader.h"
 #include "graphics/Camera.h"
 #include "graphics/GraphicsEngine.h"
+#include "physics/Physics.h"
 
 #include "graphics/SkinModel.h"
 #include "graphics/Skeleton.h"

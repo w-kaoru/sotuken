@@ -175,29 +175,26 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 				//とても小さい値のことです。
 				break;
 			}
-			//カプセルコライダーの中心座標 + 高さ*0.1の座標をposTmpに求める。
+			//コライダーの中心座標 + 高さ*0.1の座標をposTmpに求める。
 			CVector3 posTmp = m_position;
-			posTmp.y += m_height * 0.5f + m_radius + m_height * 0.1f;
 			//レイを作成。
 			btTransform start, end;
+			switch (m_type)
+			{
+			case CharacterController::Capsule:
+				posTmp.y += m_height * 0.5f + m_radius + m_height * 0.1f;
+				break;
+			case CharacterController::BOX:
+				posTmp.y += m_halfLength.y * 0.5f + (m_halfLength.x + m_halfLength.z);
+				break;
+			}
 			start.setIdentity();
 			end.setIdentity();
-			//始点はカプセルコライダーの中心座標 + 0.2の座標をposTmpに求める。
+			//始点はコライダーの中心座標 + 0.2の座標をposTmpに求める。
 			start.setOrigin(btVector3(posTmp.x, posTmp.y, posTmp.z));
 			//終点は次の移動先。XZ平面での衝突を調べるので、yはposTmp.yを設定する。
 			end.setOrigin(btVector3(nextPosition.x, posTmp.y, nextPosition.z));
 
-			//カプセルコライダーの中心座標 + 高さ*0.1の座標をposTmpに求める。
-			CVector3 posTmpBox = m_position;
-			posTmpBox.y += m_halfLength.y * 0.5f/* + m_halfLength.y * 0.1f*/;
-			//レイを作成。
-			btTransform startBox, endBox;
-			startBox.setIdentity();
-			endBox.setIdentity();
-			//始点はカプセルコライダーの中心座標 + 0.2の座標をposTmpに求める。
-			startBox.setOrigin(btVector3(posTmpBox.x, posTmpBox.y, posTmpBox.z));
-			//終点は次の移動先。XZ平面での衝突を調べるので、yはposTmp.yを設定する。
-			endBox.setOrigin(btVector3(nextPosition.x, posTmpBox.y, nextPosition.z));
 
 			SweepResultWall callback;
 			callback.me = m_rigidBody.GetBody();
@@ -210,7 +207,7 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 				break;
 			case CharacterController::BOX:
 				//衝突検出。
-				g_physics.ConvexSweepTest((const btConvexShape*)m_boxCollider.GetBody(), startBox, endBox, callback);
+				g_physics.ConvexSweepTest((const btConvexShape*)m_boxCollider.GetBody(), start, end, callback);
 				break;
 			}
 			if (callback.isHit) {
@@ -279,8 +276,24 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 		btTransform start, end;
 		start.setIdentity();
 		end.setIdentity();
-		//始点はカプセルコライダーの中心。
-		start.setOrigin(btVector3(m_position.x, m_position.y + m_height * 0.5f + m_radius, m_position.z));
+
+		switch (m_type)
+		{
+		case CharacterController::Capsule:
+			//始点はカプセルコライダーの中心。
+			start.setOrigin(btVector3(m_position.x, m_position.y + m_height * 0.5f + m_radius, m_position.z));
+			break;
+		case CharacterController::BOX:
+			//始点はボックスコライダーの中心。
+			start.setOrigin(
+				btVector3(
+					m_position.x + m_halfLength.x * 0.5f,
+					m_position.y + m_halfLength.y * 0.5f,
+					m_position.z + m_halfLength.z * 0.5f
+				)
+			);
+			break;
+		}
 		//終点は地面上にいない場合は1m下を見る。
 		//地面上にいなくてジャンプで上昇中の場合は上昇量の0.01倍下を見る。
 		//地面上にいなくて降下中の場合はそのまま落下先を調べる。
