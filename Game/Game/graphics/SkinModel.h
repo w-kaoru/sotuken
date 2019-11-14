@@ -13,7 +13,7 @@ enum EnFbxUpAxis {
 *@brief	スキンモデルクラス。
 */
 enum EnRenderMode;
-class SkinModel:public NoncCopyable
+class SkinModel:public NonCopyable
 {
 public:
 	//メッシュが見つかったときのコールバック関数。

@@ -6,10 +6,10 @@
 #ifndef _TKNONCOPYABLE_H_
 #define _TKNONCOPYABLE_H_
 
-struct NoncCopyable {
-	NoncCopyable() = default;
-	NoncCopyable(const NoncCopyable&) = delete;
-	NoncCopyable& operator=(const NoncCopyable&) = delete;
+struct NonCopyable {
+	NonCopyable() = default;
+	NonCopyable(const NonCopyable&) = delete;
+	NonCopyable& operator=(const NonCopyable&) = delete;
 };
 
 #endif // _TKNONCOPYABLE_H_

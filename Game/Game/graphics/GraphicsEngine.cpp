@@ -77,6 +77,16 @@ void GraphicsEngine::Release()
 		m_effekseerRenderer->Destroy();
 		m_effekseerRenderer = NULL;
 	}
+	if (m_SpriteBatch != NULL)
+	{
+		delete m_SpriteBatch;
+		m_SpriteBatch = NULL;
+	}
+	if (m_SpriteFont != NULL)
+	{
+		delete m_SpriteFont;
+		m_SpriteFont = NULL;
+	}
 }
 void GraphicsEngine::Init(HWND hWnd)
 {

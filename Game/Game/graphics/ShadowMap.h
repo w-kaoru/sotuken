@@ -1,7 +1,7 @@
 #pragma once
 #include "RenderTarget.h"
 #include "SkinModel.h"
-class ShadowMap :public NoncCopyable
+class ShadowMap :public NonCopyable
 {
 public:
 	ShadowMap();

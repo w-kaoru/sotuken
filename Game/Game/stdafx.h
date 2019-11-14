@@ -36,11 +36,6 @@
 #include "gameObject/GameObjectManager.h"
 #include "gameObject/IGameObject.h"
 
-#include "graphics/GPUBufferView/StructuredBuffer.h"
-#include "graphics/GPUBufferView/ShaderResourceView.h"
-#include "graphics/GPUBufferView/UnorderedAccessView.h"
-#include "graphics/GPUBufferView/ConstantBuffer.h"
-
 #include "math/Vector.h"
 #include "math/Matrix.h"
 #include "graphics/Camera.h"
