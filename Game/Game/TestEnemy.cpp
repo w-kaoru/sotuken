@@ -65,6 +65,7 @@ void TestEnemy::Update()
 	m_forward.z = rotMatrix.m[2][2];
 	m_forward.Normalize();
 	m_timier++;
+	Move();
 	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed);
 	if (m_timier >= 30) {
 		FireBullets(800.0f);
