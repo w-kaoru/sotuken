@@ -3,7 +3,7 @@
 #include "util/Util.h"
 
 namespace GameEngine {
-	class GameObjectManager:public NoncCopyable
+	class GameObjectManager:public NonCopyable
 	{
 	public:
 		GameObjectManager();

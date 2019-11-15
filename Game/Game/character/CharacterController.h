@@ -6,7 +6,7 @@
 
 #include "Physics/CapsuleCollider.h"
 #include "Physics/RigidBody.h"
-
+#include "physics/BoxCollider.h"
 
 /*!
 * @brief	キャラクタコントローラー。
@@ -27,6 +27,7 @@ public:
 		*@param[in]	position	初期位置。
 		*/
 	void Init(float radius, float height, const CVector3& position);
+	void InitBOX(CVector3 halfLength, const CVector3& position);
 	/*!
 		* @brief	実行。
 		*@param[in]	deltaTime		経過時間。単位は秒。
@@ -71,6 +72,13 @@ public:
 		return &m_collider;
 	}
 	/*!
+	* @brief	ボックスコライダーを取得。
+	*/
+	BoxCollider* GetBoxCollider()
+	{
+		return &m_boxCollider;
+	}
+	/*!
 	* @brief	剛体を取得。
 	*/
 	RigidBody* GetRigidBody()
@@ -81,6 +89,10 @@ public:
 	* @brief	剛体を物理エンジンから削除。。
 	*/
 	void RemoveRigidBoby();
+	enum ColliderType {
+		BOX,
+		Capsule
+	};
 private:
 	CVector3 			m_position = CVector3::Zero();	//座標。
 	bool 				m_isJump = false;				//ジャンプ中？
@@ -88,5 +100,8 @@ private:
 	CapsuleCollider		m_collider;						//コライダー。
 	float				m_radius = 0.0f;
 	float				m_height = 0.0f;		
+	BoxCollider			m_boxCollider;					//ボックスコライダー。
+	CVector3			m_halfLength;
 	RigidBody			m_rigidBody;					//剛体。
+	ColliderType		m_type = ColliderType::Capsule;
 };

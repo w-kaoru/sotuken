@@ -46,6 +46,7 @@ namespace GameEngine {
 				obj->DrawWrapper();
 			}
 		}
+		g_physics.DebubDrawWorld();
 		g_graphicsEngine->GetLightManager()->Render();
 		for (GameObjectList objList : m_gameObjectList) {
 			for (IGameObject* obj : objList) {

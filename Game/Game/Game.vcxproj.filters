@@ -185,6 +185,8 @@
     <ClCompile Include="graphics\ShadowMap.cpp">
       <Filter>graphics</Filter>
     </ClCompile>
+    <ClCompile Include="physics\BoxCollider.cpp" />
+    <ClCompile Include="physics\PhysicsDebugDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -333,6 +335,8 @@
     <ClInclude Include="graphics\ShadowMap.h">
       <Filter>graphics</Filter>
     </ClInclude>
+    <ClInclude Include="physics\BoxCollider.h" />
+    <ClInclude Include="physics\PhysicsDebugDraw.h" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">

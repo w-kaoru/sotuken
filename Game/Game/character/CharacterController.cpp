@@ -118,8 +118,31 @@ void CharacterController::Init(float radius, float height, const CVector3& posit
 	m_rigidBody.GetBody()->setUserIndex(enCollisionAttr_Character);
 	m_rigidBody.GetBody()->setCollisionFlags(btCollisionObject::CF_CHARACTER_OBJECT);
 	g_physics.AddRigidBody(m_rigidBody);
+	m_type = ColliderType::Capsule;
 
 }
+void CharacterController::InitBOX(CVector3 halfLength, const CVector3 & position)
+{
+	m_position = position;
+	//コリジョン作成。
+	m_halfLength = halfLength;
+	m_boxCollider.Create(halfLength.x, halfLength.y, halfLength.z);
+
+	//剛体を初期化。
+	RigidBodyInfo rbInfo;
+	rbInfo.collider = &m_boxCollider;
+	rbInfo.mass = 0.0f;
+	m_rigidBody.Create(rbInfo);
+	btTransform& trans = m_rigidBody.GetBody()->getWorldTransform();
+	//剛体の位置を更新。
+	trans.setOrigin(btVector3(position.x, position.y, position.z));
+	//@todo 未対応。trans.setRotation(btQuaternion(rotation.x, rotation.y, rotation.z));
+	m_rigidBody.GetBody()->setUserIndex(enCollisionAttr_Character);
+	m_rigidBody.GetBody()->setCollisionFlags(btCollisionObject::CF_CHARACTER_OBJECT);
+	g_physics.AddRigidBody(m_rigidBody);
+	m_type = ColliderType::BOX;
+}
+
 const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpeed)
 {
 	if (moveSpeed.y > 0.0f) {
@@ -152,28 +175,45 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 				//とても小さい値のことです。
 				break;
 			}
-			//カプセルコライダーの中心座標 + 高さ*0.1の座標をposTmpに求める。
+			//コライダーの中心座標 + 高さ*0.1の座標をposTmpに求める。
 			CVector3 posTmp = m_position;
-			posTmp.y += m_height * 0.5f + m_radius + m_height * 0.1f;
 			//レイを作成。
 			btTransform start, end;
+			switch (m_type)
+			{
+			case CharacterController::Capsule:
+				posTmp.y += m_height * 0.5f + m_radius + m_height * 0.1f;
+				break;
+			case CharacterController::BOX:
+				posTmp.y += m_halfLength.y * 0.5f + (m_halfLength.x + m_halfLength.z);
+				break;
+			}
 			start.setIdentity();
 			end.setIdentity();
-			//始点はカプセルコライダーの中心座標 + 0.2の座標をposTmpに求める。
+			//始点はコライダーの中心座標 + 0.2の座標をposTmpに求める。
 			start.setOrigin(btVector3(posTmp.x, posTmp.y, posTmp.z));
 			//終点は次の移動先。XZ平面での衝突を調べるので、yはposTmp.yを設定する。
 			end.setOrigin(btVector3(nextPosition.x, posTmp.y, nextPosition.z));
 
+
 			SweepResultWall callback;
 			callback.me = m_rigidBody.GetBody();
 			callback.startPos = posTmp;
-			//衝突検出。
-			g_physics.ConvexSweepTest((const btConvexShape*)m_collider.GetBody(), start, end, callback);
-
+			switch (m_type)
+			{
+			case CharacterController::Capsule:
+				//衝突検出。
+				g_physics.ConvexSweepTest((const btConvexShape*)m_collider.GetBody(), start, end, callback);
+				break;
+			case CharacterController::BOX:
+				//衝突検出。
+				g_physics.ConvexSweepTest((const btConvexShape*)m_boxCollider.GetBody(), start, end, callback);
+				break;
+			}
 			if (callback.isHit) {
 				//当たった。
 				//壁。
-#if 1
+#if 0
 				//こちらを有効にすると衝突解決が衝突点に戻すになる。
 				nextPosition.x = callback.hitPos.x;
 				nextPosition.z = callback.hitPos.z;
@@ -236,8 +276,24 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 		btTransform start, end;
 		start.setIdentity();
 		end.setIdentity();
-		//始点はカプセルコライダーの中心。
-		start.setOrigin(btVector3(m_position.x, m_position.y + m_height * 0.5f + m_radius, m_position.z));
+
+		switch (m_type)
+		{
+		case CharacterController::Capsule:
+			//始点はカプセルコライダーの中心。
+			start.setOrigin(btVector3(m_position.x, m_position.y + m_height * 0.5f + m_radius, m_position.z));
+			break;
+		case CharacterController::BOX:
+			//始点はボックスコライダーの中心。
+			start.setOrigin(
+				btVector3(
+					m_position.x + m_halfLength.x * 0.5f,
+					m_position.y + m_halfLength.y * 0.5f,
+					m_position.z + m_halfLength.z * 0.5f
+				)
+			);
+			break;
+		}
 		//終点は地面上にいない場合は1m下を見る。
 		//地面上にいなくてジャンプで上昇中の場合は上昇量の0.01倍下を見る。
 		//地面上にいなくて降下中の場合はそのまま落下先を調べる。
@@ -263,8 +319,17 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 		callback.me = m_rigidBody.GetBody();
 		callback.startPos.Set(start.getOrigin());
 		//衝突検出。
-		if(fabsf(endPos.y - callback.startPos.y) > FLT_EPSILON){
-			g_physics.ConvexSweepTest((const btConvexShape*)m_collider.GetBody(), start, end, callback);
+		if (fabsf(endPos.y - callback.startPos.y) > FLT_EPSILON) {
+			switch (m_type)
+			{
+			case CharacterController::Capsule:
+				g_physics.ConvexSweepTest((const btConvexShape*)m_collider.GetBody(), start, end, callback);
+
+				break;
+			case CharacterController::BOX:
+				g_physics.ConvexSweepTest((const btConvexShape*)m_boxCollider.GetBody(), start, end, callback);
+				break;
+			}
 			if (callback.isHit) {
 				//当たった。
 				moveSpeed.y = 0.0f;

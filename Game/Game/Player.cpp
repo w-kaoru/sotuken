@@ -18,7 +18,8 @@ bool Player::Start()
 	//cmoファイルの読み込み。
 	m_model.Init(L"Assets/modelData/pz4.cmo");
 	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
-	m_charaCon.Init(20.0f, 50.0f, m_pos);
+	//m_charaCon.Init(20.0f, 50.0f, m_pos);
+	m_charaCon.InitBOX({ 100.0f,100.0f,100.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	m_scale *= 0.5f;

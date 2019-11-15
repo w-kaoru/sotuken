@@ -19,7 +19,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
 	GOManager().Init(50);
 	CSoundEngine soundEngine;				//サウンドエンジン。
-	soundEngine.Init(); 
+	soundEngine.Init();
+	g_physics.SetDebugDrawMode(btIDebugDraw::DBG_DrawWireframe);
 	NewGO<Title>(0, "Title");
 
 	//ゲームループ。
