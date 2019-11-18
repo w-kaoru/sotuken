@@ -99,7 +99,8 @@ void Player::Turn()
 {
 	//Œü‚«‚ð•Ï‚¦‚éB
 	if (fabsf(m_moveSpeed.x) > 0.1f
-		|| fabsf(m_moveSpeed.z) > 0.1f) {
+		|| fabsf(m_moveSpeed.z) > 0.1f) 
+	{
 		auto angle = atan2f(m_moveSpeed.x, m_moveSpeed.z);
 		m_rot.SetRotation(CVector3::AxisY(), angle);
 	}
