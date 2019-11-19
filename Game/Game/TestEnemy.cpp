@@ -30,7 +30,7 @@ bool TestEnemy::Start()
 void TestEnemy::FireBullets(float speed)
 {
 	
-	Bullet* bullet = m_bulletmaneger->NewBullet();
+	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_EnemyBullet);
 	bullet->SetMoveSpeed(m_forward * speed);
 	CVector3 pos = m_pos;
 	pos.y += 50.0f;
@@ -68,7 +68,7 @@ void TestEnemy::Update()
 	Move();
 	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed);
 	if (m_timier >= 30) {
-		FireBullets(800.0f);
+	//	FireBullets(800.0f);
 		m_timier = 0;
 	}
 	if (m_bulletmaneger->GetEnemyDamage() == true)

@@ -7,6 +7,7 @@ public:
 	Bullet();
 	~Bullet();
 	bool Start();
+	void Init(int k);
 	void Update();
 	void Draw();
 	void BulletMove();
@@ -34,9 +35,9 @@ public:
 	{
 		return P_HitFlag;
 	}
-	BulletController* GetBulletController()
+	const BulletController &GetBulletController()
 	{
-		return &m_bulletCon;
+		return m_bulletCon;
 	}
 private:
 	SkinModel m_model;

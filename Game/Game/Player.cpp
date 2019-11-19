@@ -21,7 +21,7 @@ bool Player::Start()
 	//m_charaCon.Init(20.0f, 50.0f, m_pos);
 	m_charaCon.InitBOX({ 100.0f,100.0f,100.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
-	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
+	m_bulletmaneger = NewGO<BulletManeger>(1,"BulletManeger");
 	m_scale *= 0.5f;
 	//m_model.SetShadowReciever(true);
 	return true;
@@ -29,7 +29,7 @@ bool Player::Start()
 void Player::FireBullets(float speed)
 {
 	
-	Bullet* bullet = m_bulletmaneger->NewBullet();
+	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet);
 	bullet->SetMoveSpeed(m_forward * speed);
 	CVector3 pos = m_pos;
 	pos.y += 50.0f;

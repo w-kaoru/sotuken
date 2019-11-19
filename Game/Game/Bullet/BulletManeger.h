@@ -8,7 +8,7 @@ public:
 	~BulletManeger();
 	bool Start();
 	//void OnDestroy();
-	Bullet* NewBullet();
+	Bullet* NewBullet(int k);
 	void DeleteBullet();
 	void Update();
 	void Draw();
