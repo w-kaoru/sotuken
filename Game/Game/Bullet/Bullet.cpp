@@ -27,7 +27,7 @@ void Bullet::Init(int k)
 }
 void Bullet::BulletMove()
 {
-	//m_position = m_bulletCon.Execute(1.0f / 30.0f, m_moveSpeed);
+	m_position = m_bulletCon.Execute(1.0f / 30.0f, m_moveSpeed);
 	
 	m_model.UpdateWorldMatrix(m_position, CQuaternion::Identity(), CVector3::One());
 }
