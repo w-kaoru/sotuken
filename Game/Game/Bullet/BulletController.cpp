@@ -13,10 +13,12 @@ namespace GameEngine {
 																//衝突したときに呼ばれるコールバック関数。
 			virtual	btScalar	addSingleResult(btCollisionWorld::LocalConvexResult& convexResult, bool normalInWorldSpace)
 			{
-				if (convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Enemy) {
+				if (me->getUserIndex() == enCollisionAttr_PlayerBullet&&
+					convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Enemy) {
 					E_bulletisHit = true;
 				}
-				if (convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Player) {
+				if (me->getUserIndex() == enCollisionAttr_EnemyBullet &&
+					convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Player) {
 					P_bulletisHit = true;
 				}
 				if (me->getUserIndex() == enCollisionAttr_EnemyBullet

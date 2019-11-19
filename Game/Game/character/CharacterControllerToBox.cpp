@@ -3,7 +3,7 @@
 */
 
 #include "stdafx.h"
-#include "character/CharacterController.h"
+#include "character/CharacterControllerToBox.h"
 #include "Physics/CollisionAttr.h"
 
 
@@ -98,13 +98,12 @@ namespace {
 }
 
 
-void CharacterController::Init(float radius, float height, const CVector3& position)
+void CharacterControllerToBox::Init(CVector3 halfLength, const CVector3 & position)
 {
 	m_position = position;
 	//コリジョン作成。
-	m_radius = radius;
-	m_height = height;
-	m_collider.Create(radius, height);
+	m_halfLength = halfLength;
+	m_collider.Create(halfLength);
 
 	//剛体を初期化。
 	RigidBodyInfo rbInfo;
@@ -118,10 +117,21 @@ void CharacterController::Init(float radius, float height, const CVector3& posit
 	m_rigidBody.GetBody()->setUserIndex(enCollisionAttr_Character);
 	m_rigidBody.GetBody()->setCollisionFlags(btCollisionObject::CF_CHARACTER_OBJECT);
 	g_physics.AddRigidBody(m_rigidBody);
-
 }
-const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpeed)
+
+const CVector3& CharacterControllerToBox::Execute(float deltaTime, CVector3& moveSpeed, CQuaternion rot)
 {
+	CVector3 forward;
+	CMatrix rotMatrix;
+
+	rotMatrix.MakeRotationFromQuaternion(rot);
+	forward.x = rotMatrix.m[2][0];
+	forward.y = rotMatrix.m[2][1];
+	forward.z = rotMatrix.m[2][2];
+	forward.Normalize();
+
+
+	btQuaternion btRot = { rot.x,rot.y,rot.z,rot.w };
 	if (moveSpeed.y > 0.0f) {
 		//吹っ飛び中にする。
 		m_isJump = true;
@@ -133,10 +143,11 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 	CVector3 addPos = moveSpeed;
 	addPos *= deltaTime;
 	nextPosition += addPos;
-	
+
 	CVector3 originalXZDir = addPos;
 	originalXZDir.y = 0.0f;
 	originalXZDir.Normalize();
+
 	//XZ平面での衝突検出と衝突解決を行う。
 	{
 		int loopCount = 0;
@@ -152,17 +163,20 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 				//とても小さい値のことです。
 				break;
 			}
-			//カプセルコライダーの中心座標 + 高さ*0.1の座標をposTmpに求める。
 			CVector3 posTmp = m_position;
-			posTmp.y += m_height * 0.5f + m_radius + m_height * 0.1f;
 			//レイを作成。
 			btTransform start, end;
+			posTmp.y += m_halfLength.x * 0.5f + m_halfLength.y * 0.5f + m_halfLength.z * 0.5f;
+			posTmp.y = posTmp.y + m_halfLength.y * 0.1f;
 			start.setIdentity();
 			end.setIdentity();
-			//始点はカプセルコライダーの中心座標 + 0.2の座標をposTmpに求める。
+			//始点はコライダーの中心座標 + 0.2の座標をposTmpに求める。
 			start.setOrigin(btVector3(posTmp.x, posTmp.y, posTmp.z));
+			start.setRotation(m_fRot);
 			//終点は次の移動先。XZ平面での衝突を調べるので、yはposTmp.yを設定する。
 			end.setOrigin(btVector3(nextPosition.x, posTmp.y, nextPosition.z));
+			end.setRotation(btRot);
+
 
 			SweepResultWall callback;
 			callback.me = m_rigidBody.GetBody();
@@ -174,13 +188,6 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 				//当たった。
 				//壁。
 #if 0
-				//こちらを有効にすると衝突解決が衝突点に戻すになる。
-				nextPosition.x = callback.hitPos.x;
-				nextPosition.z = callback.hitPos.z;
-				//法線の方向に半径分押し戻す。
-				nextPosition.x += callback.hitNormal.x * m_radius;
-				nextPosition.z += callback.hitNormal.z * m_radius;
-#else
 				CVector3 vT0, vT1;
 				//XZ平面上での移動後の座標をvT0に、交点の座標をvT1に設定する。
 				vT0.Set(nextPosition.x, 0.0f, nextPosition.z);
@@ -198,7 +205,8 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 				//押し返すベクトルは壁の法線に射影されためり込みベクトル+半径。
 				CVector3 vOffset;
 				vOffset = hitNormalXZ;
-				vOffset *= -fT0 + m_radius;
+				vOffset.x *= fT0 + m_halfLength.x;
+				vOffset.z *= fT0 + m_halfLength.z;
 				nextPosition += vOffset;
 				CVector3 currentDir;
 				currentDir = nextPosition - m_position;
@@ -211,6 +219,12 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 					nextPosition.z = m_position.z;
 					break;
 				}
+#else
+				CVector3 hitNormalXZ = callback.hitNormal;
+				hitNormalXZ.y = 0.0f;
+				hitNormalXZ.Normalize();
+				nextPosition.x = hitNormalXZ.x + m_position.x;
+				nextPosition.z = hitNormalXZ.z + m_position.z;
 #endif
 			}
 			else {
@@ -236,13 +250,22 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 		btTransform start, end;
 		start.setIdentity();
 		end.setIdentity();
-		//始点はカプセルコライダーの中心。
-		start.setOrigin(btVector3(m_position.x, m_position.y + m_height * 0.5f + m_radius, m_position.z));
+
+		//始点はボックスコライダーの中心。
+		start.setOrigin(
+			btVector3(
+				m_position.x,
+				m_position.y + m_halfLength.y * 0.5f,
+				m_position.z
+			)
+		);
 		//終点は地面上にいない場合は1m下を見る。
 		//地面上にいなくてジャンプで上昇中の場合は上昇量の0.01倍下を見る。
 		//地面上にいなくて降下中の場合はそのまま落下先を調べる。
 		CVector3 endPos;
 		endPos.Set(start.getOrigin());
+		CQuaternion endRot;
+		endRot = rot;
 		if (m_isOnGround == false) {
 			if (addPos.y > 0.0f) {
 				//ジャンプ中とかで上昇中。
@@ -263,7 +286,7 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 		callback.me = m_rigidBody.GetBody();
 		callback.startPos.Set(start.getOrigin());
 		//衝突検出。
-		if(fabsf(endPos.y - callback.startPos.y) > FLT_EPSILON){
+		if (fabsf(endPos.y - callback.startPos.y) > FLT_EPSILON) {
 			g_physics.ConvexSweepTest((const btConvexShape*)m_collider.GetBody(), start, end, callback);
 			if (callback.isHit) {
 				//当たった。
@@ -287,13 +310,15 @@ const CVector3& CharacterController::Execute(float deltaTime, CVector3& moveSpee
 	btTransform& trans = btBody->getWorldTransform();
 	//剛体の位置を更新。
 	trans.setOrigin(btVector3(m_position.x, m_position.y, m_position.z));
+	trans.setRotation(btRot);
+	m_fRot = btRot;
 	//@todo 未対応。 trans.setRotation(btQuaternion(rotation.x, rotation.y, rotation.z));
 	return m_position;
 }
 /*!
 * @brief	死亡したことを通知。
 */
-void CharacterController::RemoveRigidBoby()
+void CharacterControllerToBox::RemoveRigidBoby()
 {
 	g_physics.RemoveRigidBody(m_rigidBody);
 }
