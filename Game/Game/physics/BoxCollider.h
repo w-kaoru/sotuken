@@ -9,30 +9,26 @@ public:
 	* @brief	ì¬B
 	*@param[in] halfLength	XYZ‚Ì”¼•ª‚Ì’·‚³B
 	*/
-	void Create(float halfLengthX, float halfLengthY, float halfLengthZ)
+	void Create(CVector3 halfLength)
 	{
-		m_shape = new btBoxShape({ halfLengthX, halfLengthY, halfLengthZ });
-		this->m_halfLengthX = halfLengthX;
-		this->m_halfLengthY = halfLengthY;
-		this->m_halfLengthZ = halfLengthZ;
+		m_shape = new btBoxShape(btVector3(halfLength.x, halfLength.y, halfLength.z));
+		this->m_halfLengthCV = halfLength;
+		this->m_halfLengthBV = btVector3(halfLength.x, halfLength.y, halfLength.z);
 	}
 	btBoxShape* GetBody() const override
 	{
 		return m_shape;
 	}
-	float GetHalfLengthX() {
-		return m_halfLengthX;
+	btVector3 GetHalfLengthBV() 
+	{
+		return m_halfLengthBV;
 	}
-	float GetHalfLengthY() {
-		return m_halfLengthY;
-	}
-	float GetHalfLengthZ() {
-		return m_halfLengthZ;
+	CVector3 GetHalfLengthCV()
+	{
+		return m_halfLengthCV;
 	}
 private:
-	btBoxShape*		m_shape;
-	float m_halfLengthX = 0.0f;
-	float m_halfLengthY = 0.0f;
-	float m_halfLengthZ = 0.0f;
-
+	btBoxShape*		m_shape = nullptr;
+	btVector3 m_halfLengthBV = btVector3(0.0f, 0.0f, 0.0f);
+	CVector3 m_halfLengthCV = CVector3::Zero();
 };

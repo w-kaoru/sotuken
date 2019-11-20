@@ -104,6 +104,7 @@
     <ClCompile Include="Bullet\BulletController.cpp" />
     <ClCompile Include="Bullet\BulletManeger.cpp" />
     <ClCompile Include="character\CharacterController.cpp" />
+    <ClCompile Include="character\CharacterControllerToBox.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameObject\GameObjectManager.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Bullet\BulletController.h" />
     <ClInclude Include="Bullet\BulletManeger.h" />
     <ClInclude Include="character\CharacterController.h" />
+    <ClInclude Include="character\CharacterControllerToBox.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameCamera.h" />

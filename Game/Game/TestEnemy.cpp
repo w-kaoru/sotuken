@@ -17,20 +17,23 @@ TestEnemy::~TestEnemy()
 bool TestEnemy::Start()
 {
 	//cmoファイルの読み込み。
-	m_model.Init(L"Assets/modelData/unityChan.cmo");
+	m_model.Init(L"Assets/modelData/pz4.cmo");
 	m_enemyhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
 	m_pos.x = 50.0f;
 	m_pos.z = -500.0f;
-	m_charaCon.Init(20.0f, 50.0f, m_pos);
+	//m_charaCon.Init(30.0f, 50.0f, m_pos);
+	m_charaCon.Init(
+		{ 60.0f, 100.0f, 115.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Enemy);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
+	m_scale *= 0.5f;
 	return true;
 }
 
 void TestEnemy::FireBullets(float speed)
 {
 	
-	Bullet* bullet = m_bulletmaneger->NewBullet();
+	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_EnemyBullet);
 	bullet->SetMoveSpeed(m_forward * speed);
 	CVector3 pos = m_pos;
 	pos.y += 50.0f;
@@ -66,9 +69,10 @@ void TestEnemy::Update()
 	m_forward.Normalize();
 	m_timier++;
 	Move();
-	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed);
+	//m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed);
+	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed, m_rot);
 	if (m_timier >= 30) {
-		FireBullets(800.0f);
+	//	FireBullets(800.0f);
 		m_timier = 0;
 	}
 	if (m_bulletmaneger->GetEnemyDamage() == true)

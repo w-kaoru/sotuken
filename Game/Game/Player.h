@@ -1,5 +1,6 @@
 #pragma once
 #include "character/CharacterController.h"
+#include "character/CharacterControllerToBox.h"
 class BulletManeger;
 class Player:public IGameObject
 {
@@ -18,6 +19,10 @@ public:
 	{
 		return m_pos;
 	}
+	CVector3 GetForward()
+	{
+		return m_forward;
+	}
 private:
 		 
 
@@ -34,7 +39,8 @@ private:
 	CVector3 m_scale = CVector3::One();					//スケール。
 	BulletManeger* m_bulletmaneger = nullptr;
 	float m_deltatime = 1.0f / 30.0f;                   //1フレームの経過時間
-	CharacterController m_charaCon;						//キャラクターコントローラーを追加。
+	//CharacterController m_charaCon;						//キャラクターコントローラーを追加。
+	CharacterControllerToBox m_charaCon;					//キャラクターコントローラーを追加。
 	float m_playerHP = 100.0f;
 	Sprite m_playerhp;
 };

@@ -17,8 +17,13 @@ bool Bullet::Start()
 	m_model.Init(L"Assets/modelData/bullet.cmo");
 	m_bulletCon.Init(10.0f, m_position);
 	m_bulletCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_PlayerBullet);
-	m_enemy = FindGO<TestEnemy>("TestEnemy");
 	return true;
+}
+void Bullet::Init(int k)
+{	
+	//m_bulletCon.Init(10.0f, m_position);
+	//m_bulletCon.GetRigidBody()->GetBody()->setUserIndex(k);
+
 }
 void Bullet::BulletMove()
 {
@@ -36,7 +41,6 @@ void Bullet::Update()
 	if (m_bulletCon.GetP_bullethit() == true)
 	{
 		P_HitFlag = true;
-		m_bulletCon.RemoveRigidBoby();
 	}
 }
 

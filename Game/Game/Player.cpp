@@ -4,6 +4,7 @@
 #include "Bullet/Bullet.h"
 #include "Bullet/BulletManeger.h"
 #include "Define.h"
+
 Player::Player()
 {
 }
@@ -18,8 +19,8 @@ bool Player::Start()
 	//cmoファイルの読み込み。
 	m_model.Init(L"Assets/modelData/pz4.cmo");
 	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
-	//m_charaCon.Init(20.0f, 50.0f, m_pos);
-	m_charaCon.InitBOX({ 100.0f,100.0f,100.0f }, m_pos);
+	//m_charaCon.Init(30.0f, 30.0f, m_pos);
+	m_charaCon.Init({ 65.0f, 100.0f, 110.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	m_scale *= 0.5f;
@@ -29,7 +30,7 @@ bool Player::Start()
 void Player::FireBullets(float speed)
 {
 	
-	Bullet* bullet = m_bulletmaneger->NewBullet();
+	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet);
 	bullet->SetMoveSpeed(m_forward * speed);
 	CVector3 pos = m_pos;
 	pos.y += 50.0f;
@@ -87,7 +88,8 @@ void Player::Update()
 		m_playerHP -= m_bulletmaneger->GetBulletDamage();
 	}
 	//m_moveSpeed.y -= 10.0f;
-	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed);
+	//m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed);
+	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed, m_rot);
 	
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "BulletManeger.h"
+#include "Physics/CollisionAttr.h"
+
 
 
 BulletManeger::BulletManeger()
@@ -15,9 +17,10 @@ bool BulletManeger::Start()
 {
 	return true;
 }
-Bullet* BulletManeger::NewBullet()
+Bullet* BulletManeger::NewBullet(int k)
 {
 	Bullet* newbullet = NewGO<Bullet>(1, "Bullet");
+	newbullet->Init(k);
 	m_bulletList.push_back(newbullet);
 	return newbullet;
 }
