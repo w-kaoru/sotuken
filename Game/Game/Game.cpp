@@ -6,6 +6,7 @@
 #include "BackGround.h"
 #include "GameCamera.h"
 #include "Light/DirectionLight.h"
+#include "Title.h"
 
 Game::Game()
 {
@@ -41,27 +42,26 @@ bool Game::Start()
 	return true;
 }
 
+void Game::OnDestroy()
+{
+	DeleteGO(m_backgeound);
+	DeleteGO(m_player);
+	if (m_testenemy != nullptr) {
+		DeleteGO(m_testenemy);
+	}
+	DeleteGO(m_bulletmaneger);
+	DeleteGO(m_gamecamera);
+}
+
 void Game::Update()
 {
 	g_graphicsEngine->GetLightManager()->SetEyePos(m_gamecamera->GetCameraPos());
-	//if (g_pad[0].IsTrigger(enButtonA))
-	//{
-	//	DeleteGO(m_testenemy);
-	//}
+
+
 	if (g_pad[0].IsTrigger(enButtonB))
 	{
-		//エフェクトを再生する。
-		m_testEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
-			m_testEffect,
-			0.0f, 0.0f, 0.0f
-		);
-		//エフェクトの大きさを変更
-		g_graphicsEngine->GetEffekseerManager()->SetScale(
-			m_testEffectHandle,
-			20.0f,
-			20.0f,
-			20.0f
-		);
+		DeleteGO(this);
+		NewGO<Title>(0, "title");
 	}
 	CVector3 ligdir = m_LigDirection;
 	ligdir *= -1.0f;
