@@ -19,6 +19,10 @@ public:
 	{
 		return m_pos;
 	}
+	bool GetDeth()
+	{
+		return enemydeth;
+	}
 private:
 
 	SkinModel m_model;									//スキンモデル。
@@ -36,5 +40,6 @@ private:
 	CVector3 m_Sprite_Front = CVector3::AxisZ()*-1;	    //テクスチャの前方向
 	CQuaternion m_Sprite_angle = CQuaternion::Identity();	//テクスチャの回転角度
 	float HP = 100.0f;
+	bool enemydeth = false;
 };
 

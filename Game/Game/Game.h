@@ -11,6 +11,7 @@ public:
 	~Game();
 	void InitLight();
 	bool Start();
+	void OnDestroy();
 	void Update();
 	void Draw();
 	/*!
