@@ -9,6 +9,7 @@ public:
 	bool Start();
 	//void OnDestroy();
 	Bullet* NewBullet(int k);
+	void OnDestroy();
 	void DeleteBullet();
 	void Update();
 	void Draw();

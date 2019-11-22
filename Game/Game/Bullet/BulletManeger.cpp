@@ -11,11 +11,19 @@ BulletManeger::BulletManeger()
 
 BulletManeger::~BulletManeger()
 {
+
 }
 
 bool BulletManeger::Start()
 {
 	return true;
+}
+void BulletManeger::OnDestroy()
+{
+	for (auto& bullet : m_bulletList)
+	{
+		DeleteGO(bullet);
+	}
 }
 Bullet* BulletManeger::NewBullet(int k)
 {

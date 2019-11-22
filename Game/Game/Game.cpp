@@ -46,7 +46,7 @@ void Game::OnDestroy()
 {
 	DeleteGO(m_backgeound);
 	DeleteGO(m_player);
-	if (m_testenemy != nullptr) {
+	if (m_testenemy->GetDeth() == false) {
 		DeleteGO(m_testenemy);
 	}
 	DeleteGO(m_bulletmaneger);
