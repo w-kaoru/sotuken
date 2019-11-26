@@ -13,6 +13,7 @@ Game::Game()
 	InitLight();
 	m_testbgm.Init(L"Assets/sound/coinGet.wav");
 	//m_testbgm.Play(true);
+	m_time.TimerStart();
 	m_testEffect = Effekseer::Effect::Create(g_graphicsEngine->GetEffekseerManager(),
 		(const EFK_CHAR*)L"Assets/effect/test.efk");
 }
@@ -60,8 +61,10 @@ void Game::Update()
 
 	if (g_pad[0].IsTrigger(enButtonB))
 	{
-		DeleteGO(this);
-		NewGO<Title>(0, "title");
+		//DeleteGO(this);
+		//NewGO<Title>(0, "title");
+		//m_time.TimerStop();
+
 	}
 	CVector3 ligdir = m_LigDirection;
 	ligdir *= -1.0f;
@@ -76,4 +79,23 @@ void Game::Update()
 
 void Game::Draw()
 {
+
+}
+
+void Game::PostDraw()
+{
+	int time;
+	m_font.BeginDraw();
+	m_time.TimerStop();
+	time = (int)m_time.GetSeconds();
+	swprintf_s(moji, L"時間%03d秒", time);		//表示用にデータを加工
+	m_font.Draw(
+		moji,		//表示する文字列。
+		{ -200.0f,FRAME_BUFFER_H / 2.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+		{ 1.0f,0.0f,0.0f,1.0f },
+		0.0f,
+		1.0f,
+		{ 0.0f,1.0f }
+	);
+	m_font.EndDraw();
 }

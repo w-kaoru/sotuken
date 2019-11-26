@@ -14,6 +14,7 @@ public:
 	void OnDestroy();
 	void Update();
 	void Draw();
+	void PostDraw();
 	/*!
 	* @brief	弾丸マネージャを取得。
 	*/
@@ -29,6 +30,7 @@ private:
 	GameCamera* m_gamecamera = nullptr;
 	wchar_t moji[256];
 	GameFont m_font;
+	Timer m_time;
 	float m_fontsize = 1.0f; //フォントサイズ
 	CSoundSource m_testbgm;//テストBGM
 	Effekseer::Effect* m_testEffect = nullptr;//テストエフェクト

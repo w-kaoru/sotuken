@@ -188,6 +188,7 @@
     <ClCompile Include="physics\BoxCollider.cpp" />
     <ClCompile Include="physics\PhysicsDebugDraw.cpp" />
     <ClCompile Include="character\CharacterControllerToBox.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -339,6 +340,7 @@
     <ClInclude Include="physics\BoxCollider.h" />
     <ClInclude Include="physics\PhysicsDebugDraw.h" />
     <ClInclude Include="character\CharacterControllerToBox.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
