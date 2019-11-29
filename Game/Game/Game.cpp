@@ -61,8 +61,8 @@ void Game::Update()
 
 	if (g_pad[0].IsTrigger(enButtonB))
 	{
-		//DeleteGO(this);
-		//NewGO<Title>(0, "title");
+		DeleteGO(this);
+		NewGO<Title>(0, "title");
 
 	}
 	CVector3 ligdir = m_LigDirection;

@@ -13,16 +13,16 @@ Bullet::~Bullet()
 }
 
 bool Bullet::Start()
-{
+{	
 	m_model.Init(L"Assets/modelData/bullet.cmo");
-	m_bulletCon.Init(10.0f, m_position);
-	m_bulletCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_PlayerBullet);
+	m_bulletCon.SetPosition(m_position);
 	return true;
 }
 void Bullet::Init(int k)
 {	
-	//m_bulletCon.Init(10.0f, m_position);
-	//m_bulletCon.GetRigidBody()->GetBody()->setUserIndex(k);
+
+	m_bulletCon.Init(10.0f, m_position);
+	m_bulletCon.GetRigidBody()->GetBody()->setUserIndex(k);
 
 }
 void Bullet::BulletMove()
