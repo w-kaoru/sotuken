@@ -341,6 +341,7 @@
     <ClInclude Include="physics\PhysicsDebugDraw.h" />
     <ClInclude Include="character\CharacterControllerToBox.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="TankData.h" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">

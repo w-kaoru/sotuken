@@ -20,6 +20,7 @@ bool Player::Start()
 	m_model.Init(L"Assets/modelData/pz4.cmo");
 	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
 	//m_charaCon.Init(30.0f, 30.0f, m_pos);
+	m_pos.x += 10000.0f;
 	m_charaCon.Init({ 65.0f, 100.0f, 110.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
