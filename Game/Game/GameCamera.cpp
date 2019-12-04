@@ -22,7 +22,6 @@ bool GameCamera::Start()
 	);
 	g_camera3D.SetTarget(m_player->GetPosition());
 	g_camera3D.SetFar(20000.0f);
-
 	return true;
 }
 

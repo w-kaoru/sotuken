@@ -83,7 +83,7 @@ void TestEnemy::Update()
 	if (HP <= 0.0f)
 	{
 		enemydeth = true;
-		DeleteGO(this);
+
 
 	}
 	//ワールド行列の更新。
