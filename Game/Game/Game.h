@@ -4,6 +4,7 @@ class TestEnemy;
 class BulletManeger;
 class BackGround;
 class GameCamera;
+class Score;
 class Game:public IGameObject
 {
 public:
@@ -14,6 +15,7 @@ public:
 	void OnDestroy();
 	void Update();
 	void Draw();
+	void PostDraw();
 	/*!
 	* @brief	弾丸マネージャを取得。
 	*/
@@ -27,13 +29,16 @@ private:
 	BulletManeger* m_bulletmaneger = nullptr;
 	BackGround* m_backgeound = nullptr;
 	GameCamera* m_gamecamera = nullptr;
+	Score* m_score = nullptr;
 	wchar_t moji[256];
 	GameFont m_font;
+	Timer m_time;
 	float m_fontsize = 1.0f; //フォントサイズ
 	CSoundSource m_testbgm;//テストBGM
 	Effekseer::Effect* m_testEffect = nullptr;//テストエフェクト
 	Effekseer::Handle m_testEffectHandle = -1;
 	prefab::DirectionLight* m_directionLight = nullptr;
 	CVector3 m_LigDirection = CVector3::Zero();
+	int GameTime = 100;
 };
 

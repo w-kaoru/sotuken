@@ -5,6 +5,7 @@
 #include "Bullet/BulletManeger.h"
 #include "Define.h"
 
+
 Player::Player()
 {
 }
@@ -12,6 +13,8 @@ Player::Player()
 
 Player::~Player()
 {
+	m_charaCon.RemoveRigidBoby();
+	playerdeth = false;
 }
 
 bool Player::Start()
@@ -19,12 +22,11 @@ bool Player::Start()
 	//cmoファイルの読み込み。
 	m_model.Init(L"Assets/modelData/pz4.cmo");
 	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
-	//m_charaCon.Init(30.0f, 30.0f, m_pos);
 	m_charaCon.Init({ 65.0f, 100.0f, 110.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	m_scale *= 0.5f;
-	//m_model.SetShadowReciever(true);
+	m_model.SetShadowReciever(true);
 	return true;
 }
 void Player::FireBullets(float speed)
@@ -115,12 +117,14 @@ void Player::Update()
 	{
 		FireBullets(800.0f);
 	}
-	if (m_bulletmaneger->GetPlayerDamage() == true &&m_playerHP > 0.0f)
+	if (m_bulletmaneger->GetPlayerDamage() == true )
 	{
 		m_playerHP -= m_bulletmaneger->GetBulletDamage();
 	}
-	//m_moveSpeed.y -= 10.0f;
-	//m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed);
+	if (m_playerHP <= 0.0f)
+	{
+		playerdeth = true;
+	}
 	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed, m_rot);
 	
 	//ワールド行列の更新。
@@ -148,17 +152,6 @@ void Player::Draw()
 
 void Player::PostDraw()
 {
-	m_font.BeginDraw();
-	swprintf_s(moji, L"HELLO");
-	m_font.Draw
-	(
-		moji,		//表示する文字列。
-		{ -100.0f,FRAME_BUFFER_H / 2.0f },			//表示する座標。0.0f, 0.0が画面の中心。
-		{ 1.0f,0.0f,0.0f,1.0f },
-		0.0f,
-		m_fontsize,
-		{ 0.0f,1.0f }
-	);
-	m_font.EndDraw();
+
 	HpGage();
 }
