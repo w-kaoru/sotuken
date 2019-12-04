@@ -52,8 +52,8 @@ void Player::HpGage()
 void Player::Move()
 {
 	//左スティックの入力量を受け取る。
-	 StX = g_pad[0].GetLStickYF();
-	 StY = g_pad[0].GetLStickXF();
+	 StY = g_pad[0].GetLStickYF();
+	 StX = g_pad[0].GetLStickXF();
 	//カメラの前方方向と右方向を取得
 	CVector3 cameraForward = g_camera3D.GetForward();
 	CVector3 cameraRight = g_camera3D.GetRight();
@@ -62,9 +62,37 @@ void Player::Move()
 	cameraForward.Normalize();
 	cameraRight.y = 0.0f;
 	cameraRight.Normalize();
-	m_moveSpeed += cameraForward * StX * MOVE_SPEED * m_deltatime;
-	m_moveSpeed += cameraRight * StY * MOVE_SPEED * m_deltatime;
+	/*m_moveSpeed += m_forward * StX * MOVE_SPEED * m_deltatime;
+	m_moveSpeed += m_right * StX*MOVE_SPEED * m_deltatime;*/
+	m_moveSpeed += m_forward * StY*500.0f;
+	CVector3 vec = m_forward * StY + m_right * StX;
+	if (vec.Length() > 0.0f)
+	{
+		vec.Normalize();
+		float DotRes = vec.Dot(m_forward);
+		if (fabsf(DotRes) < 0.9999f)
+		{
+			CVector3 axis;
+			axis.Cross(m_forward, vec);
+			axis.Normalize();
+			float angle = acosf(min(1.0f, max(-1.0f, DotRes)));
+			if (DotRes < 0.0)
+			{
+				axis *= -1.0f;
+				angle = 3.14159f - angle;
+			}
+			
+			angle *= 0.02f;
+			CQuaternion qRot;
+			qRot.SetRotation(axis, angle);
+			m_rot.Multiply(qRot);
+			
+		}
+	}
+	
 	m_moveSpeed.y += -1800.0f * m_deltatime;
+
+	//m_model.UpdateWorldMatrix(m_pos, CQuaternion::Identity(), CVector3::One());
 }
 
 void Player::Update()
@@ -75,6 +103,10 @@ void Player::Update()
 	m_forward.y = rotMatrix.m[2][1];
 	m_forward.z = rotMatrix.m[2][2];
 	m_forward.Normalize();
+	m_right.x = rotMatrix.m[0][0];
+	m_right.y = rotMatrix.m[0][1];
+	m_right.z = rotMatrix.m[0][2];
+	m_right.Normalize();
 	m_moveSpeed.x = 0.0f;
 	m_moveSpeed.z = 0.0f;
 	Move();
@@ -100,12 +132,8 @@ void Player::Update()
 void Player::Turn()
 {
 	//向きを変える。
-	if (fabsf(m_moveSpeed.x) > 0.1f
-		|| fabsf(m_moveSpeed.z) > 0.1f) 
-	{
-		auto angle = atan2f(m_moveSpeed.x, m_moveSpeed.z);
-		m_rot.SetRotation(CVector3::AxisY(), angle);
-	}
+	/*auto angle = atan2f(m_moveSpeed.x, m_moveSpeed.z);
+	m_rot.SetRotation(CVector3::AxisY(), angle);*/
 }
 
 void Player::Draw()
