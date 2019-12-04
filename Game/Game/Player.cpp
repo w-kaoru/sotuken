@@ -5,6 +5,7 @@
 #include "Bullet/BulletManeger.h"
 #include "Define.h"
 
+
 Player::Player()
 {
 }
@@ -12,6 +13,8 @@ Player::Player()
 
 Player::~Player()
 {
+	m_charaCon.RemoveRigidBoby();
+	playerdeth = false;
 }
 
 bool Player::Start()
@@ -19,8 +22,6 @@ bool Player::Start()
 	//cmoファイルの読み込み。
 	m_model.Init(L"Assets/modelData/pz4.cmo");
 	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
-	//m_charaCon.Init(30.0f, 30.0f, m_pos);
-	m_pos.x += 10000.0f;
 	m_charaCon.Init({ 65.0f, 100.0f, 110.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
@@ -84,12 +85,14 @@ void Player::Update()
 	{
 		FireBullets(800.0f);
 	}
-	if (m_bulletmaneger->GetPlayerDamage() == true &&m_playerHP > 0.0f)
+	if (m_bulletmaneger->GetPlayerDamage() == true )
 	{
 		m_playerHP -= m_bulletmaneger->GetBulletDamage();
 	}
-	//m_moveSpeed.y -= 10.0f;
-	//m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed);
+	if (m_playerHP <= 0.0f)
+	{
+		playerdeth = true;
+	}
 	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed, m_rot);
 	
 	//ワールド行列の更新。

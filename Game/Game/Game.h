@@ -4,6 +4,7 @@ class TestEnemy;
 class BulletManeger;
 class BackGround;
 class GameCamera;
+class Score;
 class Game:public IGameObject
 {
 public:
@@ -28,6 +29,7 @@ private:
 	BulletManeger* m_bulletmaneger = nullptr;
 	BackGround* m_backgeound = nullptr;
 	GameCamera* m_gamecamera = nullptr;
+	Score* m_score = nullptr;
 	wchar_t moji[256];
 	GameFont m_font;
 	Timer m_time;

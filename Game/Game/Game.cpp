@@ -7,6 +7,7 @@
 #include "GameCamera.h"
 #include "Light/DirectionLight.h"
 #include "Title.h"
+#include "Score.h"
 
 Game::Game()
 {
@@ -40,6 +41,7 @@ bool Game::Start()
 	m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
 	m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
+	m_score = NewGO<Score>(1, "Score");
 	return true;
 }
 
@@ -47,9 +49,7 @@ void Game::OnDestroy()
 {
 	DeleteGO(m_backgeound);
 	DeleteGO(m_player);
-	if (m_testenemy->GetDeth() == false) {
-		DeleteGO(m_testenemy);
-	}
+	DeleteGO(m_testenemy);
 	DeleteGO(m_bulletmaneger);
 	DeleteGO(m_gamecamera);
 }
@@ -64,6 +64,20 @@ void Game::Update()
 		DeleteGO(this);
 		NewGO<Title>(0, "title");
 
+	}
+	if (m_testenemy->GetDeth() == true)
+	{
+		m_score->ScorePlus();
+		DeleteGO(m_testenemy);
+		m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
+	}
+	if (m_player->GetPlayerDeth() == true)
+	{
+		m_score->DethPlus();
+		DeleteGO(m_player);
+		DeleteGO(m_gamecamera);
+		m_player = NewGO<Player>(1, "Player");
+		m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
 	}
 	CVector3 ligdir = m_LigDirection;
 	ligdir *= -1.0f;
@@ -90,7 +104,7 @@ void Game::PostDraw()
 	swprintf_s(moji, L"時間%03d秒", (GameTime - time));		//表示用にデータを加工
 	m_font.Draw(
 		moji,		//表示する文字列。
-		{ -200.0f,FRAME_BUFFER_H / 2.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+		{ -100.0f,FRAME_BUFFER_H / 2.0f },			//表示する座標。0.0f, 0.0が画面の中心。
 		{ 1.0f,0.0f,0.0f,1.0f },
 		0.0f,
 		0.8f,

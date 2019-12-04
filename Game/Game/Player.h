@@ -23,6 +23,10 @@ public:
 	{
 		return m_forward;
 	}
+	bool GetPlayerDeth()
+	{
+		return playerdeth;
+	}
 private:
 		 
 
@@ -43,5 +47,6 @@ private:
 	CharacterControllerToBox m_charaCon;					//キャラクターコントローラーを追加。
 	float m_playerHP = 100.0f;
 	Sprite m_playerhp;
+	bool playerdeth = false;
 };
 
