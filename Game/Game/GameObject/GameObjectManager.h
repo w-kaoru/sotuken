@@ -78,6 +78,10 @@ namespace GameEngine {
 			static GameObjectManager instance;
 			return instance;
 		}
+		void SetIsAllStop(bool stop) 
+		{
+			m_isAllStop = stop;
+		}
 	private:
 		//ゲームオブジェクトのリスト。 				//!<Transform。
 		typedef std::list<IGameObject*>	GameObjectList;
@@ -85,6 +89,7 @@ namespace GameEngine {
 		std::vector<GameObjectList>	m_deleteObjectList[2];
 		bool startDed = false;
 		int m_deleteNo = 0;
+		bool m_isAllStop = false;
 		static const unsigned char 			GAME_OBJECT_PRIO_MAX = 255;		//!<ゲームオブジェクトの優先度の最大値。
 	};
 	static inline GameObjectManager& GOManager()

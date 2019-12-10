@@ -28,7 +28,9 @@ namespace GameEngine {
 
 		for (GameObjectList objList : m_gameObjectList) {
 			for (IGameObject* obj : objList) {
-				obj->UpdateWrapper();
+				if (!m_isAllStop) {
+					obj->UpdateWrapper();
+				}
 			}
 		}
 		g_graphicsEngine->GetLightManager()->Update();
