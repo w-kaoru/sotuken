@@ -190,6 +190,7 @@
     <ClCompile Include="character\CharacterControllerToBox.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Score.cpp" />
+    <ClCompile Include="GameResults.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -343,6 +344,8 @@
     <ClInclude Include="character\CharacterControllerToBox.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Score.h" />
+    <ClInclude Include="TankData.h" />
+    <ClInclude Include="GameResults.h" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">

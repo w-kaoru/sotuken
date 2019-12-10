@@ -8,6 +8,7 @@
 #include "Light/DirectionLight.h"
 #include "Title.h"
 #include "Score.h"
+#include "GameResults.h"
 
 Game::Game()
 {
@@ -48,8 +49,12 @@ bool Game::Start()
 void Game::OnDestroy()
 {
 	DeleteGO(m_backgeound);
-	DeleteGO(m_player);
-	DeleteGO(m_testenemy);
+	if (m_player != nullptr) {
+		DeleteGO(m_player);
+	}
+	if (m_testenemy != nullptr) {
+		DeleteGO(m_testenemy);
+	}
 	DeleteGO(m_bulletmaneger);
 	DeleteGO(m_gamecamera);
 }
@@ -61,8 +66,9 @@ void Game::Update()
 
 	if (m_time.GetSeconds() >= GameTime)
 	{
-		DeleteGO(this);
-		NewGO<Title>(0, "title");
+		m_gameresults = NewGO<GameResults>(1, "GameResults");
+			DeleteGO(this);
+
 
 	}
 	if (m_testenemy->GetDeth() == true)
@@ -104,7 +110,7 @@ void Game::PostDraw()
 	swprintf_s(moji, L"時間%03d秒", (GameTime - time));		//表示用にデータを加工
 	m_font.Draw(
 		moji,		//表示する文字列。
-		{ -100.0f,FRAME_BUFFER_H / 2.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+		{ -150.0f,FRAME_BUFFER_H / 2.0f },			//表示する座標。0.0f, 0.0が画面の中心。
 		{ 1.0f,0.0f,0.0f,1.0f },
 		0.0f,
 		0.8f,

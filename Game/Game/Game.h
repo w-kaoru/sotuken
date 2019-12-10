@@ -5,6 +5,7 @@ class BulletManeger;
 class BackGround;
 class GameCamera;
 class Score;
+class GameResults;
 class Game:public IGameObject
 {
 public:
@@ -30,6 +31,7 @@ private:
 	BackGround* m_backgeound = nullptr;
 	GameCamera* m_gamecamera = nullptr;
 	Score* m_score = nullptr;
+	GameResults* m_gameresults = nullptr;
 	wchar_t moji[256];
 	GameFont m_font;
 	Timer m_time;
@@ -39,6 +41,6 @@ private:
 	Effekseer::Handle m_testEffectHandle = -1;
 	prefab::DirectionLight* m_directionLight = nullptr;
 	CVector3 m_LigDirection = CVector3::Zero();
-	int GameTime = 100;
+	int GameTime = 50;
 };
 
