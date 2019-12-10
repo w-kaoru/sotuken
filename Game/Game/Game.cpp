@@ -63,8 +63,11 @@ void Game::Update()
 	{
 		DeleteGO(this);
 		NewGO<Title>(0, "title");
-
 	}
+	/*if (g_pad[0].IsTrigger(enButtonX))
+	{
+		GOManager().SetIsAllStop(true);
+	}*/
 	if (m_testenemy->GetDeth() == true)
 	{
 		m_score->ScorePlus();

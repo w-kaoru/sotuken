@@ -28,7 +28,9 @@ namespace GameEngine {
 
 		for (GameObjectList objList : m_gameObjectList) {
 			for (IGameObject* obj : objList) {
-				obj->UpdateWrapper();
+				if (!m_isAllStop) {
+					obj->UpdateWrapper();
+				}
 			}
 		}
 		g_graphicsEngine->GetLightManager()->Update();
@@ -47,7 +49,7 @@ namespace GameEngine {
 			}
 		}
 		//剛体表示、デフォルトはオフ。
-		//g_physics.DebubDrawWorld();
+		g_physics.DebubDrawWorld();
 		g_graphicsEngine->GetLightManager()->Render();
 		for (GameObjectList objList : m_gameObjectList) {
 			for (IGameObject* obj : objList) {

@@ -58,7 +58,7 @@ namespace GameEngine {
 		}
 		void UpdateWrapper()
 		{
-			if (m_isStart && !m_isDead) {
+			if (m_isStart && !m_isDead && !m_isStop) {
 				Update();
 			}
 		}
@@ -92,11 +92,15 @@ namespace GameEngine {
 		{
 			return m_priority;
 		}
+		void SetIsStop(bool stop) {
+			m_isStop = stop;
+		}
 		friend class GameObjectManager;
 	protected:
 		GameObjectPrio m_priority;			//!<実行優先度
 		bool m_isStart;						//!<Startの開始フラグ。
 		bool m_isDead;						//!<死亡フラグ。
+		bool m_isStop = false;
 		unsigned int m_nameKey = 0;			//!<名前キー。
 	};
 };
