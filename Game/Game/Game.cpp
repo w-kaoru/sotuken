@@ -59,7 +59,7 @@ void Game::Update()
 	g_graphicsEngine->GetLightManager()->SetEyePos(m_gamecamera->GetCameraPos());
 
 
-	if (g_pad[0].IsTrigger(enButtonB))
+	if (m_time.GetSeconds() >= GameTime)
 	{
 		DeleteGO(this);
 		NewGO<Title>(0, "title");
@@ -103,7 +103,7 @@ void Game::PostDraw()
 	int time;
 	m_font.BeginDraw();
 	m_time.TimerStop();
-	time = (int)m_time.GetSeconds()%101;
+	time = (int)m_time.GetSeconds();
 	swprintf_s(moji, L"時間%03d秒", (GameTime - time));		//表示用にデータを加工
 	m_font.Draw(
 		moji,		//表示する文字列。
