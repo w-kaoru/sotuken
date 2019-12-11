@@ -25,8 +25,11 @@ public:
 	}
 private:
 
-	SkinModel m_model;									//スキンモデル。
+	float StX;											//スティックのXだぜ。
+	float StY;											//スティックのYだぜ。
 	CVector3 m_forward = CVector3::Zero();
+	CVector3 m_right = CVector3::Zero();
+	SkinModel m_model;									//スキンモデル。
 	CVector3 m_pos = CVector3::Zero();
 	CVector3 m_moveSpeed = CVector3::Zero();			//移動速度。
 	CQuaternion m_rot = CQuaternion::Identity();		//回転。

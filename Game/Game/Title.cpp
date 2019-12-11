@@ -21,7 +21,7 @@ bool Title::Start()
 
 void Title::Update()
 {
-	m_sprite.Update({ 0.0f,0.0f,0.0f }, CQuaternion::Identity(), CVector3::One());
+	m_sprite.Update(CVector3::Zero(), CQuaternion::Identity(), CVector3::One());
 	if (g_pad[0].IsTrigger(enButtonA))
 	{
 		NewGO<Game>(0, "Game");
