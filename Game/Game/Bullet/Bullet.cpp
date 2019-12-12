@@ -33,7 +33,7 @@ void Bullet::BulletMove()
 }
 void Bullet::Update()
 {
-
+	m_bulletDeleteTime++;
 	BulletMove();
 	if (m_bulletCon.GetE_bullethit() == true) {
 		E_HitFlag = true;

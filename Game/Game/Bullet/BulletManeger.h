@@ -54,9 +54,16 @@ public:
 	{
 		return m_bulletdamage;
 	}
+	void SetPFlag(bool a)
+	{
+		m_playerdamage = a;
+	}
+	void SetEFlag(bool b)
+	{
+		m_enemydamage = b;
+	}
 private:
 	std::vector<Bullet*> m_bulletList;
-	int m_bulletDeleteTime = 0;
 	bool m_enemydamage = false;
 	bool m_playerdamage = false;
 	float m_bulletdamage = 10.0f;

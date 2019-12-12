@@ -49,5 +49,6 @@ private:
 	float m_playerHP = 100.0f;
 	Sprite m_playerhp;
 	bool playerdeth = false;
+	int m_timier = 0;
 };
 

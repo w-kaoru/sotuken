@@ -13,6 +13,7 @@ TestEnemy::TestEnemy()
 TestEnemy::~TestEnemy()
 {
 	m_charaCon.RemoveRigidBoby();
+	
 }
 
 bool TestEnemy::Start()
@@ -113,13 +114,14 @@ void TestEnemy::Update()
 	m_timier++;
 	Move();
 	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed, m_rot);
-	if (m_timier >= 30 && g_pad[1].IsTrigger(enButtonA)) {
+	if (m_timier >=20.0f && g_pad[1].IsTrigger(enButtonA)) {
 		FireBullets(800.0f);
 		m_timier = 0;
 	}
 	if (m_bulletmaneger->GetEnemyDamage() == true)
 	{
 		HP -= m_bulletmaneger->GetBulletDamage();
+		m_bulletmaneger->SetEFlag(false);
 	}
 	if (HP <= 0.0f)
 	{

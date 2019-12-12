@@ -26,7 +26,7 @@ bool Player::Start()
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	m_scale *= 0.5f;
-	m_model.SetShadowReciever(true);
+	//m_model.SetShadowReciever(true);
 	return true;
 }
 void Player::FireBullets(float speed)
@@ -111,15 +111,18 @@ void Player::Update()
 	m_right.Normalize();
 	m_moveSpeed.x = 0.0f;
 	m_moveSpeed.z = 0.0f;
+	m_timier++;
 	Move();
 	Turn();
-	if (g_pad[0].IsTrigger(enButtonA))
+	if (m_timier >= 20.0f&&g_pad[0].IsTrigger(enButtonA))
 	{
-		FireBullets(800.0f);
+			FireBullets(800.0f);
+			m_timier = 0;
 	}
 	if (m_bulletmaneger->GetPlayerDamage() == true )
 	{
 		m_playerHP -= m_bulletmaneger->GetBulletDamage();
+		m_bulletmaneger->SetPFlag(false);
 	}
 	if (m_playerHP <= 0.0f)
 	{

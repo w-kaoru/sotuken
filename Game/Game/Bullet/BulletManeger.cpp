@@ -24,6 +24,7 @@ void BulletManeger::OnDestroy()
 	{
 		DeleteGO(bullet);
 	}
+
 }
 Bullet* BulletManeger::NewBullet(int k)
 {
@@ -34,14 +35,13 @@ Bullet* BulletManeger::NewBullet(int k)
 }
 void BulletManeger::DeleteBullet()
 {
-	m_bulletDeleteTime++;
+	
 	for (auto& bullet : m_bulletList) {
-		if (m_bulletDeleteTime > 75 
+		if (bullet->GetTime() > 75 
 			||bullet->GetEHit() == true 
 			||bullet->GetPHit() == true)
 		{
 				DeleteGO(bullet);
-				m_bulletDeleteTime = 0;
 				m_bulletList.erase(std::remove(m_bulletList.begin(), m_bulletList.end(), bullet)
 					, m_bulletList.end());
 		}
