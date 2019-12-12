@@ -377,5 +377,6 @@
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\ResultBack.jpg" />
+    <ImageContentTask Include="Assets\sprite\Title1.png" />
   </ItemGroup>
 </Project>

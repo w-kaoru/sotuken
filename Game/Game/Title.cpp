@@ -14,7 +14,7 @@ Title::~Title()
 
 bool Title::Start()
 {
-	m_sprite.Init(L"Assets/sprite/title.dds", 1280.0f, 720.0f);
+	m_sprite.Init(L"Assets/sprite/Title1.dds", 1280.0f, 720.0f);
 
 	return true;
 }
