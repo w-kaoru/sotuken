@@ -5,7 +5,6 @@
 #include "Bullet/BulletManeger.h"
 #include "Define.h"
 
-
 Player::Player()
 {
 }
@@ -66,13 +65,13 @@ void Player::Move()
 	cameraRight.Normalize();
 	/*m_moveSpeed += m_forward * StX * MOVE_SPEED * m_deltatime;
 	m_moveSpeed += m_right * StX*MOVE_SPEED * m_deltatime;*/
-	m_moveSpeed += m_forward * StY*500.0f;
+	m_moveSpeed += m_forward * StY * MOVE_SPEED;
 	CVector3 vec = m_forward * StY + m_right * StX;
 	if (vec.Length() > 0.0f)
 	{
 		vec.Normalize();
 		float DotRes = vec.Dot(m_forward);
-		if (fabsf(DotRes) < 0.9999f)
+		if (fabsf(DotRes) < 0.990f)
 		{
 			CVector3 axis;
 			axis.Cross(m_forward, vec);
