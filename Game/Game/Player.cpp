@@ -92,8 +92,6 @@ void Player::Move()
 	}
 	
 	m_moveSpeed.y += -1800.0f * m_deltatime;
-
-	//m_model.UpdateWorldMatrix(m_pos, CQuaternion::Identity(), CVector3::One());
 }
 
 void Player::Update()

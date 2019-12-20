@@ -37,30 +37,22 @@ void BulletManeger::DeleteBullet()
 {
 	
 	for (auto& bullet : m_bulletList) {
-		if (bullet->GetTime() > 75 
-			||bullet->GetEHit() == true 
-			||bullet->GetPHit() == true)
-		{
-				DeleteGO(bullet);
-				m_bulletList.erase(std::remove(m_bulletList.begin(), m_bulletList.end(), bullet)
-					, m_bulletList.end());
-		}
+
 		if (bullet->GetEHit() == true)
 		{
 			m_enemydamage = true;
 		}
-		else 
-		{
-			m_enemydamage = false;
-		}
-
 		if (bullet->GetPHit() == true)
 		{
 			m_playerdamage = true;
 		}
-		else 
+		if (bullet->GetTime() > 75
+			|| bullet->GetEHit() == true
+			|| bullet->GetPHit() == true)
 		{
-			m_playerdamage = false;
+			DeleteGO(bullet);
+			m_bulletList.erase(std::remove(m_bulletList.begin(), m_bulletList.end(), bullet)
+				, m_bulletList.end());
 		}
 	}
 }
