@@ -24,8 +24,8 @@ void GameResults::Update()
 {
 	m_background.Update(CVector3::Zero(), CQuaternion::Identity(), CVector3::One());
 	if (g_pad[0].IsTrigger(enButtonA)) {
-		DeleteGO(this);
 		NewGO<Title>(1, "title");
+		DeleteGO(this);
 	}
 }
 
@@ -46,7 +46,7 @@ void GameResults::PostDraw()
 	m_font.Draw(
 		m_result,		//表示する文字列。
 		{ -400.0f,300.0f },			//表示する座標。0.0f, 0.0が画面の中心。
-		{ 0.0f,0.0f,0.0f,1.0f },
+		{ 1.0f,0.0f,0.0f,1.0f },
 		0.0f,
 		0.8f,
 		{ 0.0f,1.0f }
@@ -55,7 +55,7 @@ void GameResults::PostDraw()
 	m_font.Draw(
 		m_result,		//表示する文字列。
 		{ -400.0f,0.0f },			//表示する座標。0.0f, 0.0が画面の中心。
-		{ 0.0f,0.0f,0.0f,1.0f },
+		{ 1.0f,0.0f,0.0f,1.0f },
 		0.0f,
 		0.8f,
 		{ 0.0f,1.0f }
