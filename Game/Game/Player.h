@@ -33,6 +33,7 @@ private:
 	float StX;											//スティックのXだぜ。
 	float StY;											//スティックのYだぜ。
 	SkinModel m_model;									//スキンモデル。
+	SkinModel m_model2;
 	wchar_t moji[256];
 	GameFont m_font;
 	float m_fontsize = 1.0f;							//フォントサイズ
@@ -50,5 +51,7 @@ private:
 	Sprite m_playerhp;
 	bool playerdeth = false;
 	int m_timier = 0;
+	CQuaternion m_rotation = { 0.0f,  0.0f, 0.0f, 1.0f };
+	CVector3 test = g_camera3D.GetForward();
 };
 

@@ -37,4 +37,5 @@ void Camera::Update()
 	m_viewMatrixInv.Inverse(m_viewMatrix);
 	m_forward.Set(m_viewMatrixInv.m[2][0], m_viewMatrixInv.m[2][1], m_viewMatrixInv.m[2][2]);
 	m_right.Set(m_viewMatrixInv.m[0][0], m_viewMatrixInv.m[0][1], m_viewMatrixInv.m[0][2]);
+
 }

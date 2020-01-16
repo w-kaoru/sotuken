@@ -191,6 +191,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="GameResults.cpp" />
+    <ClCompile Include="GameSelect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -346,6 +347,7 @@
     <ClInclude Include="Score.h" />
     <ClInclude Include="TankData.h" />
     <ClInclude Include="GameResults.h" />
+    <ClInclude Include="GameSelect.h" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
@@ -365,6 +367,11 @@
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\Showcase_desert.fbx" />
     <MeshContentTask Include="Assets\modelData\pz4.fbx" />
+    <MeshContentTask Include="Assets\modelData\tiha\tiha_body.fbx" />
+    <MeshContentTask Include="Assets\modelData\tiha\tiha_houtou.fbx" />
+    <MeshContentTask Include="Assets\modelData\tiha.fbx" />
+    <MeshContentTask Include="Assets\modelData\pz4_01.fbx" />
+    <MeshContentTask Include="Assets\modelData\pz4_00.fbx" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\title.png">
@@ -378,5 +385,6 @@
     </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\ResultBack.jpg" />
     <ImageContentTask Include="Assets\sprite\Title1.png" />
+    <ImageContentTask Include="Assets\sprite\selectback.jpeg" />
   </ItemGroup>
 </Project>

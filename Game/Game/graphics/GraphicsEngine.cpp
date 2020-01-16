@@ -169,7 +169,6 @@ void GraphicsEngine::Init(HWND hWnd)
 	desc.FillMode = D3D11_FILL_SOLID;
 	desc.DepthClipEnable = true;
 	desc.MultisampleEnable = true;
-	//InitEffekseer()
 	{
 		//ƒŒƒ“ƒ_ƒ‰[‚ğ‰Šú‰»B
 		m_effekseerRenderer = EffekseerRendererDX11::Renderer::Create(

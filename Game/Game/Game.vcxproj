@@ -144,6 +144,7 @@
     <ClCompile Include="physics\PhysicsStaticObject.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Score.cpp" />
+    <ClCompile Include="GameSelect.cpp" />
     <ClCompile Include="sound\SoundEngine.cpp" />
     <ClCompile Include="sound\SoundSource.cpp" />
     <ClCompile Include="sound\WaveFile.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="physics\PhysicsStaticObject.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Score.h" />
+    <ClInclude Include="GameSelect.h" />
     <ClInclude Include="sound\SoundEngine.h" />
     <ClInclude Include="sound\SoundSource.h" />
     <ClInclude Include="sound\WaveFile.h" />
@@ -225,8 +227,13 @@
     <MeshContentTask Include="Assets\modelData\BTR80A.FBX" />
     <MeshContentTask Include="Assets\modelData\bullet.FBX" />
     <MeshContentTask Include="Assets\modelData\pz4.fbx" />
+    <MeshContentTask Include="Assets\modelData\pz4_00.fbx" />
+    <MeshContentTask Include="Assets\modelData\pz4_01.fbx" />
     <MeshContentTask Include="Assets\modelData\Showcase_desert.fbx" />
     <MeshContentTask Include="Assets\modelData\TestGround.fbx" />
+    <MeshContentTask Include="Assets\modelData\tiha.fbx" />
+    <MeshContentTask Include="Assets\modelData\tiha\tiha_body.fbx" />
+    <MeshContentTask Include="Assets\modelData\tiha\tiha_houtou.fbx" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\Assets\modelData\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)\Assets\modelData\%(Filename).cmo</ContentOutput>
@@ -247,6 +254,9 @@
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\Title1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\selectback.jpeg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

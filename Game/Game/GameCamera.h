@@ -18,6 +18,6 @@ public:
 	}
 private:
 	Player* m_player = nullptr;
-
+	CVector3 m_forword = CVector3::Zero();
 };
 

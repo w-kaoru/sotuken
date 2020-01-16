@@ -20,12 +20,15 @@ Player::~Player()
 bool Player::Start()
 {
 	//cmoファイルの読み込み。
-	m_model.Init(L"Assets/modelData/pz4.cmo");
+	m_model.Init(L"Assets/modelData/pz4_00.cmo");
+	m_model2.Init(L"Assets/modelData/pz4_01.cmo");
 	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
 	m_charaCon.Init({ 65.0f, 100.0f, 110.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	m_scale *= 0.5f;
+	//m_rotation.SetRotationDeg(CVector3::AxisY(),180.0f);
+	m_rot = m_rotation;
 	//m_model.SetShadowReciever(true);
 	return true;
 }
@@ -35,7 +38,7 @@ void Player::FireBullets(float speed)
 	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet);
 	bullet->SetMoveSpeed(m_forward * speed);
 	CVector3 pos = m_pos;
-	pos.y += 50.0f;
+	pos.y += 60.0f;
 	bullet->SetPosition(pos);
 }
 
@@ -97,6 +100,12 @@ void Player::Move()
 
 void Player::Update()
 {
+	
+	////Y軸周りの回転
+	//CQuaternion qRot;
+	//qRot.SetRotation(test.AxisY(), g_pad[0].GetRStickXF() * 0.05f);
+	//m_rotation.Multiply(qRot);
+
 	CMatrix rotMatrix; 
 	rotMatrix.MakeRotationFromQuaternion(m_rot);
 	m_forward.x = rotMatrix.m[2][0];
@@ -130,15 +139,18 @@ void Player::Update()
 	
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
+	m_model2.UpdateWorldMatrix(m_pos, m_rotation, m_scale);
+	g_camera3D.GetForward();
 	//シャドウキャスターを登録。
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
+	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model2);
 }
 
 void Player::Turn()
 {
 	//向きを変える。
-	/*auto angle = atan2f(m_moveSpeed.x, m_moveSpeed.z);
-	m_rot.SetRotation(CVector3::AxisY(), angle);*/
+	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
+	m_rotation.SetRotation(CVector3::AxisY(), angle);
 }
 
 void Player::Draw()
@@ -149,10 +161,14 @@ void Player::Draw()
 		g_camera3D.GetViewMatrix(), 
 		g_camera3D.GetProjectionMatrix()
 	);
+	m_model2.Draw(
+		enRenderMode_Normal,
+		g_camera3D.GetViewMatrix(),
+		g_camera3D.GetProjectionMatrix()
+	);
 }
 
 void Player::PostDraw()
 {
-
 	HpGage();
 }
