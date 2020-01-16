@@ -55,7 +55,7 @@ void TestEnemy::Move()
 	cameraForward.Normalize();
 	cameraRight.y = 0.0f;
 	cameraRight.Normalize();
-	m_moveSpeed += m_forward * StY*500.0f;
+	m_moveSpeed += m_forward * StY * MOVE_SPEED;
 	CVector3 vec = m_forward * StY + m_right * StX;
 	if (vec.Length() > 0.0f)
 	{

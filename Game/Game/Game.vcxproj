@@ -113,9 +113,12 @@
     <ClCompile Include="graphics\animation\Animation.cpp" />
     <ClCompile Include="graphics\animation\AnimationClip.cpp" />
     <ClCompile Include="graphics\animation\AnimationPlayController.cpp" />
+    <ClCompile Include="graphics\Bloom.cpp" />
     <ClCompile Include="graphics\Camera.cpp" />
     <ClCompile Include="graphics\GameFont.cpp" />
+    <ClCompile Include="graphics\GaussianBlur.cpp" />
     <ClCompile Include="graphics\GraphicsEngine.cpp" />
+    <ClCompile Include="graphics\PostEffect.cpp" />
     <ClCompile Include="graphics\RenderTarget.cpp" />
     <ClCompile Include="graphics\Shader.cpp" />
     <ClCompile Include="graphics\ShaderResources.cpp" />
@@ -175,9 +178,12 @@
     <ClInclude Include="graphics\animation\Animation.h" />
     <ClInclude Include="graphics\animation\AnimationClip.h" />
     <ClInclude Include="graphics\animation\AnimationPlayController.h" />
+    <ClInclude Include="graphics\Bloom.h" />
     <ClInclude Include="graphics\Camera.h" />
     <ClInclude Include="graphics\GameFont.h" />
+    <ClInclude Include="graphics\GaussianBlur.h" />
     <ClInclude Include="graphics\GraphicsEngine.h" />
+    <ClInclude Include="graphics\PostEffect.h" />
     <ClInclude Include="graphics\RenderTarget.h" />
     <ClInclude Include="graphics\Shader.h" />
     <ClInclude Include="graphics\ShaderResources.h" />
@@ -226,6 +232,7 @@
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\BTR80A.FBX" />
     <MeshContentTask Include="Assets\modelData\bullet.FBX" />
+    <MeshContentTask Include="Assets\modelData\CityMap1.fbx" />
     <MeshContentTask Include="Assets\modelData\pz4.fbx" />
     <MeshContentTask Include="Assets\modelData\pz4_00.fbx" />
     <MeshContentTask Include="Assets\modelData\pz4_01.fbx" />

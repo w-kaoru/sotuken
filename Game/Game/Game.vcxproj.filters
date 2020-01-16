@@ -191,7 +191,13 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="GameResults.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="GameSelect.cpp" />
+=======
+    <ClCompile Include="graphics\GaussianBlur.cpp" />
+    <ClCompile Include="graphics\Bloom.cpp" />
+    <ClCompile Include="graphics\PostEffect.cpp" />
+>>>>>>> 69d2b8b9087ebbaf50f45413858038702f2b3a19
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector.h">
@@ -347,7 +353,13 @@
     <ClInclude Include="Score.h" />
     <ClInclude Include="TankData.h" />
     <ClInclude Include="GameResults.h" />
+<<<<<<< HEAD
     <ClInclude Include="GameSelect.h" />
+=======
+    <ClInclude Include="graphics\GaussianBlur.h" />
+    <ClInclude Include="graphics\Bloom.h" />
+    <ClInclude Include="graphics\PostEffect.h" />
+>>>>>>> 69d2b8b9087ebbaf50f45413858038702f2b3a19
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
@@ -367,11 +379,15 @@
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\Showcase_desert.fbx" />
     <MeshContentTask Include="Assets\modelData\pz4.fbx" />
+<<<<<<< HEAD
     <MeshContentTask Include="Assets\modelData\tiha\tiha_body.fbx" />
     <MeshContentTask Include="Assets\modelData\tiha\tiha_houtou.fbx" />
     <MeshContentTask Include="Assets\modelData\tiha.fbx" />
     <MeshContentTask Include="Assets\modelData\pz4_01.fbx" />
     <MeshContentTask Include="Assets\modelData\pz4_00.fbx" />
+=======
+    <MeshContentTask Include="Assets\modelData\CityMap1.fbx" />
+>>>>>>> 69d2b8b9087ebbaf50f45413858038702f2b3a19
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\title.png">

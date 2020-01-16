@@ -17,10 +17,11 @@ namespace GameEngine {
 		InitDirectionLightShaderResourceView();
 		InitLightParamConstantBuffer();
 		//テクスチャの読み込み
-		DirectX::CreateDDSTextureFromFileEx(
-			g_graphicsEngine->GetD3DDevice(), L"Assets/sprite/lut.dds", 0,
-			D3D11_USAGE_DEFAULT, D3D11_BIND_SHADER_RESOURCE, 0, 0,
-			false, nullptr, &m_ligTex
+		DirectX::CreateDDSTextureFromFile(
+			g_graphicsEngine->GetD3DDevice(), 
+			L"Assets/sprite/lut.dds", 
+			nullptr,
+			&m_ligTex
 		);
 	}
 
@@ -123,7 +124,7 @@ namespace GameEngine {
 		ID3D11ShaderResourceView* srvArray[]{
 				m_ligTex
 		};
-		d3dDeviceContext->PSSetShaderResources(2, 1, srvArray);
+		d3dDeviceContext->PSSetShaderResources(10, 1, srvArray);
 
 		d3dDeviceContext->UpdateSubresource(m_directionLightSB, 0, nullptr, &m_rawDirectionLights, 0, 0);
 

@@ -2,6 +2,7 @@
 #include "Sprite.h"
 #include "../Light/LightManager.h"
 #include "ShadowMap.h"
+#include "PostEffect.h"
 // レンダリングモード。
 enum EnRenderMode {
 	enRenderMode_Invalid,			//不正なレンダリングモード。
@@ -120,6 +121,10 @@ public:
 	ShadowMap* GetShadowMap() {
 		return &m_shadowMap;
 	}
+	PostEffect* GetPostEffect()
+	{
+		return &m_postEffect;
+	}
 	/// <summary>
 	/// レンダリングターゲットの切り替え。
 	/// </summary>
@@ -156,6 +161,7 @@ private:
 	Effekseer::Manager*			m_effekseerManager = nullptr;	//エフェクトマネージャークラス
 	EffekseerRenderer::Renderer*	m_effekseerRenderer = nullptr;  //エフェクトレンダラークラス
 	ShadowMap					m_shadowMap;					//シャドウマップ。
+	PostEffect					m_postEffect;					//ポストエフェクト。
 	RenderTarget				m_mainRenderTarget;				//メインレンダリングターゲット。
 	Sprite						m_sprite;//メインレンダリングターゲットに描かれた絵をフレームバッファにコピーするためのスプライト。
 
