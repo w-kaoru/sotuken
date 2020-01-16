@@ -30,7 +30,7 @@ void GraphicsEngine::BegineRender()
 	unsigned int numViewport = 1;
 	m_pd3dDeviceContext->RSGetViewports(&numViewport, &m_frameBufferViewports);	
 	//レンダリングターゲットをメインに。
-	g_graphicsEngine->ChangeRenderTarget(&m_mainRenderTarget, &m_frameBufferViewports);
+	ChangeRenderTarget(&m_mainRenderTarget, m_mainRenderTarget.GetViewport());
 }
 void GraphicsEngine::EndRender()
 {
@@ -225,6 +225,8 @@ void GraphicsEngine::Init(HWND hWnd)
 	);
 	//シャドウマップをよべー。
 	m_shadowMap.Init();
+	//ポストエフェクトをよべー。
+	m_postEffect.Init();
 }
 
 void GraphicsEngine::ChangeRenderTarget(RenderTarget* renderTarget, D3D11_VIEWPORT* viewport)
@@ -254,21 +256,21 @@ void GraphicsEngine::PreRender()
 	//シャドウマップにレンダリング
 	m_shadowMap.RenderToShadowMap();
 	//レンダリングターゲットをメインに変更する。
-	g_graphicsEngine->ChangeRenderTarget(&m_mainRenderTarget, &m_frameBufferViewports);
+	ChangeRenderTarget(&m_mainRenderTarget, m_mainRenderTarget.GetViewport());
 	//メインレンダリングターゲットをクリアする。
-	float clearColor[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+	float clearColor[] = { 0.5f, 0.5f, 0.5f, 1.0f };
 	m_mainRenderTarget.ClearRenderTarget(clearColor);
 	
 }
 
 void GraphicsEngine::PostRender()
 {
+	m_postEffect.Draw();
 	ChangeRenderTarget(
 		m_frameBufferRenderTargetView,
 		m_frameBufferDepthStencilView,
 		&m_frameBufferViewports
 	);
-	// /*
 	//ドロドロ
 	m_sprite.Draw(
 		g_camera2D.GetViewMatrix(),

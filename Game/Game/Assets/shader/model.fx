@@ -9,7 +9,7 @@
  //アルベドテクスチャ。
 Texture2D<float4> albedoTexture : register(t0);
 Texture2D<float4> shadowMap : register(t1);		//todo シャドウマップ。
-Texture2D<float4> lightTexture : register(t2);
+Texture2D<float4> lightTexture : register(t10);
 //ボーン行列
 StructuredBuffer<float4x4> boneMatrix : register(t1);
 
@@ -279,7 +279,7 @@ void CalcLig(inout float3 lig, float3 normal, float4 pos)
 		
 		color = max(
 			0.5f,
-			dot(DirectionLightSB[i].direction,
+			dot(DirectionLightSB[i].direction * 1.5f,
 				normalize(
 					mul(normal, pos)
 				)
@@ -288,13 +288,14 @@ void CalcLig(inout float3 lig, float3 normal, float4 pos)
 		lig = color;*/
 
 		//拡散照明によるライティング計算
+		//*
 		float p = dot(normal * -1.0f, DirectionLightSB[i].direction);
 		p = p * 0.5f + 0.5f;
 		//計算結果よりトゥーンシェーダー用のテクスチャから色をフェッチする
 		float4 Col = lightTexture.Sample(Sampler, float2(p, 0.9f));
-
 		//求まった色を乗算する
 		lig = Col.xyz * DirectionLightSB[i].color.xyz;
+		//*/
 	}
 
 }

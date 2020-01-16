@@ -35,7 +35,6 @@ namespace GameEngine {
 		}
 		g_graphicsEngine->GetLightManager()->Update();
 
-
 		for (GameObjectList objList : m_gameObjectList) {
 			for (IGameObject* obj : objList) {
 				obj->PreDrawWrapper();

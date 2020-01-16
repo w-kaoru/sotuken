@@ -3,12 +3,10 @@ class Title : public IGameObject
 {
 public:
 	Title();
-	~Title();
-	bool Start();
-	void Update();
-	void Draw();
+	~Title(); bool Start() override;
+	void Update() override;
+	void PostDraw() override;
 private:
 	Sprite m_sprite;
-
 };
 

@@ -15,21 +15,20 @@ Title::~Title()
 bool Title::Start()
 {
 	m_sprite.Init(L"Assets/sprite/Title1.dds", 1280.0f, 720.0f);
-
 	return true;
 }
 
 void Title::Update()
 {
-	m_sprite.Update(CVector3::Zero(), CQuaternion::Identity(), CVector3::One());
 	if (g_pad[0].IsTrigger(enButtonA))
 	{
 		NewGO<Game>(0, "Game");
 		DeleteGO(this);
 	}
+	m_sprite.Update(CVector3::Zero(), CQuaternion::Identity(), CVector3::One());
 }
 
-void Title::Draw()
+void Title::PostDraw()
 {
 	m_sprite.Draw(
 		g_camera2D.GetViewMatrix(),
