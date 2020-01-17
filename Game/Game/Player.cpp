@@ -3,7 +3,9 @@
 #include "Physics/CollisionAttr.h"
 #include "Bullet/Bullet.h"
 #include "Bullet/BulletManeger.h"
-#include "Define.h"
+#include "TankInfo.h"
+#include "TankData.h"
+//#include "Define.h"
 
 Player::Player()
 {
@@ -25,7 +27,11 @@ bool Player::Start()
 	m_charaCon.Init({ 65.0f, 100.0f, 110.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
-	m_scale *= 0.5f;
+	m_tankData = FindGO<TankData>("TankData");
+	m_cameraTurnSpeed = m_tankData->GetTankDeta()->cameraturn;
+	m_scale *= 0.5f; 
+	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
+	m_rotation.SetRotation(CVector3::AxisY(), angle);
 	//m_rotation.SetRotationDeg(CVector3::AxisY(),180.0f);
 	m_rot = m_rotation;
 	//m_model.SetShadowReciever(true);
@@ -43,7 +49,6 @@ void Player::FireBullets(float speed)
 
 void Player::HpGage()
 {
-
 	//HPスプライトの更新
 	m_playerhp.Update({400.0f,300.0f,0.0f},CQuaternion::Identity(), { m_playerHP / 10, 1.0f, 1.0f });
 	//HPスプライトの表示
@@ -68,7 +73,7 @@ void Player::Move()
 	cameraRight.Normalize();
 	/*m_moveSpeed += m_forward * StX * MOVE_SPEED * m_deltatime;
 	m_moveSpeed += m_right * StX*MOVE_SPEED * m_deltatime;*/
-	m_moveSpeed += m_forward * StY * MOVE_SPEED;
+	m_moveSpeed += m_forward * StY * m_tankData->GetTankDeta()->speed;
 	CVector3 vec = m_forward * StY + m_right * StX;
 	if (vec.Length() > 0.0f)
 	{
@@ -86,7 +91,7 @@ void Player::Move()
 				angle = 3.14159f - angle;
 			}
 			
-			angle *= 0.02f;
+			angle *= m_tankData->GetTankDeta()->bodyturn;
 			CQuaternion qRot;
 			qRot.SetRotation(axis, angle);
 			m_rot.Multiply(qRot);

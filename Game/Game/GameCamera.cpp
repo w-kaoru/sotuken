@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameCamera.h"
 #include "Player.h"
+#include "Define.h"
 
 GameCamera::GameCamera()
 {
@@ -38,8 +39,8 @@ void GameCamera::Update()
 
 		//パッドの入力を使ってカメラを回す。
 		CVector3 RStick = CVector3::Zero();
-		RStick.x = 0.05f * g_pad[0].GetRStickXF();
-		RStick.y = 0.05f * g_pad[0].GetRStickYF();
+		RStick.x = m_player->GetCameraSpeed() * g_pad[0].GetRStickXF();
+		RStick.y = m_player->GetCameraSpeed() * g_pad[0].GetRStickYF();
 		RStick.z = 0.0f;
 		//Y軸周りの回転
 		CQuaternion qRot;

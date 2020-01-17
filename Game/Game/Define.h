@@ -1,2 +1,3 @@
 #pragma once
-#define MOVE_SPEED  200.0f
+#define MOVE_SPEED  150.0f
+#define CAMERA_SPEED 0.02f

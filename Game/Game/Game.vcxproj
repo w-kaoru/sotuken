@@ -158,6 +158,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="system\system.cpp" />
+    <ClCompile Include="TankData.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Title.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="system\system.h" />
     <ClInclude Include="TankData.h" />
+    <ClInclude Include="TankInfo.h" />
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Title.h" />

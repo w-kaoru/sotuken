@@ -2,6 +2,7 @@
 #include "GameSelect.h"
 #include "Game.h"
 #include "Light/DirectionLight.h"
+#include "TankData.h"
 
 GameSelect::GameSelect()
 {
@@ -33,6 +34,7 @@ bool GameSelect::Start()
 
 void GameSelect::Update()
 {
+	bool deleteFlag = false;
 	CQuaternion qrot;
 	qrot.SetRotationDeg(CVector3::AxisY(), 2.0f);
 	m_background.Update(CVector3::Zero(), CQuaternion::Identity(), CVector3::One());
@@ -41,41 +43,44 @@ void GameSelect::Update()
 	m_tankmodel2.UpdateWorldMatrix(m_position, m_rotation, m_scale);
 	switch (m_select)
 	{
-	case State_TankSelect:
+	case pz4:
 		//ワールド行列の更新。
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
-			NewGO<Game>(0, "Game");
-			DeleteGO(this);
+			deleteFlag = true;
 		}
 		if (g_pad[0].IsTrigger(enButtonRight))
 		{
-			m_select = State_TankSelect2;
+			m_select = tiha;
 		}
 		break;
-	case State_TankSelect2:
+	case tiha:
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
-			NewGO<Game>(0, "Game");
-			DeleteGO(this);
+			deleteFlag = true;
 		}
 		if (g_pad[0].IsTrigger(enButtonRight))
 		{
-			m_select = State_TankSelect;
+			m_select = pz4;
 		}
 		break;
-	case State_PlayerSelect:
+	case nonType:
 		if (g_pad[0].IsTrigger(enButtonUp))
 		{
 			m_playercount++;
 		}
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
-			m_select = State_TankSelect;
+			m_select = pz4;
 		}
 		break;
 	}
-
+	if (deleteFlag) {
+		m_taknData = NewGO<TankData>(0, "TankData");
+		m_taknData->Select(m_select);
+		NewGO<Game>(0, "Game");
+		DeleteGO(this);
+	}
 }
 
 void GameSelect::Draw()
@@ -92,7 +97,7 @@ void GameSelect::FontDraw()
 	m_font.BeginDraw();
 	switch (m_select)
 	{
-	case State_TankSelect:
+	case pz4:
 		swprintf_s(m_moji, L"IV号戦車");		//表示用にデータを加工
 		m_font.Draw(
 		m_moji,		//表示する文字列。
@@ -103,7 +108,7 @@ void GameSelect::FontDraw()
 		{ 0.0f,1.0f }
 		);
 		break;
-	case State_TankSelect2:
+	case tiha:
 		swprintf_s(m_moji, L"九七式中戦車チハ");		//表示用にデータを加工
 		m_font.Draw(
 			m_moji,		//表示する文字列。
@@ -114,7 +119,7 @@ void GameSelect::FontDraw()
 			{ 0.0f,1.0f }
 		);
 		break;
-	case State_PlayerSelect:
+	case nonType:
 		swprintf_s(m_moji, L"プレイ人数%d人",m_playercount);		//表示用にデータを加工
 		m_font.Draw(
 			m_moji,		//表示する文字列。
@@ -126,10 +131,10 @@ void GameSelect::FontDraw()
 		);
 		break;
 	}
-	if (m_select == State_TankSelect) {
+	if (m_select == pz4) {
 
 	}
-	if (m_select == State_TankSelect2) {
+	if (m_select == tiha) {
 
 	}
 	m_font.EndDraw();
@@ -137,14 +142,14 @@ void GameSelect::FontDraw()
 
 void GameSelect::PostDraw()
 {
-	if (m_select == State_TankSelect) {
+	if (m_select == pz4) {
 		m_tankmodel.Draw(
 			enRenderMode_Normal,
 			g_camera3D.GetViewMatrix(),
 			g_camera3D.GetProjectionMatrix()
 		);
 	}
-	if (m_select == State_TankSelect2) {
+	if (m_select == tiha) {
 		m_tankmodel2.Draw(
 			enRenderMode_Normal,
 			g_camera3D.GetViewMatrix(),

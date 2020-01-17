@@ -2,6 +2,7 @@
 #include "character/CharacterController.h"
 #include "character/CharacterControllerToBox.h"
 class BulletManeger;
+class TankData;
 class Player:public IGameObject
 {
 public:
@@ -27,9 +28,11 @@ public:
 	{
 		return playerdeth;
 	}
+	float GetCameraSpeed()
+	{
+		return m_cameraTurnSpeed;
+	}
 private:
-		 
-
 	float StX;											//スティックのXだぜ。
 	float StY;											//スティックのYだぜ。
 	SkinModel m_model;									//スキンモデル。
@@ -53,5 +56,7 @@ private:
 	int m_timier = 0;
 	CQuaternion m_rotation = { 0.0f,  0.0f, 0.0f, 1.0f };
 	CVector3 test = g_camera3D.GetForward();
+	float m_cameraTurnSpeed = 0.02f;
+	TankData* m_tankData = nullptr;
 };
 

@@ -70,7 +70,7 @@ public:
 	/// </returns>
 	int GetAllMinute()
 	{
-		return (int)m_Allelapsed / 60.0f;
+		return (int)m_Allelapsed / 60;
 	}
 private:
 	LONGLONG m_start = 0;				//スタートした時の秒数

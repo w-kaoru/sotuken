@@ -1,9 +1,18 @@
 #pragma once
-#include "stdafx.h"
-struct SPz4Data
+#include "TankInfo.h"
+
+class TankData:public IGameObject
 {
-	float hp = 100.0f;
-	float speed = 50.0f;
-	float power = 100.0f;
-	float defense = 100.0f;
+public:
+	TankData();
+	~TankData();
+	bool Start() override;
+	void Select(TankType type);
+	STankData* GetTankDeta() {
+		return &m_data;
+	}
+private:
+	STankData m_data;
+	TankType m_type;
 };
+
