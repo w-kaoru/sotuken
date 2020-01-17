@@ -22,7 +22,7 @@ GameSelect::~GameSelect()
 bool GameSelect::Start()
 {
 	m_background.Init(L"Assets/sprite/selectback.dds", 1280.0f, 720.0f);
-	m_tankmodel.Init(L"Assets/modelData/pz4_01.cmo");
+	m_tankmodel.Init(L"Assets/modelData/pz4.cmo");
 	m_tankmodel2.Init(L"Assets/modelData/tiha.cmo");
 	g_camera3D.SetPosition({ 0.0f,40.0f,100.0f });
 	g_camera3D.SetTarget({0.0f,0.0f,0.0f});
