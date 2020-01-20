@@ -28,11 +28,12 @@ void TankData::Select(TankType type)
 		m_data.cameraturn = 0.02f;
 		break;
 	case tiha:
-		//m_data.filePath = "";
+		m_data.filePath_00 = L"Assets/modelData/tiha_body.cmo";
+		m_data.filePath_01 = L"Assets/modelData/tiha_houtou.cmo";
 		m_data.hp = 200.0f;//(‰¼)
 		m_data.speed = 200.0f;//(‰¼)
-		m_data.bodyturn = 200.0f;//(‰¼)
-		m_data.cameraturn = 200.0f;//(‰¼)
+		m_data.bodyturn = 0.012f;//(‰¼)
+		m_data.cameraturn = 0.02f;//(‰¼)
 		break;
 	case nonType:
 		return;
