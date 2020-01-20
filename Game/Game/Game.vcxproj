@@ -243,6 +243,8 @@
     <MeshContentTask Include="Assets\modelData\tiha.fbx" />
     <MeshContentTask Include="Assets\modelData\tiha\tiha_body.fbx" />
     <MeshContentTask Include="Assets\modelData\tiha\tiha_houtou.fbx" />
+    <MeshContentTask Include="Assets\modelData\tiha_body.fbx" />
+    <MeshContentTask Include="Assets\modelData\tiha_houtou.fbx" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\Assets\modelData\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)\Assets\modelData\%(Filename).cmo</ContentOutput>

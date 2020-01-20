@@ -11,6 +11,10 @@ public:
 	STankData* GetTankDeta() {
 		return &m_data;
 	}
+	TankType* GetTankType()
+	{
+		return &m_type;
+	}
 private:
 	STankData m_data;
 	TankType m_type;

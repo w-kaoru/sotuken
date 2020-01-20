@@ -85,6 +85,8 @@
     <MeshContentTask Include="Assets\modelData\tiha\tiha_houtou.fbx" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
     <MeshContentTask Include="Assets\modelData\untitled.fbx" />
+    <MeshContentTask Include="Assets\modelData\tiha_houtou.fbx" />
+    <MeshContentTask Include="Assets\modelData\tiha_body.fbx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
