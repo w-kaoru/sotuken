@@ -3,6 +3,13 @@
 #include "Player.h"
 #include "Define.h"
 
+//カメラデータ。
+struct SCameraData {
+	float targetToPosition;		//注視点から視点までの距離。
+	float cameraAngle;
+	float upMax;
+	float downMax;
+};
 GameCamera::GameCamera()
 {
 }
@@ -32,11 +39,37 @@ void GameCamera::Update()
 		//現在の注視点から視点へのベクトルを求めるよ。
 		CVector3 toCameraPos = g_camera3D.GetPosition() - g_camera3D.GetTarget();
 		//新しい注視点を求める。
-		CVector3 newTarget = m_player->GetPosition();
-		//Y方向にちょっと上げる。
-		newTarget.y += 120.0f;
-		//新しい視点を計算する。
+		CVector3 newTarget = m_player->GetPosition(); 
 
+		float upMax = -40.0f;
+		float downMax = 50.0f;
+
+		//使用するカメラデータを決める。
+		//カメラデータのテーブル。
+		toCameraPos.Normalize();
+		SCameraData cameraDataTbl[] = {
+			{ 250.0f, CMath::DegToRad(60.0f), -25.0f, 50.0f},			//通常のカメラデータ。
+			{ 1.0f, CMath::DegToRad(20.0f), - 5.0f, 10.0f },			//ズームのカメラデータ。
+		};
+		if (g_pad[0].IsPress(enButtonLB2)) {
+			//使用するカメラデータを設定。
+			toCameraPos *= cameraDataTbl[1].targetToPosition;
+			g_camera3D.SetViewAngle(cameraDataTbl[1].cameraAngle);
+			upMax = cameraDataTbl[1].upMax;
+			downMax = cameraDataTbl[1].downMax;
+			//Y方向にちょっと上げる。
+			newTarget.y += 92.0f;
+		}
+		else
+		{
+			//使用するカメラデータを設定。
+			toCameraPos *= cameraDataTbl[0].targetToPosition;
+			g_camera3D.SetViewAngle(cameraDataTbl[0].cameraAngle);
+			upMax = cameraDataTbl[0].upMax;
+			downMax = cameraDataTbl[0].downMax;
+			//Y方向にちょっと上げる。
+			newTarget.y += 120.0f;
+		}
 		//パッドの入力を使ってカメラを回す。
 		CVector3 RStick = CVector3::Zero();
 		RStick.x = m_player->GetCameraSpeed() * g_pad[0].GetRStickXF();
@@ -60,8 +93,7 @@ void GameCamera::Update()
 		toPosDir.Normalize();
 		float angle = toPosDir.Dot(g_camera3D.GetUp());
 		angle = CMath::RadToDeg(angle);
-		float upMax = -40.0f;
-		float downMax = 50.0f;
+		
 		if (angle < upMax) {
 			//カメラが上向きすぎ。
 			angle -= upMax;
