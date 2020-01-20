@@ -13,6 +13,7 @@ public:
 	void Move();						//ˆÚ“®ˆ—
 	void Turn();						//‰ñ“]ˆ—B@
 	void HpGage();
+	void Aiming();
 	void Update();
 	void Draw();
 	void PostDraw();
@@ -58,5 +59,8 @@ private:
 	CVector3 test = g_camera3D.GetForward();
 	float m_cameraTurnSpeed = 0.02f;
 	TankData* m_tankData = nullptr;
+	Sprite m_aimng;
+	CVector3 m_aimingpos = CVector3::Zero();
+	CVector3 m_gunpos = CVector3::Zero();
 };
 

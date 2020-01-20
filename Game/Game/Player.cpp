@@ -24,6 +24,7 @@ bool Player::Start()
 	m_model.Init(L"Assets/modelData/pz4_00.cmo");
 	m_model2.Init(L"Assets/modelData/pz4_01.cmo");
 	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
+	m_aimng.Init(L"Assets/sprite/aiming.dds",100.0f,100.0f);
 	m_charaCon.Init({ 65.0f, 100.0f, 110.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
@@ -43,7 +44,7 @@ void Player::FireBullets(float speed)
 	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet);
 	bullet->SetMoveSpeed(m_forward * speed);
 	CVector3 pos = m_pos;
-	pos.y += 60.0f;
+	pos.y += 90.0f;
 	bullet->SetPosition(pos);
 }
 
@@ -53,6 +54,15 @@ void Player::HpGage()
 	m_playerhp.Update({400.0f,300.0f,0.0f},CQuaternion::Identity(), { m_playerHP / 10, 1.0f, 1.0f });
 	//HPスプライトの表示
 	m_playerhp.Draw(
+		g_camera2D.GetViewMatrix(),
+		g_camera2D.GetProjectionMatrix()
+	);
+}
+
+void Player::Aiming()
+{
+	m_aimng.Update(m_aimingpos, CQuaternion::Identity(), CVector3::One());
+	m_aimng.Draw(
 		g_camera2D.GetViewMatrix(),
 		g_camera2D.GetProjectionMatrix()
 	);
@@ -104,14 +114,10 @@ void Player::Move()
 
 void Player::Update()
 {
-	
-	////Y軸周りの回転
-	//CQuaternion qRot;
-	//qRot.SetRotation(test.AxisY(), g_pad[0].GetRStickXF() * 0.05f);
-	//m_rotation.Multiply(qRot);
+
 
 	CMatrix rotMatrix; 
-	rotMatrix.MakeRotationFromQuaternion(m_rot);
+	rotMatrix.MakeRotationFromQuaternion(m_rotation);
 	m_forward.x = rotMatrix.m[2][0];
 	m_forward.y = rotMatrix.m[2][1];
 	m_forward.z = rotMatrix.m[2][2];
@@ -144,7 +150,6 @@ void Player::Update()
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
 	m_model2.UpdateWorldMatrix(m_pos, m_rotation, m_scale);
-	g_camera3D.GetForward();
 	//シャドウキャスターを登録。
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model2);
@@ -175,4 +180,5 @@ void Player::Draw()
 void Player::PostDraw()
 {
 	HpGage();
+	Aiming();
 }
