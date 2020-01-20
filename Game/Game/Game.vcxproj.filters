@@ -7,6 +7,7 @@
     <ImageContentTask Include="Assets\sprite\ResultBack.jpg" />
     <ImageContentTask Include="Assets\sprite\Title1.png" />
     <ImageContentTask Include="Assets\sprite\selectback.jpeg" />
+    <ImageContentTask Include="Assets\sprite\aiming.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
