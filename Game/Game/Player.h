@@ -42,6 +42,7 @@ private:
 	GameFont m_font;
 	float m_fontsize = 1.0f;							//フォントサイズ
 	CVector3 m_forward = CVector3::Zero();
+	CVector3 m_gunForward = CVector3::Zero();
 	CVector3 m_right = CVector3::Zero();
 	CVector3 m_pos = CVector3::Zero();
 	CVector3 m_moveSpeed = CVector3::Zero();			//移動速度。

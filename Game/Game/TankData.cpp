@@ -22,7 +22,7 @@ void TankData::Select(TankType type)
 	case pz4:
 		m_data.hp = 100.0f;
 		m_data.speed = 150.0f;
-		m_data.bodyturn = 0.01f;
+		m_data.bodyturn = 0.012f;
 		m_data.cameraturn = 0.02f;
 		break;
 	case tiha:

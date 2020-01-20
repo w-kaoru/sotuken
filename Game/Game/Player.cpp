@@ -40,12 +40,21 @@ bool Player::Start()
 }
 void Player::FireBullets(float speed)
 {
-	
+
+	CMatrix rotMatrix;
+	rotMatrix.MakeRotationFromQuaternion(m_rotation);
+	m_gunForward.x = rotMatrix.m[2][0];
+	m_gunForward.y = rotMatrix.m[2][1];
+	m_gunForward.z = rotMatrix.m[2][2];
+	m_gunForward.Normalize();
+	m_gunForward = m_gunForward * 90.0f;
+	m_gunForward += m_pos;
+	m_gunForward.y = 45.0f;
 	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet);
-	bullet->SetMoveSpeed(m_forward * speed);
+	bullet->SetMoveSpeed(g_camera3D.GetForward() * speed);
 	CVector3 pos = m_pos;
 	pos.y += 90.0f;
-	bullet->SetPosition(pos);
+	bullet->SetPosition(m_gunForward);
 }
 
 void Player::HpGage()
@@ -117,7 +126,7 @@ void Player::Update()
 
 
 	CMatrix rotMatrix; 
-	rotMatrix.MakeRotationFromQuaternion(m_rotation);
+	rotMatrix.MakeRotationFromQuaternion(m_rot);
 	m_forward.x = rotMatrix.m[2][0];
 	m_forward.y = rotMatrix.m[2][1];
 	m_forward.z = rotMatrix.m[2][2];
@@ -131,7 +140,7 @@ void Player::Update()
 	m_timier++;
 	Move();
 	Turn();
-	if (m_timier >= 20.0f&&g_pad[0].IsTrigger(enButtonA))
+	if (m_timier >= 20.0f&&g_pad[0].IsTrigger(enButtonRB2))
 	{
 			FireBullets(800.0f);
 			m_timier = 0;

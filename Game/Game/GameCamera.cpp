@@ -48,7 +48,7 @@ void GameCamera::Update()
 		//カメラデータのテーブル。
 		toCameraPos.Normalize();
 		SCameraData cameraDataTbl[] = {
-			{ 250.0f, CMath::DegToRad(60.0f), -25.0f, 50.0f},			//通常のカメラデータ。
+			{ 250.0f, CMath::DegToRad(60.0f), -25.0f, 20.0f},			//通常のカメラデータ。
 			{ 1.0f, CMath::DegToRad(20.0f), - 5.0f, 10.0f },			//ズームのカメラデータ。
 		};
 		if (g_pad[0].IsPress(enButtonLB2)) {
