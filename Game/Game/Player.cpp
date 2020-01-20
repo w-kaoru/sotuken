@@ -20,15 +20,15 @@ Player::~Player()
 
 bool Player::Start()
 {
+	m_tankData = FindGO<TankData>("TankData");
 	//cmoファイルの読み込み。
-	m_model.Init(L"Assets/modelData/pz4_00.cmo");
-	m_model2.Init(L"Assets/modelData/pz4_01.cmo");
+	m_model.Init(m_tankData->GetTankDeta()->filePath_00);
+	m_model2.Init(m_tankData->GetTankDeta()->filePath_01);
 	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
 	m_aimng.Init(L"Assets/sprite/aiming.dds",100.0f,100.0f);
 	m_charaCon.Init({ 65.0f, 100.0f, 110.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
-	m_tankData = FindGO<TankData>("TankData");
 	m_cameraTurnSpeed = m_tankData->GetTankDeta()->cameraturn;
 	m_scale *= 0.5f; 
 	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
