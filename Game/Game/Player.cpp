@@ -21,6 +21,7 @@ Player::~Player()
 bool Player::Start()
 {
 	m_tankData = FindGO<TankData>("TankData");
+	m_tankData->BulletSelect(BulletType::HE);
 	//cmoファイルの読み込み。
 	m_model.Init(m_tankData->GetTankDeta()->filePath_00);
 	m_model2.Init(m_tankData->GetTankDeta()->filePath_01);
@@ -53,7 +54,7 @@ void Player::FireBullets(float speed)
 	m_gunForward += m_pos;
 	m_gunForward.y = 45.0f;
 	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet);
-	bullet->SetMoveSpeed(g_camera3D.GetForward() * speed);
+	bullet->SetMoveSpeed(g_camera3D.GetForward() * m_tankData->GetTankDeta()->bulletSpeed);
 	CVector3 pos = m_pos;
 	pos.y += 90.0f;
 	bullet->SetPosition(m_gunForward);
@@ -125,8 +126,21 @@ void Player::Move()
 
 void Player::Update()
 {
-
-
+	if (g_pad[0].IsTrigger(enButtonRight)) {
+		int bnum = m_tankData->GetBulletType() + 1;
+		if (BulletType::num == bnum) {
+			bnum = 0;
+		}
+		m_tankData->BulletSelect((BulletType)bnum);
+	}
+	if (g_pad[0].IsTrigger(enButtonLeft)) {
+		int bnum = m_tankData->GetBulletType() - 1;
+		if (bnum <= -1) {
+			bnum = BulletType::num;
+			bnum--;
+		}
+		m_tankData->BulletSelect((BulletType)bnum);
+	}
 	CMatrix rotMatrix; 
 	rotMatrix.MakeRotationFromQuaternion(m_rot);
 	m_forward.x = rotMatrix.m[2][0];
@@ -192,4 +206,23 @@ void Player::PostDraw()
 {
 	HpGage();
 	Aiming();
+	m_font.BeginDraw();
+	switch (m_tankData->GetBulletType())
+	{
+		case HE:
+			swprintf_s(moji, L"HE弾");		//表示用にデータを加工
+		break;
+		case AP:
+			swprintf_s(moji, L"AP弾");		//表示用にデータを加工
+			break;
+	}
+	m_font.Draw(
+		moji,		//表示する文字列。
+		{ -300.0f,-100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+		{ 1.0f,0.0f,0.0f,1.0f },
+		0.0f,
+		0.8f,
+		{ 0.0f,1.0f }
+	);
+	m_font.EndDraw();
 }

@@ -12,9 +12,13 @@ public:
 	STankData* GetTankDeta() {
 		return &m_data;
 	}
-	TankType* GetTankType()
+	TankType GetTankType()
 	{
-		return &m_type;
+		return m_type;
+	}
+	BulletType GetBulletType()
+	{
+		return m_bullettype;
 	}
 private:
 	STankData m_data;
