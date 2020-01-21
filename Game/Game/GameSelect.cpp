@@ -131,12 +131,6 @@ void GameSelect::FontDraw()
 		);
 		break;
 	}
-	if (m_select == pz4) {
-
-	}
-	if (m_select == tiha) {
-
-	}
 	m_font.EndDraw();
 }
 

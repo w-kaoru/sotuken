@@ -33,6 +33,8 @@ bool Player::Start()
 	m_scale *= 0.5f; 
 	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
 	m_rotation.SetRotation(CVector3::AxisY(), angle);
+	m_tankData->BulletSelect(BulletType::HE);
+	m_bulletmaneger->SetBulletDamage(m_tankData->GetTankDeta()->bulletdamage);
 	//m_rotation.SetRotationDeg(CVector3::AxisY(),180.0f);
 	m_rot = m_rotation;
 	//m_model.SetShadowReciever(true);
@@ -147,7 +149,7 @@ void Player::Update()
 	}
 	if (m_bulletmaneger->GetPlayerDamage() == true )
 	{
-		m_playerHP -= m_bulletmaneger->GetBulletDamage();
+		m_playerHP -= m_bulletmaneger->GetBulletDamage() - m_tankData->GetTankDeta()->defense;
 		m_bulletmaneger->SetPFlag(false);
 	}
 	if (m_playerHP <= 0.0f)

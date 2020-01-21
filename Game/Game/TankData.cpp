@@ -26,17 +26,41 @@ void TankData::Select(TankType type)
 		m_data.speed = 150.0f;
 		m_data.bodyturn = 0.012f;
 		m_data.cameraturn = 0.02f;
+		m_data.defense = 60.0f;
 		break;
 	case tiha:
 		m_data.filePath_00 = L"Assets/modelData/tiha_body.cmo";
 		m_data.filePath_01 = L"Assets/modelData/tiha_houtou.cmo";
-		m_data.hp = 200.0f;//(‰¼)
-		m_data.speed = 200.0f;//(‰¼)
-		m_data.bodyturn = 0.012f;//(‰¼)
+		m_data.hp = 220.0f;//(‰¼)
+		m_data.speed = 150.0f;//(‰¼)
+		m_data.bodyturn = 0.02f;//(‰¼)
 		m_data.cameraturn = 0.02f;//(‰¼)
+		m_data.defense = 40.0f;
 		break;
 	case nonType:
 		return;
 		break;
 	}
 }
+
+void TankData::BulletSelect(BulletType btype)
+{
+	m_bullettype = btype;
+	switch (btype)
+	{
+	case HE:
+		m_data.bulletdamage = 100.0f;
+		m_data.bulletSpeed = 800.0f;
+		break;
+	case AP:
+		m_data.bulletdamage = 150.0f;
+		m_data.bulletSpeed = 900.0f;
+		break;
+	case num:
+
+		return;
+		break;
+	}
+
+}
+
