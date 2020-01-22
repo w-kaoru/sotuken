@@ -58,7 +58,6 @@ private:
 	bool playerdeth = false;
 	int m_timier = 0;
 	CQuaternion m_rotation = CQuaternion::Identity();
-	CVector3 test = g_camera3D.GetForward();
 	float m_cameraTurnSpeed = 0.02f;
 	TankData* m_tankData = nullptr;
 	Sprite m_aimng;
