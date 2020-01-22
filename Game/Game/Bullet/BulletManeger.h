@@ -62,6 +62,10 @@ public:
 	{
 		m_enemydamage = b;
 	}
+	void SetBulletDamage(float a)
+	{
+		m_bulletdamage = a;
+	}
 private:
 	std::vector<Bullet*> m_bulletList;
 	bool m_enemydamage = false;

@@ -43,5 +43,6 @@ private:
 	CQuaternion m_Sprite_angle = CQuaternion::Identity();	//テクスチャの回転角度
 	float HP = 100.0f;
 	bool enemydeth = false;
+
 };
 

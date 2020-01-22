@@ -9,6 +9,7 @@
 #include "Title.h"
 #include "Score.h"
 #include "GameResults.h"
+#include "TankData.h"
 
 Game::Game()
 {
@@ -57,6 +58,9 @@ void Game::OnDestroy()
 	}
 	DeleteGO(m_bulletmaneger);
 	DeleteGO(m_gamecamera);
+	if (FindGO<TankData>("TankData") != nullptr) {
+		DeleteGO(FindGO<TankData>("TankData"));
+	}
 }
 
 void Game::Update()

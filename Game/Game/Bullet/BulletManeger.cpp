@@ -48,7 +48,8 @@ void BulletManeger::DeleteBullet()
 		}
 		if (bullet->GetTime() > 75
 			|| bullet->GetEHit() == true
-			|| bullet->GetPHit() == true)
+			|| bullet->GetPHit() == true
+			|| bullet->GetHit() == true)
 		{
 			DeleteGO(bullet);
 			m_bulletList.erase(std::remove(m_bulletList.begin(), m_bulletList.end(), bullet)

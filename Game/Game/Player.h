@@ -2,6 +2,7 @@
 #include "character/CharacterController.h"
 #include "character/CharacterControllerToBox.h"
 class BulletManeger;
+class TankData;
 class Player:public IGameObject
 {
 public:
@@ -12,6 +13,8 @@ public:
 	void Move();						//移動処理
 	void Turn();						//回転処理。　
 	void HpGage();
+	void Aiming();
+	void BulletSprite();
 	void Update();
 	void Draw();
 	void PostDraw();
@@ -27,9 +30,11 @@ public:
 	{
 		return playerdeth;
 	}
+	float GetCameraSpeed()
+	{
+		return m_cameraTurnSpeed;
+	}
 private:
-		 
-
 	float StX;											//スティックのXだぜ。
 	float StY;											//スティックのYだぜ。
 	SkinModel m_model;									//スキンモデル。
@@ -38,6 +43,7 @@ private:
 	GameFont m_font;
 	float m_fontsize = 1.0f;							//フォントサイズ
 	CVector3 m_forward = CVector3::Zero();
+	CVector3 m_gunForward = CVector3::Zero();
 	CVector3 m_right = CVector3::Zero();
 	CVector3 m_pos = CVector3::Zero();
 	CVector3 m_moveSpeed = CVector3::Zero();			//移動速度。
@@ -51,7 +57,13 @@ private:
 	Sprite m_playerhp;
 	bool playerdeth = false;
 	int m_timier = 0;
-	CQuaternion m_rotation = { 0.0f,  0.0f, 0.0f, 1.0f };
-	CVector3 test = g_camera3D.GetForward();
+	CQuaternion m_rotation = CQuaternion::Identity();
+	float m_cameraTurnSpeed = 0.02f;
+	TankData* m_tankData = nullptr;
+	Sprite m_aimng;
+	Sprite m_bulletsprite;
+	Sprite m_bulletsprite1;
+	CVector3 m_aimingpos = CVector3::Zero();
+	CVector3 m_gunpos = CVector3::Zero();
 };
 
