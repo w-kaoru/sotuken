@@ -27,6 +27,8 @@ bool Player::Start()
 	m_model2.Init(m_tankData->GetTankDeta()->filePath_01);
 	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
 	m_aimng.Init(L"Assets/sprite/aiming.dds",100.0f,100.0f);
+	m_bulletsprite.Init(L"Assets/sprite/bullet.dds", 150.0f, 150.0f);
+	m_bulletsprite1.Init(L"Assets/sprite/bullet1.dds", 150.0f, 150.0f);
 	m_charaCon.Init({ 65.0f, 100.0f, 110.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
@@ -36,9 +38,7 @@ bool Player::Start()
 	m_rotation.SetRotation(CVector3::AxisY(), angle);
 	m_tankData->BulletSelect(BulletType::HE);
 	m_bulletmaneger->SetBulletDamage(m_tankData->GetTankDeta()->bulletdamage);
-	//m_rotation.SetRotationDeg(CVector3::AxisY(),180.0f);
 	m_rot = m_rotation;
-	//m_model.SetShadowReciever(true);
 	return true;
 }
 void Player::FireBullets(float speed)
@@ -78,6 +78,30 @@ void Player::Aiming()
 		g_camera2D.GetViewMatrix(),
 		g_camera2D.GetProjectionMatrix()
 	);
+}
+
+void Player::BulletSprite()
+{
+
+
+	switch (m_tankData->GetBulletType())
+	{
+	case HE:
+		m_bulletsprite.Update({ -450.0f,-250.0f,0.0f }, CQuaternion::Identity(), CVector3::One());
+		m_bulletsprite.Draw(
+			g_camera2D.GetViewMatrix(),
+			g_camera2D.GetProjectionMatrix()
+		);
+		break;
+	case AP:
+		m_bulletsprite1.Update({ -450.0f,-250.0f,0.0f }, CQuaternion::Identity(), CVector3::One());
+		m_bulletsprite1.Draw(
+			g_camera2D.GetViewMatrix(),
+			g_camera2D.GetProjectionMatrix()
+		);
+		break;
+	}
+
 }
 
 void Player::Move()
@@ -206,6 +230,7 @@ void Player::PostDraw()
 {
 	HpGage();
 	Aiming();
+	BulletSprite();
 	m_font.BeginDraw();
 	switch (m_tankData->GetBulletType())
 	{
@@ -218,7 +243,7 @@ void Player::PostDraw()
 	}
 	m_font.Draw(
 		moji,		//表示する文字列。
-		{ -300.0f,-100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+		{ -500.0f,-200.0f },			//表示する座標。0.0f, 0.0が画面の中心。
 		{ 1.0f,0.0f,0.0f,1.0f },
 		0.0f,
 		0.8f,

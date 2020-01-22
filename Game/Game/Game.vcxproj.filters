@@ -8,6 +8,8 @@
     <ImageContentTask Include="Assets\sprite\Title1.png" />
     <ImageContentTask Include="Assets\sprite\selectback.jpeg" />
     <ImageContentTask Include="Assets\sprite\aiming.png" />
+    <ImageContentTask Include="Assets\sprite\bullet.png" />
+    <ImageContentTask Include="Assets\sprite\bullet1.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />

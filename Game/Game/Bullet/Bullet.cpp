@@ -42,6 +42,10 @@ void Bullet::Update()
 	{
 		P_HitFlag = true;
 	}
+	if (m_bulletCon.Gethit() == true)
+	{
+		IsHit = true;
+	}
 }
 
 void Bullet::Draw()

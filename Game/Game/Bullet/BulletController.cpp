@@ -23,14 +23,14 @@ namespace GameEngine {
 					convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Player) {
 					P_bulletisHit = true;
 				}
-				if (me->getUserIndex() == enCollisionAttr_EnemyBullet
-					&& convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Player) {
-					isHit = true;
-				}
-				if (me->getUserIndex() == enCollisionAttr_PlayerBullet
-					&& convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_EnemyBullet) {
-					isHit = true;
-				}
+				//if (me->getUserIndex() == enCollisionAttr_EnemyBullet
+				//	&& convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Player) {
+				//	isHit = true;
+				//}
+				//if (me->getUserIndex() == enCollisionAttr_PlayerBullet
+				//	&& convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_EnemyBullet) {
+				//	isHit = true;
+				//}
 				if (convexResult.m_hitCollisionObject == me
 					|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Player
 					|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Enemy
@@ -43,6 +43,7 @@ namespace GameEngine {
 				isHit = true;
 			}
 		};
+
 	}
 
 

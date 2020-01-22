@@ -14,6 +14,7 @@ public:
 	void Turn();						//âÒì]èàóùÅBÅ@
 	void HpGage();
 	void Aiming();
+	void BulletSprite();
 	void Update();
 	void Draw();
 	void PostDraw();
@@ -56,11 +57,13 @@ private:
 	Sprite m_playerhp;
 	bool playerdeth = false;
 	int m_timier = 0;
-	CQuaternion m_rotation = { 0.0f,  0.0f, 0.0f, 1.0f };
+	CQuaternion m_rotation = CQuaternion::Identity();
 	CVector3 test = g_camera3D.GetForward();
 	float m_cameraTurnSpeed = 0.02f;
 	TankData* m_tankData = nullptr;
 	Sprite m_aimng;
+	Sprite m_bulletsprite;
+	Sprite m_bulletsprite1;
 	CVector3 m_aimingpos = CVector3::Zero();
 	CVector3 m_gunpos = CVector3::Zero();
 };

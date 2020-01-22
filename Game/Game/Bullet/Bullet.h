@@ -35,6 +35,10 @@ public:
 	{
 		return P_HitFlag;
 	}
+	bool GetHit()
+	{
+		return IsHit;
+	}
 	int GetTime()
 	{
 		return m_bulletDeleteTime;
@@ -48,6 +52,7 @@ private:
 	BulletController m_bulletCon;
 	bool E_HitFlag = false;
 	bool P_HitFlag = false;
+	bool IsHit = false;
 	int m_bulletDeleteTime = 0;
 	CVector3 m_position = CVector3::Zero();		//ç¿ïW
 	CVector3 m_moveSpeed = CVector3::Zero();	//à⁄ìÆë¨ìx
