@@ -10,11 +10,11 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2020
 		Month: 1
-		Day: 20
+		Day: 22
 		Hour: 15
-		Minute: 31
-		Second: 13
-		Millisecond: 206
+		Minute: 18
+		Second: 28
+		Millisecond: 171
 	}
 	Creator: "FBX SDK/FBX Plugins version 2017.0.1"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -36,13 +36,13 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "3ds Max"
 			P: "Original|ApplicationVersion", "KString", "", "", "2017"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "20/01/2020 06:31:13.204"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "22/01/2020 06:18:28.169"
 			P: "Original|FileName", "KString", "", "", "C:\Users\kbc17b29\Documents\sotuken\Game\Game\Assets\modelData\tiha_houtou.fbx"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "3ds Max"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2017"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "20/01/2020 06:31:13.204"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "22/01/2020 06:18:28.169"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\kbc17b29\Documents\3dsMax"
 		}
 	}
@@ -78,7 +78,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 1141809360, "", "Scene" {
+	Document: 1874074496, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -208,6 +208,19 @@ Definitions:  {
 			}
 		}
 	}
+	ObjectType: "Geometry" {
+		Count: 1
+		PropertyTemplate: "FbxMesh" {
+			Properties70:  {
+				P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
+				P: "BBoxMin", "Vector3D", "Vector", "",0,0,0
+				P: "BBoxMax", "Vector3D", "Vector", "",0,0,0
+				P: "Primary Visibility", "bool", "", "",1
+				P: "Casts Shadows", "bool", "", "",1
+				P: "Receive Shadows", "bool", "", "",1
+			}
+		}
+	}
 	ObjectType: "Material" {
 		Count: 1
 		PropertyTemplate: "FbxSurfacePhong" {
@@ -260,19 +273,6 @@ Definitions:  {
 			}
 		}
 	}
-	ObjectType: "Geometry" {
-		Count: 1
-		PropertyTemplate: "FbxMesh" {
-			Properties70:  {
-				P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
-				P: "BBoxMin", "Vector3D", "Vector", "",0,0,0
-				P: "BBoxMax", "Vector3D", "Vector", "",0,0,0
-				P: "Primary Visibility", "bool", "", "",1
-				P: "Casts Shadows", "bool", "", "",1
-				P: "Receive Shadows", "bool", "", "",1
-			}
-		}
-	}
 	ObjectType: "AnimationCurve" {
 		Count: 3
 	}
@@ -312,7 +312,7 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 1594818896, "Geometry::", "Mesh" {
+	Geometry: 1873972128, "Geometry::", "Mesh" {
 		Vertices: *9396 {
 			a: -132.675094604492,147.703720092773,53.9506034851074,-132.675094604492,147.703720092773,59.7552642822266,-132.675094604492,146.921127319336,61.1859512329102,-132.675094604492,146.921127319336,130.359024047852,-132.675094604492,145.356994628906,130.999588012695,-132.675094604492,146.38069152832,131.875930786133,-132.675094604492,146.380706787109,134.813323974609,-132.675094604492,144.525512695313,134.813323974609,-132.675094604492,144.519546508789,53.9506034851074,-130.445922851563,147.260314941406,53.9506034851074,-130.445922851563,147.260314941406,59.7552642822266,-130.745407104492,146.537292480469,61.1859512329102,-130.745391845703,146.537292480469,130.359024047852,-131.343978881836,145.092208862305,130.999588012695,-130.952209472656,146.037994384766,131.875930786133,-130.952209472656,146.038009643555,134.813323974609,-131.662170410156,144.324035644531,134.813323974609,-131.664459228516,144.31852722168,53.9506034851074,-128.556137084961,145.997589111328,53.9506034851074,-128.556137084961,145.997589111328,59.7552642822266,-129.109497070313,145.444213867188,61.1859512329102,-129.109497070313,145.444213867188,130.359024047852,-130.215530395508,144.338195800781,130.999588012695,-129.491653442383,145.062072753906,131.875930786133,-129.491638183594,145.062072753906,134.813323974609,-130.803451538086,143.750259399414,134.813323974609,-130.807678222656,143.746047973633,53.9506034851074,-127.293411254883,144.107788085938,53.9506034851074,-127.293411254883,144.107788085938,59.7552642822266,-128.01643371582,143.808319091797,61.1859512329102,-128.016418457031,143.808303833008,130.359024047852,-129.461517333984,143.209747314453,130.999588012695,-128.515716552734,143.601501464844,131.875930786133,-128.515716552734,143.601501464844,134.813323974609,-130.229690551758,142.891555786133,134.813323974609,-130.235214233398,142.889266967773,53.9506034851074,-126.849998474121,141.878646850586,53.9506034851074,-126.850006103516,141.878646850586,59.7552642822266,-127.632591247559,141.878646850586,61.1859512329102,-127.632591247559,141.878631591797,130.359024047852,
 -129.196746826172,141.878631591797,130.999588012695,-128.173034667969,141.878631591797,131.875930786133,-128.17301940918,141.878631591797,134.813323974609,-130.028198242188,141.878631591797,134.813323974609,-130.0341796875,141.878646850586,53.9506034851074,-127.293411254883,139.649475097656,53.9506034851074,-127.293411254883,139.649475097656,59.7552642822266,-128.016418457031,139.948959350586,61.1859512329102,-128.01643371582,139.948959350586,130.359024047852,-129.461517333984,140.54753112793,130.999588012695,-128.515731811523,140.15576171875,131.875930786133,-128.515716552734,140.15576171875,134.813323974609,-130.229690551758,140.86572265625,134.813323974609,-130.235198974609,140.868011474609,53.9506034851074,-128.556121826172,137.759689331055,53.9506034851074,-128.556121826172,137.759689331055,59.7552642822266,-129.109497070313,138.313049316406,61.1859512329102,-129.109512329102,138.313049316406,130.359024047852,-130.215530395508,139.419067382813,130.999588012695,-129.491653442383,138.695190429688,131.875930786133,-129.491653442383,138.695190429688,134.813323974609,-130.803466796875,140.00700378418,134.813323974609,-130.807678222656,140.01123046875,53.9506034851074,-130.445922851563,136.496963500977,53.9506034851074,-130.445922851563,136.496963500977,59.7552642822266,-130.745391845703,137.219970703125,61.1859512329102,-130.745407104492,137.219970703125,130.359024047852,-131.343978881836,138.665054321289,130.999588012695,-130.952224731445,137.719268798828,131.875930786133,-130.952224731445,137.719268798828,134.813323974609,-131.662170410156,139.433227539063,134.813323974609,-131.664443969727,139.438751220703,53.9506034851074,-132.675079345703,136.05354309082,53.9506034851074,-132.675079345703,136.05354309082,59.7552642822266,-132.675079345703,136.836151123047,61.1859512329102,-132.675094604492,136.836151123047,130.359024047852,-132.675094604492,138.400299072266,130.999588012695,-132.675094604492,137.376571655273,131.875930786133,-132.675094604492,137.376571655273,134.813323974609,-132.675094604492,139.231750488281,134.813323974609,
@@ -968,27 +968,28 @@ Objects:  {
 			}
 		}
 	}
-	Model: 1425648784, "Model::houtou", "Mesh" {
+	Model: 1873203840, "Model::houtou", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "GeometricTranslation", "Vector3D", "Vector", "",127.069076538086,-162.520126342773,-4.4680347442627
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Translation", "Lcl Translation", "", "A",-99.4999923706055,32.2044448852539,34.2100601196289
-			P: "Lcl Rotation", "Lcl Rotation", "", "A+",90.0000093346676,-5.00895613097494e-06,179.9999776882
+			P: "Lcl Translation", "Lcl Translation", "", "A",-0.961591720581055,-1.44011688232422,196.730194091797
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",90.0000093346676,1.02452837550189e-05,6.83018917001272e-06
 			P: "mr ディスプレイスメント グローバル設定を使用", "Bool", "", "AU",1
 			P: "mr ディスプレイスメント ビュー従属", "Bool", "", "AU",1
-			P: "mr ディスプレイスメント方法", "Integer", "", "AU",6,6,6
+			P: "mr ディスプレイスメント方法", "Integer", "", "AU",6,0,100
 			P: "mr ディスプレイスメント スムージング オン", "Bool", "", "AU",1
-			P: "mr ディスプレイスメント エッジの長さ", "Number", "", "AU",2,2,2
-			P: "mr ディスプレイスメント最大ディスプレイスメント", "Number", "", "AU",20,20,20
-			P: "mr ディスプレイスメント パラメトリック サブディビジョン レベル", "Integer", "", "AU",5,5,5
-			P: "MaxHandle", "int", "Integer", "UH",2
+			P: "mr ディスプレイスメント エッジの長さ", "Number", "", "AU",2,0,100
+			P: "mr ディスプレイスメント最大ディスプレイスメント", "Number", "", "AU",20,0,100
+			P: "mr ディスプレイスメント パラメトリック サブディビジョン レベル", "Integer", "", "AU",5,0,100
+			P: "MaxHandle", "int", "Integer", "UH",1
 		}
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 1898519968, "Material::M_Tiha", "" {
+	Material: 2044940816, "Material::M_Tiha", "" {
 		Version: 102
 		ShadingModel: "phong"
 		MultiLayer: 0
@@ -1010,7 +1011,7 @@ Objects:  {
 			P: "Reflectivity", "double", "Number", "",0
 		}
 	}
-	Video: 1904240896, "Video::green (Image)", "Clip" {
+	Video: 2075906000, "Video::green (Image)", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "D:\Documents\_KsFolder\data_MODO\tank\tanktank\Images\green.JPG"
@@ -1019,7 +1020,7 @@ Objects:  {
 		Filename: "D:\Documents\_KsFolder\data_MODO\tank\tanktank\Images\green.JPG"
 		RelativeFilename: "D:\Documents\_KsFolder\data_MODO\tank\tanktank\Images\green.JPG"
 	}
-	Texture: 1898517568, "Texture::green (Image)", "" {
+	Texture: 2044936976, "Texture::green (Image)", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::green (Image)"
@@ -1035,22 +1036,22 @@ Objects:  {
 		Texture_Alpha_Source: "None"
 		Cropping: 0,0,0,0
 	}
-	AnimationStack: 1477302896, "AnimStack::Take 001", "" {
+	AnimationStack: 1602617840, "AnimStack::Take 001", "" {
 		Properties70:  {
 			P: "LocalStop", "KTime", "Time", "",153953860000
 			P: "ReferenceStop", "KTime", "Time", "",153953860000
 		}
 	}
-	AnimationLayer: 1604419600, "AnimLayer::BaseLayer", "" {
+	AnimationLayer: 2043881136, "AnimLayer::BaseLayer", "" {
 	}
-	AnimationCurveNode: 1477307472, "AnimCurveNode::R", "" {
+	AnimationCurveNode: 1602615344, "AnimCurveNode::R", "" {
 		Properties70:  {
 			P: "d|X", "Number", "", "A",90.0000093346676
-			P: "d|Y", "Number", "", "A",-5.00895613097494e-06
-			P: "d|Z", "Number", "", "A",179.9999776882
+			P: "d|Y", "Number", "", "A",1.02452837550189e-05
+			P: "d|Z", "Number", "", "A",6.83018917001272e-06
 		}
 	}
-	AnimationCurve: 1233430736, "AnimCurve::", "" {
+	AnimationCurve: 2038955744, "AnimCurve::", "" {
 		Default: 0
 		KeyVer: 4009
 		KeyTime: *1 {
@@ -1071,14 +1072,14 @@ Objects:  {
 			a: 1
 		} 
 	}
-	AnimationCurve: 1233427696, "AnimCurve::", "" {
+	AnimationCurve: 2038956064, "AnimCurve::", "" {
 		Default: 0
 		KeyVer: 4009
 		KeyTime: *1 {
 			a: 0
 		} 
 		KeyValueFloat: *1 {
-			a: -5.008956e-06
+			a: 1.024528e-05
 		} 
 		;KeyAttrFlags: Cubic|TangeantUser|WeightedRight
 		KeyAttrFlags: *1 {
@@ -1092,14 +1093,14 @@ Objects:  {
 			a: 1
 		} 
 	}
-	AnimationCurve: 1233434576, "AnimCurve::", "" {
+	AnimationCurve: 2038950944, "AnimCurve::", "" {
 		Default: 0
 		KeyVer: 4009
 		KeyTime: *1 {
 			a: 0
 		} 
 		KeyValueFloat: *1 {
-			a: 180
+			a: 6.830189e-06
 		} 
 		;KeyAttrFlags: Cubic|TangeantUser|WeightedRight
 		KeyAttrFlags: *1 {
@@ -1121,37 +1122,37 @@ Objects:  {
 Connections:  {
 	
 	;Model::houtou, Model::RootNode
-	C: "OO",1425648784,0
+	C: "OO",1873203840,0
 	
 	;AnimLayer::BaseLayer, AnimStack::Take 001
-	C: "OO",1604419600,1477302896
+	C: "OO",2043881136,1602617840
 	
 	;AnimCurveNode::R, AnimLayer::BaseLayer
-	C: "OO",1477307472,1604419600
-	
-	;Material::M_Tiha, Model::houtou
-	C: "OO",1898519968,1425648784
+	C: "OO",1602615344,2043881136
 	
 	;Geometry::, Model::houtou
-	C: "OO",1594818896,1425648784
+	C: "OO",1873972128,1873203840
+	
+	;Material::M_Tiha, Model::houtou
+	C: "OO",2044940816,1873203840
 	
 	;AnimCurveNode::R, Model::houtou
-	C: "OP",1477307472,1425648784, "Lcl Rotation"
+	C: "OP",1602615344,1873203840, "Lcl Rotation"
 	
 	;Texture::green (Image), Material::M_Tiha
-	C: "OP",1898517568,1898519968, "DiffuseColor"
+	C: "OP",2044936976,2044940816, "DiffuseColor"
 	
 	;Video::green (Image), Texture::green (Image)
-	C: "OO",1904240896,1898517568
+	C: "OO",2075906000,2044936976
 	
 	;AnimCurve::, AnimCurveNode::R
-	C: "OP",1233430736,1477307472, "d|X"
+	C: "OP",2038955744,1602615344, "d|X"
 	
 	;AnimCurve::, AnimCurveNode::R
-	C: "OP",1233427696,1477307472, "d|Y"
+	C: "OP",2038956064,1602615344, "d|Y"
 	
 	;AnimCurve::, AnimCurveNode::R
-	C: "OP",1233434576,1477307472, "d|Z"
+	C: "OP",2038950944,1602615344, "d|Z"
 }
 ;Takes section
 ;----------------------------------------------------
