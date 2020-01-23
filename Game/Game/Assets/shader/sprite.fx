@@ -4,7 +4,7 @@
 
 cbuffer cb : register(b0){
 	float4x4 mvp;		//ワールドビュープロジェクション行列。
-	float alpha;		//α値。
+	float4 color;		//color値。
 };
 struct VSInput{
 	float4 pos : SV_Position;
@@ -28,8 +28,8 @@ PSInput VSMain(VSInput In)
 }
 float4 PSMain( PSInput In ) : SV_Target0
 {
-	float4 color = colorTexture.Sample(Sampler, In.uv);
+	float4 c = colorTexture.Sample(Sampler, In.uv);
 	//CPUから転送されたα値を使用する。
-	color.a	*= alpha;
-	return color;
+	c *= color;
+	return c;
 }

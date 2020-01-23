@@ -273,26 +273,13 @@ void CalcShadow(inout float3 lig, float4 posInLvp)
 void CalcLig(inout float3 lig, float3 normal, float4 pos)
 {
 	for (int i = 0; i < numDirectionLight; i++) {
-		//2階調の陰影を求める。
-		//ライトの方向と法線の内積を取るとライトの強さが求まる。
-		/*float3 color = 0.0f;
-		
-		color = max(
-			0.5f,
-			dot(DirectionLightSB[i].direction * 1.5f,
-				normalize(
-					mul(normal, pos)
-				)
-			)
-		);
-		lig = color;*/
-
 		//拡散照明によるライティング計算
 		//*
 		float p = dot(normal * -1.0f, DirectionLightSB[i].direction);
-		p = p * 0.5f + 0.5f;
+		p *= 0.5f;
+		p += 0.5f;
 		//計算結果よりトゥーンシェーダー用のテクスチャから色をフェッチする
-		float4 Col = lightTexture.Sample(Sampler, float2(p, 0.9f));
+		float4 Col = lightTexture.Sample(Sampler, float2(p, 0.95f));
 		//求まった色を乗算する
 		lig = Col.xyz * DirectionLightSB[i].color.xyz;
 		//*/

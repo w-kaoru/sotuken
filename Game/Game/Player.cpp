@@ -29,7 +29,7 @@ bool Player::Start()
 	m_aimng.Init(L"Assets/sprite/aiming.dds",100.0f,100.0f);
 	m_bulletsprite.Init(L"Assets/sprite/bullet.dds", 150.0f, 150.0f);
 	m_bulletsprite1.Init(L"Assets/sprite/bullet1.dds", 150.0f, 150.0f);
-	m_charaCon.Init({ 65.0f, 100.0f, 110.0f }, m_pos);
+	m_charaCon.Init({ 60.0f, 100.0f, 100.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	m_cameraTurnSpeed = m_tankData->GetTankDeta()->cameraturn;
@@ -73,6 +73,7 @@ void Player::HpGage()
 
 void Player::Aiming()
 {
+	m_aimingpos.y = -20.0f;
 	m_aimng.Update(m_aimingpos, CQuaternion::Identity(), CVector3::One());
 	m_aimng.Draw(
 		g_camera2D.GetViewMatrix(),

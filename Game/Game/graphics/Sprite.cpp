@@ -258,7 +258,7 @@ void Sprite::Draw(const CMatrix& viewMatrix, const CMatrix& projMatrix)
 	cb.WVP = m_world;
 	cb.WVP.Mul(cb.WVP, viewMatrix);
 	cb.WVP.Mul(cb.WVP, projMatrix);
-	cb.alpha = m_alpha;
+	cb.color = m_color;
 
 	d3dDeviceContext->UpdateSubresource(m_cb, 0, NULL, &cb, 0, 0);
 	d3dDeviceContext->VSSetConstantBuffers(0, 1, &m_cb);
