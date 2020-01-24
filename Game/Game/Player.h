@@ -22,6 +22,11 @@ public:
 	{
 		return m_pos;
 	}
+	void SetPosition(CVector3 pos)
+	{
+		m_pos = pos;
+		m_charaCon.SetPosition(m_pos);
+	}
 	CVector3 GetForward()
 	{
 		return m_forward;

@@ -1,4 +1,5 @@
 #pragma once
+#include "level/Level.h"
 class Player;
 class TestEnemy;
 class BulletManeger;
@@ -44,5 +45,6 @@ private:
 	int GameTime = 180;
 	int	CountDownTime = 10;
 	bool uuum = false;
+	Level m_level;
 };
 

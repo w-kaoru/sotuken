@@ -10,7 +10,7 @@
 #include "Score.h"
 #include "GameResults.h"
 #include "TankData.h"
-
+#include "level/Level.h"
 Game::Game()
 {
 	InitLight();
@@ -39,7 +39,14 @@ void Game::InitLight()
 bool Game::Start()
 {
 	m_backgeound = NewGO<BackGround>(1, "BackGround");
-	m_player = NewGO<Player>(1, "Player");
+	m_level.Init(L"Assets/level/level_00.tkl", [&](LevelObjectData& objData) {
+		if (objData.EqualName(L"pz4_00") == true || objData.EqualName(L"pz4_01") == true) {
+			m_player = NewGO<Player>(1, "Player");
+			m_player->SetPosition(objData.position);
+			return true;
+		}
+		return false;
+	});
 	m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
 	m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
@@ -106,7 +113,7 @@ void Game::Update()
 
 void Game::Draw()
 {
-
+	m_level.Draw();
 }
 
 void Game::PostDraw()
