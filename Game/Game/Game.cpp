@@ -29,7 +29,7 @@ Game::~Game()
 void Game::InitLight()
 {
 	//ライトを配置。
-	m_LigDirection = { 1.0f,-1.0f, 0.0f };
+	m_LigDirection = { 1.0f,-1.0f, 1.0f };
 	m_LigDirection.Normalize();
 	m_directionLight = NewGO<prefab::DirectionLight>(0, nullptr);
 	m_directionLight->SetDirection(m_LigDirection);

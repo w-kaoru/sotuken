@@ -23,4 +23,5 @@ struct STankData {
 	float bulletdamage = 0.0f;
 	float defense = 100.0f;
 	float bulletSpeed = 800.0f;
+	float scale = 1.0f;
 };

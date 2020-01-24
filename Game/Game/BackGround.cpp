@@ -23,7 +23,7 @@ void BackGround::Update()
 {
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(CVector3::Zero(), CQuaternion::Identity(), CVector3::One());
-	//g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
+	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
 }
 
 void BackGround::Draw()
