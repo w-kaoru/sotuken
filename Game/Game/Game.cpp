@@ -116,15 +116,17 @@ void Game::PostDraw()
 	m_font.BeginDraw();
 	m_time.TimerStop();
 	time = (int)m_time.GetSeconds();
-	swprintf_s(moji, L"時間%03d秒", (GameTime - time));		//表示用にデータを加工
-	m_font.Draw(
-		moji,		//表示する文字列。
-		{ -150.0f,FRAME_BUFFER_H / 2.0f },			//表示する座標。0.0f, 0.0が画面の中心。
-		{ 1.0f,0.0f,0.0f,1.0f },
-		0.0f,
-		0.8f,
-		{ 0.0f,1.0f }
-	);
+	if (uuum == true) {
+		swprintf_s(moji, L"時間%03d秒", (GameTime - time));		//表示用にデータを加工
+		m_font.Draw(
+			moji,		//表示する文字列。
+			{ -150.0f,FRAME_BUFFER_H / 2.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+			{ 1.0f,0.0f,0.0f,1.0f },
+			0.0f,
+			0.8f,
+			{ 0.0f,1.0f }
+		);
+	}
 	if (uuum == false) {
 		swprintf_s(moji, L"%d", (CountDownTime - time));		//表示用にデータを加工
 		m_font.Draw(
