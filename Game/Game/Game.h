@@ -42,5 +42,7 @@ private:
 	prefab::DirectionLight* m_directionLight = nullptr;
 	CVector3 m_LigDirection = CVector3::Zero();
 	int GameTime = 180;
+	int	CountDownTime = 10;
+	bool uuum = false;
 };
 

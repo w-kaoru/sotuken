@@ -28,7 +28,6 @@ bool Player::Start()
 	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
 	m_aimng.Init(L"Assets/sprite/aiming.dds",100.0f,100.0f);
 	m_bulletsprite.Init(L"Assets/sprite/bullet.dds", 150.0f, 150.0f);
-	m_bulletsprite1.Init(L"Assets/sprite/bullet1.dds", 150.0f, 150.0f);
 	m_charaCon.Init({ 60.0f, 100.0f, 100.0f }, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
@@ -79,27 +78,31 @@ void Player::Aiming()
 		g_camera2D.GetViewMatrix(),
 		g_camera2D.GetProjectionMatrix()
 	);
+	if (m_timier <= 20)
+	{
+		m_aimng.SetColor({ 1.0f,0.0f,0.0f,1.0f });
+	}
+	else
+	{
+		m_aimng.SetColor({ 0.0f,0.0f,0.0f,1.0f });
+	}
 }
 
 void Player::BulletSprite()
 {
 
-
-	switch (m_tankData->GetBulletType())
-	{
-	case HE:
 		m_bulletsprite.Update({ -450.0f,-250.0f,0.0f }, CQuaternion::Identity(), CVector3::One());
 		m_bulletsprite.Draw(
 			g_camera2D.GetViewMatrix(),
 			g_camera2D.GetProjectionMatrix()
 		);
+	switch (m_tankData->GetBulletType())
+	{
+	case HE:
+		m_bulletsprite.SetColor({0.0f,0.0f,0.0f,1.0f });
 		break;
 	case AP:
-		m_bulletsprite1.Update({ -450.0f,-250.0f,0.0f }, CQuaternion::Identity(), CVector3::One());
-		m_bulletsprite1.Draw(
-			g_camera2D.GetViewMatrix(),
-			g_camera2D.GetProjectionMatrix()
-		);
+		m_bulletsprite.SetColor({ 0.0f,1.0f,0.0f,1.0f });
 		break;
 	}
 

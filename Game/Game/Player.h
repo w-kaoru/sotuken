@@ -62,7 +62,6 @@ private:
 	TankData* m_tankData = nullptr;
 	Sprite m_aimng;
 	Sprite m_bulletsprite;
-	Sprite m_bulletsprite1;
 	CVector3 m_aimingpos = CVector3::Zero();
 	CVector3 m_gunpos = CVector3::Zero();
 };
