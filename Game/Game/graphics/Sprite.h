@@ -1,6 +1,12 @@
 #pragma once
 #include "graphics/Shader.h"
 #include <algorithm>
+enum Color {
+	RED,
+	BLUE,
+	GREEN,
+	ALPHA
+};
 
 class Sprite
 {
@@ -44,24 +50,59 @@ public:
 	/// αを変位させる
 	/// </summary>
 	/// <param name="delta">乗算αを変位させる量</param>
-	void DeltaAlpha(float delta)
+	void DeltaAlpha(Color color,float delta)
 	{
-		m_alpha += delta;
-		//数値の境界チェック。
-		if (m_alpha > 1.0f) {
-			m_alpha = 1.0f;
-		}
-		else if (m_alpha < 0.0f) {
-			m_alpha = 0.0f;
+		switch (color)
+		{
+		case RED:
+			m_color.x += delta;
+			//数値の境界チェック。
+			if (m_color.x > 1.0f) {
+				m_color.x = 1.0f;
+			}
+			else if (m_color.x < 0.0f) {
+				m_color.x= 0.0f;
+			}
+			break;
+		case BLUE:
+			m_color.y += delta;
+			//数値の境界チェック。
+			if (m_color.y > 1.0f) {
+				m_color.y = 1.0f;
+			}
+			else if (m_color.y < 0.0f) {
+				m_color.y = 0.0f;
+			}
+			break;
+		case GREEN:
+			m_color.z += delta;
+			//数値の境界チェック。
+			if (m_color.z > 1.0f) {
+				m_color.z = 1.0f;
+			}
+			else if (m_color.z < 0.0f) {
+				m_color.z = 0.0f;
+			}
+			break;
+		case ALPHA:
+			m_color.w += delta;
+			//数値の境界チェック。
+			if (m_color.w > 1.0f) {
+				m_color.w = 1.0f;
+			}
+			else if (m_color.w < 0.0f) {
+				m_color.w = 0.0f;
+			}
+			break;
 		}
 	}
-	void SetAlpha(float alpha)
+	void SetColor(CVector4 color)
 	{
-		m_alpha = alpha;
+		m_color = color;
 	}
-	float GetAlpha()
+	CVector4 GetColor()
 	{
-		return m_alpha;
+		return m_color;
 	}
 private:
 	/// <summary>
@@ -92,7 +133,7 @@ private:
 private:
 	struct ConstantBuffer {
 		CMatrix WVP;		//ワールドビュープロジェクション行列。
-		float alpha;		//α値。
+		CVector4 color;		//α値。
 	};
 	ID3D11Buffer*				m_vertexBuffer = NULL;					//頂点バッファ。
 	ID3D11Buffer*				m_indexBuffer = NULL;					//インデックスバッファ。
@@ -106,7 +147,6 @@ private:
 	CMatrix						m_world = CMatrix::Identity();			//ワールド行列。
 	CVector2					m_size = CVector2::Zero();				//画像のサイズ。
 	ID3D11Buffer*				m_cb = nullptr;							//定数バッファ。
-	float						m_alpha = 1.0f;							//スプライトのα値。
-
+	CVector4					m_color = { 1.0f,1.0f,1.0f,1.0f };		//スプライトのα値。
 };
 

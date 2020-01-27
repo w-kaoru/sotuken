@@ -22,6 +22,11 @@ public:
 	{
 		return m_pos;
 	}
+	void SetPosition(CVector3 pos)
+	{
+		m_pos = pos;
+		m_charaCon.SetPosition(m_pos);
+	}
 	CVector3 GetForward()
 	{
 		return m_forward;
@@ -62,7 +67,6 @@ private:
 	TankData* m_tankData = nullptr;
 	Sprite m_aimng;
 	Sprite m_bulletsprite;
-	Sprite m_bulletsprite1;
 	CVector3 m_aimingpos = CVector3::Zero();
 	CVector3 m_gunpos = CVector3::Zero();
 };

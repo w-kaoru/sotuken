@@ -10,7 +10,7 @@
 #include "Score.h"
 #include "GameResults.h"
 #include "TankData.h"
-
+#include "level/Level.h"
 Game::Game()
 {
 	InitLight();
@@ -39,7 +39,14 @@ void Game::InitLight()
 bool Game::Start()
 {
 	m_backgeound = NewGO<BackGround>(1, "BackGround");
-	m_player = NewGO<Player>(1, "Player");
+	m_level.Init(L"Assets/level/level_00.tkl", [&](LevelObjectData& objData) {
+		if (objData.EqualName(L"Path") == true) {
+			m_player = NewGO<Player>(1, "Player");
+			m_player->SetPosition(objData.position);
+			return true;
+		}
+		return false;
+	});
 	m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
 	m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
@@ -73,10 +80,12 @@ void Game::Update()
 		m_gameresults = NewGO<GameResults>(1, "GameResults");
 			DeleteGO(this);
 	}
-	/*if (g_pad[0].IsTrigger(enButtonX))
+	if (m_time.GetSeconds() >= CountDownTime)
 	{
-		GOManager().SetIsAllStop(true);
-	}*/
+		m_player->SetIsStop(false);
+		uuum = true;
+	}
+
 	if (m_testenemy->GetDeth() == true)
 	{
 		m_score->ScorePlus();
@@ -104,23 +113,37 @@ void Game::Update()
 
 void Game::Draw()
 {
-
+	m_level.Draw();
 }
 
 void Game::PostDraw()
 {
+	m_player->SetIsStop(true);
 	int time;
 	m_font.BeginDraw();
 	m_time.TimerStop();
 	time = (int)m_time.GetSeconds();
-	swprintf_s(moji, L"時間%03d秒", (GameTime - time));		//表示用にデータを加工
-	m_font.Draw(
-		moji,		//表示する文字列。
-		{ -150.0f,FRAME_BUFFER_H / 2.0f },			//表示する座標。0.0f, 0.0が画面の中心。
-		{ 1.0f,0.0f,0.0f,1.0f },
-		0.0f,
-		0.8f,
-		{ 0.0f,1.0f }
-	);
+	if (uuum == true) {
+		swprintf_s(moji, L"時間%03d秒", (GameTime - time));		//表示用にデータを加工
+		m_font.Draw(
+			moji,		//表示する文字列。
+			{ -150.0f,FRAME_BUFFER_H / 2.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+			{ 1.0f,0.0f,0.0f,1.0f },
+			0.0f,
+			0.8f,
+			{ 0.0f,1.0f }
+		);
+	}
+	if (uuum == false) {
+		swprintf_s(moji, L"%d", (CountDownTime - time));		//表示用にデータを加工
+		m_font.Draw(
+			moji,		//表示する文字列。
+			{ -60.0f,60.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+			{ 0.0f,0.0f,0.0f,1.0f },
+			0.0f,
+			1.5f,
+			{ 0.0f,1.0f }
+		);
+	}
 	m_font.EndDraw();
 }
