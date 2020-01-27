@@ -40,7 +40,7 @@ bool Game::Start()
 {
 	m_backgeound = NewGO<BackGround>(1, "BackGround");
 	m_level.Init(L"Assets/level/level_00.tkl", [&](LevelObjectData& objData) {
-		if (objData.EqualName(L"Path") == true) {
+		if (objData.ForwardMatchName(L"Path_") == true) {
 			m_player = NewGO<Player>(1, "Player");
 			m_player->SetPosition(objData.position);
 			return true;
