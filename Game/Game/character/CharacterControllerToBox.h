@@ -21,8 +21,7 @@ public:
 	}
 	/*!
 		* @brief	初期化。
-		*@param[in]	radius		カプセルコライダーの半径。
-		*@param[in]	height		カプセルコライダーの高さ。
+		*@param[in]	halfLength	BOXコライダーの半分の長さ。
 		*@param[in]	position	初期位置。
 		*/
 	void Init(CVector3 halfLength, const CVector3& position);

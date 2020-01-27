@@ -39,6 +39,12 @@ public:
 	{
 		return m_cameraTurnSpeed;
 	}
+	void SetNo(int no) {
+		m_No = no;
+	}
+	int GetNo() {
+		return m_No;
+	}
 private:
 	float StX;											//スティックのXだぜ。
 	float StY;											//スティックのYだぜ。
@@ -69,5 +75,6 @@ private:
 	Sprite m_bulletsprite;
 	CVector3 m_aimingpos = CVector3::Zero();
 	CVector3 m_gunpos = CVector3::Zero();
+	int m_No = 0;
 };
 

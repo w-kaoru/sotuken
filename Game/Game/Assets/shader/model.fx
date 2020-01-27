@@ -255,9 +255,6 @@ void CalcShadow(inout float3 lig, float4 posInLvp)
 			&& shadowMapUV.y < 1.0f
 			&& shadowMapUV.y > 0.0f
 			) {
-				//{//デバックコード
-				//	lig *= 0.5f;
-				//}
 			///LVP空間での深度値を計算。
 			float zInLVP = posInLvp.z / posInLvp.w;
 			//シャドウマップに書き込まれている深度値を取得。

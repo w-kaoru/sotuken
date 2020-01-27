@@ -28,6 +28,7 @@ void TankData::Select(TankType type)
 		m_data.cameraturn = 0.02f;
 		m_data.defense = 60.0f;
 		m_data.scale = 0.5f;
+		m_data.BOXLength = { 60.0f, 100.0f, 100.0f };
 		break;
 	case tiha:
 		m_data.filePath_00 = L"Assets/modelData/tiha_body.cmo";
@@ -38,6 +39,7 @@ void TankData::Select(TankType type)
 		m_data.cameraturn = 0.02f;//(‰¼)
 		m_data.defense = 40.0f;
 		m_data.scale = 0.3f;
+		m_data.BOXLength = { 60.0f, 100.0f, 100.0f };//(‰¼)
 		break;
 	case nonType:
 		return;

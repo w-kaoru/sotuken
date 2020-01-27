@@ -17,6 +17,8 @@ void ShadowMap::Init()
 		2048,
 		DXGI_FORMAT_R32_FLOAT
 	); 
+	m_width = 3000.0f;
+	m_height = 3000.0f;
 	InitConstantBuffer();
 }
 

@@ -28,7 +28,7 @@ bool Player::Start()
 	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
 	m_aimng.Init(L"Assets/sprite/aiming.dds",100.0f,100.0f);
 	m_bulletsprite.Init(L"Assets/sprite/bullet.dds", 150.0f, 150.0f);
-	m_charaCon.Init({ 60.0f, 100.0f, 100.0f }, m_pos);
+	m_charaCon.Init(m_tankData->GetTankDeta()->BOXLength, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	m_cameraTurnSpeed = m_tankData->GetTankDeta()->cameraturn;
@@ -38,25 +38,20 @@ bool Player::Start()
 	m_tankData->BulletSelect(BulletType::HE);
 	m_bulletmaneger->SetBulletDamage(m_tankData->GetTankDeta()->bulletdamage);
 	m_rot = m_rotation;
+	m_model.SetShadowReciever(true);
+	m_model2.SetShadowReciever(true);
 	return true;
 }
 void Player::FireBullets(float speed)
 {
 	CMatrix rotMatrix;
-	CVector3 right;
 	rotMatrix.MakeRotationFromQuaternion(m_rotation);
 	m_gunForward.x = rotMatrix.m[2][0];
 	m_gunForward.y = rotMatrix.m[2][1];
 	m_gunForward.z = rotMatrix.m[2][2];
 	m_gunForward.Normalize();
-	right.x = rotMatrix.m[0][0];
-	right.y = rotMatrix.m[0][1];
-	right.z = rotMatrix.m[0][2];
-	right.Normalize();
-	right *= -5.0f;
 	m_gunForward = m_gunForward * 90.0f;
 	m_gunForward += m_pos;
-	m_gunForward += right;
 	m_gunForward.y = 45.0f;
 	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet);
 	bullet->SetMoveSpeed(g_camera3D.GetForward() * m_tankData->GetTankDeta()->bulletSpeed);
@@ -117,8 +112,8 @@ void Player::BulletSprite()
 void Player::Move()
 {
 	//左スティックの入力量を受け取る。
-	 StY = g_pad[0].GetLStickYF();
-	 StX = g_pad[0].GetLStickXF();
+	 StY = g_pad[m_No].GetLStickYF();
+	 StX = g_pad[m_No].GetLStickXF();
 	//カメラの前方方向と右方向を取得
 	CVector3 cameraForward = g_camera3D.GetForward();
 	CVector3 cameraRight = g_camera3D.GetRight();
@@ -160,14 +155,14 @@ void Player::Move()
 
 void Player::Update()
 {
-	if (g_pad[0].IsTrigger(enButtonRight)) {
+	if (g_pad[m_No].IsTrigger(enButtonRight)) {
 		int bnum = m_tankData->GetBulletType() + 1;
 		if (BulletType::num == bnum) {
 			bnum = 0;
 		}
 		m_tankData->BulletSelect((BulletType)bnum);
 	}
-	if (g_pad[0].IsTrigger(enButtonLeft)) {
+	if (g_pad[m_No].IsTrigger(enButtonLeft)) {
 		int bnum = m_tankData->GetBulletType() - 1;
 		if (bnum <= -1) {
 			bnum = BulletType::num;
@@ -190,7 +185,7 @@ void Player::Update()
 	m_timier++;
 	Move();
 	Turn();
-	if (m_timier >= 20.0f&&g_pad[0].IsTrigger(enButtonRB2))
+	if (m_timier >= 20.0f&&g_pad[m_No].IsTrigger(enButtonRB2))
 	{
 			FireBullets(800.0f);
 			m_timier = 0;

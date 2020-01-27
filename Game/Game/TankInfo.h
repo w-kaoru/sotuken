@@ -24,4 +24,5 @@ struct STankData {
 	float defense = 100.0f;
 	float bulletSpeed = 800.0f;
 	float scale = 1.0f;
+	CVector3 BOXLength = CVector3::One();
 };
