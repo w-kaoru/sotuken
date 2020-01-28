@@ -9,6 +9,7 @@
  //アルベドテクスチャ。
 Texture2D<float4> albedoTexture : register(t0);
 Texture2D<float4> shadowMap : register(t1);		//todo シャドウマップ。
+TextureCube<float4> skyCubeMap : register(t2);     //スカイキューブマップ
 Texture2D<float4> lightTexture : register(t10);
 //ボーン行列
 StructuredBuffer<float4x4> boneMatrix : register(t1);
@@ -291,7 +292,12 @@ float4 PSMain_ShadowMap(PSInput_ShadowMap In) : SV_Target0
 	//射影空間でのZ値を返す。
 	return In.Position.z / In.Position.w;
 }
-
+float4 PSCubeMain(PSInput In) : SV_Target0
+{
+	float4 color = skyCubeMap.Sample(Sampler, In.Normal*-1.0f);
+	color.xyz *= 1.0f;
+	return color;
+}
 //--------------------------------------------------------------------------------------
 // ピクセルシェーダーのエントリ関数。
 //--------------------------------------------------------------------------------------

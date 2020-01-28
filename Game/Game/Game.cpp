@@ -9,6 +9,7 @@
 #include "Title.h"
 #include "Score.h"
 #include "GameResults.h"
+#include "Sky.h"
 #include "TankData.h"
 #include "level/Level.h"
 Game::Game()
@@ -40,6 +41,7 @@ bool Game::Start()
 {
 	int plNo = 0;
 	m_backgeound = NewGO<BackGround>(1, "BackGround");
+	m_sky = NewGO<Sky>(1, "Sky");
 	m_level.Init(L"Assets/level/level_00.tkl", [&](LevelObjectData& objData) {
 		if (objData.ForwardMatchName(L"Path_") == true) {
 			//プレイヤー！！
