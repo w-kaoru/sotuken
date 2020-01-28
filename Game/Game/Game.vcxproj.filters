@@ -72,6 +72,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="TankData.cpp" />
+    <ClCompile Include="Sky.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\BTR80A.FBX" />
@@ -89,6 +90,7 @@
     <MeshContentTask Include="Assets\modelData\untitled.fbx" />
     <MeshContentTask Include="Assets\modelData\tiha_houtou.fbx" />
     <MeshContentTask Include="Assets\modelData\tiha_body.fbx" />
+    <MeshContentTask Include="Assets\modelData\sky.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
@@ -157,5 +159,6 @@
     <ClInclude Include="util\Util.h" />
     <ClInclude Include="TankData.h" />
     <ClInclude Include="TankInfo.h" />
+    <ClInclude Include="Sky.h" />
   </ItemGroup>
 </Project>

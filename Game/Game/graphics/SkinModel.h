@@ -92,6 +92,11 @@ public:
 	{
 		m_isShadowReciever = flag;
 	}
+	//soraマップを設定
+	void SetskyMap(ID3D11ShaderResourceView* srv)
+	{
+		m_skyMapSRV = srv;
+	}
 private:
 	/*!
 	*@brief	サンプラステートの初期化。
@@ -123,5 +128,6 @@ private:
 	DirectX::Model*		m_modelDx;						//!<DirectXTKが提供するモデルクラス。
 	ID3D11SamplerState* m_samplerState = nullptr;		//!<サンプラステート。
 	bool m_isShadowReciever = false;						//シャドウレシーバーのフラグ。
+	ID3D11ShaderResourceView* m_skyMapSRV = nullptr;	//kyu-buマップのSRV
 };
 

@@ -137,6 +137,10 @@ void SkinModel::Draw(EnRenderMode renderMode, CMatrix viewMatrix, CMatrix projMa
 		auto modelMaterial = reinterpret_cast<SkinModelEffect*>(material);
 		modelMaterial->SetRenderMode(renderMode);
 	});
+	if (m_skyMapSRV != nullptr)
+	{
+		d3dDeviceContext->PSSetShaderResources(2, 1, &m_skyMapSRV);
+	}
 	//•`‰æB
 	m_modelDx->Draw(
 		d3dDeviceContext,

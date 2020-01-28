@@ -7,6 +7,7 @@ class BackGround;
 class GameCamera;
 class Score;
 class GameResults;
+class Sky;
 class Game:public IGameObject
 {
 public:
@@ -34,6 +35,7 @@ private:
 	GameCamera* m_gamecamera = nullptr;
 	Score* m_score = nullptr;
 	GameResults* m_gameresults = nullptr;
+	Sky* m_sky;
 	wchar_t moji[256];
 	GameFont m_font;
 	Timer m_time;
