@@ -40,6 +40,14 @@ bool Player::Start()
 	m_rot = m_rotation;
 	m_model.SetShadowReciever(true);
 	m_model2.SetShadowReciever(true);
+
+	//ワールド行列の更新。
+	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
+	m_model2.UpdateWorldMatrix(m_pos, m_rotation, m_scale);
+	//シャドウキャスターを登録。
+	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
+	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model2);
+	this->SetIsStop(true);
 	return true;
 }
 void Player::FireBullets(float speed)

@@ -67,9 +67,11 @@ bool Game::Start()
 void Game::OnDestroy()
 {
 	DeleteGO(m_backgeound);
-	/*if (m_player != nullptr) {
-		DeleteGO(m_player);
-	}*/
+	for (auto player : m_playerList) {
+		if (player != nullptr) {
+			DeleteGO(player);
+		}
+	}
 	if (m_testenemy != nullptr) {
 		DeleteGO(m_testenemy);
 	}
@@ -88,11 +90,14 @@ void Game::Update()
 	if (m_time.GetSeconds() >= GameTime)
 	{
 		m_gameresults = NewGO<GameResults>(1, "GameResults");
-			DeleteGO(this);
+		DeleteGO(this);
+
 	}
 	if (m_time.GetSeconds() >= CountDownTime)
 	{
-		//m_player->SetIsStop(false);
+		for (auto player : m_playerList) {
+			player->SetIsStop(false);
+		}
 		uuum = true;
 	}
 
@@ -102,14 +107,16 @@ void Game::Update()
 		DeleteGO(m_testenemy);
 		m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	}
-	/*if (m_player->GetPlayerDeth() == true)
-	{
-		m_score->DethPlus();
-		DeleteGO(m_player);
-		DeleteGO(m_gamecamera);
-		m_player = NewGO<Player>(1, "Player");
-		m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
-	}*/
+	for (auto player : m_playerList) {
+		/*if (m_player->GetPlayerDeth() == true)
+		{
+			m_score->DethPlus();
+			DeleteGO(m_player);
+			DeleteGO(m_gamecamera);
+			m_player = NewGO<Player>(1, "Player");
+			m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
+		}*/
+	}
 	CVector3 ligdir = m_LigDirection;
 	ligdir *= -1.0f;
 	ligdir.Normalize();
