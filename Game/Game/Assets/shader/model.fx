@@ -242,7 +242,7 @@ PSInput_ShadowMap VSMainSkin_ShadowMap(VSInputNmTxWeights In)
 /// デプスシャドウマップ法を使って、影を計算する。。
 /// </summary>
 //引数にinoutをつけると参照渡しになる。
-void CalcShadow(inout float3 lig, float4 posInLvp)
+void CalcShadow(inout float3 lig, float4 posInLvp, float3 normal)
 {
 	if (isShadowReciever == 1) {	//シャドウレシーバー。
 		//LVP空間から見た時の最も手前の深度値をシャドウマップから取得する。
@@ -307,7 +307,7 @@ float4 PSMain(PSInput In) : SV_Target0
 	float4 finalColor = float4(0.0f, 0.0f, 0.0f, 1.0f);
 
 	//デプスシャドウマップを使って影を落とす。。
-	CalcShadow(lig, In.posInLVP);
+	CalcShadow(lig, In.posInLVP, In.Normal);
 
 	finalColor.xyz = albedoColor.xyz * lig;
 	return finalColor;

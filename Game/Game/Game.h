@@ -26,7 +26,8 @@ public:
 		return *m_bulletmaneger;
 	}
 private:
-	Player* m_player = nullptr;
+	//Player* m_player = nullptr;
+	std::vector<Player*> m_playerList;		//プレイヤーのリスト。
 	TestEnemy* m_testenemy = nullptr;
 	BulletManeger* m_bulletmaneger = nullptr;
 	BackGround* m_backgeound = nullptr;

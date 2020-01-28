@@ -38,18 +38,28 @@ void Game::InitLight()
 
 bool Game::Start()
 {
+	int plNo = 0;
 	m_backgeound = NewGO<BackGround>(1, "BackGround");
 	m_level.Init(L"Assets/level/level_00.tkl", [&](LevelObjectData& objData) {
 		if (objData.ForwardMatchName(L"Path_") == true) {
-			m_player = NewGO<Player>(1, "Player");
-			m_player->SetPosition(objData.position);
+			//プレイヤー！！
+			char playerName[15];
+			sprintf(playerName, "Player_%d", plNo);
+			Player* player = NewGO<Player>(0, playerName);
+			player->SetNo(plNo);
+			player->SetPosition(objData.position);
+			m_playerList.push_back(player);
+			if (plNo == 0) {
+				m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
+				m_gamecamera->SetPlayer(player);
+			}
+			plNo++;
 			return true;
 		}
 		return false;
 	});
 	m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
-	m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
 	m_score = NewGO<Score>(1, "Score");
 	return true;
 }
@@ -57,9 +67,9 @@ bool Game::Start()
 void Game::OnDestroy()
 {
 	DeleteGO(m_backgeound);
-	if (m_player != nullptr) {
+	/*if (m_player != nullptr) {
 		DeleteGO(m_player);
-	}
+	}*/
 	if (m_testenemy != nullptr) {
 		DeleteGO(m_testenemy);
 	}
@@ -82,7 +92,7 @@ void Game::Update()
 	}
 	if (m_time.GetSeconds() >= CountDownTime)
 	{
-		m_player->SetIsStop(false);
+		//m_player->SetIsStop(false);
 		uuum = true;
 	}
 
@@ -92,22 +102,23 @@ void Game::Update()
 		DeleteGO(m_testenemy);
 		m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	}
-	if (m_player->GetPlayerDeth() == true)
+	/*if (m_player->GetPlayerDeth() == true)
 	{
 		m_score->DethPlus();
 		DeleteGO(m_player);
 		DeleteGO(m_gamecamera);
 		m_player = NewGO<Player>(1, "Player");
 		m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
-	}
+	}*/
 	CVector3 ligdir = m_LigDirection;
 	ligdir *= -1.0f;
 	ligdir.Normalize();
 	ligdir *= 1000.0f;
-	ligdir += m_player->GetPosition();
+	//ligdir += m_player->GetPosition();
 	g_graphicsEngine->GetShadowMap()->UpdateFromLightTarget(
 		ligdir,
-		m_player->GetPosition()
+		//m_player->GetPosition()
+		CVector3::Zero()
 	);
 }
 
@@ -118,7 +129,7 @@ void Game::Draw()
 
 void Game::PostDraw()
 {
-	m_player->SetIsStop(true);
+	//m_player->SetIsStop(true);
 	int time;
 	m_font.BeginDraw();
 	m_time.TimerStop();
