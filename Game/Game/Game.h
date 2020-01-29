@@ -26,9 +26,14 @@ public:
 	{
 		return *m_bulletmaneger;
 	}
+	bool GetMoveFlag()
+	{
+		return MoveFlag;
+	}
 private:
 	//Player* m_player = nullptr;
 	std::vector<Player*> m_playerList;		//プレイヤーのリスト。
+	std::vector<CVector3> m_Nanka;
 	TestEnemy* m_testenemy = nullptr;
 	BulletManeger* m_bulletmaneger = nullptr;
 	BackGround* m_backgeound = nullptr;
@@ -47,7 +52,7 @@ private:
 	CVector3 m_LigDirection = CVector3::Zero();
 	int GameTime = 180;
 	int	CountDownTime = 10;
-	bool uuum = false;
+	bool MoveFlag = false;
 	Level m_level;
 };
 

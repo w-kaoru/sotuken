@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include"Game.h"
 #include "Player.h"
 #include "Physics/CollisionAttr.h"
 #include "Bullet/Bullet.h"
@@ -40,14 +41,17 @@ bool Player::Start()
 	m_rot = m_rotation;
 	m_model.SetShadowReciever(true);
 	m_model2.SetShadowReciever(true);
-
+	m_game = FindGO<Game>("Game");
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
 	m_model2.UpdateWorldMatrix(m_pos, m_rotation, m_scale);
 	//シャドウキャスターを登録。
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model2);
-	this->SetIsStop(true);
+	if (m_game->GetMoveFlag() == false)
+	{
+		this->SetIsStop(true);
+	}
 	return true;
 }
 void Player::FireBullets(float speed)
@@ -163,6 +167,7 @@ void Player::Move()
 
 void Player::Update()
 {
+
 	if (g_pad[m_No].IsTrigger(enButtonRight)) {
 		int bnum = m_tankData->GetBulletType() + 1;
 		if (BulletType::num == bnum) {
@@ -215,6 +220,7 @@ void Player::Update()
 	//シャドウキャスターを登録。
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model2);
+
 }
 
 void Player::Turn()
