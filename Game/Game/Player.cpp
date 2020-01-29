@@ -38,8 +38,8 @@ bool Player::Start()
 	m_tankData->BulletSelect(BulletType::HE);
 	m_bulletmaneger->SetBulletDamage(m_tankData->GetTankDeta()->bulletdamage);
 	m_rot = m_rotation;
-	m_model.SetShadowReciever(true);
-	m_model2.SetShadowReciever(true);
+	/*m_model.SetShadowReciever(true);
+	m_model2.SetShadowReciever(true);*/
 
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
