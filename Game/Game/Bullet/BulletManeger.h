@@ -8,7 +8,7 @@ public:
 	~BulletManeger();
 	bool Start();
 	//void OnDestroy();
-	Bullet* NewBullet(int k);
+	Bullet* NewBullet(int k, int number);
 	void OnDestroy();
 	void DeleteBullet();
 	void Update();
@@ -41,34 +41,29 @@ public:
 		static BulletManeger instance;//BulletManegerのインスタンスを生成。
 		return instance;
 	}*/
-	bool GetEnemyDamage()
+	bool GetDamageFlag()
 	{
-		return m_enemydamage;
+		return m_damage;
 	}
-	bool GetPlayerDamage()
-	{
-		return m_playerdamage;
-	}
-
 	float GetBulletDamage()
 	{
 		return m_bulletdamage;
 	}
-	void SetPFlag(bool a)
+	void SetDamegeFlag(bool a)
 	{
-		m_playerdamage = a;
-	}
-	void SetEFlag(bool b)
-	{
-		m_enemydamage = b;
+		m_damage = a;
 	}
 	void SetBulletDamage(float a)
 	{
 		m_bulletdamage = a;
 	}
+	int GetNumber()
+	{
+		return m_number;
+	}
 private:
 	std::vector<Bullet*> m_bulletList;
-	bool m_enemydamage = false;
-	bool m_playerdamage = false;
+	bool m_damage = false;
 	float m_bulletdamage = 10.0f;
+	int m_number = 0;
 };

@@ -8,24 +8,30 @@ namespace GameEngine {
 		{
 			bool isHit = false;						//衝突フラグ。
 
-			bool E_bulletisHit = false;          //敵弾とプレイヤーの衝突フラグ。
-			bool P_bulletisHit = false;
+			bool bulletisHit = false;          //敵弾とプレイヤーの衝突フラグ。
+			int hitNumber = 0;
+			int returnNumber = 0;
 
 			btCollisionObject* me = nullptr;					//自分自身。自分自身との衝突を除外するためのメンバ。
 																//衝突したときに呼ばれるコールバック関数。
 			virtual	btScalar	addSingleResult(btCollisionWorld::LocalConvexResult& convexResult, bool normalInWorldSpace)
 			{
 				if (me->getUserIndex() == enCollisionAttr_PlayerBullet&&
-					convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Enemy) {
-					E_bulletisHit = true;
+					convexResult.m_hitCollisionObject->getUserIndex() == 100) {
+					bulletisHit = true;
+					returnNumber = 100;
 				}
 				if (me->getUserIndex() == enCollisionAttr_EnemyBullet &&
-					convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Player) {
-					P_bulletisHit = true;
+					convexResult.m_hitCollisionObject->getUserIndex() != hitNumber + enCollisionAttr_Players) {
+					bulletisHit = true;
 				}
-				if (me->getUserIndex() == enCollisionAttr_PlayerBullet &&
-					convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Player) {
-					P_bulletisHit = true;
+				if (me->getUserIndex() == enCollisionAttr_PlayerBullet) {
+					if (convexResult.m_hitCollisionObject->getUserIndex() >= enCollisionAttr_Players&&
+						convexResult.m_hitCollisionObject->getUserIndex() != hitNumber + enCollisionAttr_Players&&
+						convexResult.m_hitCollisionObject->getUserIndex() < 100) {
+						bulletisHit = true;
+						returnNumber = hitNumber;
+					}
 				}
 				//if (me->getUserIndex() == enCollisionAttr_EnemyBullet
 				//	&& convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Player) {
@@ -36,8 +42,8 @@ namespace GameEngine {
 				//	isHit = true;
 				//}
 				if (convexResult.m_hitCollisionObject == me
-					|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Player
-					|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Enemy
+					|| convexResult.m_hitCollisionObject->getUserIndex() == hitNumber + enCollisionAttr_Players
+					|| convexResult.m_hitCollisionObject->getUserIndex() == 100
 					|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_EnemyBullet) {
 					//自分に衝突した。
 					return 0.0f;
@@ -88,8 +94,7 @@ namespace GameEngine {
 	const CVector3& BulletController::Execute(float deltaTime, CVector3& moveSpeed)
 	{
 		//このフレームでの衝突をはかるために初期化。
-		E_bullethitFlag = false;
-		P_bullethitFlag = false;
+		m_bullethitFlag = false;
 		hitFlag = false;
 		//次の移動先となる座標を計算する。
 		CVector3 nextPosition = m_position;
@@ -117,16 +122,15 @@ namespace GameEngine {
 				//終点は次の移動先。XZ平面での衝突を調べるので、yはposTmp.yを設定する。
 				end.setOrigin(btVector3(nextPosition.x, nextPosition.y, nextPosition.z));
 				SweepResultBullet callback;
+				callback.hitNumber = m_hitNumber;
 				callback.me = m_rigidBody.GetBody();
 				//衝突検出。
 				g_physics.ConvexSweepTest((const btConvexShape*)m_collider.GetBody(), start, end, callback);
-				if (callback.E_bulletisHit) {
+				if (callback.bulletisHit) {
 					//プレイヤー弾がエネミーに当たった。
 					//衝突したのでtrueを返す。
-					E_bullethitFlag = true;
-				}
-				if (callback.P_bulletisHit) {				
-					P_bullethitFlag = true;
+					m_bullethitFlag = true;
+					m_number = callback.returnNumber;
 				}
 				if (callback.isHit) {
 					//当たった。

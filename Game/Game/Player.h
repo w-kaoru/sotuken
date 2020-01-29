@@ -3,6 +3,7 @@
 #include "character/CharacterControllerToBox.h"
 class BulletManeger;
 class TankData;
+class Game;
 class Player:public IGameObject
 {
 public:
@@ -39,17 +40,22 @@ public:
 	{
 		return m_cameraTurnSpeed;
 	}
-	void SetNo(int no) {
-		m_No = no;
+	void SetNumber(int no) {
+		m_number = no;
 	}
-	int GetNo() {
-		return m_No;
+	int GetNumber() {
+		return m_number;
+	}
+	void SetMoveFlag(bool move)
+	{
+		moveflag = move;
 	}
 private:
 	float StX;											//スティックのXだぜ。
 	float StY;											//スティックのYだぜ。
 	SkinModel m_model;									//スキンモデル。
 	SkinModel m_model2;
+	Game* m_game = nullptr;
 	wchar_t moji[256];
 	GameFont m_font;
 	float m_fontsize = 1.0f;							//フォントサイズ
@@ -62,7 +68,6 @@ private:
 	CVector3 m_scale = CVector3::One();					//スケール。
 	BulletManeger* m_bulletmaneger = nullptr;
 	float m_deltatime = 1.0f / 30.0f;                   //1フレームの経過時間
-	//CharacterController m_charaCon;						//キャラクターコントローラーを追加。
 	CharacterControllerToBox m_charaCon;					//キャラクターコントローラーを追加。
 	float m_playerHP = 100.0f;
 	Sprite m_playerhp;
@@ -75,6 +80,7 @@ private:
 	Sprite m_bulletsprite;
 	CVector3 m_aimingpos = CVector3::Zero();
 	CVector3 m_gunpos = CVector3::Zero();
-	int m_No = 0;
+	bool moveflag = false;
+	int m_number = 0;
 };
 

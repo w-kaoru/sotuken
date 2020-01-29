@@ -26,7 +26,7 @@ bool TestEnemy::Start()
 	//m_charaCon.Init(30.0f, 50.0f, m_pos);
 	m_charaCon.Init(
 		{ 60.0f, 100.0f, 115.0f }, m_pos);
-	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Enemy);
+	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(100);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	m_scale *= 0.5f;
 	return true;
@@ -35,7 +35,7 @@ bool TestEnemy::Start()
 void TestEnemy::FireBullets(float speed)
 {
 	
-	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_EnemyBullet);
+	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_EnemyBullet,100);
 	bullet->SetMoveSpeed(m_forward * speed);
 	CVector3 pos = m_pos;
 	pos.y += 50.0f;
@@ -118,10 +118,10 @@ void TestEnemy::Update()
 		FireBullets(800.0f);
 		m_timier = 0;
 	}
-	if (m_bulletmaneger->GetEnemyDamage() == true)
+	if (m_bulletmaneger->GetDamageFlag() == true)
 	{
 		HP -= m_bulletmaneger->GetBulletDamage();
-		m_bulletmaneger->SetEFlag(false);
+		m_bulletmaneger->SetDamegeFlag(false);
 	}
 	if (HP <= 0.0f)
 	{

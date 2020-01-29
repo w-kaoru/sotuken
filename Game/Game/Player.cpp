@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include"Game.h"
 #include "Player.h"
 #include "Physics/CollisionAttr.h"
 #include "Bullet/Bullet.h"
@@ -29,7 +30,7 @@ bool Player::Start()
 	m_aimng.Init(L"Assets/sprite/aiming.dds",100.0f,100.0f);
 	m_bulletsprite.Init(L"Assets/sprite/bullet.dds", 150.0f, 150.0f);
 	m_charaCon.Init(m_tankData->GetTankDeta()->BOXLength, m_pos);
-	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Player);
+	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Players + m_number);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	m_cameraTurnSpeed = m_tankData->GetTankDeta()->cameraturn;
 	m_scale *= m_tankData->GetTankDeta()->scale;
@@ -40,14 +41,17 @@ bool Player::Start()
 	m_rot = m_rotation;
 	/*m_model.SetShadowReciever(true);
 	m_model2.SetShadowReciever(true);*/
-
+	m_game = FindGO<Game>("Game");
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
 	m_model2.UpdateWorldMatrix(m_pos, m_rotation, m_scale);
 	//シャドウキャスターを登録。
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model2);
-	this->SetIsStop(true);
+	if (m_game->GetMoveFlag() == false)
+	{
+		this->SetIsStop(true);
+	}
 	return true;
 }
 void Player::FireBullets(float speed)
@@ -61,7 +65,7 @@ void Player::FireBullets(float speed)
 	m_gunForward = m_gunForward * 90.0f;
 	m_gunForward += m_pos;
 	m_gunForward.y = 45.0f;
-	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet);
+	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet,m_number);
 	bullet->SetMoveSpeed(g_camera3D.GetForward() * m_tankData->GetTankDeta()->bulletSpeed);
 	CVector3 pos = m_pos;
 	pos.y += 90.0f;
@@ -120,8 +124,8 @@ void Player::BulletSprite()
 void Player::Move()
 {
 	//左スティックの入力量を受け取る。
-	 StY = g_pad[m_No].GetLStickYF();
-	 StX = g_pad[m_No].GetLStickXF();
+	 StY = g_pad[m_number].GetLStickYF();
+	 StX = g_pad[m_number].GetLStickXF();
 	//カメラの前方方向と右方向を取得
 	CVector3 cameraForward = g_camera3D.GetForward();
 	CVector3 cameraRight = g_camera3D.GetRight();
@@ -163,14 +167,15 @@ void Player::Move()
 
 void Player::Update()
 {
-	if (g_pad[m_No].IsTrigger(enButtonRight)) {
+
+	if (g_pad[m_number].IsTrigger(enButtonRight)) {
 		int bnum = m_tankData->GetBulletType() + 1;
 		if (BulletType::num == bnum) {
 			bnum = 0;
 		}
 		m_tankData->BulletSelect((BulletType)bnum);
 	}
-	if (g_pad[m_No].IsTrigger(enButtonLeft)) {
+	if (g_pad[m_number].IsTrigger(enButtonLeft)) {
 		int bnum = m_tankData->GetBulletType() - 1;
 		if (bnum <= -1) {
 			bnum = BulletType::num;
@@ -193,15 +198,16 @@ void Player::Update()
 	m_timier++;
 	Move();
 	Turn();
-	if (m_timier >= 20.0f&&g_pad[m_No].IsTrigger(enButtonRB2))
+	if (m_timier >= 20.0f&&g_pad[m_number].IsTrigger(enButtonRB2))
 	{
 			FireBullets(800.0f);
 			m_timier = 0;
 	}
-	if (m_bulletmaneger->GetPlayerDamage() == true )
+	if (m_bulletmaneger->GetDamageFlag() == true &&
+		m_bulletmaneger->GetNumber() == m_number)
 	{
 		m_playerHP -= m_bulletmaneger->GetBulletDamage() - m_tankData->GetTankDeta()->defense;
-		m_bulletmaneger->SetPFlag(false);
+		m_bulletmaneger->SetDamegeFlag(false);
 	}
 	if (m_playerHP <= 0.0f)
 	{
@@ -215,6 +221,7 @@ void Player::Update()
 	//シャドウキャスターを登録。
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model2);
+
 }
 
 void Player::Turn()

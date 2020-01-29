@@ -7,7 +7,7 @@ public:
 	Bullet();
 	~Bullet();
 	bool Start();
-	void Init(int k);
+	void Init(int k, int number);
 	void Update();
 	void Draw();
 	void BulletMove();
@@ -27,13 +27,9 @@ public:
 	{
 		m_moveSpeed += speed;
 	}
-	bool GetEHit()
+	bool GetBulletHit()
 	{
-		return E_HitFlag;
-	}
-	bool GetPHit()
-	{
-		return P_HitFlag;
+		return m_hitFlag;
 	}
 	bool GetHit()
 	{
@@ -47,14 +43,18 @@ public:
 	{
 		return m_bulletCon;
 	}
+	int GetNumber()
+	{
+		return m_number;
+	}
 private:
 	SkinModel m_model;
 	BulletController m_bulletCon;
-	bool E_HitFlag = false;
-	bool P_HitFlag = false;
+	bool m_hitFlag = false;
 	bool IsHit = false;
 	int m_bulletDeleteTime = 0;
 	CVector3 m_position = CVector3::Zero();		//ç¿ïW
 	CVector3 m_moveSpeed = CVector3::Zero();	//à⁄ìÆë¨ìx
+	int m_number = 0;
 };
 

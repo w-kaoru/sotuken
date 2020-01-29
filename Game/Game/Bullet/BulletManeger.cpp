@@ -26,10 +26,10 @@ void BulletManeger::OnDestroy()
 	}
 
 }
-Bullet* BulletManeger::NewBullet(int k)
+Bullet* BulletManeger::NewBullet(int k,int number)
 {
 	Bullet* newbullet = NewGO<Bullet>(1, "Bullet");
-	newbullet->Init(k);
+	newbullet->Init(k, number);
 	m_bulletList.push_back(newbullet);
 	return newbullet;
 }
@@ -38,17 +38,13 @@ void BulletManeger::DeleteBullet()
 	
 	for (auto& bullet : m_bulletList) {
 
-		if (bullet->GetEHit() == true)
+		if (bullet->GetBulletHit() == true)
 		{
-			m_enemydamage = true;
-		}
-		if (bullet->GetPHit() == true)
-		{
-			m_playerdamage = true;
+			m_damage = true;
+			m_number = bullet->GetNumber();
 		}
 		if (bullet->GetTime() > 75
-			|| bullet->GetEHit() == true
-			|| bullet->GetPHit() == true
+			|| bullet->GetBulletHit() == true
 			|| bullet->GetHit() == true)
 		{
 			DeleteGO(bullet);

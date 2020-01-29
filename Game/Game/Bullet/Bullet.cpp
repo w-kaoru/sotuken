@@ -18,11 +18,12 @@ bool Bullet::Start()
 	m_bulletCon.SetPosition(m_position);
 	return true;
 }
-void Bullet::Init(int k)
+void Bullet::Init(int k, int number)
 {	
 
 	m_bulletCon.Init(10.0f, m_position);
 	m_bulletCon.GetRigidBody()->GetBody()->setUserIndex(k);
+	m_bulletCon.SetHitNumber(number);
 
 }
 void Bullet::BulletMove()
@@ -35,17 +36,14 @@ void Bullet::Update()
 {
 	m_bulletDeleteTime++;
 	BulletMove();
-	if (m_bulletCon.GetE_bullethit() == true) {
-		E_HitFlag = true;
-	}
-	if (m_bulletCon.GetP_bullethit() == true)
-	{
-		P_HitFlag = true;
+	if (m_bulletCon.GetBulletHit() == true) {
+		m_hitFlag = true;
 	}
 	if (m_bulletCon.Gethit() == true)
 	{
 		IsHit = true;
 	}
+	m_number = m_bulletCon.GetNumber();
 }
 
 void Bullet::Draw()

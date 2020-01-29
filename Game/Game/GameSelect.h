@@ -12,12 +12,6 @@ public:
 	void Draw();
 	void PostDraw();
 	void FontDraw();
-	/*enum SelectMode
-	{
-		State_TankSelect,
-		State_TankSelect2,
-		State_PlayerSelect,
-	};*/
 private:
 	SkinModel m_tankmodel;
 	SkinModel m_tankmodel2;
@@ -26,7 +20,6 @@ private:
 	CVector3 m_scale = { 0.2f,0.2f,0.2f };
 	Sprite m_background;
 	TankType m_select = TankType::pz4;
-	//SelectMode m_select = State_PlayerSelect;
 	GameFont m_font;
 	wchar_t m_moji[256];
 	float m_mojisize = 1.5f;	//ï∂éöÉTÉCÉY

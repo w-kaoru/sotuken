@@ -37,13 +37,17 @@ namespace GameEngine {
 		{
 			return hitFlag;
 		}
-		bool GetE_bullethit()
+		bool GetBulletHit()
 		{
-			return E_bullethitFlag;
+			return m_bullethitFlag;
 		}
-		bool GetP_bullethit()
+		void SetHitNumber(int number)
 		{
-			return P_bullethitFlag;
+			m_hitNumber = number;
+		}
+		int GetNumber()
+		{
+			return m_number;
 		}
 	private:
 		CVector3 m_position = CVector3::Zero();
@@ -52,8 +56,9 @@ namespace GameEngine {
 		float m_radius = 0.0f;
 		float m_height = 0.0f;
 		bool hitFlag = false;
-		bool E_bullethitFlag = false;   //敵弾がプレイヤーにぶつかったことを知らせるフラグ。
-		bool P_bullethitFlag = false;
+		bool m_bullethitFlag = false;   //敵弾がプレイヤーにぶつかったことを知らせるフラグ。
 		bool deathflag = true;   //弾が存在しているかを判定する。
+		int m_hitNumber = 0;
+		int m_number = 0;
 	};
 };
