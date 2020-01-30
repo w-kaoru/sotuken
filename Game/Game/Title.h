@@ -8,6 +8,6 @@ public:
 	void PostDraw() override;
 private:
 	Sprite m_sprite;
-
+	CSoundSource m_decisionse;
 };
 

@@ -60,7 +60,8 @@ bool Player::Start()
 	{
 		this->SetIsStop(true);
 	}
-	m_playerHP = m_tankData->GetTankDeta()->hp;
+	m_playerHP = max(0, m_tankData->GetTankDeta()->hp);
+	
 	return true;
 }
 
@@ -90,7 +91,7 @@ void Player::FireBullets(float speed)
 void Player::HpGage()
 {
 	//HPスプライトの更新
-	m_playerhp.Update({400.0f,300.0f,0.0f},CQuaternion::Identity(), { m_playerHP / 10, 1.0f, 1.0f });
+	m_playerhp.Update({400.0f,300.0f,0.0f},CQuaternion::Identity(), { m_playerHP / 10.0f, 1.0f, 1.0f });
 	//HPスプライトの表示
 	m_playerhp.Draw(
 		g_camera2D.GetViewMatrix(),
@@ -234,7 +235,7 @@ void Player::Update()
 	if (m_bulletmaneger->GetDamageFlag() == true &&
 		m_bulletmaneger->GetNumber() != m_number)
 	{
-		m_playerHP -= m_bulletmaneger->GetBulletDamage()/* - m_tankData->GetTankDeta()->defense*/;
+		m_playerHP -= m_bulletmaneger->GetBulletDamage() - m_tankData->GetTankDeta()->defense;
 		m_bulletmaneger->SetDamegeFlag(false);
 	}
 	if (m_playerHP <= 0.0f)
@@ -251,6 +252,7 @@ void Player::Update()
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model2);
 
 	g_graphicsEngine->GetLightManager()->SetEyePos(m_gamecamera->GetCameraPos());
+
 }
 
 void Player::Turn()

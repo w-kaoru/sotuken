@@ -52,10 +52,6 @@ bool Game::Start()
 			player->SetPosition(objData.position);
 			m_Nanka.push_back(objData.position);
 			m_playerList.push_back(player);
-			if (plNo == 0) {
-				m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
-				m_gamecamera->SetPlayer(player);
-			}
 			plNo++;
 			return true;
 		}
@@ -80,7 +76,6 @@ void Game::OnDestroy()
 		DeleteGO(m_testenemy);
 	}
 	DeleteGO(m_bulletmaneger);
-	DeleteGO(m_gamecamera);
 	if (FindGO<TankData>("TankData") != nullptr) {
 		DeleteGO(FindGO<TankData>("TankData"));
 	}
@@ -88,7 +83,6 @@ void Game::OnDestroy()
 
 void Game::Update()
 {
-	g_graphicsEngine->GetLightManager()->SetEyePos(m_gamecamera->GetCameraPos());
 
 
 	if (m_time.GetSeconds() >= GameTime)
@@ -119,16 +113,9 @@ void Game::Update()
 			deth = true;
 			m_score->DethPlus();
 			pos = m_Nanka.at(player->GetNumber());
-			int no = player->GetNumber();
-			
 			num = player->GetNumber();
 			DeleteGO(player);
 			player = nullptr;
-			
-			//player->SetNumber(no);
-			//m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
-			//m_gamecamera->SetPlayer(player);
-		
 		}
 	}
 

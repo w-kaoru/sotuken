@@ -15,15 +15,20 @@ Title::~Title()
 bool Title::Start()
 {
 	m_sprite.Init(L"Assets/sprite/Title1.dds", 1280.0f, 720.0f);
+	m_decisionse.Init(L"Assets/sound/battery1.wav");
 	return true;
 }
 
 void Title::Update()
 {
+		
 	if (g_pad[0].IsTrigger(enButtonA))
 	{
-		NewGO<GameSelect>(0, "GameSelect");
-		DeleteGO(this);
+		m_decisionse.Play(false);
+		if (m_decisionse.IsPlaying() != true) {
+			NewGO<GameSelect>(0, "GameSelect");
+			DeleteGO(this);
+		}
 	}
 	m_sprite.Update(CVector3::Zero(), CQuaternion::Identity(), CVector3::One());
 }
