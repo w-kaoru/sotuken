@@ -6,6 +6,7 @@
 #include "Bullet/BulletManeger.h"
 #include "TankInfo.h"
 #include "TankData.h"
+#include "GameCamera.h"
 //#include "Define.h"
 
 Player::Player()
@@ -23,16 +24,23 @@ bool Player::Start()
 {
 	m_tankData = FindGO<TankData>("TankData");
 	m_tankData->BulletSelect(BulletType::HE);
+	if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
+		char gameCameraName[20];
+		sprintf(gameCameraName, "GameCamera_%d", m_number);
+		m_gamecamera = NewGO<GameCamera>(0, gameCameraName);
+		m_gamecamera->SetCameraPos({ m_pos.x,m_pos.y + 130.0f,m_pos.z + 250.0f });
+		m_gamecamera->SetTarget(m_pos);
+		m_gamecamera->SetCameraSpeed(m_tankData->GetTankDeta()->cameraturn);
+	}
 	//cmoファイルの読み込み。
 	m_model.Init(m_tankData->GetTankDeta()->filePath_00);
 	m_model2.Init(m_tankData->GetTankDeta()->filePath_01);
 	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
-	m_aimng.Init(L"Assets/sprite/aiming.dds",100.0f,100.0f);
+	m_aiming.Init(L"Assets/sprite/aiming.dds",100.0f,100.0f);
 	m_bulletsprite.Init(L"Assets/sprite/bullet.dds", 150.0f, 150.0f);
 	m_charaCon.Init(m_tankData->GetTankDeta()->BOXLength, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Players + m_number);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
-	m_cameraTurnSpeed = m_tankData->GetTankDeta()->cameraturn;
 	m_scale *= m_tankData->GetTankDeta()->scale;
 	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
 	m_rotation.SetRotation(CVector3::AxisY(), angle);
@@ -54,6 +62,12 @@ bool Player::Start()
 	}
 	return true;
 }
+
+void Player::OnDestroy()
+{
+	DeleteGO(m_gamecamera);
+}
+
 void Player::FireBullets(float speed)
 {
 	CMatrix rotMatrix;
@@ -86,18 +100,18 @@ void Player::HpGage()
 void Player::Aiming()
 {
 	m_aimingpos.y = -20.0f;
-	m_aimng.Update(m_aimingpos, CQuaternion::Identity(), CVector3::One());
-	m_aimng.Draw(
+	m_aiming.Update(m_aimingpos, CQuaternion::Identity(),m_aimingSpriteScale);
+	m_aiming.Draw(
 		g_camera2D.GetViewMatrix(),
 		g_camera2D.GetProjectionMatrix()
 	);
 	if (m_timier <= 20)
 	{
-		m_aimng.SetColor({ 1.0f,0.0f,0.0f,1.0f });
+		m_aiming.SetColor({ 1.0f,0.0f,0.0f,1.0f });
 	}
 	else
 	{
-		m_aimng.SetColor({ 0.0f,0.0f,0.0f,1.0f });
+		m_aiming.SetColor({ 0.0f,0.0f,0.0f,1.0f });
 	}
 }
 
@@ -167,6 +181,19 @@ void Player::Move()
 
 void Player::Update()
 {
+	if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
+		m_gamecamera->SetTarget(m_pos);
+
+		if (g_pad[m_number].IsPress(enButtonLB2)) {
+			m_gamecamera->SetAimFlag(true);
+			m_aimingSpriteScale = { 5.0f ,5.0f ,5.0f };
+		}
+		else
+		{
+			m_gamecamera->SetAimFlag(false);
+			m_aimingSpriteScale = CVector3::One();
+		}
+	}
 
 	if (g_pad[m_number].IsTrigger(enButtonRight)) {
 		int bnum = m_tankData->GetBulletType() + 1;
@@ -222,6 +249,7 @@ void Player::Update()
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model2);
 
+	g_graphicsEngine->GetLightManager()->SetEyePos(m_gamecamera->GetCameraPos());
 }
 
 void Player::Turn()

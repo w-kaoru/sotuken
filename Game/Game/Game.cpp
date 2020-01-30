@@ -4,7 +4,6 @@
 #include "TestEnemy.h"
 #include "Bullet/BulletManeger.h"
 #include "BackGround.h"
-#include "GameCamera.h"
 #include "Light/DirectionLight.h"
 #include "Title.h"
 #include "Score.h"
@@ -52,10 +51,6 @@ bool Game::Start()
 			player->SetPosition(objData.position);
 			m_Nanka.push_back(objData.position);
 			m_playerList.push_back(player);
-			if (plNo == 0) {
-				m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
-				m_gamecamera->SetPlayer(player);
-			}
 			plNo++;
 			return true;
 		}
@@ -79,7 +74,6 @@ void Game::OnDestroy()
 		DeleteGO(m_testenemy);
 	}
 	DeleteGO(m_bulletmaneger);
-	DeleteGO(m_gamecamera);
 	if (FindGO<TankData>("TankData") != nullptr) {
 		DeleteGO(FindGO<TankData>("TankData"));
 	}
@@ -87,9 +81,6 @@ void Game::OnDestroy()
 
 void Game::Update()
 {
-	g_graphicsEngine->GetLightManager()->SetEyePos(m_gamecamera->GetCameraPos());
-
-
 	if (m_time.GetSeconds() >= GameTime)
 	{
 		m_gameresults = NewGO<GameResults>(1, "GameResults");
@@ -116,14 +107,9 @@ void Game::Update()
 			CVector3 pos = m_Nanka.at(player->GetNumber());
 			int no = player->GetNumber();
 			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
-			DeleteGO(m_gamecamera);
 			player = NewGO<Player>(0, "Player");
 			player->SetPosition(pos);
 			player->SetNumber(no);
-			if (no == 0) {
-				m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
-				m_gamecamera->SetPlayer(player);
-			}
 		}
 	}
 	CVector3 ligdir = m_LigDirection;

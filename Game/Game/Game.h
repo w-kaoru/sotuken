@@ -4,7 +4,6 @@ class Player;
 class TestEnemy;
 class BulletManeger;
 class BackGround;
-class GameCamera;
 class Score;
 class GameResults;
 class Sky;
@@ -14,11 +13,11 @@ public:
 	Game();
 	~Game();
 	void InitLight();
-	bool Start();
-	void OnDestroy();
-	void Update();
-	void Draw();
-	void PostDraw();
+	bool Start()override;
+	void OnDestroy()override;
+	void Update()override;
+	void Draw()override;
+	void PostDraw()override;
 	/*!
 	* @brief	弾丸マネージャを取得。
 	*/
@@ -37,7 +36,6 @@ private:
 	TestEnemy* m_testenemy = nullptr;
 	BulletManeger* m_bulletmaneger = nullptr;
 	BackGround* m_backgeound = nullptr;
-	GameCamera* m_gamecamera = nullptr;
 	Score* m_score = nullptr;
 	GameResults* m_gameresults = nullptr;
 	Sky* m_sky;
