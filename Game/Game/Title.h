@@ -8,5 +8,6 @@ public:
 	void PostDraw() override;
 private:
 	Sprite m_sprite;
+
 };
 

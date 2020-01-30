@@ -32,6 +32,7 @@ public:
 	}
 private:
 	//Player* m_player = nullptr;
+	Player* kkk = nullptr;
 	std::vector<Player*> m_playerList;		//プレイヤーのリスト。
 	std::vector<CVector3> m_Nanka;
 	TestEnemy* m_testenemy = nullptr;
@@ -54,5 +55,6 @@ private:
 	int	CountDownTime = 10;
 	bool MoveFlag = false;
 	Level m_level;
+
 };
 

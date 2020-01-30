@@ -111,6 +111,7 @@ void GameCamera::Update()
 		auto newPositin = newTarget + toCameraPos;
 		g_camera3D.SetTarget(newTarget);
 		g_camera3D.SetPosition(newPositin);
+
 		g_camera3D.Update();
 
 	}

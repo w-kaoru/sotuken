@@ -73,6 +73,7 @@ void Game::OnDestroy()
 	for (auto player : m_playerList) {
 		if (player != nullptr) {
 			DeleteGO(player);
+			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
 		}
 	}
 	if (m_testenemy != nullptr) {
@@ -103,7 +104,11 @@ void Game::Update()
 		DeleteGO(m_testenemy);
 		m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	}
+	CVector3 pos;
+	int num;
+	bool deth = false;
 	for (auto player : m_playerList) {
+		int a = m_time.GetSeconds();
 		if (m_time.GetSeconds() >= CountDownTime)
 		{
 			player->SetIsStop(false);
@@ -111,21 +116,38 @@ void Game::Update()
 		}
 		if (player->GetPlayerDeth() == true)
 		{
+			deth = true;
 			m_score->DethPlus();
-			DeleteGO(player);
-			CVector3 pos = m_Nanka.at(player->GetNumber());
+			pos = m_Nanka.at(player->GetNumber());
 			int no = player->GetNumber();
-			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
-			DeleteGO(m_gamecamera);
-			player = NewGO<Player>(0, "Player");
-			player->SetPosition(pos);
-			player->SetNumber(no);
-			if (no == 0) {
-				m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
-				m_gamecamera->SetPlayer(player);
-			}
+			
+			num = player->GetNumber();
+			DeleteGO(player);
+			player = nullptr;
+			
+			//player->SetNumber(no);
+			//m_gamecamera = NewGO<GameCamera>(1, "GameCamera");
+			//m_gamecamera->SetPlayer(player);
+		
 		}
 	}
+
+	for (auto player : m_playerList)
+	{
+		if (!player)
+		{
+			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
+		}
+	}
+	if (deth) {
+		char playerName[15];
+		sprintf(playerName, "Player_%d", num);
+		Player* pplayer = NewGO<Player>(0, playerName);
+		pplayer->SetNumber(num);
+		pplayer->SetPosition(pos);
+		m_playerList.push_back(pplayer);
+	}
+
 	CVector3 ligdir = m_LigDirection;
 	ligdir *= -1.0f;
 	ligdir.Normalize();

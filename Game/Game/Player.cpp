@@ -52,6 +52,7 @@ bool Player::Start()
 	{
 		this->SetIsStop(true);
 	}
+	m_playerHP = m_tankData->GetTankDeta()->hp;
 	return true;
 }
 void Player::FireBullets(float speed)
@@ -204,9 +205,9 @@ void Player::Update()
 			m_timier = 0;
 	}
 	if (m_bulletmaneger->GetDamageFlag() == true &&
-		m_bulletmaneger->GetNumber() == m_number)
+		m_bulletmaneger->GetNumber() != m_number)
 	{
-		m_playerHP -= m_bulletmaneger->GetBulletDamage() - m_tankData->GetTankDeta()->defense;
+		m_playerHP -= m_bulletmaneger->GetBulletDamage()/* - m_tankData->GetTankDeta()->defense*/;
 		m_bulletmaneger->SetDamegeFlag(false);
 	}
 	if (m_playerHP <= 0.0f)
