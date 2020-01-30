@@ -7,6 +7,7 @@
 #include "TankInfo.h"
 #include "TankData.h"
 #include "GameCamera.h"
+#include "UI.h"
 //#include "Define.h"
 
 Player::Player()
@@ -31,13 +32,18 @@ bool Player::Start()
 		m_gamecamera->SetCameraPos({ m_pos.x,m_pos.y + 130.0f,m_pos.z + 250.0f });
 		m_gamecamera->SetTarget(m_pos);
 		m_gamecamera->SetCameraSpeed(m_tankData->GetTankDeta()->cameraturn);
+		m_gamecamera->SetNumber(m_number);
+		char uiName[20];
+		sprintf(uiName, "UI_%d", m_number);
+		m_ui = NewGO<UI>(1, uiName);
+		m_ui->SetHP(m_tankData->GetTankDeta()->hp);
+		m_ui->SetAimingScale(CVector3::One());
+		m_ui->SetNumber(m_number);
+
 	}
 	//cmoファイルの読み込み。
 	m_model.Init(m_tankData->GetTankDeta()->filePath_00);
 	m_model2.Init(m_tankData->GetTankDeta()->filePath_01);
-	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
-	m_aiming.Init(L"Assets/sprite/aiming.dds",100.0f,100.0f);
-	m_bulletsprite.Init(L"Assets/sprite/bullet.dds", 150.0f, 150.0f);
 	m_charaCon.Init(m_tankData->GetTankDeta()->BOXLength, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Players + m_number);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
@@ -88,55 +94,6 @@ void Player::FireBullets(float speed)
 	bullet->SetPosition(m_gunForward);
 }
 
-void Player::HpGage()
-{
-	//HPスプライトの更新
-	m_playerhp.Update({400.0f,300.0f,0.0f},CQuaternion::Identity(), { m_playerHP / 10.0f, 1.0f, 1.0f });
-	//HPスプライトの表示
-	m_playerhp.Draw(
-		g_camera2D.GetViewMatrix(),
-		g_camera2D.GetProjectionMatrix()
-	);
-}
-
-void Player::Aiming()
-{
-	m_aimingpos.y = -20.0f;
-	m_aiming.Update(m_aimingpos, CQuaternion::Identity(),m_aimingSpriteScale);
-	m_aiming.Draw(
-		g_camera2D.GetViewMatrix(),
-		g_camera2D.GetProjectionMatrix()
-	);
-	if (m_timier <= 20)
-	{
-		m_aiming.SetColor({ 1.0f,0.0f,0.0f,1.0f });
-	}
-	else
-	{
-		m_aiming.SetColor({ 0.0f,0.0f,0.0f,1.0f });
-	}
-}
-
-void Player::BulletSprite()
-{
-
-		m_bulletsprite.Update({ -450.0f,-250.0f,0.0f }, CQuaternion::Identity(), CVector3::One());
-		m_bulletsprite.Draw(
-			g_camera2D.GetViewMatrix(),
-			g_camera2D.GetProjectionMatrix()
-		);
-	switch (m_tankData->GetBulletType())
-	{
-	case HE:
-		m_bulletsprite.SetColor({0.0f,0.0f,0.0f,1.0f });
-		break;
-	case AP:
-		m_bulletsprite.SetColor({ 0.0f,1.0f,0.0f,1.0f });
-		break;
-	}
-
-}
-
 void Player::Move()
 {
 	//左スティックの入力量を受け取る。
@@ -185,15 +142,16 @@ void Player::Update()
 {
 	if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
 		m_gamecamera->SetTarget(m_pos);
+		m_ui->SetHP(m_playerHP);
 
 		if (g_pad[m_number].IsPress(enButtonLB2)) {
 			m_gamecamera->SetAimFlag(true);
-			m_aimingSpriteScale = { 5.0f ,5.0f ,5.0f };
+			m_ui->SetAimingScale({ 5.0f ,5.0f ,5.0f });
 		}
 		else
 		{
 			m_gamecamera->SetAimFlag(false);
-			m_aimingSpriteScale = CVector3::One();
+			m_ui->SetAimingScale(CVector3::One());
 		}
 	}
 
@@ -279,26 +237,4 @@ void Player::Draw()
 
 void Player::PostDraw()
 {
-	HpGage();
-	Aiming();
-	BulletSprite();
-	m_font.BeginDraw();
-	switch (m_tankData->GetBulletType())
-	{
-		case HE:
-			swprintf_s(moji, L"HE弾");		//表示用にデータを加工
-		break;
-		case AP:
-			swprintf_s(moji, L"AP弾");		//表示用にデータを加工
-			break;
-	}
-	m_font.Draw(
-		moji,		//表示する文字列。
-		{ -500.0f,-200.0f },			//表示する座標。0.0f, 0.0が画面の中心。
-		{ 1.0f,0.0f,0.0f,1.0f },
-		0.0f,
-		0.8f,
-		{ 0.0f,1.0f }
-	);
-	m_font.EndDraw();
 }

@@ -1,11 +1,12 @@
 #pragma once
+class UI;
 class GameCamera : public IGameObject
 {
 public:
 	GameCamera();
 	~GameCamera();
-	bool Start();
-	void Update();
+	bool Start()override;
+	void Update()override;
 
 	CVector3 GetCameraPos() 
 	{
@@ -31,11 +32,15 @@ public:
 	{
 		m_cameraSpeed = speed;
 	}
+	void SetNumber(int num) {
+		m_number = num;
+	}
 private:
 	CVector3 m_forword = CVector3::Zero();
 	CVector3 m_target = CVector3::Zero();
 	CVector3 m_position = CVector3::Zero();
 	float m_cameraSpeed = 0.0f;
 	bool m_aimFalg = false;
+	int m_number = 0;
 };
 

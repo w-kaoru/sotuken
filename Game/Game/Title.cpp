@@ -25,10 +25,8 @@ void Title::Update()
 	if (g_pad[0].IsTrigger(enButtonA))
 	{
 		m_decisionse.Play(false);
-		if (m_decisionse.IsPlaying() != true) {
-			NewGO<GameSelect>(0, "GameSelect");
-			DeleteGO(this);
-		}
+		NewGO<GameSelect>(0, "GameSelect");
+		DeleteGO(this);
 	}
 	m_sprite.Update(CVector3::Zero(), CQuaternion::Identity(), CVector3::One());
 }
