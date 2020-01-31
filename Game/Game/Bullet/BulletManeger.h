@@ -8,9 +8,9 @@ public:
 	~BulletManeger();
 	bool Start();
 	//void OnDestroy();
-	Bullet* NewBullet(int k, int number);
+	Bullet* NewBullet(int collision, int number);
 	void OnDestroy();
-	void DeleteBullet();
+	void DeleteBullet(Bullet* bullet);
 	void Update();
 	void Draw();
 	/// <summary>

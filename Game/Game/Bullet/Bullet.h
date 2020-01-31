@@ -7,7 +7,7 @@ public:
 	Bullet();
 	~Bullet();
 	bool Start();
-	void Init(int k, int number);
+	void Init(int collision, int number);
 	void Update();
 	void Draw();
 	void BulletMove();
@@ -41,7 +41,7 @@ public:
 	}
 	const BulletController &GetBulletController()
 	{
-		return m_bulletCon;
+		return *m_bulletCon;
 	}
 	int GetNumber()
 	{
@@ -49,7 +49,7 @@ public:
 	}
 private:
 	SkinModel m_model;
-	BulletController m_bulletCon;
+	BulletController* m_bulletCon = nullptr;
 	bool m_hitFlag = false;
 	bool IsHit = false;
 	int m_bulletDeleteTime = 0;

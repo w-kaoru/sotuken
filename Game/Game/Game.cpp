@@ -75,7 +75,9 @@ void Game::OnDestroy()
 	if (m_testenemy != nullptr) {
 		DeleteGO(m_testenemy);
 	}
-	DeleteGO(m_bulletmaneger);
+	if (m_bulletmaneger != nullptr) {
+		DeleteGO(m_bulletmaneger);
+	}
 	if (FindGO<TankData>("TankData") != nullptr) {
 		DeleteGO(FindGO<TankData>("TankData"));
 	}
@@ -102,7 +104,6 @@ void Game::Update()
 	int num;
 	bool deth = false;
 	for (auto player : m_playerList) {
-		int a = m_time.GetSeconds();
 		if (m_time.GetSeconds() >= CountDownTime)
 		{
 			player->SetIsStop(false);
@@ -115,17 +116,17 @@ void Game::Update()
 			pos = m_Nanka.at(player->GetNumber());
 			num = player->GetNumber();
 			DeleteGO(player);
+			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
 			player = nullptr;
 		}
 	}
-
-	for (auto player : m_playerList)
+	/*for (auto player : m_playerList)
 	{
 		if (!player)
 		{
 			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
 		}
-	}
+	}*/
 	if (deth) {
 		char playerName[15];
 		sprintf(playerName, "Player_%d", num);
