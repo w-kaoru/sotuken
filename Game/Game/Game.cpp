@@ -161,8 +161,7 @@ void Game::Draw()
 
 void Game::PostDraw()
 {
-	//m_player->SetIsStop(true);
-
+	
 	
 	int time;
 	m_time.TimerStop();
@@ -183,7 +182,7 @@ void Game::PostDraw()
 		swprintf_s(moji, L"%d", (CountDownTime - time));		//表示用にデータを加工
 		m_font.Draw(
 			moji,		//表示する文字列。
-			{ -60.0f,60.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+			{ -60.0f,60.0f },//表示する座標。0.0f, 0.0が画面の中心。
 			{ 0.0f,0.0f,0.0f,1.0f },
 			0.0f,
 			1.5f,

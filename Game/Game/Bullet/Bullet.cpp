@@ -17,6 +17,9 @@ bool Bullet::Start()
 {	
 	m_model.Init(L"Assets/modelData/bullet1.cmo");
 	m_bulletCon->SetPosition(m_position);
+	//Œü‚«‚ð•Ï‚¦‚éB
+	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
+	m_rotation.SetRotation(CVector3::AxisY(), angle);
 	return true;
 }
 void Bullet::Init(int collision, int number)
@@ -33,17 +36,10 @@ void Bullet::BulletMove()
 	m_model.UpdateWorldMatrix(m_position,m_rotation, CVector3::One());
 }
 
-void Bullet::BulletTurn()
-{
-	//Œü‚«‚ð•Ï‚¦‚éB
-	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
-	m_rotation.SetRotation(CVector3::AxisY(), angle);
-}
 void Bullet::Update()
 {
 	m_bulletDeleteTime++;
 	BulletMove();
-	BulletTurn();
 	if (m_bulletCon->GetBulletHit() == true) {
 		m_hitFlag = true;
 	}

@@ -11,7 +11,6 @@ public:
 	void Update();
 	void Draw();
 	void BulletMove();
-	void BulletTurn();
 	/// <summary>
 	/// ’e‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğİ’è
 	/// </summary>
