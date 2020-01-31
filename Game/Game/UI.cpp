@@ -55,7 +55,10 @@ void UI::PostDraw()
 		g_camera2D.GetViewMatrix(),
 		g_camera2D.GetProjectionMatrix()
 	);
-
+	m_bulletsprite.Draw(
+		g_camera2D.GetViewMatrix(),
+		g_camera2D.GetProjectionMatrix()
+		);
 	m_font.BeginDraw();
 	switch (m_tankData->GetBulletType())
 	{

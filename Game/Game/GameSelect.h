@@ -27,5 +27,7 @@ private:
 	CVector3 m_LigDirection = CVector3::Zero();
 	int m_playercount = max(min(m_playercount, 4), 1);
 	TankData* m_taknData = nullptr;
+	bool deleteFlag = false;
+	CSoundSource m_decisionse;
 };
 

@@ -9,5 +9,6 @@ public:
 private:
 	Sprite m_sprite;
 	CSoundSource m_decisionse;
+	bool SceneChenge = false;
 };
 

@@ -21,10 +21,15 @@ bool Title::Start()
 
 void Title::Update()
 {
-		
+
 	if (g_pad[0].IsTrigger(enButtonA))
 	{
 		m_decisionse.Play(false);
+		SceneChenge = true;
+
+	}
+	else if (SceneChenge&&m_decisionse.IsPlaying() == false)
+	{
 		NewGO<GameSelect>(0, "GameSelect");
 		DeleteGO(this);
 	}

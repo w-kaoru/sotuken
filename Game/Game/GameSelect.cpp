@@ -24,6 +24,7 @@ bool GameSelect::Start()
 	m_background.Init(L"Assets/sprite/selectback.dds", 1280.0f, 720.0f);
 	m_tankmodel.Init(L"Assets/modelData/pz4.cmo");
 	m_tankmodel2.Init(L"Assets/modelData/tiha.cmo");
+	m_decisionse.Init(L"Assets/sound/battery1.wav");
 	g_camera3D.SetPosition({ 0.0f,40.0f,100.0f });
 	g_camera3D.SetTarget({0.0f,0.0f,0.0f});
 	g_camera3D.SetFar(1000.0f);
@@ -34,7 +35,7 @@ bool GameSelect::Start()
 
 void GameSelect::Update()
 {
-	bool deleteFlag = false;
+	
 	CQuaternion qrot;
 	qrot.SetRotationDeg(CVector3::AxisY(), 2.0f);
 	m_background.Update(CVector3::Zero(), CQuaternion::Identity(), CVector3::One());
@@ -47,6 +48,7 @@ void GameSelect::Update()
 		//ワールド行列の更新。
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
+			m_decisionse.Play(false);
 			deleteFlag = true;
 		}
 		if (g_pad[0].IsTrigger(enButtonRight))
@@ -57,6 +59,7 @@ void GameSelect::Update()
 	case tiha:
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
+			m_decisionse.Play(false);
 			deleteFlag = true;
 		}
 		if (g_pad[0].IsTrigger(enButtonRight))
@@ -75,7 +78,7 @@ void GameSelect::Update()
 		}
 		break;
 	}
-	if (deleteFlag) {
+	if (deleteFlag==true && m_decisionse.IsPlaying()== false) {
 		m_taknData = NewGO<TankData>(0, "TankData");
 		m_taknData->Select(m_select);
 		NewGO<Game>(0, "Game");
