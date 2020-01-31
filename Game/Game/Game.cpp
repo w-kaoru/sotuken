@@ -69,6 +69,11 @@ void Game::OnDestroy()
 	for (auto player : m_playerList) {
 		if (player != nullptr) {
 			DeleteGO(player);
+			//m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
+		}
+	}
+	for (auto player : m_playerList) {
+		if (!player) {
 			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
 		}
 	}
@@ -102,7 +107,6 @@ void Game::Update()
 	//}
 	CVector3 pos;
 	int num;
-	bool deth = false;
 	for (auto player : m_playerList) {
 		if (m_time.GetSeconds() >= CountDownTime)
 		{
@@ -111,31 +115,32 @@ void Game::Update()
 		}
 		if (player->GetPlayerDeth() == true)
 		{
-			deth = true;
+			m_isDeth = true;
 			m_score->DethPlus();
 			pos = m_Nanka.at(player->GetNumber());
 			num = player->GetNumber();
 			DeleteGO(player);
 			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
-			player = nullptr;
+			//player = nullptr;
 		}
 	}
-	/*for (auto player : m_playerList)
+	for (auto player : m_playerList)
 	{
 		if (!player)
 		{
 			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
 		}
-	}*/
-	if (deth) {
+	}
+
+	if (m_isDeth) {
 		char playerName[15];
 		sprintf(playerName, "Player_%d", num);
 		Player* pplayer = NewGO<Player>(0, playerName);
 		pplayer->SetNumber(num);
 		pplayer->SetPosition(pos);
 		m_playerList.push_back(pplayer);
+		m_isDeth = false;
 	}
-
 	CVector3 ligdir = m_LigDirection;
 	ligdir *= -1.0f;
 	ligdir.Normalize();

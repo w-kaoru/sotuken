@@ -46,6 +46,7 @@ bool Player::Start()
 	m_model2.Init(m_tankData->GetTankDeta()->filePath_01);
 	m_charaCon.Init(m_tankData->GetTankDeta()->BOXLength, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Players + m_number);
+	m_charaCon.SetPlayerNumber(m_number);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	m_bulletmaneger->SetBulletDamage(m_tankData->GetTankDeta()->bulletdamage);
 	m_scale *= m_tankData->GetTankDeta()->scale;
@@ -192,7 +193,8 @@ void Player::Update()
 			m_timier = 0;
 	}
 	if (m_bulletmaneger->GetDamageFlag() == true &&
-		m_bulletmaneger->GetNumber() != m_number)
+		m_bulletmaneger->GetNumber() != m_number &&
+		m_bulletmaneger->GetHitNumber() == m_charaCon.GetPlayerNumber())
 	{
 		m_playerHP -= m_bulletmaneger->GetBulletDamage() - m_tankData->GetTankDeta()->defense;
 		m_bulletmaneger->SetDamegeFlag(false);

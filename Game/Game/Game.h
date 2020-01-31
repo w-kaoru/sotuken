@@ -53,6 +53,6 @@ private:
 	int	CountDownTime = 1;
 	bool MoveFlag = false;
 	Level m_level;
-
+	bool m_isDeth = false;
 };
 

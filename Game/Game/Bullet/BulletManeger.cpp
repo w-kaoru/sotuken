@@ -39,6 +39,7 @@ void BulletManeger::DeleteBullet(Bullet* bullet)
 	{
 		m_damage = true;
 		m_number = bullet->GetNumber();
+		m_hitNumber = bullet->GetHitNumber();
 	}
 	if (bullet->GetTime() > 75
 		|| bullet->GetBulletHit() == true
@@ -57,7 +58,29 @@ void BulletManeger::Update()
 
 	for (auto& bullet : m_bulletList) {
 		//bullet->BulletMove();
-		DeleteBullet(bullet);
+		//DeleteBullet(bullet);
+		if (bullet->GetBulletHit() == true)
+		{
+			m_damage = true;
+			m_number = bullet->GetNumber();
+			m_hitNumber = bullet->GetHitNumber();
+		}
+		if (bullet->GetTime() > 75
+			|| bullet->GetBulletHit() == true
+			|| bullet->GetHit() == true)
+		{
+			DeleteGO(bullet);
+			bullet = nullptr;
+		}
+	}
+
+	for (auto& bullet : m_bulletList) {
+		if (!bullet) {
+			m_bulletList.erase(
+				std::remove(m_bulletList.begin(), m_bulletList.end(), bullet),
+				m_bulletList.end()
+			);
+		}
 	}
 }
 
