@@ -61,9 +61,14 @@ public:
 	{
 		return m_number;
 	}
+	int GetHitNumber()
+	{
+		return m_hitNumber;
+	}
 private:
 	std::vector<Bullet*> m_bulletList;
 	bool m_damage = false;
 	float m_bulletdamage = 10.0f;
 	int m_number = 0;
+	int m_hitNumber = 0;
 };

@@ -49,10 +49,10 @@ private:
 	Effekseer::Handle m_testEffectHandle = -1;
 	prefab::DirectionLight* m_directionLight = nullptr;
 	CVector3 m_LigDirection = CVector3::Zero();
-	int GameTime = 180;
+	int GameTime = 180/9;
 	int	CountDownTime = 1;
 	bool MoveFlag = false;
 	Level m_level;
-
+	bool m_isDeth = false;
 };
 

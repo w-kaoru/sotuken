@@ -47,6 +47,10 @@ public:
 	{
 		return m_number;
 	}
+	int GetHitNumber()
+	{
+		return m_hitNumber;
+	}
 private:
 	SkinModel m_model;
 	BulletController* m_bulletCon = nullptr;
@@ -56,5 +60,6 @@ private:
 	CVector3 m_position = CVector3::Zero();		//À•W
 	CVector3 m_moveSpeed = CVector3::Zero();	//ˆÚ“®‘¬“x
 	int m_number = 0;
+	int m_hitNumber = 0;
 };
 

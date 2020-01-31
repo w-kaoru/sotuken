@@ -44,6 +44,7 @@ void Bullet::Update()
 		IsHit = true;
 	}
 	m_number = m_bulletCon->GetNumber();
+	m_hitNumber = m_bulletCon->GetHitNumber();
 }
 
 void Bullet::Draw()
