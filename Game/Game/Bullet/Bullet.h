@@ -11,6 +11,7 @@ public:
 	void Update();
 	void Draw();
 	void BulletMove();
+	void BulletTurn();
 	/// <summary>
 	/// 弾のポジションを設定
 	/// </summary>
@@ -59,6 +60,7 @@ private:
 	int m_bulletDeleteTime = 0;
 	CVector3 m_position = CVector3::Zero();		//座標
 	CVector3 m_moveSpeed = CVector3::Zero();	//移動速度
+	CQuaternion m_rotation = CQuaternion::Identity();
 	int m_number = 0;
 	int m_hitNumber = 0;
 };

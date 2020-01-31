@@ -30,12 +30,20 @@ void Bullet::BulletMove()
 {
 	m_position = m_bulletCon->Execute(1.0f / 30.0f, m_moveSpeed);
 	
-	m_model.UpdateWorldMatrix(m_position, CQuaternion::Identity(), CVector3::One());
+	m_model.UpdateWorldMatrix(m_position,m_rotation, CVector3::One());
+}
+
+void Bullet::BulletTurn()
+{
+	//Œü‚«‚ð•Ï‚¦‚éB
+	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
+	m_rotation.SetRotation(CVector3::AxisY(), angle);
 }
 void Bullet::Update()
 {
 	m_bulletDeleteTime++;
 	BulletMove();
+	BulletTurn();
 	if (m_bulletCon->GetBulletHit() == true) {
 		m_hitFlag = true;
 	}
