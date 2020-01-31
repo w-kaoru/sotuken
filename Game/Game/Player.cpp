@@ -47,11 +47,11 @@ bool Player::Start()
 	m_charaCon.Init(m_tankData->GetTankDeta()->BOXLength, m_pos);
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Players + m_number);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
+	m_bulletmaneger->SetBulletDamage(m_tankData->GetTankDeta()->bulletdamage);
 	m_scale *= m_tankData->GetTankDeta()->scale;
 	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
 	m_rotation.SetRotation(CVector3::AxisY(), angle);
 	m_tankData->BulletSelect(BulletType::HE);
-	m_bulletmaneger->SetBulletDamage(m_tankData->GetTankDeta()->bulletdamage);
 	m_rot = m_rotation;
 	/*m_model.SetShadowReciever(true);
 	m_model2.SetShadowReciever(true);*/
@@ -73,7 +73,8 @@ bool Player::Start()
 
 void Player::OnDestroy()
 {
-	DeleteGO(m_gamecamera);
+	if (m_gamecamera != nullptr) DeleteGO(m_gamecamera);
+	if (m_ui != nullptr) DeleteGO(m_ui);
 }
 
 void Player::FireBullets(float speed)
@@ -87,7 +88,7 @@ void Player::FireBullets(float speed)
 	m_gunForward = m_gunForward * 90.0f;
 	m_gunForward += m_pos;
 	m_gunForward.y = 45.0f;
-	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet,m_number);
+	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet, m_number);
 	bullet->SetMoveSpeed(g_camera3D.GetForward() * m_tankData->GetTankDeta()->bulletSpeed);
 	CVector3 pos = m_pos;
 	pos.y += 90.0f;
@@ -222,7 +223,6 @@ void Player::Turn()
 
 void Player::Draw()
 {
-	
 	m_model.Draw(
 		enRenderMode_Normal,
 		g_camera3D.GetViewMatrix(), 
