@@ -57,7 +57,7 @@ bool Game::Start()
 		}
 		return false;
 	});
-	m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
+	//m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
 	m_score = NewGO<Score>(1, "Score");
 	return true;
@@ -72,9 +72,9 @@ void Game::OnDestroy()
 			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
 		}
 	}
-	if (m_testenemy != nullptr) {
-		DeleteGO(m_testenemy);
-	}
+	//if (m_testenemy != nullptr) {
+	//	DeleteGO(m_testenemy);
+	//}
 	if (m_bulletmaneger != nullptr) {
 		DeleteGO(m_bulletmaneger);
 	}
@@ -94,12 +94,12 @@ void Game::Update()
 
 	}
 
-	if (m_testenemy->GetDeth() == true)
-	{
-		m_score->ScorePlus();
-		DeleteGO(m_testenemy);
-		m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
-	}
+	//if (m_testenemy->GetDeth() == true)
+	//{
+	//	m_score->ScorePlus();
+	//	DeleteGO(m_testenemy);
+	//	m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
+	//}
 	CVector3 pos;
 	int num;
 	bool deth = false;
