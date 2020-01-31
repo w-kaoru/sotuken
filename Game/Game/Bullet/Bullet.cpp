@@ -15,7 +15,7 @@ Bullet::~Bullet()
 
 bool Bullet::Start()
 {	
-	m_model.Init(L"Assets/modelData/bullet.cmo");
+	m_model.Init(L"Assets/modelData/bullet1.cmo");
 	m_bulletCon->SetPosition(m_position);
 	return true;
 }

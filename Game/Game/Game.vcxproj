@@ -238,6 +238,7 @@
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\BTR80A.FBX" />
     <MeshContentTask Include="Assets\modelData\bullet.FBX" />
+    <MeshContentTask Include="Assets\modelData\bullet1.FBX" />
     <MeshContentTask Include="Assets\modelData\CityMap1.fbx" />
     <MeshContentTask Include="Assets\modelData\pz4.fbx" />
     <MeshContentTask Include="Assets\modelData\pz4_00.fbx" />

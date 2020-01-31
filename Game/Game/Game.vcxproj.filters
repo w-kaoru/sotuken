@@ -92,6 +92,7 @@
     <MeshContentTask Include="Assets\modelData\tiha_houtou.fbx" />
     <MeshContentTask Include="Assets\modelData\tiha_body.fbx" />
     <MeshContentTask Include="Assets\modelData\sky.FBX" />
+    <MeshContentTask Include="Assets\modelData\bullet1.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
