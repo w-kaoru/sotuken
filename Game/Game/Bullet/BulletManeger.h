@@ -71,4 +71,5 @@ private:
 	float m_bulletdamage = 10.0f;
 	int m_number = 0;
 	int m_hitNumber = 0;
+	CSoundSource m_explosionse;
 };

@@ -29,5 +29,7 @@ private:
 	TankData* m_taknData = nullptr;
 	bool deleteFlag = false;
 	CSoundSource m_decisionse;
+	CSoundSource m_selectbgm;
+	CSoundSource m_cursorse;
 };
 

@@ -15,6 +15,9 @@ Title::~Title()
 bool Title::Start()
 {
 	m_sprite.Init(L"Assets/sprite/Title1.dds", 1280.0f, 720.0f);
+	m_titlebgm.Init(L"Assets/sound/Title.wav");
+	m_titlebgm.Play(true);
+	m_titlebgm.SetVolume(0.5f);
 	m_decisionse.Init(L"Assets/sound/battery1.wav");
 	return true;
 }

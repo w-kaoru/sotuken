@@ -20,6 +20,7 @@ bool Bullet::Start()
 	//Œü‚«‚ğ•Ï‚¦‚éB
 	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
 	m_rotation.SetRotation(CVector3::AxisY(), angle);
+	
 	return true;
 }
 void Bullet::Init(int collision, int number)

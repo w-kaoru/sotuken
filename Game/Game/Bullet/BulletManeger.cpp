@@ -16,6 +16,7 @@ BulletManeger::~BulletManeger()
 
 bool BulletManeger::Start()
 {
+	m_explosionse.Init(L"Assets/sound/explosion.wav");
 	return true;
 }
 void BulletManeger::OnDestroy()
@@ -69,6 +70,7 @@ void BulletManeger::Update()
 			|| bullet->GetBulletHit() == true
 			|| bullet->GetHit() == true)
 		{
+			m_explosionse.Play(false);
 			DeleteGO(bullet);
 			bullet = nullptr;
 		}

@@ -8,6 +8,7 @@ public:
 	void PostDraw() override;
 private:
 	Sprite m_sprite;
+	CSoundSource m_titlebgm;
 	CSoundSource m_decisionse;
 	bool SceneChenge = false;
 };
