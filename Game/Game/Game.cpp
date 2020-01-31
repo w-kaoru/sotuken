@@ -121,16 +121,16 @@ void Game::Update()
 			num = player->GetNumber();
 			DeleteGO(player);
 			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
-			player = nullptr;
+			//player = nullptr;
 		}
 	}
-	/*for (auto player : m_playerList)
+	for (auto player : m_playerList)
 	{
 		if (!player)
 		{
 			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
 		}
-	}*/
+	}
 
 	if (m_isDeth) {
 		char playerName[15];
