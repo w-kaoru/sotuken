@@ -100,6 +100,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="BulletTypeChange.cpp" />
     <ClCompile Include="Bullet\Bullet.cpp" />
     <ClCompile Include="Bullet\BulletController.cpp" />
     <ClCompile Include="Bullet\BulletManeger.cpp" />
@@ -167,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="BulletTypeChange.h" />
     <ClInclude Include="Bullet\Bullet.h" />
     <ClInclude Include="Bullet\BulletController.h" />
     <ClInclude Include="Bullet\BulletManeger.h" />

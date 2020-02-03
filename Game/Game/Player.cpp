@@ -8,6 +8,7 @@
 #include "TankData.h"
 #include "GameCamera.h"
 #include "UI.h"
+#include "BulletTypeChange.h"
 //#include "Define.h"
 
 Player::Player()
@@ -24,7 +25,8 @@ Player::~Player()
 bool Player::Start()
 {
 	m_tankData = FindGO<TankData>("TankData");
-	m_tankData->BulletSelect(BulletType::HE);
+	m_bulletChange = NewGO<BulletTypeChange>(1, "BulletTypeChange");
+	m_bulletChange->BulletSelect(BulletType::HE);
 	if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
 		char gameCameraName[20];
 		sprintf(gameCameraName, "GameCamera_%d", m_number);
@@ -39,6 +41,7 @@ bool Player::Start()
 		m_ui->SetHP(m_tankData->GetTankDeta()->hp);
 		m_ui->SetAimingScale(CVector3::One());
 		m_ui->SetNumber(m_number);
+		m_ui->SetBulletChange(m_bulletChange);
 
 	}
 	//cmoファイルの読み込み。
@@ -48,11 +51,10 @@ bool Player::Start()
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Players + m_number);
 	m_charaCon.SetPlayerNumber(m_number);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
-	m_bulletmaneger->SetBulletDamage(m_tankData->GetTankDeta()->bulletdamage);
+	m_bulletmaneger->SetBulletDamage(m_bulletChange->GetTankBulletInfo()->bulletdamage);
 	m_scale *= m_tankData->GetTankDeta()->scale;
 	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
 	m_rotation.SetRotation(CVector3::AxisY(), angle);
-	m_tankData->BulletSelect(BulletType::HE);
 	m_rot = m_rotation;
 	/*m_model.SetShadowReciever(true);
 	m_model2.SetShadowReciever(true);*/
@@ -90,7 +92,7 @@ void Player::FireBullets(float speed)
 	m_gunForward += m_pos;
 	m_gunForward.y = 45.0f;
 	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet, m_number);
-	bullet->SetMoveSpeed(g_camera3D.GetForward() * m_tankData->GetTankDeta()->bulletSpeed);
+	bullet->SetMoveSpeed(g_camera3D.GetForward() * m_bulletChange->GetTankBulletInfo()->bulletSpeed);
 	CVector3 pos = m_pos;
 	pos.y += 90.0f;
 	bullet->SetPosition(m_gunForward);
@@ -111,7 +113,7 @@ void Player::Move()
 	cameraRight.Normalize();
 	/*m_moveSpeed += m_forward * StX * MOVE_SPEED * m_deltatime;
 	m_moveSpeed += m_right * StX*MOVE_SPEED * m_deltatime;*/
-	m_moveSpeed += m_forward * StY * m_tankData->GetTankDeta()->speed;
+	m_moveSpeed += m_forward * StY * m_tankData->GetTankDeta()->speed * m_downSpeed;
 	CVector3 vec = m_forward * StY + m_right * StX;
 	if (vec.Length() > 0.0f)
 	{
@@ -158,19 +160,19 @@ void Player::Update()
 	}
 
 	if (g_pad[m_number].IsTrigger(enButtonRight)) {
-		int bnum = m_tankData->GetBulletType() + 1;
+		int bnum = m_bulletChange->GetBulletType() + 1;
 		if (BulletType::num == bnum) {
 			bnum = 0;
 		}
-		m_tankData->BulletSelect((BulletType)bnum);
+		m_bulletChange->BulletSelect((BulletType)bnum);
 	}
 	if (g_pad[m_number].IsTrigger(enButtonLeft)) {
-		int bnum = m_tankData->GetBulletType() - 1;
+		int bnum = m_bulletChange->GetBulletType() - 1;
 		if (bnum <= -1) {
 			bnum = BulletType::num;
 			bnum--;
 		}
-		m_tankData->BulletSelect((BulletType)bnum);
+		m_bulletChange->BulletSelect((BulletType)bnum);
 	}
 	CMatrix rotMatrix; 
 	rotMatrix.MakeRotationFromQuaternion(m_rot);
@@ -198,6 +200,11 @@ void Player::Update()
 	{
 		m_playerHP -= m_bulletmaneger->GetBulletDamage() - m_tankData->GetTankDeta()->defense;
 		m_bulletmaneger->SetDamegeFlag(false);
+		/*
+		m_downSpeed *= 0.09f;
+		m_downSpeed = max(0.0f, m_downSpeed);
+		m_downSpeed = min(1.0f, m_downSpeed);
+		*/
 	}
 	if (m_playerHP <= 0.0f)
 	{

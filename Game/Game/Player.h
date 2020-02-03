@@ -6,6 +6,7 @@ class TankData;
 class Game;
 class GameCamera;
 class UI;
+class BulletTypeChange;
 class Player:public IGameObject
 {
 public:
@@ -76,5 +77,7 @@ private:
 	int m_number = 0;
 	CVector3 m_aimingSpriteScale = CVector3::One();
 	UI* m_ui = nullptr;
+	BulletTypeChange* m_bulletChange = nullptr;
+	float m_downSpeed = 1.0f;
 };
 

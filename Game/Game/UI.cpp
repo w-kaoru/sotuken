@@ -2,6 +2,7 @@
 #include "UI.h"
 #include "TankInfo.h"
 #include "TankData.h"
+#include "BulletTypeChange.h"
 
 UI::UI()
 {
@@ -13,7 +14,7 @@ UI::~UI()
 
 bool UI::Start()
 {
-	m_tankData = FindGO<TankData>("TankData");
+	//m_tankData = FindGO<TankData>("TankData");
 	m_aiming.Init(L"Assets/sprite/aiming.dds", 100.0f, 100.0f);
 	m_bulletsprite.Init(L"Assets/sprite/bullet.dds", 150.0f, 150.0f);
 	m_playerhp.Init(L"Assets/sprite/hp_gauge.dds", 40.0f, 10.0f);
@@ -28,7 +29,7 @@ void UI::Update()
 		g_camera2D.GetViewMatrix(),
 		g_camera2D.GetProjectionMatrix()
 	);
-	switch (m_tankData->GetBulletType())
+	switch (m_bulletChange->GetBulletType())
 	{
 	case HE:
 		m_bulletsprite.SetColor({ 0.0f,0.0f,0.0f,1.0f });
@@ -60,7 +61,7 @@ void UI::PostDraw()
 		g_camera2D.GetProjectionMatrix()
 		);
 	m_font.BeginDraw();
-	switch (m_tankData->GetBulletType())
+	switch (m_bulletChange->GetBulletType())
 	{
 	case HE:
 		swprintf_s(m_moji, L"HE弾");		//表示用にデータを加工

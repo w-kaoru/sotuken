@@ -74,6 +74,7 @@
     <ClCompile Include="TankData.cpp" />
     <ClCompile Include="Sky.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="BulletTypeChange.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\BTR80A.FBX" />
@@ -163,5 +164,6 @@
     <ClInclude Include="TankInfo.h" />
     <ClInclude Include="Sky.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="BulletTypeChange.h" />
   </ItemGroup>
 </Project>
