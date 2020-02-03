@@ -78,5 +78,6 @@ private:
 	UI* m_ui = nullptr;
 	Effekseer::Effect* m_smokeEffect = nullptr;//テストエフェクト
 	Effekseer::Handle m_smokeEffectHandle = -1;
+	CSoundSource m_movese;
 };
 

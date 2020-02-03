@@ -25,7 +25,8 @@ bool Player::Start()
 {
 	m_tankData = FindGO<TankData>("TankData");
 	m_tankData->BulletSelect(BulletType::HE);
-	
+	m_movese.Init(L"Assets/sound/running-tank-1.wav");
+	m_movese.SetVolume(0.3f);
 	if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
 		char gameCameraName[20];
 		sprintf(gameCameraName, "GameCamera_%d", m_number);
@@ -105,6 +106,15 @@ void Player::Move()
 	//左スティックの入力量を受け取る。
 	 StY = g_pad[m_number].GetLStickYF();
 	 StX = g_pad[m_number].GetLStickXF();
+	 if (g_pad[m_number].GetLStickYF() >= 0.001f ||
+		 g_pad[m_number].GetLStickYF() <= -0.001f)
+	 {
+		 m_movese.Play(true);
+	 }
+	 else
+	 {
+		 m_movese.Stop();
+	 }
 	//カメラの前方方向と右方向を取得
 	CVector3 cameraForward = g_camera3D.GetForward();
 	CVector3 cameraRight = g_camera3D.GetRight();
