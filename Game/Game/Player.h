@@ -76,6 +76,7 @@ private:
 	int m_number = 0;
 	CVector3 m_aimingSpriteScale = CVector3::One();
 	UI* m_ui = nullptr;
-
+	Effekseer::Effect* m_smokeEffect = nullptr;//テストエフェクト
+	Effekseer::Handle m_smokeEffectHandle = -1;
 };
 

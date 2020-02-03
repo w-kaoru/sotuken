@@ -69,7 +69,8 @@ bool Player::Start()
 		this->SetIsStop(true);
 	}
 	m_playerHP = max(0, m_tankData->GetTankDeta()->hp);
-	
+	m_smokeEffect = Effekseer::Effect::Create(g_graphicsEngine->GetEffekseerManager(),
+		(const EFK_CHAR*)L"Assets/effect/smoke.efk");
 	return true;
 }
 
@@ -94,6 +95,8 @@ void Player::FireBullets(float speed)
 	bullet->SetMoveSpeed(g_camera3D.GetForward() * m_tankData->GetTankDeta()->bulletSpeed);
 	CVector3 pos = m_pos;
 	pos.y += 90.0f;
+	m_smokeEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
+		m_smokeEffect, m_pos.x, m_pos.y += 90.0f, m_pos.z -= 30.0f);
 	bullet->SetPosition(m_gunForward);
 }
 

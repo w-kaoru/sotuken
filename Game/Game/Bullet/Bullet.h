@@ -11,6 +11,10 @@ public:
 	void Update();
 	void Draw();
 	void BulletMove();
+	CVector3 GetPosition()
+	{
+		return m_position;
+	}
 	/// <summary>
 	/// ’e‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğİ’è
 	/// </summary>
