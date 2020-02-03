@@ -27,6 +27,8 @@ bool Player::Start()
 	m_tankData = FindGO<TankData>("TankData");
 	m_bulletChange = NewGO<BulletTypeChange>(1, "BulletTypeChange");
 	m_bulletChange->BulletSelect(BulletType::HE);
+	m_movese.Init(L"Assets/sound/running-tank-1.wav");
+	m_movese.SetVolume(0.3f);
 	if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
 		char gameCameraName[20];
 		sprintf(gameCameraName, "GameCamera_%d", m_number);
@@ -70,7 +72,8 @@ bool Player::Start()
 		this->SetIsStop(true);
 	}
 	m_playerHP = max(0, m_tankData->GetTankDeta()->hp);
-	
+	m_smokeEffect = Effekseer::Effect::Create(g_graphicsEngine->GetEffekseerManager(),
+		(const EFK_CHAR*)L"Assets/effect/smoke.efk");
 	return true;
 }
 
@@ -95,6 +98,8 @@ void Player::FireBullets(float speed)
 	bullet->SetMoveSpeed(g_camera3D.GetForward() * m_bulletChange->GetTankBulletInfo()->bulletSpeed);
 	CVector3 pos = m_pos;
 	pos.y += 90.0f;
+	m_smokeEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
+		m_smokeEffect, m_pos.x, m_pos.y += 90.0f, m_pos.z -= 30.0f);
 	bullet->SetPosition(m_gunForward);
 }
 
@@ -103,6 +108,15 @@ void Player::Move()
 	//左スティックの入力量を受け取る。
 	 StY = g_pad[m_number].GetLStickYF();
 	 StX = g_pad[m_number].GetLStickXF();
+	 if (g_pad[m_number].GetLStickYF() >= 0.001f ||
+		 g_pad[m_number].GetLStickYF() <= -0.001f)
+	 {
+		 m_movese.Play(true);
+	 }
+	 else
+	 {
+		 m_movese.Stop();
+	 }
 	//カメラの前方方向と右方向を取得
 	CVector3 cameraForward = g_camera3D.GetForward();
 	CVector3 cameraRight = g_camera3D.GetRight();
@@ -189,7 +203,7 @@ void Player::Update()
 	m_timier++;
 	Move();
 	Turn();
-	if (m_timier >= 20.0f&&g_pad[m_number].IsTrigger(enButtonRB2))
+	if (m_timier >= 30.0f&&g_pad[m_number].IsTrigger(enButtonRB2))
 	{
 			FireBullets(800.0f);
 			m_timier = 0;

@@ -16,7 +16,12 @@ BulletManeger::~BulletManeger()
 
 bool BulletManeger::Start()
 {
+
 	m_explosionse.Init(L"Assets/sound/explosion.wav");
+	m_explosionse.SetVolume(0.5f);
+	m_attsckse.Init(L"Assets/sound/battery1.wav");
+	m_testEffect = Effekseer::Effect::Create(g_graphicsEngine->GetEffekseerManager(),
+		(const EFK_CHAR*)L"Assets/effect/exproj.efk");
 	return true;
 }
 void BulletManeger::OnDestroy()
@@ -30,6 +35,7 @@ void BulletManeger::OnDestroy()
 Bullet* BulletManeger::NewBullet(int collision,int number)
 {
 	Bullet* newbullet = NewGO<Bullet>(1, "Bullet");
+	m_attsckse.Play(false);
 	newbullet->Init(collision, number);
 	m_bulletList.push_back(newbullet);
 	return newbullet;
@@ -71,6 +77,8 @@ void BulletManeger::Update()
 			|| bullet->GetHit() == true)
 		{
 			m_explosionse.Play(false);
+			m_testEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
+				m_testEffect, bullet->GetPosition().x, bullet->GetPosition().y, bullet->GetPosition().z);
 			DeleteGO(bullet);
 			bullet = nullptr;
 		}

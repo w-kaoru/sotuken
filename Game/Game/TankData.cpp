@@ -46,5 +46,3 @@ void TankData::Select(TankType type)
 		break;
 	}
 }
-
-

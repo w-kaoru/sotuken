@@ -72,4 +72,7 @@ private:
 	int m_number = 0;
 	int m_hitNumber = 0;
 	CSoundSource m_explosionse;
+	CSoundSource m_attsckse;
+	Effekseer::Effect* m_testEffect = nullptr;//テストエフェクト
+	Effekseer::Handle m_testEffectHandle = -1;
 };
