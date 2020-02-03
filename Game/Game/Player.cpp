@@ -25,6 +25,7 @@ bool Player::Start()
 {
 	m_tankData = FindGO<TankData>("TankData");
 	m_tankData->BulletSelect(BulletType::HE);
+	
 	if (m_number == 0) {//¡‚¾‚¯AƒJƒƒ‰‚Íˆê‚Â‚µ‚©‚È‚¢‚Ì‚Å0”Ô–Ú‚Ì‚ÝB
 		char gameCameraName[20];
 		sprintf(gameCameraName, "GameCamera_%d", m_number);
@@ -187,7 +188,7 @@ void Player::Update()
 	m_timier++;
 	Move();
 	Turn();
-	if (m_timier >= 20.0f&&g_pad[m_number].IsTrigger(enButtonRB2))
+	if (m_timier >= 30.0f&&g_pad[m_number].IsTrigger(enButtonRB2))
 	{
 			FireBullets(800.0f);
 			m_timier = 0;
