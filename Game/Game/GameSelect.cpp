@@ -21,9 +21,12 @@ GameSelect::~GameSelect()
 
 bool GameSelect::Start()
 {
+	m_taknData = NewGO<TankData>(0, "TankData");
 	m_background.Init(L"Assets/sprite/selectback.dds", 1280.0f, 720.0f);
 	m_tankmodel.Init(L"Assets/modelData/pz4.cmo");
 	m_tankmodel2.Init(L"Assets/modelData/tiha.cmo");
+	m_stagemodel.Init(L"Assets/modelData/CityMap1.cmo");
+	m_stagemodel2.Init(L"Assets/modelData/GrassGround1.cmo");
 	m_selectbgm.Init(L"Assets/sound/Select.wav");
 	m_selectbgm.Play(true);
 	m_selectbgm.SetVolume(0.5f);
@@ -47,14 +50,17 @@ void GameSelect::Update()
 	m_rotation.Multiply(qrot);
 	m_tankmodel.UpdateWorldMatrix(m_position, m_rotation, m_scale);
 	m_tankmodel2.UpdateWorldMatrix(m_position, m_rotation, m_scale);
+	m_stagemodel.UpdateWorldMatrix(CVector3::Zero(), CQuaternion::Identity(), m_scale);
+	m_stagemodel2.UpdateWorldMatrix(CVector3::Zero(), CQuaternion::Identity(), m_scale);
 	switch (m_select)
 	{
 	case pz4:
 		//ワールド行列の更新。
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
-			m_decisionse.Play(false);
-			deleteFlag = true;
+
+			m_taknData->Select(m_select);
+			m_select = Stage1;
 		}
 		if (g_pad[0].IsTrigger(enButtonRight))
 		{
@@ -65,8 +71,9 @@ void GameSelect::Update()
 	case tiha:
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
-			m_decisionse.Play(false);
-			deleteFlag = true;
+
+			m_taknData->Select(m_select);
+			m_select = Stage1;
 		}
 		if (g_pad[0].IsTrigger(enButtonRight))
 		{
@@ -74,19 +81,31 @@ void GameSelect::Update()
 			m_select = pz4;
 		}
 		break;
-	case nonType:
-		if (g_pad[0].IsTrigger(enButtonUp))
+	case Stage1:
+		if (g_pad[0].IsTrigger(enButtonRight))
 		{
-			m_playercount++;
+			m_select = Stage2;
 		}
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
-			m_select = pz4;
+			m_decisionse.Play(false);
+			deleteFlag = true;
+		}
+		break;
+	case Stage2:
+		if (g_pad[0].IsTrigger(enButtonRight))
+		{
+			m_select = Stage1;
+		}
+		if (g_pad[0].IsTrigger(enButtonA))
+		{
+			m_decisionse.Play(false);
+			deleteFlag = true;
 		}
 		break;
 	}
 	if (deleteFlag==true && m_decisionse.IsPlaying()== false) {
-		m_taknData = NewGO<TankData>(0, "TankData");
+
 		m_taknData->Select(m_select);
 		NewGO<Game>(0, "Game");
 		DeleteGO(this);
@@ -129,16 +148,11 @@ void GameSelect::FontDraw()
 			{ 0.0f,1.0f }
 		);
 		break;
-	case nonType:
-		swprintf_s(m_moji, L"プレイ人数%d人",m_playercount);		//表示用にデータを加工
-		m_font.Draw(
-			m_moji,		//表示する文字列。
-			{ -200.0f,0.0f },			//表示する座標。0.0f, 0.0が画面の中心。
-			{ 1.0f,0.0f,0.0f,1.0f },
-			0.0f,
-			0.8f,
-			{ 0.0f,1.0f }
-		);
+	case Stage1:
+
+		break;
+	case Stage2:
+
 		break;
 	}
 	m_font.EndDraw();
@@ -146,19 +160,37 @@ void GameSelect::FontDraw()
 
 void GameSelect::PostDraw()
 {
-	if (m_select == pz4) {
+
+	switch (m_select)
+	{
+	case pz4:
 		m_tankmodel.Draw(
 			enRenderMode_Normal,
 			g_camera3D.GetViewMatrix(),
 			g_camera3D.GetProjectionMatrix()
 		);
-	}
-	if (m_select == tiha) {
+		break;
+	case tiha:
 		m_tankmodel2.Draw(
 			enRenderMode_Normal,
 			g_camera3D.GetViewMatrix(),
 			g_camera3D.GetProjectionMatrix()
 		);
+		break;
+	case Stage1:
+		m_stagemodel.Draw(
+			enRenderMode_Normal,
+			g_camera3D.GetViewMatrix(),
+			g_camera3D.GetProjectionMatrix()
+		);
+		break;
+	case Stage2:
+		m_stagemodel2.Draw(
+			enRenderMode_Normal,
+			g_camera3D.GetViewMatrix(),
+			g_camera3D.GetProjectionMatrix()
+		);
+		break;
 	}
 	FontDraw();
 }
