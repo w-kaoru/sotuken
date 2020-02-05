@@ -51,6 +51,9 @@ public:
 	{
 		moveflag = move;
 	}
+	BulletTypeChange* GetBulletChange() {
+		return m_bulletChange;
+	}
 private:
 	float StX;											//スティックのXだぜ。
 	float StY;											//スティックのYだぜ。
