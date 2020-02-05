@@ -99,7 +99,8 @@ void Player::FireBullets(float speed)
 	CVector3 pos = m_pos;
 	pos.y += 90.0f;
 	m_smokeEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
-		m_smokeEffect, m_pos.x, m_pos.y += 90.0f, m_pos.z -= 30.0f);
+		m_smokeEffect, m_gunForward.x, m_gunForward.y, m_gunForward.z
+	);
 	bullet->SetPosition(m_gunForward);
 }
 
@@ -212,13 +213,17 @@ void Player::Update()
 		m_bulletmaneger->GetNumber() != m_number &&
 		m_bulletmaneger->GetHitNumber() == m_charaCon.GetPlayerNumber())
 	{
-		m_playerHP -= m_bulletmaneger->GetBulletDamage() - m_tankData->GetTankDeta()->defense;
+		char playerName[15];
+		sprintf(playerName, "Player_%d", m_bulletmaneger->GetNumber());
+		Player* player = FindGO<Player>(playerName);
+		if (player->GetBulletChange()->GetBulletType() == BulletType::AP) {
+			m_downSpeed *= 0.7f;
+			m_downSpeed = min(1.0f, m_downSpeed);
+			m_downSpeed = max(0.1f, m_downSpeed);
+		}
+		m_playerHP -= player->GetBulletChange()->GetTankBulletInfo()->bulletdamage - m_tankData->GetTankDeta()->defense;
 		m_bulletmaneger->SetDamegeFlag(false);
-		/*
-		m_downSpeed *= 0.09f;
-		m_downSpeed = max(0.0f, m_downSpeed);
-		m_downSpeed = min(1.0f, m_downSpeed);
-		*/
+		
 	}
 	if (m_playerHP <= 0.0f)
 	{

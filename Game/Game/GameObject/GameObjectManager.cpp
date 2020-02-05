@@ -50,6 +50,8 @@ namespace GameEngine {
 		//剛体表示、デフォルトはオフ。
 		//g_physics.DebubDrawWorld();
 		g_graphicsEngine->GetLightManager()->Render();
+		//エフェクトの更新
+		g_graphicsEngine->EffectUpdate();
 		for (GameObjectList objList : m_gameObjectList) {
 			for (IGameObject* obj : objList) {
 				obj->PostDrawWrapper();
