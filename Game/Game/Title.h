@@ -3,13 +3,15 @@ class Title : public IGameObject
 {
 public:
 	Title();
-	~Title(); bool Start() override;
+	~Title();
+	bool Start() override;
+	void OnDestroy()override;
 	void Update() override;
 	void PostDraw() override;
 private:
 	Sprite m_sprite;
-	CSoundSource m_titlebgm;
-	CSoundSource m_decisionse;
+	prefab::CSoundSource* m_titlebgm = nullptr;
+	prefab::CSoundSource* m_decisionse = nullptr;
 	bool SceneChenge = false;
 };
 

@@ -44,7 +44,6 @@ private:
 	GameFont m_font;
 	Timer m_time;
 	float m_fontsize = 1.0f; //フォントサイズ
-	CSoundSource m_testbgm;//テストBGM
 	Effekseer::Effect* m_testEffect = nullptr;//テストエフェクト
 	Effekseer::Handle m_testEffectHandle = -1;
 	prefab::DirectionLight* m_directionLight = nullptr;

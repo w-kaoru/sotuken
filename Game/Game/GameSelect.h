@@ -8,6 +8,7 @@ public:
 	GameSelect();
 	~GameSelect();
 	bool Start();
+	void OnDestroy()override;
 	void Update();
 	void Draw();
 	void PostDraw();
@@ -30,9 +31,9 @@ private:
 	int m_playercount = max(min(m_playercount, 4), 1);
 	TankData* m_taknData = nullptr;
 	bool deleteFlag = false;
-	CSoundSource m_decisionse;
-	CSoundSource m_selectbgm;
-	CSoundSource m_cursorse;
+	prefab::CSoundSource* m_decisionse = nullptr;
+	prefab::CSoundSource* m_selectbgm = nullptr;
+	prefab::CSoundSource* m_cursorse = nullptr;
 
 };
 

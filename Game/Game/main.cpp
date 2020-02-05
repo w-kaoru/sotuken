@@ -17,8 +17,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	InitGame(hInstance, hPrevInstance, lpCmdLine, nCmdShow, "Game");
 
 	GOManager().Init(50);
-	CSoundEngine soundEngine;				//サウンドエンジン。
-	soundEngine.Init();
+	//CSoundEngine soundEngine;				//サウンドエンジン。
+	SoundEngine().Init();
 	g_physics.SetDebugDrawMode(btIDebugDraw::DBG_DrawWireframe);
 	NewGO<Title>(0, "Title");
 
@@ -34,7 +34,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		//ゲームオブジェクトの更新。
 		GOManager().Execute();
 		//サウンドエンジンの更新
-		soundEngine.Update();
+		SoundEngine().Update();
 		//物理エンジンの更新。
 		g_physics.Update();
 		//エフェクトの更新

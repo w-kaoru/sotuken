@@ -15,8 +15,6 @@
 Game::Game()
 {
 	InitLight();
-	m_testbgm.Init(L"Assets/sound/coinGet.wav");
-	//m_testbgm.Play(true);
 	m_time.TimerStart();
 	m_testEffect = Effekseer::Effect::Create(g_graphicsEngine->GetEffekseerManager(),
 		(const EFK_CHAR*)L"Assets/effect/test.efk");

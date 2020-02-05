@@ -14,6 +14,6 @@ private:
 	wchar_t m_result[256];
 	GameFont m_font;
 	Sprite m_background;
-	CSoundSource m_resultbgm;
+	prefab::CSoundSource* m_resultbgm;
 };
 

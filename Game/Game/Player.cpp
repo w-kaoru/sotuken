@@ -27,8 +27,10 @@ bool Player::Start()
 	m_tankData = FindGO<TankData>("TankData");
 	m_bulletChange = NewGO<BulletTypeChange>(1, "BulletTypeChange");
 	m_bulletChange->BulletSelect(BulletType::HE);
-	m_movese.Init(L"Assets/sound/running-tank-1.wav");
-	m_movese.SetVolume(0.3f);
+	m_movese = NewGO<prefab::CSoundSource>(0);
+	m_movese->Init(L"Assets/sound/running-tank-1.wav",true);
+	m_movese->SetVolume(0.3f);
+
 	if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
 		char gameCameraName[20];
 		sprintf(gameCameraName, "GameCamera_%d", m_number);
@@ -111,11 +113,12 @@ void Player::Move()
 	 if (g_pad[m_number].GetLStickYF() >= 0.001f ||
 		 g_pad[m_number].GetLStickYF() <= -0.001f)
 	 {
-		 m_movese.Play(true);
+		 m_movese->Play(true);
+	
 	 }
 	 else
 	 {
-		 m_movese.Stop();
+		 m_movese->Stop();
 	 }
 	//カメラの前方方向と右方向を取得
 	CVector3 cameraForward = g_camera3D.GetForward();
@@ -158,6 +161,8 @@ void Player::Move()
 
 void Player::Update()
 {
+
+	m_movese->SetPosition(m_pos);
 	if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
 		m_gamecamera->SetTarget(m_pos);
 		m_ui->SetHP(m_playerHP);
