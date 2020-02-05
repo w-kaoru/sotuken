@@ -41,8 +41,11 @@ void TankData::Select(TankType type)
 		m_data.scale = 0.3f;
 		m_data.BOXLength = { 60.0f, 100.0f, 100.0f };//(‰¼)
 		break;
-	case nonType:
-		return;
+	case Stage1:
+		m_data.filePath_02 = L"Assets/modelData/CityMap1.cmo";
+		break;
+	case Stage2:
+		m_data.filePath_02 = L"Assets/modelData/GrassGround1.cmo";
 		break;
 	}
 }

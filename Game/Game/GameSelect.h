@@ -15,6 +15,8 @@ public:
 private:
 	SkinModel m_tankmodel;
 	SkinModel m_tankmodel2;
+	SkinModel m_stagemodel;
+	SkinModel m_stagemodel2;
 	CVector3 m_position = {50.0f,8.0f,-50.0f};
 	CQuaternion m_rotation = CQuaternion::Identity();
 	CVector3 m_scale = { 0.2f,0.2f,0.2f };
@@ -31,5 +33,6 @@ private:
 	CSoundSource m_decisionse;
 	CSoundSource m_selectbgm;
 	CSoundSource m_cursorse;
+
 };
 

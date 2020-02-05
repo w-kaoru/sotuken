@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "BackGround.h"
-
+#include "TankInfo.h"
+#include "TankData.h"
 
 BackGround::BackGround()
 {	
@@ -12,8 +13,9 @@ BackGround::~BackGround()
 
 bool BackGround::Start()
 {
+	m_tankData = FindGO<TankData>("TankData");
 	//cmoファイルの読み込み。
-	m_model.Init(L"Assets/modelData/CityMap1.cmo");
+	m_model.Init(m_tankData->GetTankDeta()->filePath_02);
 	m_staticObject.CreateMeshObject(m_model, m_pos, m_rot);
 	m_model.SetShadowReciever(true);
 	return true;

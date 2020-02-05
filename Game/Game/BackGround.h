@@ -1,5 +1,6 @@
 #pragma once
 #include "physics/PhysicsStaticObject.h"
+class TankData;
 class BackGround :public IGameObject
 {
 public:
@@ -14,5 +15,6 @@ private:
 	CVector3 m_scale = CVector3::One();					//拡大率。
 	CQuaternion m_rot = CQuaternion::Identity();		//回転。
 	PhysicsStaticObject m_staticObject;                 //静的オブジェクト。
+	TankData* m_tankData = nullptr;
 };
 
