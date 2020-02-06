@@ -6,6 +6,7 @@ public:
 	GameResults();
 	~GameResults();
 	bool Start();
+	void OnDestroy()override;
 	void Update();
 	void Draw();
 	void PostDraw();

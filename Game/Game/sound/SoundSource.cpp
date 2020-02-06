@@ -218,6 +218,10 @@ namespace GameEngine{
 					//ÉãÅ[ÉvÅB
 					Play(m_isLoop);
 				}
+				else {
+					//DeleteGO(this);
+					Remove3DSound();
+				}
 			}
 		}
 		void CSoundSource::Update()

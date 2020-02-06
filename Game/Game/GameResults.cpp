@@ -10,16 +10,22 @@ GameResults::GameResults()
 
 GameResults::~GameResults()
 {
-	DeleteGO(m_score);
 }
 
 bool GameResults::Start()
 {
 	m_background.Init(L"Assets/sprite/ResultBack.dds", 1280.0f, 720.0f);
 	m_score = FindGO<Score>("Score");
+	m_resultbgm = NewGO<prefab::CSoundSource>(0);
 	m_resultbgm->Init(L"Assets/sound/result.wav");
 	m_resultbgm->Play(true);
 	return true;
+}
+
+void GameResults::OnDestroy()
+{
+	DeleteGO(m_resultbgm);
+	DeleteGO(m_score);
 }
 
 void GameResults::Update()
