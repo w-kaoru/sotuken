@@ -24,6 +24,11 @@ namespace GameEngine {
 		*/
 		virtual void Draw() {};
 		/*!
+		*@brief	画面分割時の描画。
+		*@param[in]	player_num	プレイヤーのナンバー。
+		*/
+		virtual void Draw(int player_num) {};
+		/*!
 		*@brief	消去。
 		*/
 		virtual void OnDestroy() {};
@@ -37,6 +42,11 @@ namespace GameEngine {
 		*@brief	Draw関数が実行された後で呼ばれる描画処理。
 		*/
 		virtual void PostDraw() {};
+		/*!
+		*@brief	Draw関数が実行された後での、画面分割時の描画。
+		*@param[in]	player_num	プレイヤーのナンバー。
+		*/
+		virtual void PostDraw(int player_num) {};
 
 		void DrawWrapper()
 		{
@@ -44,10 +54,22 @@ namespace GameEngine {
 				Draw();
 			}
 		}
+		void DrawWrapper(int player_num)
+		{
+			if (m_isStart && !m_isDead) {
+				Draw(player_num);
+			}
+		}
 		void PostDrawWrapper()
 		{
 			if (m_isStart && !m_isDead) {
 				PostDraw();
+			}
+		}
+		void PostDrawWrapper(int player_num)
+		{
+			if (m_isStart && !m_isDead) {
+				PostDraw(player_num);
 			}
 		}
 		void PreDrawWrapper()

@@ -73,6 +73,7 @@
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="TankData.cpp" />
     <ClCompile Include="Sky.cpp" />
+    <ClCompile Include="ViewPortSplit\ViewPortSplit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\BTR80A.FBX" />
@@ -160,5 +161,6 @@
     <ClInclude Include="TankData.h" />
     <ClInclude Include="TankInfo.h" />
     <ClInclude Include="Sky.h" />
+    <ClInclude Include="ViewPortSplit\ViewPortSplit.h" />
   </ItemGroup>
 </Project>

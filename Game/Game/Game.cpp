@@ -11,6 +11,7 @@
 #include "Sky.h"
 #include "TankData.h"
 #include "level/Level.h"
+#include "GameCamera.h"
 Game::Game()
 {
 	InitLight();
@@ -42,21 +43,54 @@ bool Game::Start()
 	m_backgeound = NewGO<BackGround>(1, "BackGround");
 	m_sky = NewGO<Sky>(1, "Sky");
 	m_level.Init(L"Assets/level/level_00.tkl", [&](LevelObjectData& objData) {
-		if (objData.ForwardMatchName(L"Path_") == true) {
-			//プレイヤー！！
-			char playerName[15];
-			sprintf(playerName, "Player_%d", plNo);
-			Player* player = NewGO<Player>(0, playerName);
-			player->SetNumber(plNo);
-			player->SetPosition(objData.position);
-			m_Nanka.push_back(objData.position);
-			m_playerList.push_back(player);
-			plNo++;
-			return true;
+		//player_totalの人数だけプレイヤーを生成。
+		if (plNo < player_total) {
+			if (objData.ForwardMatchName(L"Path_") == true) {
+				//マップに配置された全てのプレイヤーのインスタンスを出す。
+				char playerName[15];
+				sprintf(playerName, "Player_%d", plNo);
+				Player* player = NewGO<Player>(0, playerName);
+				player->SetNumber(plNo);
+				player->SetPosition(objData.position);
+				m_Nanka.push_back(objData.position);
+				m_playerList.push_back(player);
+				plNo++;
+				//ゲームカメラ
+
+				return true;
+			}
 		}
 		return false;
 	});
-	m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
+
+	//ゲームカメラのビューポートの設定。
+	int l_half_w = FRAME_BUFFER_W / 2;
+	int l_half_h = FRAME_BUFFER_H / 2;
+	switch (player_total)
+	{
+	case 1://プレイヤーが1人
+		g_gameCamera3D[0]->SetViewPort({ 0, 0, (l_half_w*2), (l_half_h*2) });
+		break;
+	case 2://プレイヤーが2人
+		g_gameCamera3D[0]->SetViewPort({ 0, 0, l_half_w, (l_half_h*2) });
+		g_gameCamera3D[1]->SetViewPort({ l_half_w, 0, l_half_w, (l_half_h*2) });
+		break;
+	case 3://プレイヤーが3人
+		g_gameCamera3D[0]->SetViewPort({ 0, 0, l_half_w, l_half_h });
+		g_gameCamera3D[1]->SetViewPort({ l_half_w, 0, l_half_w, l_half_h });
+		g_gameCamera3D[2]->SetViewPort({ 0, l_half_h, l_half_w, l_half_h });
+		break;
+	case 4://プレイヤーが4人
+		g_gameCamera3D[0]->SetViewPort({ 0, 0, l_half_w, l_half_h });
+		g_gameCamera3D[1]->SetViewPort({ l_half_w, 0, l_half_w, l_half_h });
+		g_gameCamera3D[2]->SetViewPort({ 0, l_half_h, l_half_w, l_half_h });
+		g_gameCamera3D[3]->SetViewPort({ l_half_w, l_half_h, l_half_w, l_half_h });
+		break;
+	default:
+		break;
+	}
+	GameEngine::GetViewSplit().Start();//分割開始。
+	//m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
 	m_score = NewGO<Score>(1, "Score");
 	return true;
@@ -76,6 +110,12 @@ void Game::OnDestroy()
 	DeleteGO(m_bulletmaneger);
 	if (FindGO<TankData>("TankData") != nullptr) {
 		DeleteGO(FindGO<TankData>("TankData"));
+	}
+
+	//ビューポートのリセット。
+	for (int i = 0; i < PLAYER_NUM; i++)
+	{
+		g_gameCamera3D[i]->FinishViewPort();
 	}
 }
 

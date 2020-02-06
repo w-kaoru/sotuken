@@ -19,8 +19,12 @@ public:
 	void Aiming();
 	void BulletSprite();
 	void Update()override;
+	//非ゲーム時の描画。
 	void Draw()override;
 	void PostDraw()override;
+	//ゲーム時の分割描画。
+	void Draw(int player_num)override;
+	void PostDraw(int player_num)override;
 	CVector3 GetPosition()
 	{
 		return m_pos;
@@ -34,6 +38,7 @@ public:
 	{
 		return m_forward;
 	}
+	//プレイヤーの死亡フラグを取得(trueで死亡)
 	bool GetPlayerDeth()
 	{
 		return playerdeth;
@@ -71,10 +76,10 @@ private:
 	CVector3 m_scale = CVector3::One();					//スケール。
 	BulletManeger* m_bulletmaneger = nullptr;
 	float m_deltatime = 1.0f / 30.0f;                   //1フレームの経過時間
-	CharacterControllerToBox m_charaCon;					//キャラクターコントローラーを追加。
-	float m_playerHP = 100.0f;
-	Sprite m_playerhp;
-	bool playerdeth = false;
+	CharacterControllerToBox m_charaCon;				//キャラクターコントローラーを追加。
+	float m_playerHP = 100.0f;                          //プレイヤーのHP。
+	Sprite m_playerhp;                                  //プレイヤーのHPを表示するスプライト。
+	bool playerdeth = false;                            //プレイヤーの死亡フラグ(trueで死亡)。
 	int m_timier = 0;
 	CQuaternion m_rotation = CQuaternion::Identity();
 	//float m_cameraTurnSpeed = 0.02f;
@@ -84,7 +89,7 @@ private:
 	CVector3 m_aimingpos = CVector3::Zero();
 	CVector3 m_gunpos = CVector3::Zero();
 	bool moveflag = false;
-	int m_number = 0;
+	int m_number = 0;                                   //プレイヤーのナンバー（何番目のプレイヤーか？）
 	CVector3 m_aimingSpriteScale = CVector3::One();
 };
 

@@ -8,6 +8,7 @@ public:
 	bool Start();
 	void Update();
 	void Draw();
+	void Draw(int player_num);
 private:
 	SkinModel m_model;									//スキンモデル。
 	CVector3 m_pos = CVector3::Zero();					//座標。

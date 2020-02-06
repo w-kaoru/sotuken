@@ -163,6 +163,7 @@
     <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="ViewPortSplit\ViewPortSplit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
@@ -231,6 +232,7 @@
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Title.h" />
+    <ClInclude Include="ViewPortSplit\ViewPortSplit.h" />
     <ClInclude Include="util\Util.h" />
   </ItemGroup>
   <ItemGroup>

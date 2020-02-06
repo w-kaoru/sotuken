@@ -30,6 +30,7 @@
 #include "DirectXTK/Inc/SpriteFont.h"
 #include "DirectXTK/Inc/DDSTextureLoader.h"
 
+#include "ViewPortSplit/ViewPortSplit.h"
 //ゲームオブジェクトのインクルード
 #include "gameObject/GameObjectManager.h"
 #include "gameObject/IGameObject.h"
@@ -39,6 +40,7 @@
 #include "math/Matrix.h"
 #include "graphics/Shader.h"
 #include "graphics/Camera.h"
+#include "GameCamera.h"
 #include "graphics/GraphicsEngine.h"
 #include "physics/Physics.h"
 
@@ -58,3 +60,5 @@ const float FRAME_BUFFER_W = 1280.0f;				//フレームバッファの幅。
 const float FRAME_BUFFER_H = 720.0f;				//フレームバッファの高さ。
 using namespace GameEngine;
 static const int MAX_BONE = 512;	//!<ボーンの最大数。
+
+const int PLAYER_NUM = 4; //プレイヤーの最大数。

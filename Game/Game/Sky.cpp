@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Sky.h"
+#include "GameCamera.h"
 
 //todo 空マップ。
 ID3D11ShaderResourceView* g_skyMapSRV = nullptr;
@@ -38,5 +39,14 @@ void Sky::Draw()
 		enRenderMode_CubeMap,
 		g_camera3D.GetViewMatrix(),
 		g_camera3D.GetProjectionMatrix()
+	);
+}
+
+void Sky::Draw(int player_num)
+{
+	m_skymodel.Draw(
+		enRenderMode_CubeMap,
+		g_gameCamera3D[player_num]->GetCamera().GetViewMatrix(),
+		g_gameCamera3D[player_num]->GetCamera().GetProjectionMatrix()
 	);
 }

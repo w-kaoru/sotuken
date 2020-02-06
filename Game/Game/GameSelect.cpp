@@ -78,7 +78,8 @@ void GameSelect::Update()
 	if (deleteFlag) {
 		m_taknData = NewGO<TankData>(0, "TankData");
 		m_taknData->Select(m_select);
-		NewGO<Game>(0, "Game");
+		Game* game = NewGO<Game>(0, "Game");
+		game->SetPlayer_Totle(m_playercount);
 		DeleteGO(this);
 	}
 }

@@ -42,19 +42,27 @@ namespace GameEngine {
 		}
 		g_graphicsEngine->PreRender();
 
-		for (GameObjectList objList : m_gameObjectList) {
+		
+
+		/*for (GameObjectList objList : m_gameObjectList) {
 			for (IGameObject* obj : objList) {
 				obj->DrawWrapper();
 			}
-		}
+		}*/
+
+		//レンダリング。
+		GetViewSplit().Render(m_gameObjectList);
+
 		//剛体表示、デフォルトはオフ。
 		//g_physics.DebubDrawWorld();
 		g_graphicsEngine->GetLightManager()->Render();
-		for (GameObjectList objList : m_gameObjectList) {
+		//ポストレンダリング。
+		GetViewSplit().PostRender(m_gameObjectList);
+		/*for (GameObjectList objList : m_gameObjectList) {
 			for (IGameObject* obj : objList) {
 				obj->PostDrawWrapper();
 			}
-		}
+		}*/
 		g_graphicsEngine->PostRender();
 		DeleteExecute();
 	}

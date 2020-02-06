@@ -19,6 +19,7 @@ public:
 	* @brief	描画。
 	*/
 	void Draw();
+	void Draw(int player_num);
 private:
 	SkinModel m_model;		//!<モデル。
 	PhysicsStaticObject m_physicsStaticObject;	//!<静的物理オブジェクト。

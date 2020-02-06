@@ -2,6 +2,7 @@
 #include "system/system.h"
 #include "Game.h"
 #include "Title.h"
+#include "GameCamera.h"
 ///////////////////////////////////////////////////////////////////
 // ウィンドウプログラムのメイン関数。
 ///////////////////////////////////////////////////////////////////
@@ -22,6 +23,11 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	g_physics.SetDebugDrawMode(btIDebugDraw::DBG_DrawWireframe);
 	NewGO<Title>(0, "Title");
 
+	int i = 0;
+	for (i = 0; i < PLAYER_NUM; i++)
+	{
+		g_gameCamera3D[i] = NewGO<GameCamera>(0,"GameCamera");
+	}
 	//ゲームループ。
 	while (DispatchWindowMessage() == true)
 	{
@@ -38,7 +44,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		//物理エンジンの更新。
 		g_physics.Update();
 		//エフェクトの更新
-		g_graphicsEngine->EffectUpdate();
+		g_graphicsEngine->EffectUpdate(GameEngine::GetViewSplit().Get_isSplit());
 		//描画終了。
 		g_graphicsEngine->EndRender();
 	}

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "BackGround.h"
+#include "GameCamera.h"
 
 
 BackGround::BackGround()
@@ -32,5 +33,14 @@ void BackGround::Draw()
 		enRenderMode_Normal,
 		g_camera3D.GetViewMatrix(),
 		g_camera3D.GetProjectionMatrix()
+	);
+}
+
+void BackGround::Draw(int player_num)
+{
+	m_model.Draw(
+		enRenderMode_Normal,
+		g_gameCamera3D[player_num]->GetCamera().GetViewMatrix(),
+		g_gameCamera3D[player_num]->GetCamera().GetProjectionMatrix()
 	);
 }

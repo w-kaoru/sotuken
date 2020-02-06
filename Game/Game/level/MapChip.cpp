@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MapChip.h"
 #include "Level.h"
+#include "GameCamera.h"
 
 MapChip::MapChip(const LevelObjectData& objData)
 {
@@ -18,5 +19,14 @@ void MapChip::Draw()
 		enRenderMode_Normal,
 		g_camera3D.GetViewMatrix(),
 		g_camera3D.GetProjectionMatrix()
+	);
+}
+
+void MapChip::Draw(int player_num)
+{
+	m_model.Draw(
+		enRenderMode_Normal,
+		g_gameCamera3D[player_num]->GetCamera().GetViewMatrix(),
+		g_gameCamera3D[player_num]->GetCamera().GetProjectionMatrix()
 	);
 }

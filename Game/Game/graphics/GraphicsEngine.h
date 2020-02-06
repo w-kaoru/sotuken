@@ -3,6 +3,8 @@
 #include "../Light/LightManager.h"
 #include "ShadowMap.h"
 #include "PostEffect.h"
+#include "GameCamera.h"
+
 // レンダリングモード。
 enum EnRenderMode {
 	enRenderMode_Invalid,			//不正なレンダリングモード。
@@ -110,6 +112,62 @@ public:
 		//Effekseerを更新。
 		m_effekseerManager->Update();
 		EffectDraw();
+	}
+
+	void EffectUpdate(bool isSplit)
+	{
+		//trueなら画面分割
+		if (isSplit) {
+			//Effekseerを更新。
+			m_effekseerManager->Update();
+
+
+			int i=0;
+			for (i = 0; i < 4; i++) {
+				//ビューポートが設定されているか？
+				if (g_gameCamera3D[i]->Get_isViewport())
+				{
+					//まずはEffeseerの行列型の変数に、カメラ行列とプロジェクション行列をコピー。
+					Effekseer::Matrix44 efCameraMat;
+					g_gameCamera3D[i]->GetCamera().GetViewMatrix().CopyTo(efCameraMat);
+					Effekseer::Matrix44 efProjMat;
+					g_gameCamera3D[i]->GetCamera().GetProjectionMatrix().CopyTo(efProjMat);
+					//カメラ行列とプロジェクション行列を設定。
+					m_effekseerRenderer->SetCameraMatrix(efCameraMat);
+					m_effekseerRenderer->SetProjectionMatrix(efProjMat);
+
+					//それぞれのビューポートに変更する。
+					D3D11_VIEWPORT viewport_Split;
+					viewport_Split.Width = GameEngine::GetViewSplit().GetSplit(i).width;
+					viewport_Split.Height = GameEngine::GetViewSplit().GetSplit(i).height;
+					viewport_Split.TopLeftX = GameEngine::GetViewSplit().GetSplit(i).x;
+					viewport_Split.TopLeftY = GameEngine::GetViewSplit().GetSplit(i).y;
+					viewport_Split.MinDepth = 0.0f;
+					viewport_Split.MaxDepth = 1.0f;
+					m_pd3dDeviceContext->RSSetViewports(1, &viewport_Split);
+					EffectDraw();
+				}
+			}
+			
+		}
+		else 
+		//falseなら通常描画
+		{
+			//Effekseerを更新。
+			m_effekseerManager->Update();
+
+			//まずはEffeseerの行列型の変数に、カメラ行列とプロジェクション行列をコピー。
+			Effekseer::Matrix44 efCameraMat;
+			g_camera3D.GetViewMatrix().CopyTo(efCameraMat);
+			Effekseer::Matrix44 efProjMat;
+			g_camera3D.GetProjectionMatrix().CopyTo(efProjMat);
+			//カメラ行列とプロジェクション行列を設定。
+			m_effekseerRenderer->SetCameraMatrix(efCameraMat);
+			m_effekseerRenderer->SetProjectionMatrix(efProjMat);
+
+			EffectDraw();
+		}
+		
 	}
 	void EffectDraw()
 	{

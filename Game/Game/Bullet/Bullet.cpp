@@ -2,6 +2,7 @@
 #include "Bullet.h"
 #include "TestEnemy.h"
 #include "Physics/CollisionAttr.h"
+#include "GameCamera.h"
 
 Bullet::Bullet()
 {
@@ -52,5 +53,14 @@ void Bullet::Draw()
 		enRenderMode_Normal,
 		g_camera3D.GetViewMatrix(),
 		g_camera3D.GetProjectionMatrix()
+	);
+}
+
+void Bullet::Draw(int player_num)
+{
+	m_model.Draw(
+		enRenderMode_Normal,
+		g_gameCamera3D[player_num]->GetCamera().GetViewMatrix(),
+		g_gameCamera3D[player_num]->GetCamera().GetProjectionMatrix()
 	);
 }

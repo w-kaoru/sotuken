@@ -1,7 +1,7 @@
 #pragma once
 #include "IGameObject.h"
 #include "util/Util.h"
-
+#include "ViewPortSplit/ViewPortSplit.h"
 namespace GameEngine {
 	class GameObjectManager:public NonCopyable
 	{
@@ -91,6 +91,7 @@ namespace GameEngine {
 		int m_deleteNo = 0;
 		bool m_isAllStop = false;
 		static const unsigned char 			GAME_OBJECT_PRIO_MAX = 255;		//!<ゲームオブジェクトの優先度の最大値。
+		//ViewPortSplit				m_viewSprit;				//!<画面分割するインスタンス
 	};
 	static inline GameObjectManager& GOManager()
 	{

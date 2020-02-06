@@ -3,6 +3,8 @@
 #include "Player.h"
 #include "Define.h"
 
+GameCamera* g_gameCamera3D[PLAYER_NUM];  //ゲームカメラの配列。
+//GameCamera* g_gameCamera2D[PLAYER_NUM];  //ゲームカメラの配列。
 //カメラデータ。
 struct SCameraData {
 	float targetToPosition;		//注視点から視点までの距離。
@@ -23,22 +25,31 @@ bool GameCamera::Start()
 {
 
 	//m_player = FindGO<Player>("Player");
-	/*g_camera3D.SetPosition(
+	/*m_camera.SetPosition(
 		{ m_player->GetPosition().x,m_player->GetPosition().y + 130.0f,
 		m_player->GetPosition().z + 250.0f
 		}
 	);
-	g_camera3D.SetTarget(m_player->GetPosition());*/
-	g_camera3D.SetPosition(m_position);
-	g_camera3D.SetTarget(m_target);
-	g_camera3D.SetFar(20000.0f);
+	m_camera.SetTarget(m_player->GetPosition());*/
+	m_camera.SetPosition(m_position);
+	m_camera.SetTarget(m_target);
+	m_camera.SetFar(20000.0f);
+
+	//ビューポート未設定なのでfalse。
+	m_isViewport = false;
 	return true;
 }
 
 void GameCamera::Update()
 {
+	//ビューポート未設定なら終了。
+	if (!m_isViewport)
+	{
+		return;
+	}
+
 	//現在の注視点から視点へのベクトルを求めるよ。
-	CVector3 toCameraPos = g_camera3D.GetPosition() - g_camera3D.GetTarget();
+	CVector3 toCameraPos = m_camera.GetPosition() - m_camera.GetTarget();
 	//新しい注視点を求める。
 	CVector3 newTarget = m_target;
 
@@ -56,7 +67,7 @@ void GameCamera::Update()
 		//ズームのカメラデータ。
 		//使用するカメラデータを設定。
 		toCameraPos *= cameraDataTbl[1].targetToPosition;
-		g_camera3D.SetViewAngle(cameraDataTbl[1].cameraAngle);
+		m_camera.SetViewAngle(cameraDataTbl[1].cameraAngle);
 		upMax = cameraDataTbl[1].upMax;
 		downMax = cameraDataTbl[1].downMax;
 		//Y方向にちょっと上げる。
@@ -67,7 +78,7 @@ void GameCamera::Update()
 		//通常のカメラデータ
 		//使用するカメラデータを設定。
 		toCameraPos *= cameraDataTbl[0].targetToPosition;
-		g_camera3D.SetViewAngle(cameraDataTbl[0].cameraAngle);
+		m_camera.SetViewAngle(cameraDataTbl[0].cameraAngle);
 		upMax = cameraDataTbl[0].upMax;
 		downMax = cameraDataTbl[0].downMax;
 		//Y方向にちょっと上げる。
@@ -94,7 +105,7 @@ void GameCamera::Update()
 	//大きさが１になるということは、ベクトルから強さがなくなり、方向のみの情報となるということ。
 	CVector3 toPosDir = toCameraPos;
 	toPosDir.Normalize();
-	float angle = toPosDir.Dot(g_camera3D.GetUp());
+	float angle = toPosDir.Dot(m_camera.GetUp());
 	angle = CMath::RadToDeg(angle);
 
 	if (angle < upMax) {
@@ -112,8 +123,8 @@ void GameCamera::Update()
 	}
 	//新しい視点を計算する。
 	auto newPositin = newTarget + toCameraPos;
-	g_camera3D.SetTarget(newTarget);
-	g_camera3D.SetPosition(newPositin);
-	g_camera3D.Update();
+	m_camera.SetTarget(newTarget);
+	m_camera.SetPosition(newPositin);
+	m_camera.Update();
 
 }

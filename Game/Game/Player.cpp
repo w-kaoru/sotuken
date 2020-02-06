@@ -25,12 +25,12 @@ bool Player::Start()
 	m_tankData = FindGO<TankData>("TankData");
 	m_tankData->BulletSelect(BulletType::HE);
 	if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
-		char gameCameraName[20];
+		/*char gameCameraName[20];
 		sprintf(gameCameraName, "GameCamera_%d", m_number);
-		m_gamecamera = NewGO<GameCamera>(0, gameCameraName);
-		m_gamecamera->SetCameraPos({ m_pos.x,m_pos.y + 130.0f,m_pos.z + 250.0f });
-		m_gamecamera->SetTarget(m_pos);
-		m_gamecamera->SetCameraSpeed(m_tankData->GetTankDeta()->cameraturn);
+		m_gamecamera = NewGO<GameCamera>(0, gameCameraName);*/
+		g_gameCamera3D[m_number]->SetCameraPos({ m_pos.x,m_pos.y + 130.0f,m_pos.z + 250.0f });
+		g_gameCamera3D[m_number]->SetTarget(m_pos);
+		g_gameCamera3D[m_number]->SetCameraSpeed(m_tankData->GetTankDeta()->cameraturn);
 	}
 	//cmoファイルの読み込み。
 	m_model.Init(m_tankData->GetTankDeta()->filePath_00);
@@ -42,7 +42,10 @@ bool Player::Start()
 	m_charaCon.GetRigidBody()->GetBody()->setUserIndex(enCollisionAttr_Players + m_number);
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	m_scale *= m_tankData->GetTankDeta()->scale;
-	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
+
+	auto angle = atan2f(g_gameCamera3D[m_number]->GetCamera().GetForward().x, 
+		g_gameCamera3D[m_number]->GetCamera().GetForward().z);
+
 	m_rotation.SetRotation(CVector3::AxisY(), angle);
 	m_tankData->BulletSelect(BulletType::HE);
 	m_bulletmaneger->SetBulletDamage(m_tankData->GetTankDeta()->bulletdamage);
@@ -65,7 +68,7 @@ bool Player::Start()
 
 void Player::OnDestroy()
 {
-	DeleteGO(m_gamecamera);
+	//DeleteGO(g_gameCamera3D[m_number]);
 }
 
 void Player::FireBullets(float speed)
@@ -80,7 +83,7 @@ void Player::FireBullets(float speed)
 	m_gunForward += m_pos;
 	m_gunForward.y = 45.0f;
 	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet,m_number);
-	bullet->SetMoveSpeed(g_camera3D.GetForward() * m_tankData->GetTankDeta()->bulletSpeed);
+	bullet->SetMoveSpeed(g_gameCamera3D[m_number]->GetCamera().GetForward() * m_tankData->GetTankDeta()->bulletSpeed);
 	CVector3 pos = m_pos;
 	pos.y += 90.0f;
 	bullet->SetPosition(m_gunForward);
@@ -141,8 +144,8 @@ void Player::Move()
 	 StY = g_pad[m_number].GetLStickYF();
 	 StX = g_pad[m_number].GetLStickXF();
 	//カメラの前方方向と右方向を取得
-	CVector3 cameraForward = g_camera3D.GetForward();
-	CVector3 cameraRight = g_camera3D.GetRight();
+	CVector3 cameraForward = g_gameCamera3D[m_number]->GetCamera().GetForward();
+	CVector3 cameraRight = g_gameCamera3D[m_number]->GetCamera().GetRight();
 	//XZ平面での前方方向、右方向に変換する。
 	cameraForward.y = 0.0f;
 	cameraForward.Normalize();
@@ -182,15 +185,15 @@ void Player::Move()
 void Player::Update()
 {
 	if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
-		m_gamecamera->SetTarget(m_pos);
+		g_gameCamera3D[m_number]->SetTarget(m_pos);
 
 		if (g_pad[m_number].IsPress(enButtonLB2)) {
-			m_gamecamera->SetAimFlag(true);
+			g_gameCamera3D[m_number]->SetAimFlag(true);
 			m_aimingSpriteScale = { 5.0f ,5.0f ,5.0f };
 		}
 		else
 		{
-			m_gamecamera->SetAimFlag(false);
+			g_gameCamera3D[m_number]->SetAimFlag(false);
 			m_aimingSpriteScale = CVector3::One();
 		}
 	}
@@ -249,13 +252,14 @@ void Player::Update()
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model2);
 
-	g_graphicsEngine->GetLightManager()->SetEyePos(m_gamecamera->GetCameraPos());
+	g_graphicsEngine->GetLightManager()->SetEyePos(g_gameCamera3D[m_number]->GetCameraPos());
 }
 
 void Player::Turn()
 {
 	//向きを変える。
-	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
+	auto angle = atan2f(g_gameCamera3D[m_number]->GetCamera().GetForward().x,
+		g_gameCamera3D[m_number]->GetCamera().GetForward().z);
 	m_rotation.SetRotation(CVector3::AxisY(), angle);
 }
 
@@ -274,6 +278,20 @@ void Player::Draw()
 	);
 }
 
+void Player::Draw(int player_num)
+{
+
+	m_model.Draw(
+		enRenderMode_Normal,
+		g_gameCamera3D[player_num]->GetCamera().GetViewMatrix(),
+		g_gameCamera3D[player_num]->GetCamera().GetProjectionMatrix()
+	);
+	m_model2.Draw(
+		enRenderMode_Normal,
+		g_gameCamera3D[player_num]->GetCamera().GetViewMatrix(),
+		g_gameCamera3D[player_num]->GetCamera().GetProjectionMatrix()
+	);
+}
 void Player::PostDraw()
 {
 	HpGage();
@@ -288,6 +306,32 @@ void Player::PostDraw()
 		case AP:
 			swprintf_s(moji, L"AP弾");		//表示用にデータを加工
 			break;
+	}
+	m_font.Draw(
+		moji,		//表示する文字列。
+		{ -500.0f,-200.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+		{ 1.0f,0.0f,0.0f,1.0f },
+		0.0f,
+		0.8f,
+		{ 0.0f,1.0f }
+	);
+	m_font.EndDraw();
+}
+
+void Player::PostDraw(int player_num)
+{
+	HpGage();
+	Aiming();
+	BulletSprite();
+	m_font.BeginDraw();
+	switch (m_tankData->GetBulletType())
+	{
+	case HE:
+		swprintf_s(moji, L"HE弾");		//表示用にデータを加工
+		break;
+	case AP:
+		swprintf_s(moji, L"AP弾");		//表示用にデータを加工
+		break;
 	}
 	m_font.Draw(
 		moji,		//表示する文字列。

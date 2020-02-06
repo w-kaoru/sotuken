@@ -29,6 +29,19 @@ public:
 	{
 		return MoveFlag;
 	}
+	//プレイヤーの合計人数を設定。
+	void SetPlayer_Totle(int p_totle)
+	{
+		player_total = p_totle;
+
+		//プレイヤー人数が規定外にならないようにする。
+		if (player_total <= 0) {
+			player_total = 1;
+		}
+		if (player_total > PLAYER_NUM) {
+			player_total = PLAYER_NUM;
+		}
+	}
 private:
 	//Player* m_player = nullptr;
 	std::vector<Player*> m_playerList;		//プレイヤーのリスト。
@@ -52,5 +65,6 @@ private:
 	int	CountDownTime = 10;
 	bool MoveFlag = false;
 	Level m_level;
+	int player_total = 1;  //設定された合計人数。
 };
 

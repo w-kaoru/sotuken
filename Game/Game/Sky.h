@@ -14,6 +14,10 @@ public:
 	/// </summary>
 	void Draw();
 	/// <summary>
+	/// •ªŠ„•`‰æŠÖ”
+	/// </summary>
+	void Draw(int player_num);
+	/// <summary>
 	/// ƒXƒP[ƒ‹‚ğÄİ’è‚·‚éŠÖ”
 	/// </summary>
 	/// <param name="scale"></param>

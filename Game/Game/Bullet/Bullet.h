@@ -10,6 +10,7 @@ public:
 	void Init(int k, int number);
 	void Update();
 	void Draw();
+	void Draw(int player_num);
 	void BulletMove();
 	/// <summary>
 	/// ’e‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğİ’è
