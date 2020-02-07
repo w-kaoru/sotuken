@@ -19,7 +19,7 @@ bool Bullet::Start()
 	m_model.Init(L"Assets/modelData/bullet1.cmo");
 	m_bulletCon->SetPosition(m_position);
 	//Œü‚«‚ð•Ï‚¦‚éB
-	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
+	auto angle = atan2f(g_gameCamera3D[m_number]->GetForward().x, g_gameCamera3D[m_number]->GetForward().z);
 	m_rotation.SetRotation(CVector3::AxisY(), angle);
 	
 	return true;
@@ -57,11 +57,11 @@ void Bullet::Update()
 
 void Bullet::Draw()
 {
-	m_model.Draw(
+	/*m_model.Draw(
 		enRenderMode_Normal,
 		g_camera3D.GetViewMatrix(),
 		g_camera3D.GetProjectionMatrix()
-	);
+	);*/
 }
 
 void Bullet::Draw(int player_num)

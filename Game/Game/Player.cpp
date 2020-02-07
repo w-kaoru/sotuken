@@ -28,24 +28,19 @@ bool Player::Start()
 	m_bulletChange = NewGO<BulletTypeChange>(1, "BulletTypeChange");
 	m_bulletChange->BulletSelect(BulletType::HE);
 	m_movese = NewGO<prefab::CSoundSource>(0);
-	m_movese->Init(L"Assets/sound/running-tank-1.wav",false);
+	m_movese->Init(L"Assets/sound/running-tank-1.wav", false);
 	m_movese->SetVolume(0.3f);
 
-	//if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
-		/*char gameCameraName[20];
-		sprintf(gameCameraName, "GameCamera_%d", m_number);
-		m_gamecamera = NewGO<GameCamera>(0, gameCameraName);*/
-		/*g_gameCamera3D[m_number]->SetCameraPos({ m_pos.x,m_pos.y + 130.0f,m_pos.z + 250.0f });
-		g_gameCamera3D[m_number]->SetTarget(m_pos);*/
-		g_gameCamera3D[m_number]->SetCameraSpeed(m_tankData->GetTankDeta()->cameraturn);
-		char uiName[20];
-		sprintf(uiName, "UI_%d", m_number);
-		m_ui = NewGO<UI>(1, uiName);
-		m_ui->SetHP(m_tankData->GetTankDeta()->hp);
-		m_ui->SetAimingScale(CVector3::One());
-		m_ui->SetNumber(m_number);
-		m_ui->SetBulletChange(m_bulletChange);
-	//}
+	g_gameCamera3D[m_number]->SetCameraSpeed(m_tankData->GetTankDeta()->cameraturn);
+	g_gameCamera3D[m_number]->SetNumber(m_number);
+	char uiName[20];
+	sprintf(uiName, "UI_%d", m_number);
+	m_ui = NewGO<UI>(1, uiName);
+	m_ui->SetHP(m_tankData->GetTankDeta()->hp);
+	m_ui->SetAimingScale(CVector3::One());
+	m_ui->SetNumber(m_number);
+	m_ui->SetBulletChange(m_bulletChange);
+
 	//cmoファイルの読み込み。
 	m_model.Init(m_tankData->GetTankDeta()->filePath_00);
 	m_model2.Init(m_tankData->GetTankDeta()->filePath_01);
@@ -56,20 +51,13 @@ bool Player::Start()
 	m_bulletmaneger->SetBulletDamage(m_bulletChange->GetTankBulletInfo()->bulletdamage);
 	m_scale *= m_tankData->GetTankDeta()->scale;
 
-	auto angle = atan2f(g_gameCamera3D[m_number]->GetCamera().GetForward().x, 
-		g_gameCamera3D[m_number]->GetCamera().GetForward().z);
-
-	m_rotation.SetRotation(CVector3::AxisY(), angle);
-	m_rot = m_rotation;
-	/*m_model.SetShadowReciever(true);
-	m_model2.SetShadowReciever(true);*/
 	m_game = FindGO<Game>("Game");
-	//ワールド行列の更新。
-	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
-	m_model2.UpdateWorldMatrix(m_pos, m_rotation, m_scale);
 	//シャドウキャスターを登録。
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model2);
+	//ワールド行列の更新。
+	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
+	m_model2.UpdateWorldMatrix(m_pos, m_rotation, m_scale);
 	if (m_game->GetMoveFlag() == false)
 	{
 		this->SetIsStop(true);
@@ -82,8 +70,6 @@ bool Player::Start()
 
 void Player::OnDestroy()
 {
-	//DeleteGO(g_gameCamera3D[m_number]);
-	//if (m_gamecamera != nullptr) DeleteGO(m_gamecamera);
 	if (m_ui != nullptr) DeleteGO(m_ui);
 }
 
@@ -99,7 +85,7 @@ void Player::FireBullets(float speed)
 	m_gunForward += m_pos;
 	m_gunForward.y = 45.0f;
 	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet, m_number);
-	bullet->SetMoveSpeed(g_camera3D.GetForward() * m_bulletChange->GetTankBulletInfo()->bulletSpeed);
+	bullet->SetMoveSpeed(g_gameCamera3D[m_number]->GetForward() * m_bulletChange->GetTankBulletInfo()->bulletSpeed);
 	CVector3 pos = m_pos;
 	pos.y += 90.0f;
 	m_smokeEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
@@ -111,20 +97,20 @@ void Player::FireBullets(float speed)
 void Player::Move()
 {
 	//左スティックの入力量を受け取る。
-	 StY = g_pad[m_number].GetLStickYF();
-	 StX = g_pad[m_number].GetLStickXF();
-	 if (g_pad[m_number].GetLStickYF() >= 0.001f ||
-		 g_pad[m_number].GetLStickYF() <= -0.001f)
-	 {
-		 m_movese->Play(true);
-		 m_moveEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
-			 m_smokeEffect, m_pos.x, m_pos.y -5.0f, m_pos.z
-		 );
-	 }
-	 else
-	 {
-		 m_movese->Stop();
-	 }
+	StY = g_pad[m_number].GetLStickYF();
+	StX = g_pad[m_number].GetLStickXF();
+	if (g_pad[m_number].GetLStickYF() >= 0.001f ||
+		g_pad[m_number].GetLStickYF() <= -0.001f)
+	{
+		m_movese->Play(true);
+		m_moveEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
+			m_smokeEffect, m_pos.x, m_pos.y - 5.0f, m_pos.z
+		);
+	}
+	else
+	{
+		m_movese->Stop();
+	}
 	//カメラの前方方向と右方向を取得
 	CVector3 cameraForward = g_gameCamera3D[m_number]->GetCamera().GetForward();
 	CVector3 cameraRight = g_gameCamera3D[m_number]->GetCamera().GetRight();
@@ -152,15 +138,15 @@ void Player::Move()
 				axis *= -1.0f;
 				angle = 3.14159f - angle;
 			}
-			
+
 			angle *= m_tankData->GetTankDeta()->bodyturn;
 			CQuaternion qRot;
 			qRot.SetRotation(axis, angle);
 			m_rot.Multiply(qRot);
-			
+
 		}
 	}
-	
+
 	m_moveSpeed.y += -1800.0f * m_deltatime;
 }
 
@@ -169,18 +155,18 @@ void Player::Update()
 
 	m_movese->SetPosition(m_pos);
 	//if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
-		g_gameCamera3D[m_number]->SetTarget(m_pos);
+	g_gameCamera3D[m_number]->SetCameraTarget(m_pos);
 
-		if (g_pad[m_number].IsPress(enButtonLB2)) {
-			g_gameCamera3D[m_number]->SetAimFlag(true);
-			m_aimingSpriteScale = { 5.0f ,5.0f ,5.0f };
-		}
-		else
-		{
-			g_gameCamera3D[m_number]->SetAimFlag(false);
-			m_aimingSpriteScale = CVector3::One();
-			m_ui->SetHP(m_playerHP);
-		}
+	if (g_pad[m_number].IsPress(enButtonLB2)) {
+		g_gameCamera3D[m_number]->SetAimFlag(true);
+		m_aimingSpriteScale = { 5.0f ,5.0f ,5.0f };
+	}
+	else
+	{
+		g_gameCamera3D[m_number]->SetAimFlag(false);
+		m_aimingSpriteScale = CVector3::One();
+		m_ui->SetHP(m_playerHP);
+	}
 	//}
 
 	if (g_pad[m_number].IsTrigger(enButtonRight)) {
@@ -198,7 +184,7 @@ void Player::Update()
 		}
 		m_bulletChange->BulletSelect((BulletType)bnum);
 	}
-	CMatrix rotMatrix; 
+	CMatrix rotMatrix;
 	rotMatrix.MakeRotationFromQuaternion(m_rot);
 	m_forward.x = rotMatrix.m[2][0];
 	m_forward.y = rotMatrix.m[2][1];
@@ -215,8 +201,8 @@ void Player::Update()
 	Turn();
 	if (m_timier >= 30.0f&&g_pad[m_number].IsTrigger(enButtonRB2))
 	{
-			FireBullets(800.0f);
-			m_timier = 0;
+		FireBullets(800.0f);
+		m_timier = 0;
 	}
 	if (m_bulletmaneger->GetDamageFlag() == true &&
 		m_bulletmaneger->GetNumber() != m_number &&
@@ -232,14 +218,14 @@ void Player::Update()
 		}
 		m_playerHP -= player->GetBulletChange()->GetTankBulletInfo()->bulletdamage - m_tankData->GetTankDeta()->defense;
 		m_bulletmaneger->SetDamegeFlag(false);
-		
+
 	}
 	if (m_playerHP <= 0.0f)
 	{
 		playerdeth = true;
 	}
 	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed, m_rot);
-	
+
 	//ワールド行列の更新。
 	m_model.UpdateWorldMatrix(m_pos, m_rot, m_scale);
 	m_model2.UpdateWorldMatrix(m_pos, m_rotation, m_scale);
@@ -262,7 +248,7 @@ void Player::Draw()
 {
 	m_model.Draw(
 		enRenderMode_Normal,
-		g_camera3D.GetViewMatrix(), 
+		g_camera3D.GetViewMatrix(),
 		g_camera3D.GetProjectionMatrix()
 	);
 	m_model2.Draw(

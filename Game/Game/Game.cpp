@@ -56,9 +56,10 @@ bool Game::Start()
 				m_respawnpos.push_back(objData.position);
 				m_playerList.push_back(player);
 				//ƒQ[ƒ€ƒJƒƒ‰‚Ì‰Šú‰»B
-				g_gameCamera3D[plNo]->SetCameraPos({ player->GetPosition().x,player->GetPosition().y + 130.0f,player->GetPosition().z + 250.0f });
+				//g_gameCamera3D[plNo]->SetCameraPos({ player->GetPosition().x,player->GetPosition().y + 250.0f,player->GetPosition().z + 150.0f });
+				g_gameCamera3D[plNo]->SetPosition({ player->GetPosition().x,player->GetPosition().y,player->GetPosition().z + 150.0f });
 				g_gameCamera3D[plNo]->SetTarget(player->GetPosition());
-				//g_gameCamera3D[plNo] = NewGO<GameCamera>(1, "GameCamera");
+				g_gameCamera3D[plNo]->SetNumber(plNo);
 
 				plNo++;
 				return true;
@@ -203,7 +204,7 @@ void Game::Draw()
 
 }
 
-void Game::PostDraw()
+void Game::PostDraw(int player_num)
 {
 	
 	

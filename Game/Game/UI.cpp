@@ -45,7 +45,7 @@ void UI::Update()
 	m_playerhp.Update({ 400.0f,300.0f,0.0f }, CQuaternion::Identity(), { m_hp / 10.0f, 1.0f, 1.0f });
 }
 
-void UI::PostDraw()
+void UI::PostDraw(int player_num)
 {
 	m_aiming.Draw(
 		g_camera2D.GetViewMatrix(),

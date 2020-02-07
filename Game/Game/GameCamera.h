@@ -11,16 +11,6 @@ public:
 	bool Start()override;
 	void Update()override;
 
-	CVector3 GetCameraPos() 
-	{
-		return m_camera.GetPosition();
-	}
-	void SetCameraPos(CVector3 pos)
-	{
-		m_position = pos;
-		m_camera.SetPosition(pos);
-	}
-
 	/*
 	*@brief ビューポートを設定する関数
 	x		左上隅のx座標
@@ -42,6 +32,7 @@ public:
 	void SetPosition(CVector3 pos)
 	{
 		m_camera.SetPosition(pos);
+		m_position = pos;
 	}
 	void SetAimFlag(bool flag)
 	{
@@ -56,7 +47,23 @@ public:
 	{
 		m_cameraSpeed = speed;
 	}
+	/*void SetCameraPos(CVector3 pos)
+	{
+		m_position = pos;
+	}*/
+	void SetCameraTarget(CVector3 target)
+	{
+		m_target = target;
+	}
 
+	CVector3 GetForward()
+	{
+		return m_camera.GetForward();
+	}
+	CVector3 GetCameraPos() 
+	{
+		return m_camera.GetPosition();
+	}
 	bool Get_isViewport()
 	{
 		return m_isViewport;

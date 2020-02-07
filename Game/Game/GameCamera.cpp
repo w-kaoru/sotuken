@@ -23,17 +23,7 @@ GameCamera::~GameCamera()
 
 bool GameCamera::Start()
 {
-	//m_player = FindGO<Player>("Player");
-	/*m_camera.SetPosition(
-		{ m_player->GetPosition().x,m_player->GetPosition().y + 130.0f,
-		m_player->GetPosition().z + 250.0f
-		}
-	);
-	m_camera.SetTarget(m_player->GetPosition());*/
-	m_camera.SetPosition(m_position);
-	m_camera.SetTarget(m_target);
 	m_camera.SetFar(20000.0f);
-
 	//ビューポート未設定なのでfalse。
 	m_isViewport = false;
 	return true;
@@ -85,8 +75,8 @@ void GameCamera::Update()
 	}
 	//パッドの入力を使ってカメラを回す。
 	CVector3 RStick = CVector3::Zero();
-	RStick.x = m_cameraSpeed * g_pad[0].GetRStickXF();
-	RStick.y = m_cameraSpeed * g_pad[0].GetRStickYF();
+	RStick.x = m_cameraSpeed * g_pad[m_number].GetRStickXF();
+	RStick.y = m_cameraSpeed * g_pad[m_number].GetRStickYF();
 	RStick.z = 0.0f;
 	//Y軸周りの回転
 	CQuaternion qRot;
@@ -118,12 +108,11 @@ void GameCamera::Update()
 		angle -= downMax;
 		qRot.SetRotationDeg(axisX, angle);
 		qRot.Multiply(toCameraPos);
-
 	}
 	//新しい視点を計算する。
-	auto newPositin = newTarget + toCameraPos;
+	auto newPos = newTarget + toCameraPos;
 	m_camera.SetTarget(newTarget);
-	m_camera.SetPosition(newPositin);
+	m_camera.SetPosition(newPos);
 	m_camera.Update();
 
 }

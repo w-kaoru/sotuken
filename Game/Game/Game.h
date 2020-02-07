@@ -17,7 +17,7 @@ public:
 	void OnDestroy()override;
 	void Update()override;
 	void Draw()override;
-	void PostDraw()override;
+	void PostDraw(int player_num)override;
 	/*!
 	* @brief	弾丸マネージャを取得。
 	*/
