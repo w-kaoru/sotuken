@@ -53,7 +53,7 @@ bool Game::Start()
 				Player* player = NewGO<Player>(0, playerName);
 				player->SetNumber(plNo);
 				player->SetPosition(objData.position);
-				m_Nanka.push_back(objData.position);
+				m_respawnpos.push_back(objData.position);
 				m_playerList.push_back(player);
 				//ƒQ[ƒ€ƒJƒƒ‰‚Ì‰Šú‰»B
 				g_gameCamera3D[plNo]->SetCameraPos({ player->GetPosition().x,player->GetPosition().y + 130.0f,player->GetPosition().z + 250.0f });
@@ -161,7 +161,7 @@ void Game::Update()
 		{
 			m_isDeth = true;
 			m_score->DethPlus();
-			pos = m_Nanka.at(player->GetNumber());
+			pos = m_respawnpos.at(player->GetNumber());
 			num = player->GetNumber();
 			DeleteGO(player);
 			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());

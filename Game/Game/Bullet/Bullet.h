@@ -56,6 +56,10 @@ public:
 	{
 		return m_hitNumber;
 	}
+	CVector3 GetHitPos()
+	{
+		return m_hitpos;
+	}
 private:
 	SkinModel m_model;
 	BulletController* m_bulletCon = nullptr;
@@ -67,5 +71,6 @@ private:
 	CQuaternion m_rotation = CQuaternion::Identity();
 	int m_number = 0;
 	int m_hitNumber = 0;
+	CVector3 m_hitpos = CVector3::Zero();
 };
 

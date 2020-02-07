@@ -88,6 +88,7 @@ private:
 	float m_downSpeed = 1.0f;
 	Effekseer::Effect* m_smokeEffect = nullptr;//テストエフェクト
 	Effekseer::Handle m_smokeEffectHandle = -1;
+	Effekseer::Handle m_moveEffectHandle = -1;
 	prefab::CSoundSource* m_movese;
 };
 

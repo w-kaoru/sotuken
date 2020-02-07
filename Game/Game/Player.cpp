@@ -28,10 +28,10 @@ bool Player::Start()
 	m_bulletChange = NewGO<BulletTypeChange>(1, "BulletTypeChange");
 	m_bulletChange->BulletSelect(BulletType::HE);
 	m_movese = NewGO<prefab::CSoundSource>(0);
-	m_movese->Init(L"Assets/sound/running-tank-1.wav",true);
+	m_movese->Init(L"Assets/sound/running-tank-1.wav",false);
 	m_movese->SetVolume(0.3f);
 
-	if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
+	//if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
 		/*char gameCameraName[20];
 		sprintf(gameCameraName, "GameCamera_%d", m_number);
 		m_gamecamera = NewGO<GameCamera>(0, gameCameraName);*/
@@ -45,7 +45,7 @@ bool Player::Start()
 		m_ui->SetAimingScale(CVector3::One());
 		m_ui->SetNumber(m_number);
 		m_ui->SetBulletChange(m_bulletChange);
-	}
+	//}
 	//cmoファイルの読み込み。
 	m_model.Init(m_tankData->GetTankDeta()->filePath_00);
 	m_model2.Init(m_tankData->GetTankDeta()->filePath_01);
@@ -117,7 +117,9 @@ void Player::Move()
 		 g_pad[m_number].GetLStickYF() <= -0.001f)
 	 {
 		 m_movese->Play(true);
-	
+		 m_moveEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
+			 m_smokeEffect, m_pos.x, m_pos.y -5.0f, m_pos.z
+		 );
 	 }
 	 else
 	 {
@@ -166,7 +168,7 @@ void Player::Update()
 {
 
 	m_movese->SetPosition(m_pos);
-	if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
+	//if (m_number == 0) {//今だけ、カメラは一つしかないので0番目のみ。
 		g_gameCamera3D[m_number]->SetTarget(m_pos);
 
 		if (g_pad[m_number].IsPress(enButtonLB2)) {
@@ -179,7 +181,7 @@ void Player::Update()
 			m_aimingSpriteScale = CVector3::One();
 			m_ui->SetHP(m_playerHP);
 		}
-	}
+	//}
 
 	if (g_pad[m_number].IsTrigger(enButtonRight)) {
 		int bnum = m_bulletChange->GetBulletType() + 1;
