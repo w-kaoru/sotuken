@@ -11,40 +11,46 @@ Bullet::Bullet()
 
 Bullet::~Bullet()
 {
+	if (m_bulletCon) delete m_bulletCon;
 }
 
 bool Bullet::Start()
 {	
-	m_model.Init(L"Assets/modelData/bullet.cmo");
-	m_bulletCon.SetPosition(m_position);
+	m_model.Init(L"Assets/modelData/bullet1.cmo");
+	m_bulletCon->SetPosition(m_position);
+	//Œü‚«‚ð•Ï‚¦‚éB
+	auto angle = atan2f(g_camera3D.GetForward().x, g_camera3D.GetForward().z);
+	m_rotation.SetRotation(CVector3::AxisY(), angle);
+	
 	return true;
 }
-void Bullet::Init(int k, int number)
-{	
-
-	m_bulletCon.Init(10.0f, m_position);
-	m_bulletCon.GetRigidBody()->GetBody()->setUserIndex(k);
-	m_bulletCon.SetHitNumber(number);
-
+void Bullet::Init(int collision, int number)
+{
+	m_bulletCon = new BulletController;
+	m_bulletCon->Init(10.0f, m_position);
+	m_bulletCon->GetRigidBody()->GetBody()->setUserIndex((EnCollisionAttr)collision);
+	m_bulletCon->SetHitNumber(number);
 }
 void Bullet::BulletMove()
 {
-	m_position = m_bulletCon.Execute(1.0f / 30.0f, m_moveSpeed);
+	m_position = m_bulletCon->Execute(1.0f / 30.0f, m_moveSpeed);
 	
-	m_model.UpdateWorldMatrix(m_position, CQuaternion::Identity(), CVector3::One());
+	m_model.UpdateWorldMatrix(m_position,m_rotation, CVector3::One());
 }
+
 void Bullet::Update()
 {
 	m_bulletDeleteTime++;
 	BulletMove();
-	if (m_bulletCon.GetBulletHit() == true) {
+	if (m_bulletCon->GetBulletHit() == true) {
 		m_hitFlag = true;
 	}
-	if (m_bulletCon.Gethit() == true)
+	if (m_bulletCon->Gethit() == true)
 	{
 		IsHit = true;
 	}
-	m_number = m_bulletCon.GetNumber();
+	m_number = m_bulletCon->GetNumber();
+	m_hitNumber = m_bulletCon->GetHitNumber();
 }
 
 void Bullet::Draw()

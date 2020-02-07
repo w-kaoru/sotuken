@@ -23,7 +23,6 @@ GameCamera::~GameCamera()
 
 bool GameCamera::Start()
 {
-
 	//m_player = FindGO<Player>("Player");
 	/*m_camera.SetPosition(
 		{ m_player->GetPosition().x,m_player->GetPosition().y + 130.0f,
@@ -128,3 +127,4 @@ void GameCamera::Update()
 	m_camera.Update();
 
 }
+

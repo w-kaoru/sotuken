@@ -8,7 +8,6 @@ public:
 	~TankData();
 	bool Start() override;
 	void Select(TankType type);
-	void BulletSelect(BulletType btype);
 	STankData* GetTankDeta() {
 		return &m_data;
 	}
@@ -16,13 +15,8 @@ public:
 	{
 		return m_type;
 	}
-	BulletType GetBulletType()
-	{
-		return m_bullettype;
-	}
 private:
 	STankData m_data;
 	TankType m_type;
-	BulletType m_bullettype;
 };
 

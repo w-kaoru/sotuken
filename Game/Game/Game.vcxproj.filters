@@ -73,6 +73,8 @@
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="TankData.cpp" />
     <ClCompile Include="Sky.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="BulletTypeChange.cpp" />
     <ClCompile Include="ViewPortSplit\ViewPortSplit.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +94,8 @@
     <MeshContentTask Include="Assets\modelData\tiha_houtou.fbx" />
     <MeshContentTask Include="Assets\modelData\tiha_body.fbx" />
     <MeshContentTask Include="Assets\modelData\sky.FBX" />
+    <MeshContentTask Include="Assets\modelData\bullet1.FBX" />
+    <MeshContentTask Include="Assets\modelData\GrassGround1.fbx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
@@ -161,6 +165,8 @@
     <ClInclude Include="TankData.h" />
     <ClInclude Include="TankInfo.h" />
     <ClInclude Include="Sky.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="BulletTypeChange.h" />
     <ClInclude Include="ViewPortSplit\ViewPortSplit.h" />
   </ItemGroup>
 </Project>

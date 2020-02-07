@@ -7,11 +7,15 @@ public:
 	Bullet();
 	~Bullet();
 	bool Start();
-	void Init(int k, int number);
+	void Init(int collision, int number);
 	void Update();
 	void Draw();
 	void Draw(int player_num);
 	void BulletMove();
+	CVector3 GetPosition()
+	{
+		return m_position;
+	}
 	/// <summary>
 	/// 弾のポジションを設定
 	/// </summary>
@@ -42,20 +46,26 @@ public:
 	}
 	const BulletController &GetBulletController()
 	{
-		return m_bulletCon;
+		return *m_bulletCon;
 	}
 	int GetNumber()
 	{
 		return m_number;
 	}
+	int GetHitNumber()
+	{
+		return m_hitNumber;
+	}
 private:
 	SkinModel m_model;
-	BulletController m_bulletCon;
+	BulletController* m_bulletCon = nullptr;
 	bool m_hitFlag = false;
 	bool IsHit = false;
 	int m_bulletDeleteTime = 0;
 	CVector3 m_position = CVector3::Zero();		//座標
 	CVector3 m_moveSpeed = CVector3::Zero();	//移動速度
+	CQuaternion m_rotation = CQuaternion::Identity();
 	int m_number = 0;
+	int m_hitNumber = 0;
 };
 

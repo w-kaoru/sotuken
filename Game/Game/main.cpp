@@ -18,15 +18,15 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	InitGame(hInstance, hPrevInstance, lpCmdLine, nCmdShow, "Game");
 
 	GOManager().Init(50);
-	CSoundEngine soundEngine;				//サウンドエンジン。
-	soundEngine.Init();
+	//CSoundEngine soundEngine;				//サウンドエンジン。
+	SoundEngine().Init();
 	g_physics.SetDebugDrawMode(btIDebugDraw::DBG_DrawWireframe);
 	NewGO<Title>(0, "Title");
 
 	int i = 0;
 	for (i = 0; i < PLAYER_NUM; i++)
 	{
-		g_gameCamera3D[i] = NewGO<GameCamera>(0,"GameCamera");
+		g_gameCamera3D[i] = NewGO<GameCamera>(1,"GameCamera");
 	}
 	//ゲームループ。
 	while (DispatchWindowMessage() == true)
@@ -40,11 +40,11 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		//ゲームオブジェクトの更新。
 		GOManager().Execute();
 		//サウンドエンジンの更新
-		soundEngine.Update();
+		SoundEngine().Update();
 		//物理エンジンの更新。
 		g_physics.Update();
 		//エフェクトの更新
-		g_graphicsEngine->EffectUpdate(GameEngine::GetViewSplit().Get_isSplit());
+		//g_graphicsEngine->EffectUpdate(GameEngine::GetViewSplit().Get_isSplit());
 		//描画終了。
 		g_graphicsEngine->EndRender();
 	}

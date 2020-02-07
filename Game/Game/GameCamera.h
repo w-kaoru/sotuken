@@ -2,13 +2,14 @@
 #include "stdafx.h"
 #include "ViewPortSplit/ViewPortSplit.h"
 #include "GameObject/IGameObject.h"
+class UI;
 class GameCamera : public GameEngine::IGameObject
 {
 public:
 	GameCamera();
 	~GameCamera();
-	bool Start();
-	void Update();
+	bool Start()override;
+	void Update()override;
 
 	CVector3 GetCameraPos() 
 	{
@@ -17,6 +18,7 @@ public:
 	void SetCameraPos(CVector3 pos)
 	{
 		m_position = pos;
+		m_camera.SetPosition(pos);
 	}
 
 	/*
@@ -48,6 +50,7 @@ public:
 	void SetTarget(CVector3 target)
 	{
 		m_target = target;
+		m_camera.SetTarget(target);
 	}
 	void SetCameraSpeed(float speed)
 	{
@@ -63,15 +66,18 @@ public:
 	{
 		return m_camera;
 	}
+	void SetNumber(int num) {
+		m_number = num;
+	}
 private:
-
-	Camera					m_camera;			//カメラ
+	Camera		m_camera;			//カメラ
 	CVector3    m_forword = CVector3::Zero();
 	CVector3    m_target = CVector3::Zero();
 	CVector3    m_position = CVector3::Zero();
-	float       m_cameraSpeed = 0.0f;
+	float       m_cameraSpeed = 0.02f;
 	bool        m_aimFalg = false;
 	bool	    m_isViewport;                   //ビューポートが設定されているか？
+	int			m_number = 0;
 };
 //ゲームカメラの配列。
 extern GameCamera* g_gameCamera3D[4];      

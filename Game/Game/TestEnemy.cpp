@@ -35,7 +35,7 @@ bool TestEnemy::Start()
 void TestEnemy::FireBullets(float speed)
 {
 	
-	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_EnemyBullet,100);
+	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_EnemyBullet, 100);
 	bullet->SetMoveSpeed(m_forward * speed);
 	CVector3 pos = m_pos;
 	pos.y += 50.0f;

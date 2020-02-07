@@ -4,6 +4,7 @@
 #include "TestEnemy.h"
 #include "Bullet/BulletManeger.h"
 #include "BackGround.h"
+#include "GameCamera.h"
 #include "Light/DirectionLight.h"
 #include "Title.h"
 #include "Score.h"
@@ -15,8 +16,6 @@
 Game::Game()
 {
 	InitLight();
-	m_testbgm.Init(L"Assets/sound/coinGet.wav");
-	//m_testbgm.Play(true);
 	m_time.TimerStart();
 	m_testEffect = Effekseer::Effect::Create(g_graphicsEngine->GetEffekseerManager(),
 		(const EFK_CHAR*)L"Assets/effect/test.efk");
@@ -42,6 +41,8 @@ bool Game::Start()
 	int plNo = 0;
 	m_backgeound = NewGO<BackGround>(1, "BackGround");
 	m_sky = NewGO<Sky>(1, "Sky");
+	
+
 	m_level.Init(L"Assets/level/level_00.tkl", [&](LevelObjectData& objData) {
 		//player_totalの人数だけプレイヤーを生成。
 		if (plNo < player_total) {
@@ -54,15 +55,17 @@ bool Game::Start()
 				player->SetPosition(objData.position);
 				m_Nanka.push_back(objData.position);
 				m_playerList.push_back(player);
-				plNo++;
-				//ゲームカメラ
+				//ゲームカメラの初期化。
+				g_gameCamera3D[plNo]->SetCameraPos({ player->GetPosition().x,player->GetPosition().y + 130.0f,player->GetPosition().z + 250.0f });
+				g_gameCamera3D[plNo]->SetTarget(player->GetPosition());
+				//g_gameCamera3D[plNo] = NewGO<GameCamera>(1, "GameCamera");
 
+				plNo++;
 				return true;
 			}
 		}
-		return false;
+		return true;
 	});
-
 	//ゲームカメラのビューポートの設定。
 	int l_half_w = FRAME_BUFFER_W / 2;
 	int l_half_h = FRAME_BUFFER_H / 2;
@@ -88,6 +91,8 @@ bool Game::Start()
 		break;
 	default:
 		break;
+
+	
 	}
 	GameEngine::GetViewSplit().Start();//分割開始。
 	//m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
@@ -102,12 +107,20 @@ void Game::OnDestroy()
 	for (auto player : m_playerList) {
 		if (player != nullptr) {
 			DeleteGO(player);
+			//m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
 		}
 	}
-	if (m_testenemy != nullptr) {
-		DeleteGO(m_testenemy);
+	for (auto player : m_playerList) {
+		if (!player) {
+			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
+		}
 	}
-	DeleteGO(m_bulletmaneger);
+	//if (m_testenemy != nullptr) {
+	//	DeleteGO(m_testenemy);
+	//}
+	if (m_bulletmaneger != nullptr) {
+		DeleteGO(m_bulletmaneger);
+	}
 	if (FindGO<TankData>("TankData") != nullptr) {
 		DeleteGO(FindGO<TankData>("TankData"));
 	}
@@ -121,6 +134,8 @@ void Game::OnDestroy()
 
 void Game::Update()
 {
+
+
 	if (m_time.GetSeconds() >= GameTime)
 	{
 		m_gameresults = NewGO<GameResults>(1, "GameResults");
@@ -128,12 +143,14 @@ void Game::Update()
 
 	}
 
-	if (m_testenemy->GetDeth() == true)
-	{
-		m_score->ScorePlus();
-		DeleteGO(m_testenemy);
-		m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
-	}
+	//if (m_testenemy->GetDeth() == true)
+	//{
+	//	m_score->ScorePlus();
+	//	DeleteGO(m_testenemy);
+	//	m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
+	//}
+	CVector3 pos;
+	int num;
 	for (auto player : m_playerList) {
 		if (m_time.GetSeconds() >= CountDownTime)
 		{
@@ -142,15 +159,31 @@ void Game::Update()
 		}
 		if (player->GetPlayerDeth() == true)
 		{
+			m_isDeth = true;
 			m_score->DethPlus();
+			pos = m_Nanka.at(player->GetNumber());
+			num = player->GetNumber();
 			DeleteGO(player);
-			CVector3 pos = m_Nanka.at(player->GetNumber());
-			int no = player->GetNumber();
 			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
-			player = NewGO<Player>(0, "Player");
-			player->SetPosition(pos);
-			player->SetNumber(no);
+			//player = nullptr;
 		}
+	}
+	for (auto player : m_playerList)
+	{
+		if (!player)
+		{
+			m_playerList.erase(std::remove(m_playerList.begin(), m_playerList.end(), player), m_playerList.end());
+		}
+	}
+
+	if (m_isDeth) {
+		char playerName[15];
+		sprintf(playerName, "Player_%d", num);
+		Player* pplayer = NewGO<Player>(0, playerName);
+		pplayer->SetNumber(num);
+		pplayer->SetPosition(pos);
+		m_playerList.push_back(pplayer);
+		m_isDeth = false;
 	}
 	CVector3 ligdir = m_LigDirection;
 	ligdir *= -1.0f;
@@ -172,8 +205,7 @@ void Game::Draw()
 
 void Game::PostDraw()
 {
-	//m_player->SetIsStop(true);
-
+	
 	
 	int time;
 	m_time.TimerStop();
@@ -194,7 +226,7 @@ void Game::PostDraw()
 		swprintf_s(moji, L"%d", (CountDownTime - time));		//表示用にデータを加工
 		m_font.Draw(
 			moji,		//表示する文字列。
-			{ -60.0f,60.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+			{ -60.0f,60.0f },//表示する座標。0.0f, 0.0が画面の中心。
 			{ 0.0f,0.0f,0.0f,1.0f },
 			0.0f,
 			1.5f,

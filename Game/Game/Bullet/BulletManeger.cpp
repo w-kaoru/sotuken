@@ -16,6 +16,13 @@ BulletManeger::~BulletManeger()
 
 bool BulletManeger::Start()
 {
+	m_explosionse = NewGO<prefab::CSoundSource>(0);
+	m_attsckse = NewGO<prefab::CSoundSource>(0);
+	m_explosionse->Init(L"Assets/sound/explosion.wav",true);
+	m_explosionse->SetVolume(0.5f);
+	m_attsckse->Init(L"Assets/sound/battery1.wav",true);
+	m_testEffect = Effekseer::Effect::Create(g_graphicsEngine->GetEffekseerManager(),
+		(const EFK_CHAR*)L"Assets/effect/exproj.efk");
 	return true;
 }
 void BulletManeger::OnDestroy()
@@ -26,40 +33,66 @@ void BulletManeger::OnDestroy()
 	}
 
 }
-Bullet* BulletManeger::NewBullet(int k,int number)
+Bullet* BulletManeger::NewBullet(int collision,int number)
 {
 	Bullet* newbullet = NewGO<Bullet>(1, "Bullet");
-	newbullet->Init(k, number);
+	m_attsckse->Play(false);
+	newbullet->Init(collision, number);
 	m_bulletList.push_back(newbullet);
 	return newbullet;
 }
-void BulletManeger::DeleteBullet()
+void BulletManeger::DeleteBullet(Bullet* bullet)
 {
-	
-	for (auto& bullet : m_bulletList) {
-
-		if (bullet->GetBulletHit() == true)
-		{
-			m_damage = true;
-			m_number = bullet->GetNumber();
-		}
-		if (bullet->GetTime() > 75
-			|| bullet->GetBulletHit() == true
-			|| bullet->GetHit() == true)
-		{
-			DeleteGO(bullet);
-			m_bulletList.erase(std::remove(m_bulletList.begin(), m_bulletList.end(), bullet)
-				, m_bulletList.end());
-		}
+	if (bullet->GetBulletHit() == true)
+	{
+		m_damage = true;
+		m_number = bullet->GetNumber();
+		m_hitNumber = bullet->GetHitNumber();
+	}
+	if (bullet->GetTime() > 75
+		|| bullet->GetBulletHit() == true
+		|| bullet->GetHit() == true)
+	{
+		DeleteGO(bullet);
+		m_bulletList.erase(
+			std::remove(m_bulletList.begin(), m_bulletList.end(), bullet),
+			m_bulletList.end()
+		);
 	}
 }
+
 void BulletManeger::Update()
 {
 
 	for (auto& bullet : m_bulletList) {
 		//bullet->BulletMove();
+		//DeleteBullet(bullet);
+		if (bullet->GetBulletHit() == true)
+		{
+			m_damage = true;
+			m_number = bullet->GetNumber();
+			m_hitNumber = bullet->GetHitNumber();
+		}
+		if (bullet->GetTime() > 75
+			|| bullet->GetBulletHit() == true
+			|| bullet->GetHit() == true)
+		{
+			m_explosionse->Play(false);
+			m_testEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
+				m_testEffect, bullet->GetPosition().x, bullet->GetPosition().y, bullet->GetPosition().z);
+			DeleteGO(bullet);
+			bullet = nullptr;
+		}
 	}
-	DeleteBullet();
+
+	for (auto& bullet : m_bulletList) {
+		if (!bullet) {
+			m_bulletList.erase(
+				std::remove(m_bulletList.begin(), m_bulletList.end(), bullet),
+				m_bulletList.end()
+			);
+		}
+	}
 }
 
 void BulletManeger::Draw()

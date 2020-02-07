@@ -57,8 +57,12 @@ namespace GameEngine {
 		//g_physics.DebubDrawWorld();
 		g_graphicsEngine->GetLightManager()->Render();
 		//ポストレンダリング。
+		//エフェクトの更新
+		g_graphicsEngine->EffectUpdate();
+
 		GetViewSplit().PostRender(m_gameObjectList);
 		/*for (GameObjectList objList : m_gameObjectList) {
+		for (GameObjectList objList : m_gameObjectList) {
 			for (IGameObject* obj : objList) {
 				obj->PostDrawWrapper();
 			}

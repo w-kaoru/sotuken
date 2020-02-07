@@ -8,9 +8,9 @@ public:
 	~BulletManeger();
 	bool Start();
 	//void OnDestroy();
-	Bullet* NewBullet(int k, int number);
+	Bullet* NewBullet(int collision, int number);
 	void OnDestroy();
-	void DeleteBullet();
+	void DeleteBullet(Bullet* bullet);
 	void Update();
 	void Draw();
 	/// <summary>
@@ -61,9 +61,18 @@ public:
 	{
 		return m_number;
 	}
+	int GetHitNumber()
+	{
+		return m_hitNumber;
+	}
 private:
 	std::vector<Bullet*> m_bulletList;
 	bool m_damage = false;
 	float m_bulletdamage = 10.0f;
 	int m_number = 0;
+	int m_hitNumber = 0;
+	prefab::CSoundSource*  m_explosionse;
+	prefab::CSoundSource*  m_attsckse;
+	Effekseer::Effect* m_testEffect = nullptr;//テストエフェクト
+	Effekseer::Handle m_testEffectHandle = -1;
 };

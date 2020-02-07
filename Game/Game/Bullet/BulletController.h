@@ -41,13 +41,21 @@ namespace GameEngine {
 		{
 			return m_bullethitFlag;
 		}
-		void SetHitNumber(int number)
+		void SetNumber(int number)
 		{
-			m_hitNumber = number;
+			m_number = number;
 		}
 		int GetNumber()
 		{
 			return m_number;
+		}
+		void SetHitNumber(int number)
+		{
+			m_number = number;
+		}
+		int GetHitNumber()
+		{
+			return m_hitNumber;
 		}
 	private:
 		CVector3 m_position = CVector3::Zero();

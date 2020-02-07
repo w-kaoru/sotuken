@@ -6,6 +6,7 @@ public:
 	GameResults();
 	~GameResults();
 	bool Start();
+	void OnDestroy()override;
 	void Update();
 	void Draw();
 	void PostDraw();
@@ -14,5 +15,6 @@ private:
 	wchar_t m_result[256];
 	GameFont m_font;
 	Sprite m_background;
+	prefab::CSoundSource* m_resultbgm;
 };
 
