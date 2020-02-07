@@ -219,7 +219,7 @@ void Game::PostDraw(int player_num)
 			{ -150.0f,FRAME_BUFFER_H / 2.0f },			//表示する座標。0.0f, 0.0が画面の中心。
 			{ 1.0f,0.0f,0.0f,1.0f },
 			0.0f,
-			0.8f,
+			0.8f/player_total,
 			{ 0.0f,1.0f }
 		);
 	}
@@ -227,10 +227,10 @@ void Game::PostDraw(int player_num)
 		swprintf_s(moji, L"%d", (CountDownTime - time));		//表示用にデータを加工
 		m_font.Draw(
 			moji,		//表示する文字列。
-			{ -60.0f,60.0f },//表示する座標。0.0f, 0.0が画面の中心。
+			{ -60.0f,60.0f},//表示する座標。0.0f, 0.0が画面の中心。
 			{ 0.0f,0.0f,0.0f,1.0f },
 			0.0f,
-			1.5f,
+			1.5f/player_total,
 			{ 0.0f,1.0f }
 		);
 	}

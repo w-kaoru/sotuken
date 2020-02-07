@@ -31,7 +31,7 @@ private:
 	Sprite m_playerhp;
 	wchar_t m_moji[256];
 	GameFont m_font;
-	float m_fontsize = 1.0f;							//フォントサイズ
+	float m_fontsize = 0.8f;							//フォントサイズ
 	//TankData* m_tankData = nullptr;
 	float m_hp = 0.0f;
 	CVector3 m_aimingScale = CVector3::Zero();

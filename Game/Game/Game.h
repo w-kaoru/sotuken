@@ -62,7 +62,7 @@ private:
 	prefab::DirectionLight* m_directionLight = nullptr;
 	CVector3 m_LigDirection = CVector3::Zero();
 	int GameTime = 180;
-	int	CountDownTime = 1;
+	int	CountDownTime = 5;
 	bool MoveFlag = false;
 	Level m_level;
 	int player_total = 2;  //ê›íËÇ≥ÇÍÇΩçáåvêlêîÅB
