@@ -42,10 +42,12 @@ void Bullet::Update()
 	m_bulletDeleteTime++;
 	BulletMove();
 	if (m_bulletCon->GetBulletHit() == true) {
+		m_hitpos = m_bulletCon->GetHitPos();
 		m_hitFlag = true;
 	}
 	if (m_bulletCon->Gethit() == true)
 	{
+		m_hitpos = m_bulletCon->GetHitPos();
 		IsHit = true;
 	}
 	m_number = m_bulletCon->GetNumber();

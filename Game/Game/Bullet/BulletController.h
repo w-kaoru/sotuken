@@ -57,6 +57,10 @@ namespace GameEngine {
 		{
 			return m_hitNumber;
 		}
+		CVector3 GetHitPos()
+		{
+			return  m_hitpos;
+		}
 	private:
 		CVector3 m_position = CVector3::Zero();
 		SphereCollider m_collider;
@@ -68,5 +72,6 @@ namespace GameEngine {
 		bool deathflag = true;   //’e‚ª‘¶İ‚µ‚Ä‚¢‚é‚©‚ğ”»’è‚·‚éB
 		int m_hitNumber = 0;
 		int m_number = 0;
+		CVector3 m_hitpos = CVector3::Zero();
 	};
 };

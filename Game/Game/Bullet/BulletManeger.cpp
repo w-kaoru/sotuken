@@ -79,7 +79,7 @@ void BulletManeger::Update()
 		{
 			m_explosionse->Play(false);
 			m_testEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
-				m_testEffect, bullet->GetPosition().x, bullet->GetPosition().y, bullet->GetPosition().z);
+				m_testEffect, bullet->GetHitPos().x, bullet->GetHitPos().y, bullet->GetHitPos().z);
 			DeleteGO(bullet);
 			bullet = nullptr;
 		}

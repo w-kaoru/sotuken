@@ -28,7 +28,7 @@ bool Player::Start()
 	m_bulletChange = NewGO<BulletTypeChange>(1, "BulletTypeChange");
 	m_bulletChange->BulletSelect(BulletType::HE);
 	m_movese = NewGO<prefab::CSoundSource>(0);
-	m_movese->Init(L"Assets/sound/running-tank-1.wav",true);
+	m_movese->Init(L"Assets/sound/running-tank-1.wav",false);
 	m_movese->SetVolume(0.3f);
 
 	if (m_number == 0) {//¡‚¾‚¯AƒJƒƒ‰‚Íˆê‚Â‚µ‚©‚È‚¢‚Ì‚Å0”Ô–Ú‚Ì‚İB
@@ -115,7 +115,9 @@ void Player::Move()
 		 g_pad[m_number].GetLStickYF() <= -0.001f)
 	 {
 		 m_movese->Play(true);
-	
+		 m_moveEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
+			 m_smokeEffect, m_pos.x, m_pos.y -5.0f, m_pos.z
+		 );
 	 }
 	 else
 	 {

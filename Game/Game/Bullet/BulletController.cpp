@@ -131,12 +131,15 @@ namespace GameEngine {
 					//プレイヤー弾がエネミーに当たった。
 					//衝突したのでtrueを返す。
 					m_bullethitFlag = true;
+					m_hitpos = m_position;
 					m_hitNumber = callback.hitNumber;
+
 				}
 				if (callback.isHit) {
 					//当たった。
 					//壁。
 					//衝突したのでtrueを返す。
+					m_hitpos = m_position;
 					hitFlag = true;
 				}
 				else {
