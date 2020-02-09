@@ -154,7 +154,6 @@ void Player::Update()
 {
 
 	m_movese->SetPosition(m_pos);
-	//if (m_number == 0) {//¡‚¾‚¯AƒJƒƒ‰‚Íˆê‚Â‚µ‚©‚È‚¢‚Ì‚Å0”Ô–Ú‚Ì‚ÝB
 	g_gameCamera3D[m_number]->SetCameraTarget(m_pos);
 
 	if (g_pad[m_number].IsPress(enButtonLB2)) {
@@ -165,9 +164,7 @@ void Player::Update()
 	{
 		g_gameCamera3D[m_number]->SetAimFlag(false);
 		m_aimingSpriteScale = CVector3::One();
-		m_ui->SetHP(m_playerHP);
 	}
-	//}
 
 	if (g_pad[m_number].IsTrigger(enButtonRight)) {
 		int bnum = m_bulletChange->GetBulletType() + 1;
@@ -220,6 +217,7 @@ void Player::Update()
 		m_bulletmaneger->SetDamegeFlag(false);
 
 	}
+		m_ui->SetHP(m_playerHP);
 	if (m_playerHP <= 0.0f)
 	{
 		playerdeth = true;

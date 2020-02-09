@@ -58,7 +58,8 @@ namespace GameEngine {
 		g_graphicsEngine->GetLightManager()->Render();
 		//ポストレンダリング。
 		//エフェクトの更新
-		g_graphicsEngine->EffectUpdate();
+		//g_graphicsEngine->EffectUpdate();
+		g_graphicsEngine->EffectUpdate(GameEngine::GetViewSplit().Get_isSplit());
 
 		GetViewSplit().PostRender(m_gameObjectList);
 		/*for (GameObjectList objList : m_gameObjectList) {
