@@ -158,12 +158,13 @@ void Player::Update()
 
 	if (g_pad[m_number].IsPress(enButtonLB2)) {
 		g_gameCamera3D[m_number]->SetAimFlag(true);
-		m_aimingSpriteScale = { 5.0f ,5.0f ,5.0f };
+		m_ui->SetAimingScale({ 5.0f,5.0f,5.0f });
 	}
 	else
 	{
 		g_gameCamera3D[m_number]->SetAimFlag(false);
-		m_aimingSpriteScale = CVector3::One();
+		m_ui->SetHP(m_playerHP);
+		m_ui->SetAimingScale(CVector3::One());
 	}
 
 	if (g_pad[m_number].IsTrigger(enButtonRight)) {
@@ -244,7 +245,7 @@ void Player::Turn()
 
 void Player::Draw()
 {
-	m_model.Draw(
+	/*m_model.Draw(
 		enRenderMode_Normal,
 		g_camera3D.GetViewMatrix(),
 		g_camera3D.GetProjectionMatrix()
@@ -253,7 +254,7 @@ void Player::Draw()
 		enRenderMode_Normal,
 		g_camera3D.GetViewMatrix(),
 		g_camera3D.GetProjectionMatrix()
-	);
+	);*/
 }
 
 void Player::Draw(int player_num)

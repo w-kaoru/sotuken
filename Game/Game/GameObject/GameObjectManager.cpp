@@ -63,7 +63,6 @@ namespace GameEngine {
 
 		GetViewSplit().PostRender(m_gameObjectList);
 		/*for (GameObjectList objList : m_gameObjectList) {
-		for (GameObjectList objList : m_gameObjectList) {
 			for (IGameObject* obj : objList) {
 				obj->PostDrawWrapper();
 			}

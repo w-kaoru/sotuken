@@ -83,7 +83,7 @@ private:
 	CVector3    m_position = CVector3::Zero();
 	float       m_cameraSpeed = 0.02f;
 	bool        m_aimFalg = false;
-	bool	    m_isViewport;                   //ビューポートが設定されているか？
+	bool	    m_isViewport = false;                   //ビューポートが設定されているか？
 	int			m_number = 0;
 };
 //ゲームカメラの配列。
