@@ -40,7 +40,7 @@ bool GameSelect::Start()
 	g_camera3D.SetTarget({0.0f,0.0f,0.0f});
 	g_camera3D.SetFar(1000.0f);
 	g_camera3D.Update();
-
+	 m_playernum =  max(min(m_playernum, 4), 1);
 	return true;
 }
 
@@ -61,8 +61,22 @@ void GameSelect::Update()
 	m_stagemodel2.UpdateWorldMatrix(CVector3::Zero(), CQuaternion::Identity(), m_scale);
 	switch (m_select)
 	{
+	case ninzuu:
+
+		if (g_pad[0].IsTrigger(enButtonUp))
+		{
+			m_playernum += max(0, 1);
+		}
+		if (g_pad[0].IsTrigger(enButtonDown))
+		{
+			m_playernum -=1 ;
+		}
+		if (g_pad[0].IsTrigger(enButtonA))
+		{
+			m_select = pz4;
+		}
+		break;
 	case pz4:
-		//ワールド行列の更新。
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
 
@@ -116,7 +130,7 @@ void GameSelect::Update()
 		m_taknData->Select(m_select);
 		Game* game = NewGO<Game>(0, "Game");
 		//game->SetPlayer_Totle(m_playercount);
-		game->SetPlayer_Totle(4);
+		game->SetPlayer_Totle(m_playernum);
 		DeleteGO(this);
 	}
 }
@@ -135,6 +149,19 @@ void GameSelect::FontDraw()
 	m_font.BeginDraw();
 	switch (m_select)
 	{
+	case ninzuu:
+
+		swprintf_s(m_moji, L"プレイ人数%d人",m_playernum);		//表示用にデータを加工
+		m_font.Draw(
+			m_moji,		//表示する文字列。
+			{ -500.0f,-100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+			{ 1.0f,0.0f,0.0f,1.0f },
+			0.0f,
+			m_mojisize,
+			{ 0.0f,1.0f }
+		);
+
+		break;
 	case pz4:
 		swprintf_s(m_moji, L"IV号戦車");		//表示用にデータを加工
 		m_font.Draw(
@@ -161,7 +188,6 @@ void GameSelect::FontDraw()
 
 		break;
 	case Stage2:
-
 		break;
 	}
 	m_font.EndDraw();

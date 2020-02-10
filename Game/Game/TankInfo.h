@@ -3,6 +3,7 @@
 
 enum TankType
 {
+	ninzuu,
 	pz4,
 	tiha,
 	Stage1,
