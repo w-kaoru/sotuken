@@ -22,7 +22,7 @@ private:
 	CQuaternion m_rotation = CQuaternion::Identity();
 	CVector3 m_scale = { 0.2f,0.2f,0.2f };
 	Sprite m_background;                               //セレクト画面の背景画像。
-	TankType m_select = TankType::pz4;
+	TankType m_select = TankType::ninzuu;
 	GameFont m_font;
 	wchar_t m_moji[256];
 	float m_mojisize = 1.5f;	//文字サイズ
@@ -34,6 +34,7 @@ private:
 	prefab::CSoundSource* m_decisionse = nullptr;
 	prefab::CSoundSource* m_selectbgm = nullptr;
 	prefab::CSoundSource* m_cursorse = nullptr;
+	int m_playernum = 1;
 
 };
 
