@@ -10,6 +10,7 @@
     <ImageContentTask Include="Assets\sprite\aiming.png" />
     <ImageContentTask Include="Assets\sprite\bullet.png" />
     <ImageContentTask Include="Assets\sprite\bullet1.png" />
+    <ImageContentTask Include="Assets\sprite\White.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
@@ -76,6 +77,7 @@
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="BulletTypeChange.cpp" />
     <ClCompile Include="ViewPortSplit\ViewPortSplit.cpp" />
+    <ClCompile Include="Fade.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\BTR80A.FBX" />
@@ -168,5 +170,6 @@
     <ClInclude Include="UI.h" />
     <ClInclude Include="BulletTypeChange.h" />
     <ClInclude Include="ViewPortSplit\ViewPortSplit.h" />
+    <ClInclude Include="Fade.h" />
   </ItemGroup>
 </Project>

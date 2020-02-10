@@ -38,8 +38,6 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		SoundEngine().Update();
 		//物理エンジンの更新。
 		g_physics.Update();
-		//エフェクトの更新
-		//g_graphicsEngine->EffectUpdate(GameEngine::GetViewSplit().Get_isSplit());
 		//描画終了。
 		g_graphicsEngine->EndRender();
 	}

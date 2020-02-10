@@ -104,6 +104,14 @@ public:
 	{
 		return m_color;
 	}
+	/*!
+*@brief	透明度だけいじる
+*@param[in]	clear		　透明度（0.0ｆ～1.0ｆ）
+*/
+	void SetclearColor(float clear)
+	{
+		m_color.w = clear;
+	}
 private:
 	/// <summary>
 	/// 初期化の共通処理。

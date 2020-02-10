@@ -1,6 +1,5 @@
 #pragma once
 class Player;
-class TestEnemy;
 class Score:public IGameObject
 {
 public:
@@ -45,6 +44,5 @@ private:
 	wchar_t deth[256];
 	GameFont m_font;
 	Player* m_player = nullptr;
-	TestEnemy* m_enemy = nullptr;
 };
 
