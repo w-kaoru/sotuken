@@ -23,11 +23,6 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	g_physics.SetDebugDrawMode(btIDebugDraw::DBG_DrawWireframe);
 	NewGO<Title>(0, "Title");
 
-	int i = 0;
-	for (i = 0; i < PLAYER_NUM; i++)
-	{
-		g_gameCamera3D[i] = NewGO<GameCamera>(1,"GameCamera");
-	}
 	//ゲームループ。
 	while (DispatchWindowMessage() == true)
 	{

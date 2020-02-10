@@ -161,4 +161,5 @@ private:
 };
 
 extern Camera g_camera3D;		//!<3Dカメラ。
-extern Camera g_camera2D;		//!<2Dカメラ。
+extern Camera g_camera2D;		//!<2Dカ
+//extern std::vector<Camera> g_camera3DList;		//!<3Dカメラ。メラ。

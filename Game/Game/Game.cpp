@@ -42,7 +42,40 @@ bool Game::Start()
 	m_backgeound = NewGO<BackGround>(1, "BackGround");
 	m_sky = NewGO<Sky>(1, "Sky");
 	
-
+	for (int i = 0; i < player_total; i++)
+	{
+		g_gameCamera3D[i] = NewGO<GameCamera>(1, "GameCamera");
+	}
+	//ゲームカメラのビューポートの設定。
+	int l_half_w = FRAME_BUFFER_W / 2;
+	int l_half_h = FRAME_BUFFER_H / 2;
+	switch (player_total)
+	{
+	case 1://プレイヤーが1人
+		g_gameCamera3D[0]->SetViewPort({ 0, 0, (l_half_w * 2), (l_half_h * 2) });
+		break;
+	case 2://プレイヤーが2人
+		g_gameCamera3D[0]->SetViewPort({ 0, 0, l_half_w, (l_half_h * 2) });
+		g_gameCamera3D[1]->SetViewPort({ l_half_w, 0, l_half_w, (l_half_h * 2) });
+		break;
+	case 3://プレイヤーが3人
+		g_gameCamera3D[0]->SetViewPort({ 0, 0, l_half_w, l_half_h });
+		g_gameCamera3D[1]->SetViewPort({ l_half_w, 0, l_half_w, l_half_h });
+		g_gameCamera3D[2]->SetViewPort({ 0, l_half_h, l_half_w, l_half_h });
+		break;
+	case 4://プレイヤーが4人
+		g_gameCamera3D[0]->SetViewPort({ 0, 0, l_half_w, l_half_h });
+		g_gameCamera3D[1]->SetViewPort({ l_half_w, 0, l_half_w, l_half_h });
+		g_gameCamera3D[2]->SetViewPort({ 0, l_half_h, l_half_w, l_half_h });
+		g_gameCamera3D[3]->SetViewPort({ l_half_w, l_half_h, l_half_w, l_half_h });
+		break;
+	default:
+		break;
+	}
+	for (int i = 0; i < player_total; i++)
+	{
+		g_gameCamera3D[i]->Get_isViewport();
+	}
 	m_level.Init(L"Assets/level/level_00.tkl", [&](LevelObjectData& objData) {
 		//player_totalの人数だけプレイヤーを生成。
 		if (plNo < player_total) {
@@ -67,34 +100,6 @@ bool Game::Start()
 		}
 		return true;
 	});
-	//ゲームカメラのビューポートの設定。
-	int l_half_w = FRAME_BUFFER_W / 2;
-	int l_half_h = FRAME_BUFFER_H / 2;
-	switch (player_total)
-	{
-	case 1://プレイヤーが1人
-		g_gameCamera3D[0]->SetViewPort({ 0, 0, (l_half_w*2), (l_half_h*2) });
-		break;
-	case 2://プレイヤーが2人
-		g_gameCamera3D[0]->SetViewPort({ 0, 0, l_half_w, (l_half_h*2) });
-		g_gameCamera3D[1]->SetViewPort({ l_half_w, 0, l_half_w, (l_half_h*2) });
-		break;
-	case 3://プレイヤーが3人
-		g_gameCamera3D[0]->SetViewPort({ 0, 0, l_half_w, l_half_h });
-		g_gameCamera3D[1]->SetViewPort({ l_half_w, 0, l_half_w, l_half_h });
-		g_gameCamera3D[2]->SetViewPort({ 0, l_half_h, l_half_w, l_half_h });
-		break;
-	case 4://プレイヤーが4人
-		g_gameCamera3D[0]->SetViewPort({ 0, 0, l_half_w, l_half_h });
-		g_gameCamera3D[1]->SetViewPort({ l_half_w, 0, l_half_w, l_half_h });
-		g_gameCamera3D[2]->SetViewPort({ 0, l_half_h, l_half_w, l_half_h });
-		g_gameCamera3D[3]->SetViewPort({ l_half_w, l_half_h, l_half_w, l_half_h });
-		break;
-	default:
-		break;
-
-	
-	}
 	GameEngine::GetViewSplit().Start();//分割開始。
 	//m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
@@ -129,7 +134,9 @@ void Game::OnDestroy()
 	//ビューポートのリセット。
 	for (int i = 0; i < PLAYER_NUM; i++)
 	{
-		g_gameCamera3D[i]->FinishViewPort();
+		//g_gameCamera3D[i]->FinishViewPort();
+		DeleteGO(g_gameCamera3D[i]);
+		GetViewSplit().Finish();
 	}
 }
 

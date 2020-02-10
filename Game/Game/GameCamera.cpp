@@ -24,8 +24,6 @@ GameCamera::~GameCamera()
 bool GameCamera::Start()
 {
 	m_camera.SetFar(20000.0f);
-	//ビューポート未設定なのでfalse。
-	m_isViewport = false;
 	return true;
 }
 
