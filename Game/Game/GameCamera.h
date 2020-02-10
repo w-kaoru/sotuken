@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+#include "Define.h"
 #include "ViewPortSplit/ViewPortSplit.h"
 #include "GameObject/IGameObject.h"
 class UI;
@@ -87,5 +87,5 @@ private:
 	int			m_number = 0;
 };
 //ゲームカメラの配列。
-extern GameCamera* g_gameCamera3D[4];      
+extern GameCamera* g_gameCamera3D[PLAYER_NUM];      
 //extern GameCamera* g_gameCamera2D[PLAYER_NUM];

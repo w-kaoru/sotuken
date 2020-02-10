@@ -60,5 +60,3 @@ const float FRAME_BUFFER_W = 1280.0f;				//フレームバッファの幅。
 const float FRAME_BUFFER_H = 720.0f;				//フレームバッファの高さ。
 using namespace GameEngine;
 static const int MAX_BONE = 512;	//!<ボーンの最大数。
-
-const int PLAYER_NUM = 4; //プレイヤーの最大数。

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "GameCamera.h"
 #include "Player.h"
-#include "Define.h"
 
 GameCamera* g_gameCamera3D[PLAYER_NUM];  //ゲームカメラの配列。
 //GameCamera* g_gameCamera2D[PLAYER_NUM];  //ゲームカメラの配列。

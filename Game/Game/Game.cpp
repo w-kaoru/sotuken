@@ -42,7 +42,7 @@ bool Game::Start()
 	m_backgeound = NewGO<BackGround>(1, "BackGround");
 	m_sky = NewGO<Sky>(1, "Sky");
 	
-	for (int i = 0; i < player_total; i++)
+	for (int i = 0; i < PLAYER_NUM; i++)
 	{
 		g_gameCamera3D[i] = NewGO<GameCamera>(1, "GameCamera");
 	}

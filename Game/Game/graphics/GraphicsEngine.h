@@ -4,6 +4,7 @@
 #include "ShadowMap.h"
 #include "PostEffect.h"
 #include "GameCamera.h"
+#include "Define.h"
 
 // レンダリングモード。
 enum EnRenderMode {
@@ -123,7 +124,7 @@ public:
 
 
 			int i=0;
-			for (i = 0; i < 4; i++) {
+			for (i = 0; i < PLAYER_NUM; i++) {
 				//ビューポートが設定されているか？
 				if (g_gameCamera3D[i]->Get_isViewport())
 				{
