@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Score.h"
 #include "Player.h"
-#include "TestEnemy.h"
 
 Score::Score()
 {
@@ -15,7 +14,6 @@ Score::~Score()
 bool Score::Start()
 {
 	m_player = FindGO<Player>("Player");
-	m_enemy = FindGO<TestEnemy>("TestEnemy");
 	return true;
 }
 

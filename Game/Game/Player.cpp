@@ -218,7 +218,7 @@ void Player::Update()
 
 	}
 		m_ui->SetHP(m_playerHP);
-	if (m_playerHP <= 0.0f)
+	if (m_playerHP <= 0.0f || m_pos.y <= -1000.0f)
 	{
 		playerdeth = true;
 	}

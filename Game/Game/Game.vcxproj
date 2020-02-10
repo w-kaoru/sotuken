@@ -106,6 +106,7 @@
     <ClCompile Include="Bullet\BulletManeger.cpp" />
     <ClCompile Include="character\CharacterController.cpp" />
     <ClCompile Include="character\CharacterControllerToBox.cpp" />
+    <ClCompile Include="Fade.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameObject\GameObjectManager.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="character\CharacterController.h" />
     <ClInclude Include="character\CharacterControllerToBox.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="Fade.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameObject\GameObjectManager.h" />
@@ -288,6 +290,9 @@
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\bullet1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\White.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

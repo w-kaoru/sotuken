@@ -143,13 +143,6 @@ void Game::Update()
 		DeleteGO(this);
 
 	}
-
-	//if (m_testenemy->GetDeth() == true)
-	//{
-	//	m_score->ScorePlus();
-	//	DeleteGO(m_testenemy);
-	//	m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
-	//}
 	CVector3 pos;
 	int num;
 	for (auto player : m_playerList) {
