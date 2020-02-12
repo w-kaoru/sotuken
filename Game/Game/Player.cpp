@@ -71,6 +71,7 @@ bool Player::Start()
 void Player::OnDestroy()
 {
 	if (m_ui != nullptr) DeleteGO(m_ui);
+	DeleteGO(m_movese);
 }
 
 void Player::FireBullets(float speed)

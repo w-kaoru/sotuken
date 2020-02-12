@@ -21,6 +21,7 @@ private:
 	CVector3 m_position = {50.0f,8.0f,-50.0f};
 	CQuaternion m_rotation = CQuaternion::Identity();
 	CVector3 m_scale = { 0.2f,0.2f,0.2f };
+	CVector3 m_stgaescale = { 0.05f,0.05f,0.05f };
 	Sprite m_background;                               //セレクト画面の背景画像。
 	TankType m_select = TankType::ninzuu;
 	GameFont m_font;

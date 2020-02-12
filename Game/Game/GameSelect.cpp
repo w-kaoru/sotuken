@@ -40,7 +40,7 @@ bool GameSelect::Start()
 	g_camera3D.SetTarget({0.0f,0.0f,0.0f});
 	g_camera3D.SetFar(1000.0f);
 	g_camera3D.Update();
-	 m_playernum =  max(min(m_playernum, 4), 1);
+	 m_playernum =  max(min(4, m_playernum), 1);
 	return true;
 }
 
@@ -57,15 +57,15 @@ void GameSelect::Update()
 	m_rotation.Multiply(qrot);
 	m_tankmodel.UpdateWorldMatrix(m_position, m_rotation, m_scale);
 	m_tankmodel2.UpdateWorldMatrix(m_position, m_rotation, m_scale);
-	m_stagemodel.UpdateWorldMatrix(CVector3::Zero(), CQuaternion::Identity(), m_scale);
-	m_stagemodel2.UpdateWorldMatrix(CVector3::Zero(), CQuaternion::Identity(), m_scale);
+	m_stagemodel.UpdateWorldMatrix(CVector3::Zero(), m_rotation, m_stgaescale);
+	m_stagemodel2.UpdateWorldMatrix(CVector3::Zero(), m_rotation, m_stgaescale);
 	switch (m_select)
 	{
 	case ninzuu:
 
 		if (g_pad[0].IsTrigger(enButtonUp))
 		{
-			m_playernum += max(0, 1);
+			m_playernum += 1;
 		}
 		if (g_pad[0].IsTrigger(enButtonDown))
 		{
