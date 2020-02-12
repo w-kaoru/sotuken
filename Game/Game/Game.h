@@ -17,7 +17,7 @@ public:
 	void OnDestroy()override;
 	void Update()override;
 	void Draw()override;
-	void PostDraw(int player_num)override;
+	void PostDraw()override;
 	/*!
 	* @brief	弾丸マネージャを取得。
 	*/
@@ -61,7 +61,7 @@ private:
 	Effekseer::Handle m_testEffectHandle = -1;
 	prefab::DirectionLight* m_directionLight = nullptr;
 	CVector3 m_LigDirection = CVector3::Zero();
-	int GameTime = 10;
+	int GameTime = 100;
 	int	CountDownTime = 5;
 	bool MoveFlag = false;
 	Level m_level;

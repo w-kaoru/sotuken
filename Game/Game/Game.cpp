@@ -204,7 +204,7 @@ void Game::Draw()
 
 }
 
-void Game::PostDraw(int player_num)
+void Game::PostDraw()
 {
 	
 	

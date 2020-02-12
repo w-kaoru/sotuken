@@ -8,7 +8,7 @@ public:
 	~UI();
 	bool Start()override;
 	void Update()override;
-	void PostDraw(int player_num)override;
+	void PostDraw()override;
 	void SetAimingScale(CVector3 scale)
 	{
 		m_aimingScale = scale;

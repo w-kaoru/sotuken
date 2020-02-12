@@ -61,12 +61,12 @@ namespace GameEngine {
 		//g_graphicsEngine->EffectUpdate();
 		g_graphicsEngine->EffectUpdate(GameEngine::GetViewSplit().Get_isSplit());
 
-		GetViewSplit().PostRender(m_gameObjectList);
-		/*for (GameObjectList objList : m_gameObjectList) {
+		//GetViewSplit().PostRender(m_gameObjectList);
+		for (GameObjectList objList : m_gameObjectList) {
 			for (IGameObject* obj : objList) {
 				obj->PostDrawWrapper();
 			}
-		}*/
+		}
 		g_graphicsEngine->PostRender();
 		DeleteExecute();
 	}
