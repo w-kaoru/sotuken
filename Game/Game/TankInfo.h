@@ -7,7 +7,8 @@ enum TankType
 	pz4,
 	tiha,
 	Stage1,
-	Stage2
+	Stage2,
+	nonType
 };
 enum BulletType
 {

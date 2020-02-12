@@ -50,7 +50,8 @@ bool Player::Start()
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	m_bulletmaneger->SetBulletDamage(m_bulletChange->GetTankBulletInfo()->bulletdamage);
 	m_scale *= m_tankData->GetTankDeta()->scale;
-
+	Turn();
+	m_rot = m_rotation;
 	m_game = FindGO<Game>("Game");
 	//シャドウキャスターを登録。
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
@@ -218,7 +219,6 @@ void Player::Update()
 		m_bulletmaneger->SetDamegeFlag(false);
 
 	}
-		m_ui->SetHP(m_playerHP);
 	if (m_playerHP <= 0.0f || m_pos.y <= -1000.0f)
 	{
 		playerdeth = true;
