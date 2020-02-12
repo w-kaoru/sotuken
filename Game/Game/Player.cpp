@@ -50,7 +50,8 @@ bool Player::Start()
 	m_bulletmaneger = FindGO<BulletManeger>("BulletManeger");
 	m_bulletmaneger->SetBulletDamage(m_bulletChange->GetTankBulletInfo()->bulletdamage);
 	m_scale *= m_tankData->GetTankDeta()->scale;
-
+	Turn();
+	m_rot = m_rotation;
 	m_game = FindGO<Game>("Game");
 	//シャドウキャスターを登録。
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
@@ -166,7 +167,6 @@ void Player::Update()
 	else
 	{
 		g_gameCamera3D[m_number]->SetAimFlag(false);
-		m_ui->SetHP(m_playerHP);
 		m_ui->SetAimingScale(CVector3::One());
 	}
 
@@ -221,7 +221,6 @@ void Player::Update()
 		m_bulletmaneger->SetDamegeFlag(false);
 
 	}
-		m_ui->SetHP(m_playerHP);
 	if (m_playerHP <= 0.0f || m_pos.y <= -1000.0f)
 	{
 		playerdeth = true;
@@ -229,6 +228,7 @@ void Player::Update()
 			m_bakuhatuEffect, m_pos.x, m_pos.y, m_pos.z
 		);
 	}
+	m_ui->SetHP(m_playerHP);
 	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed, m_rot);
 
 	//ワールド行列の更新。

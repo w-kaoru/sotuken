@@ -15,9 +15,14 @@ public:
 	STankBulletInfo* GetTankBulletInfo() {
 		return &m_data;
 	}
+	//BulletSelect‚æ‚èæ‚ÉŒÄ‚ñ‚Å‚ËB
+	void SetTankType(TankType type) {
+		m_tankType = type;
+	}
 private:
 	BulletType m_bullettype;
 	STankBulletInfo m_data;
+	TankType m_tankType = TankType::nonType;
 };
 
 
