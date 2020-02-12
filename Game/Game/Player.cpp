@@ -63,6 +63,8 @@ bool Player::Start()
 		this->SetIsStop(true);
 	}
 	m_playerHP = max(0, m_tankData->GetTankDeta()->hp);
+	m_bakuhatuEffect = Effekseer::Effect::Create(g_graphicsEngine->GetEffekseerManager(),
+		(const EFK_CHAR*)L"Assets/effect/exproj.efk");
 	m_smokeEffect = Effekseer::Effect::Create(g_graphicsEngine->GetEffekseerManager(),
 		(const EFK_CHAR*)L"Assets/effect/smoke.efk");
 	return true;
@@ -198,7 +200,7 @@ void Player::Update()
 	m_timier++;
 	Move();
 	Turn();
-	if (m_timier >= 30.0f&&g_pad[m_number].IsTrigger(enButtonRB2))
+	if (m_timier >=m_tankData->GetTankDeta()->m_reload&&g_pad[m_number].IsTrigger(enButtonRB2))
 	{
 		FireBullets(800.0f);
 		m_timier = 0;
@@ -223,6 +225,9 @@ void Player::Update()
 	if (m_playerHP <= 0.0f || m_pos.y <= -1000.0f)
 	{
 		playerdeth = true;
+		m_bakuhtuEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
+			m_bakuhatuEffect, m_pos.x, m_pos.y, m_pos.z
+		);
 	}
 	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed, m_rot);
 

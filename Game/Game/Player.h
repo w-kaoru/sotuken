@@ -86,7 +86,9 @@ private:
 	UI* m_ui = nullptr;
 	BulletTypeChange* m_bulletChange = nullptr;
 	float m_downSpeed = 1.0f;
-	Effekseer::Effect* m_smokeEffect = nullptr;//テストエフェクト
+	Effekseer::Effect* m_bakuhatuEffect = nullptr;
+	Effekseer::Handle m_bakuhtuEffectHandle = -1;
+	Effekseer::Effect* m_smokeEffect = nullptr;//煙エフェクト
 	Effekseer::Handle m_smokeEffectHandle = -1;
 	Effekseer::Handle m_moveEffectHandle = -1;
 	prefab::CSoundSource* m_movese;

@@ -27,6 +27,7 @@ void TankData::Select(TankType type)
 		m_data.bodyturn = 0.012f;
 		m_data.cameraturn = 0.02f;
 		m_data.defense = 60.0f;
+		m_data.m_reload = 60.0f;
 		m_data.scale = 0.5f;
 		m_data.BOXLength = { 60.0f, 100.0f, 100.0f };
 		break;
@@ -38,6 +39,7 @@ void TankData::Select(TankType type)
 		m_data.bodyturn = 0.02f;//(‰¼)
 		m_data.cameraturn = 0.02f;//(‰¼)
 		m_data.defense = 40.0f;
+		m_data.m_reload = 30.0f;
 		m_data.scale = 0.3f;
 		m_data.BOXLength = { 60.0f, 100.0f, 100.0f };//(‰¼)
 		break;

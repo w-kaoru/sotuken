@@ -31,5 +31,6 @@ struct STankData {
 	float cameraturn = 0.02f;
 	float defense = 100.0f;
 	float scale = 1.0f;
+	float m_reload = 30.0f;
 	CVector3 BOXLength = CVector3::One();
 };
