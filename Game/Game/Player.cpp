@@ -163,7 +163,6 @@ void Player::Update()
 	else
 	{
 		g_gameCamera3D[m_number]->SetAimFlag(false);
-		m_ui->SetHP(m_playerHP);
 		m_ui->SetAimingScale(CVector3::One());
 	}
 
@@ -223,6 +222,7 @@ void Player::Update()
 	{
 		playerdeth = true;
 	}
+	m_ui->SetHP(m_playerHP);
 	m_pos = m_charaCon.Execute(1.0f / 30.0f, m_moveSpeed, m_rot);
 
 	//ワールド行列の更新。
