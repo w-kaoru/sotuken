@@ -26,6 +26,7 @@ bool Player::Start()
 {
 	m_tankData = FindGO<TankData>("TankData");
 	m_bulletChange = NewGO<BulletTypeChange>(1, "BulletTypeChange");
+	m_bulletChange->SetTankType(m_tankData->GetTankType());
 	m_bulletChange->BulletSelect(BulletType::HE);
 	m_movese = NewGO<prefab::CSoundSource>(0);
 	m_movese->Init(L"Assets/sound/running-tank-1.wav", false);
@@ -217,7 +218,7 @@ void Player::Update()
 			m_downSpeed = min(1.0f, m_downSpeed);
 			m_downSpeed = max(0.1f, m_downSpeed);
 		}
-		m_playerHP -= player->GetBulletChange()->GetTankBulletInfo()->bulletdamage - m_tankData->GetTankDeta()->defense;
+		m_playerHP -= player->GetBulletChange()->GetTankBulletInfo()->bulletdamage/* - m_tankData->GetTankDeta()->defense*/;
 		m_bulletmaneger->SetDamegeFlag(false);
 
 	}

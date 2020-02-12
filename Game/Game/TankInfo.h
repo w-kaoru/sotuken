@@ -3,11 +3,8 @@
 
 enum TankType
 {
-	ninzuu,
 	pz4,
 	tiha,
-	Stage1,
-	Stage2,
 	nonType
 };
 enum BulletType
@@ -15,6 +12,19 @@ enum BulletType
 	HE,
 	AP,
 	num
+};
+
+enum Stagenum
+{
+	ninnzuu,
+	tank,
+	Stage1,
+	Stage2
+};
+
+struct SSelectInfo
+{
+	wchar_t* filePath;
 };
 
 struct STankBulletInfo {
@@ -25,7 +35,6 @@ struct STankBulletInfo {
 struct STankData {
 	wchar_t* filePath_00;
 	wchar_t* filePath_01;
-	wchar_t* filePath_02;
 	float hp = 100.0f;
 	float speed = 150.0f;
 	float bodyturn = 0.01f;

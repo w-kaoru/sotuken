@@ -2,6 +2,7 @@
 #include "TankInfo.h"
 
 class TankData;
+class StageData;
 class GameSelect : public IGameObject
 {
 public:
@@ -13,6 +14,7 @@ public:
 	void Draw();
 	void PostDraw();
 	void FontDraw();
+
 private:
 	SkinModel m_tankmodel;                             //プレビュー用の戦車モデルその1。
 	SkinModel m_tankmodel2;                            //プレビュー用の戦車モデルその2。
@@ -23,7 +25,7 @@ private:
 	CVector3 m_scale = { 0.2f,0.2f,0.2f };
 	CVector3 m_stgaescale = { 0.05f,0.05f,0.05f };
 	Sprite m_background;                               //セレクト画面の背景画像。
-	TankType m_select = TankType::ninzuu;
+	TankType m_select = TankType::nonType;
 	GameFont m_font;
 	wchar_t m_moji[256];
 	float m_mojisize = 1.5f;	//文字サイズ
@@ -36,6 +38,7 @@ private:
 	prefab::CSoundSource* m_selectbgm = nullptr;
 	prefab::CSoundSource* m_cursorse = nullptr;
 	int m_playernum = 1;
-
+	Stagenum m_gameselect = ninnzuu;
+	StageData* m_stagedata = nullptr;
 };
 
