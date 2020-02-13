@@ -17,7 +17,7 @@ public:
 	void OnDestroy()override;
 	void Update()override;
 	void Draw()override;
-	void PostDraw()override;
+	void PostDraw(int player_num)override;
 	/*!
 	* @brief	弾丸マネージャを取得。
 	*/
@@ -42,6 +42,12 @@ public:
 			player_total = PLAYER_NUM;
 		}
 	}
+
+	//プレイヤーの合計人数を返す。
+	const int Get_Player_Totle()
+	{
+		return player_total;
+	}
 private:
 	//Player* m_player = nullptr;
 	Player* kkk = nullptr;
@@ -61,7 +67,7 @@ private:
 	Effekseer::Handle m_testEffectHandle = -1;
 	prefab::DirectionLight* m_directionLight = nullptr;
 	CVector3 m_LigDirection = CVector3::Zero();
-	int GameTime = 100;
+	int GameTime = 60;
 	int	CountDownTime = 5;
 	bool MoveFlag = false;
 	Level m_level;

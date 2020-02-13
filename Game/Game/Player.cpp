@@ -157,6 +157,7 @@ void Player::Update()
 	m_movese->SetPosition(m_pos);
 	g_gameCamera3D[m_number]->SetCameraTarget(m_pos);
 
+	//Æ€‚ÌŠg‘åB
 	if (g_pad[m_number].IsPress(enButtonLB2)) {
 		g_gameCamera3D[m_number]->SetAimFlag(true);
 		m_ui->SetAimingScale({ 5.0f,5.0f,5.0f });

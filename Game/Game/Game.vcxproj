@@ -212,6 +212,7 @@
     <ClInclude Include="math\kMath.h" />
     <ClInclude Include="math\Matrix.h" />
     <ClInclude Include="math\Vector.h" />
+    <ClInclude Include="NoncCopyable\NonCopyable.h" />
     <ClInclude Include="physics\BoxCollider.h" />
     <ClInclude Include="physics\ICollider.h" />
     <ClInclude Include="physics\MeshCollider.h" />
