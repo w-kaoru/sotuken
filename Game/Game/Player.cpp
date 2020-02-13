@@ -24,7 +24,10 @@ Player::~Player()
 
 bool Player::Start()
 {
-	m_tankData = FindGO<TankData>("TankData");
+	char tankDataName[15];
+	sprintf(tankDataName, "TankData_%d", m_number);
+	m_tankData = FindGO<TankData>(tankDataName);
+	//m_tankData = FindGO<TankData>("TankData");
 	m_bulletChange = NewGO<BulletTypeChange>(1, "BulletTypeChange");
 	m_bulletChange->SetTankType(m_tankData->GetTankType());
 	m_bulletChange->BulletSelect(BulletType::HE);

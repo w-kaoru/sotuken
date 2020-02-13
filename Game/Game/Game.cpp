@@ -13,6 +13,8 @@
 #include "TankData.h"
 #include "level/Level.h"
 #include "GameCamera.h"
+#include "Score.h"
+
 Game::Game()
 {
 	InitLight();
@@ -93,7 +95,11 @@ bool Game::Start()
 				g_gameCamera3D[plNo]->SetPosition({ player->GetPosition().x,player->GetPosition().y,player->GetPosition().z + 150.0f });
 				g_gameCamera3D[plNo]->SetTarget(player->GetPosition());
 				g_gameCamera3D[plNo]->SetNumber(plNo);
-
+				char scoreName[15];
+				sprintf(scoreName, "Score_%d", plNo);
+				Score* score = NewGO<Score>(0, scoreName);
+				score->SetName(playerName);
+				m_scoreList.push_back(score);
 				plNo++;
 				return true;
 			}
@@ -103,7 +109,7 @@ bool Game::Start()
 	GameEngine::GetViewSplit().Start();//分割開始。
 	//m_testenemy = NewGO<TestEnemy>(1, "TestEnemy");
 	m_bulletmaneger = NewGO<BulletManeger>(1, "BulletManeger");
-	m_score = NewGO<Score>(1, "Score");
+	//m_score = NewGO<Score>(1, "Score");
 	return true;
 }
 
@@ -127,8 +133,12 @@ void Game::OnDestroy()
 	if (m_bulletmaneger != nullptr) {
 		DeleteGO(m_bulletmaneger);
 	}
-	if (FindGO<TankData>("TankData") != nullptr) {
-		DeleteGO(FindGO<TankData>("TankData"));
+	for (int i = 0; i < player_total; i++) {
+		char tankDataName[15];
+		sprintf(tankDataName, "TankData_%d", i);
+		if (FindGO<TankData>(tankDataName) != nullptr) {
+			DeleteGO(FindGO<TankData>(tankDataName));
+		}
 	}
 
 	//ビューポートのリセット。
@@ -147,8 +157,8 @@ void Game::Update()
 	if (m_time.GetSeconds() >= GameTime)
 	{
 		m_gameresults = NewGO<GameResults>(1, "GameResults");
+		m_gameresults->SetScoreList(m_scoreList);
 		DeleteGO(this);
-
 	}
 	CVector3 pos;
 	int num;
@@ -161,7 +171,7 @@ void Game::Update()
 		if (player->GetPlayerDeth() == true)
 		{
 			m_isDeth = true;
-			m_score->DethPlus();
+			m_scoreList.at(player->GetNumber())->DethPlus();
 			pos = m_respawnpos.at(player->GetNumber());
 			num = player->GetNumber();
 			DeleteGO(player);

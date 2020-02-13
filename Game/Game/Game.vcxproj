@@ -148,7 +148,6 @@
     <ClCompile Include="physics\CapsuleCollider.cpp" />
     <ClCompile Include="physics\PhysicsStaticObject.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Score.cpp" />
     <ClCompile Include="GameSelect.cpp" />
     <ClCompile Include="Sky.cpp" />
     <ClCompile Include="sound\SoundEngine.cpp" />

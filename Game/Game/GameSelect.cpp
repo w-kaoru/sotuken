@@ -25,7 +25,6 @@ bool GameSelect::Start()
 	m_selectbgm = NewGO<prefab::CSoundSource>(0);
 	m_cursorse = NewGO<prefab::CSoundSource>(0);
 	m_decisionse = NewGO<prefab::CSoundSource>(0);
-	m_taknData = NewGO<TankData>(0, "TankData");
 	m_stagedata = NewGO<StageData>(0, "StageData");
 	m_background.Init(L"Assets/sprite/selectback.dds", 1280.0f, 720.0f);
 	m_tankmodel.Init(L"Assets/modelData/pz4.cmo");
@@ -68,54 +67,77 @@ void GameSelect::Update()
 		if (g_pad[0].IsTrigger(enButtonUp))
 		{
 			m_playernum += 1;
+			m_playernum = max(min(4, m_playernum), 1);
+			m_cursorse->Stop();
+			m_cursorse->Play(false);
 		}
 		if (g_pad[0].IsTrigger(enButtonDown))
 		{
 			m_playernum -= 1;
+			m_playernum = max(min(4, m_playernum), 1);
+			m_cursorse->Stop();
+			m_cursorse->Play(false);
 		}
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
 			m_gameselect = tank;
 			m_select = pz4;
+			m_decisionse->Stop();
+			m_decisionse->Play(false);
 		}
 		break;
 	case tank:
 		switch (m_select) {
 		case pz4:
-			if (g_pad[0].IsTrigger(enButtonA))
+			if (g_pad[m_count].IsTrigger(enButtonA))
 			{
-
-				m_taknData->Select(m_select);
-				m_gameselect = Stage1;
+				m_decisionse->Stop();
+				m_decisionse->Play(false);
+				char tankDataName[15];
+				sprintf(tankDataName, "TankData_%d", m_count);
+				NewGO<TankData>(0, tankDataName)->Select(m_select);
+				m_count++;
 			}
-			if (g_pad[0].IsTrigger(enButtonRight))
+			if (g_pad[m_count].IsTrigger(enButtonRight))
 			{
+				m_cursorse->Stop();
 				m_cursorse->Play(false);
 				m_select = tiha;
 			}
 			break;
 		case tiha:
-			if (g_pad[0].IsTrigger(enButtonA))
+			if (g_pad[m_count].IsTrigger(enButtonA))
 			{
-
-				m_taknData->Select(m_select);
-				m_gameselect = Stage1;
+				m_decisionse->Stop();
+				m_decisionse->Play(false);
+				char tankDataName[15];
+				sprintf(tankDataName, "TankData_%d", m_count);
+				NewGO<TankData>(0, tankDataName)->Select(m_select);
+				m_count++;
+				m_select = pz4;
 			}
-			if (g_pad[0].IsTrigger(enButtonRight))
+			if (g_pad[m_count].IsTrigger(enButtonRight))
 			{
+				m_cursorse->Stop();
 				m_cursorse->Play(false);
 				m_select = pz4;
 			}
 			break;
 		}
+		if (m_count >= m_playernum) {
+			m_gameselect = Stage1;
+		}
 		break;
 	case Stage1:
 		if (g_pad[0].IsTrigger(enButtonRight))
 		{
+			m_cursorse->Stop();
+			m_cursorse->Play(false);
 			m_gameselect = Stage2;
 		}
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
+			m_decisionse->Stop();
 			m_decisionse->Play(false);
 			deleteFlag = true;
 		}
@@ -127,14 +149,13 @@ void GameSelect::Update()
 		}
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
+			m_decisionse->Stop();
 			m_decisionse->Play(false);
 			deleteFlag = true;
 		}
 		break;
 	}
 	if (deleteFlag==true && m_decisionse->IsPlaying()== false) {
-
-		m_taknData->Select(m_select);
 		m_stagedata->Select(m_gameselect);
 		Game* game = NewGO<Game>(0, "Game");
 		//game->SetPlayer_Totle(m_playercount);
@@ -171,6 +192,16 @@ void GameSelect::FontDraw()
 
 		break;
 	case tank:
+		wchar_t m_moji2[16];
+		swprintf_s(m_moji2, L"Player_%d", m_count + 1);		//表示用にデータを加工
+		m_font.Draw(
+			m_moji2,		//表示する文字列。
+			{ 150.0f, 380.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+			{ 1.0f,0.0f,0.0f,1.0f },
+			0.0f,
+			1.0f,
+			{ 0.0f,1.0f }
+		);
 		switch (m_select) {
 		case pz4:
 			swprintf_s(m_moji, L"IV号戦車");		//表示用にデータを加工

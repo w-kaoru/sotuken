@@ -7,6 +7,7 @@ class BackGround;
 class Score;
 class GameResults;
 class Sky;
+class Score;
 class Game:public IGameObject
 {
 public:
@@ -45,10 +46,10 @@ public:
 private:
 	std::vector<Player*> m_playerList;		//プレイヤーのリスト。
 	std::vector<CVector3> m_respawnpos;
+	std::vector<Score*> m_scoreList;
 	TestEnemy* m_testenemy = nullptr;
 	BulletManeger* m_bulletmaneger = nullptr;
 	BackGround* m_backgeound = nullptr;
-	Score* m_score = nullptr;
 	GameResults* m_gameresults = nullptr;
 	Sky* m_sky;
 	wchar_t moji[256];
@@ -59,7 +60,7 @@ private:
 	Effekseer::Handle m_testEffectHandle = -1;
 	prefab::DirectionLight* m_directionLight = nullptr;
 	CVector3 m_LigDirection = CVector3::Zero();
-	int GameTime = 60;
+	int GameTime = 30;
 	int	CountDownTime = 5;
 	bool MoveFlag = false;
 	Level m_level;

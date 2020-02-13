@@ -1,7 +1,7 @@
 #pragma once
 #include "TankInfo.h"
 
-class TankData;
+//class TankData;
 class StageData;
 class GameSelect : public IGameObject
 {
@@ -31,8 +31,7 @@ private:
 	float m_mojisize = 1.5f;	//ï∂éöÉTÉCÉY
 	prefab::DirectionLight* m_directionLight = nullptr;
 	CVector3 m_LigDirection = CVector3::Zero();
-	int m_playercount = max(min(m_playercount, 4), 1);
-	TankData* m_taknData = nullptr;
+	//TankData* m_taknData = nullptr;
 	bool deleteFlag = false;
 	prefab::CSoundSource* m_decisionse = nullptr;
 	prefab::CSoundSource* m_selectbgm = nullptr;
@@ -40,5 +39,6 @@ private:
 	int m_playernum = 1;
 	Stagenum m_gameselect = ninnzuu;
 	StageData* m_stagedata = nullptr;
+	int m_count = 0;
 };
 
