@@ -59,7 +59,7 @@ void GameResults::PostDraw()
 		0.8f,
 		{ 0.0f,1.0f }
 	);
-	swprintf_s(m_result, L"Player2\nKill　　%d  Deth   %d", (m_score->GetKillCount2()), (m_score->GetDethCount2()));		//表示用にデータを加工
+	/*swprintf_s(m_result, L"Player2\nKill　　%d  Deth   %d", (m_score->GetKillCount2()), (m_score->GetDethCount2()));		//表示用にデータを加工
 	m_font.Draw(
 		m_result,		//表示する文字列。
 		{ -400.0f,0.0f },			//表示する座標。0.0f, 0.0が画面の中心。
@@ -67,6 +67,6 @@ void GameResults::PostDraw()
 		0.0f,
 		0.8f,
 		{ 0.0f,1.0f }
-	);
+	);*/
 	m_font.EndDraw();
 }

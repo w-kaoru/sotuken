@@ -13,7 +13,7 @@ Score::~Score()
 
 bool Score::Start()
 {
-	m_player = FindGO<Player>("Player");
+	//m_player = FindGO<Player>("Player");
 	return true;
 }
 

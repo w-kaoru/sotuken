@@ -78,6 +78,7 @@
     <ClCompile Include="BulletTypeChange.cpp" />
     <ClCompile Include="ViewPortSplit\ViewPortSplit.cpp" />
     <ClCompile Include="Fade.cpp" />
+    <ClCompile Include="StageData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\BTR80A.FBX" />
@@ -172,5 +173,6 @@
     <ClInclude Include="ViewPortSplit\ViewPortSplit.h" />
     <ClInclude Include="Fade.h" />
     <ClInclude Include="NoncCopyable\NonCopyable.h" />
+    <ClInclude Include="StageData.h" />
   </ItemGroup>
 </Project>

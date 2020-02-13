@@ -8,41 +8,25 @@ public:
 	bool Start();
 	void Update();
 	void Draw();
-	void ScorePlus()
+	void KillPlus()
 	{
-		m_playerkillcount += 1;
-		m_playerdethcount2 += 1;
+		m_killCount += 1;
 	}
 
 	void DethPlus()
 	{
-		m_playerdethcount += 1;
-		m_playerkillcount2 += 1;
+		m_dethCount += 1;
 	}
 	int GetKillCount()
 	{
-		return m_playerkillcount;
+		return m_killCount;
 	}
 	int GetDethCount()
 	{
-		return m_playerdethcount;
-	}
-	int GetKillCount2()
-	{
-		return m_playerkillcount2;
-	}
-	int GetDethCount2()
-	{
-		return m_playerdethcount2;
+		return m_dethCount;
 	}
 private:
-	int m_playerkillcount = 0;
-	int m_playerdethcount = 0;
-	int m_playerkillcount2 = 0;
-	int m_playerdethcount2= 0;
-	wchar_t score[256];
-	wchar_t deth[256];
-	GameFont m_font;
-	Player* m_player = nullptr;
+	int m_killCount = 0;
+	int m_dethCount = 0;
 };
 

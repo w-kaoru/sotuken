@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Light/DirectionLight.h"
 #include "TankData.h"
+#include "StageData.h"
 
 GameSelect::GameSelect()
 {
@@ -25,6 +26,7 @@ bool GameSelect::Start()
 	m_cursorse = NewGO<prefab::CSoundSource>(0);
 	m_decisionse = NewGO<prefab::CSoundSource>(0);
 	m_taknData = NewGO<TankData>(0, "TankData");
+	m_stagedata = NewGO<StageData>(0, "StageData");
 	m_background.Init(L"Assets/sprite/selectback.dds", 1280.0f, 720.0f);
 	m_tankmodel.Init(L"Assets/modelData/pz4.cmo");
 	m_tankmodel2.Init(L"Assets/modelData/tiha.cmo");
@@ -59,9 +61,9 @@ void GameSelect::Update()
 	m_tankmodel2.UpdateWorldMatrix(m_position, m_rotation, m_scale);
 	m_stagemodel.UpdateWorldMatrix(CVector3::Zero(), m_rotation, m_stgaescale);
 	m_stagemodel2.UpdateWorldMatrix(CVector3::Zero(), m_rotation, m_stgaescale);
-	switch (m_select)
+	switch (m_gameselect)
 	{
-	case ninzuu:
+	case ninnzuu:
 
 		if (g_pad[0].IsTrigger(enButtonUp))
 		{
@@ -69,43 +71,48 @@ void GameSelect::Update()
 		}
 		if (g_pad[0].IsTrigger(enButtonDown))
 		{
-			m_playernum -=1 ;
+			m_playernum -= 1;
 		}
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
+			m_gameselect = tank;
 			m_select = pz4;
 		}
 		break;
-	case pz4:
-		if (g_pad[0].IsTrigger(enButtonA))
-		{
+	case tank:
+		switch (m_select) {
+		case pz4:
+			if (g_pad[0].IsTrigger(enButtonA))
+			{
 
-			m_taknData->Select(m_select);
-			m_select = Stage1;
-		}
-		if (g_pad[0].IsTrigger(enButtonRight))
-		{
-			m_cursorse->Play(false);
-			m_select = tiha;
-		}
-		break;
-	case tiha:
-		if (g_pad[0].IsTrigger(enButtonA))
-		{
+				m_taknData->Select(m_select);
+				m_gameselect = Stage1;
+			}
+			if (g_pad[0].IsTrigger(enButtonRight))
+			{
+				m_cursorse->Play(false);
+				m_select = tiha;
+			}
+			break;
+		case tiha:
+			if (g_pad[0].IsTrigger(enButtonA))
+			{
 
-			m_taknData->Select(m_select);
-			m_select = Stage1;
-		}
-		if (g_pad[0].IsTrigger(enButtonRight))
-		{
-			m_cursorse->Play(false);
-			m_select = pz4;
+				m_taknData->Select(m_select);
+				m_gameselect = Stage1;
+			}
+			if (g_pad[0].IsTrigger(enButtonRight))
+			{
+				m_cursorse->Play(false);
+				m_select = pz4;
+			}
+			break;
 		}
 		break;
 	case Stage1:
 		if (g_pad[0].IsTrigger(enButtonRight))
 		{
-			m_select = Stage2;
+			m_gameselect = Stage2;
 		}
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
@@ -116,7 +123,7 @@ void GameSelect::Update()
 	case Stage2:
 		if (g_pad[0].IsTrigger(enButtonRight))
 		{
-			m_select = Stage1;
+			m_gameselect = Stage1;
 		}
 		if (g_pad[0].IsTrigger(enButtonA))
 		{
@@ -128,6 +135,7 @@ void GameSelect::Update()
 	if (deleteFlag==true && m_decisionse->IsPlaying()== false) {
 
 		m_taknData->Select(m_select);
+		m_stagedata->Select(m_gameselect);
 		Game* game = NewGO<Game>(0, "Game");
 		//game->SetPlayer_Totle(m_playercount);
 		game->SetPlayer_Totle(m_playernum);
@@ -147,9 +155,9 @@ void GameSelect::Draw()
 void GameSelect::FontDraw()
 {
 	m_font.BeginDraw();
-	switch (m_select)
+	switch (m_gameselect)
 	{
-	case ninzuu:
+	case ninnzuu:
 
 		swprintf_s(m_moji, L"プレイ人数%d人",m_playernum);		//表示用にデータを加工
 		m_font.Draw(
@@ -162,27 +170,31 @@ void GameSelect::FontDraw()
 		);
 
 		break;
-	case pz4:
-		swprintf_s(m_moji, L"IV号戦車");		//表示用にデータを加工
-		m_font.Draw(
-		m_moji,		//表示する文字列。
-		{ -300.0f,-100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
-		{ 1.0f,0.0f,0.0f,1.0f },
-		0.0f,
-		m_mojisize,
-		{ 0.0f,1.0f }
-		);
-		break;
-	case tiha:
-		swprintf_s(m_moji, L"九七式中戦車チハ");		//表示用にデータを加工
-		m_font.Draw(
-			m_moji,		//表示する文字列。
-			{ -600.0f,-100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
-			{ 1.0f,0.0f,0.0f,1.0f },
-			0.0f,
-			m_mojisize,
-			{ 0.0f,1.0f }
-		);
+	case tank:
+		switch (m_select) {
+		case pz4:
+			swprintf_s(m_moji, L"IV号戦車");		//表示用にデータを加工
+			m_font.Draw(
+				m_moji,		//表示する文字列。
+				{ -300.0f,-100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ 1.0f,0.0f,0.0f,1.0f },
+				0.0f,
+				m_mojisize,
+				{ 0.0f,1.0f }
+			);
+			break;
+		case tiha:
+			swprintf_s(m_moji, L"九七式中戦車チハ");		//表示用にデータを加工
+			m_font.Draw(
+				m_moji,		//表示する文字列。
+				{ -600.0f,-100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ 1.0f,0.0f,0.0f,1.0f },
+				0.0f,
+				m_mojisize,
+				{ 0.0f,1.0f }
+			);
+			break;
+		}
 		break;
 	case Stage1:
 
@@ -196,21 +208,25 @@ void GameSelect::FontDraw()
 void GameSelect::PostDraw()
 {
 
-	switch (m_select)
+	switch (m_gameselect)
 	{
-	case pz4:
-		m_tankmodel.Draw(
-			enRenderMode_Normal,
-			g_camera3D.GetViewMatrix(),
-			g_camera3D.GetProjectionMatrix()
-		);
-		break;
-	case tiha:
-		m_tankmodel2.Draw(
-			enRenderMode_Normal,
-			g_camera3D.GetViewMatrix(),
-			g_camera3D.GetProjectionMatrix()
-		);
+	case tank:
+		switch (m_select) {
+		case pz4:
+			m_tankmodel.Draw(
+				enRenderMode_Normal,
+				g_camera3D.GetViewMatrix(),
+				g_camera3D.GetProjectionMatrix()
+			);
+			break;
+		case tiha:
+			m_tankmodel2.Draw(
+				enRenderMode_Normal,
+				g_camera3D.GetViewMatrix(),
+				g_camera3D.GetProjectionMatrix()
+			);
+			break;
+		}
 		break;
 	case Stage1:
 		m_stagemodel.Draw(

@@ -2,7 +2,7 @@
 #include "BackGround.h"
 #include "GameCamera.h"
 #include "TankInfo.h"
-#include "TankData.h"
+#include "StageData.h"
 
 BackGround::BackGround()
 {	
@@ -14,9 +14,9 @@ BackGround::~BackGround()
 
 bool BackGround::Start()
 {
-	m_tankData = FindGO<TankData>("TankData");
+	m_stageData = FindGO<StageData>("StageData");
 	//cmoファイルの読み込み。
-	m_model.Init(m_tankData->GetTankDeta()->filePath_02);
+	m_model.Init(m_stageData->GetStageDeta()->filePath);
 	m_staticObject.CreateMeshObject(m_model, m_pos, m_rot);
 	m_model.SetShadowReciever(true);
 	return true;

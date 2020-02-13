@@ -27,25 +27,21 @@ void TankData::Select(TankType type)
 		m_data.bodyturn = 0.012f;
 		m_data.cameraturn = 0.02f;
 		m_data.defense = 60.0f;
+		m_data.m_reload = 60.0f;
 		m_data.scale = 0.5f;
 		m_data.BOXLength = { 60.0f, 100.0f, 100.0f };
 		break;
 	case tiha:
 		m_data.filePath_00 = L"Assets/modelData/tiha_body.cmo";
 		m_data.filePath_01 = L"Assets/modelData/tiha_houtou.cmo";
-		m_data.hp = 220.0f;//(‰¼)
+		m_data.hp = 100.0f;//(‰¼)
 		m_data.speed = 150.0f;//(‰¼)
 		m_data.bodyturn = 0.02f;//(‰¼)
 		m_data.cameraturn = 0.02f;//(‰¼)
 		m_data.defense = 40.0f;
+		m_data.m_reload = 30.0f;
 		m_data.scale = 0.3f;
 		m_data.BOXLength = { 60.0f, 100.0f, 100.0f };//(‰¼)
-		break;
-	case Stage1:
-		m_data.filePath_02 = L"Assets/modelData/CityMap1.cmo";
-		break;
-	case Stage2:
-		m_data.filePath_02 = L"Assets/modelData/GrassGround1.cmo";
 		break;
 	}
 }

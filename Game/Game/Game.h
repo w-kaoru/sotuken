@@ -49,8 +49,6 @@ public:
 		return player_total;
 	}
 private:
-	//Player* m_player = nullptr;
-	Player* kkk = nullptr;
 	std::vector<Player*> m_playerList;		//プレイヤーのリスト。
 	std::vector<CVector3> m_respawnpos;
 	TestEnemy* m_testenemy = nullptr;
