@@ -43,6 +43,12 @@ public:
 			player_total = PLAYER_NUM;
 		}
 	}
+
+	//プレイヤーの合計人数を返す。
+	const int Get_Player_Totle()
+	{
+		return player_total;
+	}
 private:
 	std::vector<Player*> m_playerList;		//プレイヤーのリスト。
 	std::vector<CVector3> m_respawnpos;
@@ -60,9 +66,11 @@ private:
 	Effekseer::Handle m_testEffectHandle = -1;
 	prefab::DirectionLight* m_directionLight = nullptr;
 	CVector3 m_LigDirection = CVector3::Zero();
-	int GameTime = 30;
+	int GameTime = 185;
+	int GameEndtime = 0;
 	int	CountDownTime = 5;
 	bool MoveFlag = false;
+	bool Endflag = false;
 	Level m_level;
 	int player_total = 2;  //設定された合計人数。
 	bool m_isDeth = false;

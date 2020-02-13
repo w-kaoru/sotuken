@@ -171,7 +171,8 @@
     <ClInclude Include="BulletTypeChange.h" />
     <ClInclude Include="ViewPortSplit\ViewPortSplit.h" />
     <ClInclude Include="Fade.h" />
-    <ClInclude Include="NoncCopyable\NonCopyable.h" />
     <ClInclude Include="StageData.h" />
+    <ClInclude Include="physics\NoncCopyable\NonCopyable.h" />
+    <ClInclude Include="NoncCopyable\NonCopyable.h" />
   </ItemGroup>
 </Project>

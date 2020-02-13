@@ -71,6 +71,8 @@ private:
 	CQuaternion m_rotation = CQuaternion::Identity();
 	int m_number = 0;
 	int m_hitNumber = 0;
+	prefab::CSoundSource*  m_explosionse;
+	prefab::CSoundSource*  m_attsckse;
 	CVector3 m_hitpos = CVector3::Zero();
 };
 
