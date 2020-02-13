@@ -272,7 +272,6 @@ void CalcLig(inout float3 lig, float3 normal, float4 pos)
 {
 	for (int i = 0; i < numDirectionLight; i++) {
 		//ŠgŽUÆ–¾‚É‚æ‚éƒ‰ƒCƒeƒBƒ“ƒOŒvŽZ
-		//*
 		float p = dot(normal * -1.0f, DirectionLightSB[i].direction);
 		p *= 0.5f;
 		p += 0.5f;
@@ -280,7 +279,6 @@ void CalcLig(inout float3 lig, float3 normal, float4 pos)
 		float4 Col = lightTexture.Sample(Sampler, float2(p, 0.95f));
 		//‹‚Ü‚Á‚½F‚ðæŽZ‚·‚é
 		lig = Col.xyz * DirectionLightSB[i].color.xyz;
-		//*/
 	}
 
 }
