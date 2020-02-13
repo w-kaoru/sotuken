@@ -156,7 +156,8 @@ void Game::Update()
 
 	if (m_time.GetSeconds() >= GameTime)
 	{
-		MoveFlag = false;
+
+		Endflag = true;
 		GameEndtime++;
 		if (GameEndtime >= 60)
 		{
@@ -168,7 +169,7 @@ void Game::Update()
 	CVector3 pos;
 	int num;
 	for (auto player : m_playerList) {
-		if (m_time.GetSeconds() >= CountDownTime)
+		if (m_time.GetSeconds() >= CountDownTime && MoveFlag == false)
 		{
 			player->SetIsStop(false);
 			MoveFlag = true;
@@ -177,6 +178,9 @@ void Game::Update()
 		{
 			m_isDeth = true;
 			m_scoreList.at(player->GetNumber())->DethPlus();
+			if (player->GetTankDamageNumber() < player_total) {
+				m_scoreList.at(player->GetTankDamageNumber())->KillPlus();
+			}
 			pos = m_respawnpos.at(player->GetNumber());
 			num = player->GetNumber();
 			DeleteGO(player);

@@ -161,7 +161,7 @@ void Player::Move()
 void Player::Update()
 {
 
-	if (m_game->GetMoveFlag() == false)
+	if (m_game->GetEndFlag() == true)
 	{
 		this->SetIsStop(true);
 	}
@@ -228,7 +228,7 @@ void Player::Update()
 		}
 		m_playerHP -= player->GetBulletChange()->GetTankBulletInfo()->bulletdamage/* - m_tankData->GetTankDeta()->defense*/;
 		m_bulletmaneger->SetDamegeFlag(false);
-
+		m_tankDamageNumber = player->GetNumber();
 	}
 	if (m_playerHP <= 0.0f || m_pos.y <= -1000.0f)
 	{

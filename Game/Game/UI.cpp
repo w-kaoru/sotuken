@@ -44,7 +44,7 @@ void UI::Update()
 	m_aiming.Update(m_aimingpos, CQuaternion::Identity(), m_aimingScale);
 
 	//HPスプライトの更新
-	m_playerhp.Update({ 400.0f,300.0f,0.0f }, CQuaternion::Identity(), { m_hp / 10.0f, 1.0f, 1.0f });
+	m_playerhp.Update({ 400.0f,300.0f,0.0f }, CQuaternion::Identity(), { m_hp / 10.0f, 1.0f, 1.0f }, {1.0f,0.5f});
 }
 
 void UI::PostDraw()

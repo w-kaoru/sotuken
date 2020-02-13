@@ -47,6 +47,9 @@ public:
 	void SetNumber(int num) {
 		m_number = num;
 	}
+	int GetTankDamageNumber() {
+		return m_tankDamageNumber;
+	}
 	int GetNumber() {
 		return m_number;
 	}
@@ -92,5 +95,6 @@ private:
 	Effekseer::Handle m_smokeEffectHandle = -1;
 	Effekseer::Handle m_moveEffectHandle = -1;
 	prefab::CSoundSource* m_movese;
+	int m_tankDamageNumber = 10;
 };
 

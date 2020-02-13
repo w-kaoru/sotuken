@@ -35,13 +35,13 @@ void TankData::Select(TankType type)
 		m_data.filePath_00 = L"Assets/modelData/tiha_body.cmo";
 		m_data.filePath_01 = L"Assets/modelData/tiha_houtou.cmo";
 		m_data.hp = 100.0f;//(‰¼)
-		m_data.speed = 150.0f;//(‰¼)
+		m_data.speed = 225.0f;//(‰¼)
 		m_data.bodyturn = 0.02f;//(‰¼)
 		m_data.cameraturn = 0.02f;//(‰¼)
 		m_data.defense = 40.0f;
 		m_data.m_reload = 30.0f;
 		m_data.scale = 0.3f;
-		m_data.BOXLength = { 60.0f, 100.0f, 100.0f };//(‰¼)
+		m_data.BOXLength = { 60.0f, 80.0f, 80.0f };//(‰¼)
 		break;
 	}
 }
