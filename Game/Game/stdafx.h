@@ -19,7 +19,7 @@
 #include "btBulletDynamicsCommon.h"
 #include "BulletCollision\CollisionDispatch\btGhostObject.h"
 
-#include "NoncCopyable/NonCopyable.h"
+#include "physics/NoncCopyable/NonCopyable.h"
 //Effekseerのヘッダーファイルをインクルード
 #include "Effekseer.h"
 #include "EffekseerRendererDX11.h"

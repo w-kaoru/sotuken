@@ -56,11 +56,12 @@ namespace GameEngine {
 		//剛体表示、デフォルトはオフ。
 		//g_physics.DebubDrawWorld();
 		g_graphicsEngine->GetLightManager()->Render();
-		//ポストレンダリング。
+		
 		//エフェクトの更新
 		//g_graphicsEngine->EffectUpdate();
 		g_graphicsEngine->EffectUpdate(GameEngine::GetViewSplit().Get_isSplit());
 
+		//ポストレンダリング。
 		GetViewSplit().PostRender(m_gameObjectList);
 		/*for (GameObjectList objList : m_gameObjectList) {
 			for (IGameObject* obj : objList) {

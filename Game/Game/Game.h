@@ -42,6 +42,12 @@ public:
 			player_total = PLAYER_NUM;
 		}
 	}
+
+	//プレイヤーの合計人数を返す。
+	const int Get_Player_Totle()
+	{
+		return player_total;
+	}
 private:
 	std::vector<Player*> m_playerList;		//プレイヤーのリスト。
 	std::vector<CVector3> m_respawnpos;
