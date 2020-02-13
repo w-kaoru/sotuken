@@ -146,9 +146,13 @@ void Game::Update()
 
 	if (m_time.GetSeconds() >= GameTime)
 	{
-		m_gameresults = NewGO<GameResults>(1, "GameResults");
-		DeleteGO(this);
-
+		MoveFlag = false;
+		GameEndtime++;
+			if (GameEndtime >= 60)
+			{
+				m_gameresults = NewGO<GameResults>(1, "GameResults");
+				DeleteGO(this);
+			}
 	}
 	CVector3 pos;
 	int num;
@@ -231,6 +235,18 @@ void Game::PostDraw(int player_num)
 			{ 0.0f,0.0f,0.0f,1.0f },
 			0.0f,
 			1.5f/player_total,
+			{ 0.0f,1.0f }
+		);
+	}
+	if (m_time.GetSeconds() >= GameTime)
+	{
+		swprintf_s(moji, L"そこまで");		//表示用にデータを加工
+		m_font.Draw(
+			moji,		//表示する文字列。
+			{ -300.0f,100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+			{ 1.0f,0.0f,0.0f,1.0f },
+			0.0f,
+			1.5f / player_total,
 			{ 0.0f,1.0f }
 		);
 	}

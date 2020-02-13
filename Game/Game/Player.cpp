@@ -158,6 +158,10 @@ void Player::Move()
 void Player::Update()
 {
 
+	if (m_game->GetMoveFlag() == false)
+	{
+		this->SetIsStop(true);
+	}
 	m_movese->SetPosition(m_pos);
 	g_gameCamera3D[m_number]->SetCameraTarget(m_pos);
 

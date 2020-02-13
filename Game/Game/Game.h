@@ -59,9 +59,11 @@ private:
 	Effekseer::Handle m_testEffectHandle = -1;
 	prefab::DirectionLight* m_directionLight = nullptr;
 	CVector3 m_LigDirection = CVector3::Zero();
-	int GameTime = 60;
+	int GameTime = 20;
+	int GameEndtime = 0;
 	int	CountDownTime = 5;
 	bool MoveFlag = false;
+	bool Endflag = false;
 	Level m_level;
 	int player_total = 2;  //ê›íËÇ≥ÇÍÇΩçáåvêlêîÅB
 	bool m_isDeth = false;
