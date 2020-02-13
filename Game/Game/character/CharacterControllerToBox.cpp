@@ -205,11 +205,20 @@ const CVector3& CharacterControllerToBox::Execute(float deltaTime, CVector3& mov
 				//押し戻し返すベクトルを求める。
 				//押し返すベクトルは壁の法線に射影されためり込みベクトル+半径。
 				CVector3 vOffset;
+				CVector3 moveForward;
+				CVector3 ms = moveSpeed;
+				ms.Normalize();
+				if (forward.Dot(ms) < 0) {
+					moveForward = forward;
+				}
+				else if(forward.Dot(ms) > 0){
+					moveForward = forward * -1.0f;
+				}
 				vOffset = hitNormalXZ;
 				vOffset.x *= fT0;
-				//vOffset.x += vv.x * moveForward.x;
+				vOffset.x += moveForward.x;
 				vOffset.z *= fT0;
-				//vOffset.z += vv.z * moveForward.z;
+				vOffset.z += moveForward.z;
 				nextPosition += vOffset;
 				CVector3 currentDir;
 				currentDir = nextPosition - m_position;

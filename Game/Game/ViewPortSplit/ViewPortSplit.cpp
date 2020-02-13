@@ -78,7 +78,7 @@ void ViewPortSplit::PostRender(std::vector<GameObjectList>& objectList)
 			d3dDeviceContext->RSSetViewports(1, &viewport);
 
 			//剛体表示、デフォルトはオフ。
-			g_physics.DebubDrawWorld(cameraNum);
+			//g_physics.DebubDrawWorld(cameraNum);
 			for (GameObjectList objList : objectList) {
 				for (IGameObject* obj : objList) {
 					obj->PostDrawWrapper(cameraNum);
