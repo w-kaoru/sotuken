@@ -77,6 +77,14 @@ void PhysicsWorld::DebubDrawWorld()
 
 	m_debugDraw.EndDraw();
 }
+void PhysicsWorld::DebubDrawWorld(int i)
+{
+	m_debugDraw.BeginDraw();
+
+	dynamicWorld->debugDrawWorld();
+
+	m_debugDraw.EndDraw(i);
+}
 void PhysicsWorld::AddRigidBody(RigidBody& rb)
 {
 	dynamicWorld->addRigidBody(rb.GetBody());

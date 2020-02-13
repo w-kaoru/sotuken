@@ -74,6 +74,7 @@ private:
 	int GameEndtime = 0;
 	int	CountDownTime = 5;
 	bool MoveFlag = false;
+	int  m_moveCount = 0;
 	bool Endflag = false;
 	Level m_level;
 	int player_total = 2;  //İ’è‚³‚ê‚½‡Œvl”B

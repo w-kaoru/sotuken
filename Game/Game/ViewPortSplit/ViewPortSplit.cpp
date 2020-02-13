@@ -76,6 +76,9 @@ void ViewPortSplit::PostRender(std::vector<GameObjectList>& objectList)
 			viewport.MinDepth = 0.0f;
 			viewport.MaxDepth = 1.0f;
 			d3dDeviceContext->RSSetViewports(1, &viewport);
+
+			//剛体表示、デフォルトはオフ。
+			g_physics.DebubDrawWorld(cameraNum);
 			for (GameObjectList objList : objectList) {
 				for (IGameObject* obj : objList) {
 					obj->PostDrawWrapper(cameraNum);
@@ -86,6 +89,8 @@ void ViewPortSplit::PostRender(std::vector<GameObjectList>& objectList)
 	}
 	else
 	{
+		//剛体表示、デフォルトはオフ。
+		//g_physics.DebubDrawWorld();
 		//画面分割していない場合普通に描画する
 		//ビューポートを設定。
 		viewport.Width = FRAME_BUFFER_W;

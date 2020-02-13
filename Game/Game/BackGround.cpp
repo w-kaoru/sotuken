@@ -17,7 +17,11 @@ bool BackGround::Start()
 	m_stageData = FindGO<StageData>("StageData");
 	//cmoファイルの読み込み。
 	m_model.Init(m_stageData->GetStageDeta()->filePath);
-	m_staticObject.CreateMeshObject(m_model, m_pos, m_rot);
+	m_staticObject.CreateMeshObject(
+		m_model,
+		m_stageData->GetStageDeta()->position,
+		m_stageData->GetStageDeta()->rotation
+	);
 	m_model.SetShadowReciever(true);
 	return true;
 }
@@ -25,7 +29,11 @@ bool BackGround::Start()
 void BackGround::Update()
 {
 	//ワールド行列の更新。
-	m_model.UpdateWorldMatrix(CVector3::Zero(), CQuaternion::Identity(), CVector3::One());
+	m_model.UpdateWorldMatrix(
+		m_stageData->GetStageDeta()->position,
+		m_stageData->GetStageDeta()->rotation,
+		m_stageData->GetStageDeta()->scale
+	);
 	g_graphicsEngine->GetShadowMap()->RegistShadowCaster(&m_model);
 }
 

@@ -46,7 +46,7 @@ void GameCamera::Update()
 	//カメラデータのテーブル。
 	toCameraPos.Normalize();
 	SCameraData cameraDataTbl[] = {
-		{ 250.0f, CMath::DegToRad(60.0f), -25.0f, 20.0f},			//通常のカメラデータ。
+		{ 350.0f, CMath::DegToRad(60.0f), -25.0f, 20.0f},			//通常のカメラデータ。
 		{ 1.0f, CMath::DegToRad(20.0f), -5.0f, 5.0f },			//ズームのカメラデータ。
 	};
 	if (m_aimFalg) {
@@ -57,7 +57,7 @@ void GameCamera::Update()
 		upMax = cameraDataTbl[1].upMax;
 		downMax = cameraDataTbl[1].downMax;
 		//Y方向にちょっと上げる。
-		newTarget.y += 92.0f;
+		newTarget.y += 130.0f;
 	}
 	else
 	{
@@ -68,7 +68,7 @@ void GameCamera::Update()
 		upMax = cameraDataTbl[0].upMax;
 		downMax = cameraDataTbl[0].downMax;
 		//Y方向にちょっと上げる。
-		newTarget.y += 120.0f;
+		newTarget.y += 150.0f;
 	}
 	//パッドの入力を使ってカメラを回す。
 	CVector3 RStick = CVector3::Zero();

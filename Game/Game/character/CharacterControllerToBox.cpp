@@ -187,7 +187,7 @@ const CVector3& CharacterControllerToBox::Execute(float deltaTime, CVector3& mov
 			if (callback.isHit) {
 				//当たった。
 				//壁。
-#if 0
+#if 1
 				CVector3 vT0, vT1;
 				//XZ平面上での移動後の座標をvT0に、交点の座標をvT1に設定する。
 				vT0.Set(nextPosition.x, 0.0f, nextPosition.z);
@@ -195,6 +195,7 @@ const CVector3& CharacterControllerToBox::Execute(float deltaTime, CVector3& mov
 				//めり込みが発生している移動ベクトルを求める。
 				CVector3 vMerikomi;
 				vMerikomi = vT0 - vT1;
+				vMerikomi.Normalize();
 				//XZ平面での衝突した壁の法線を求める。。
 				CVector3 hitNormalXZ = callback.hitNormal;
 				hitNormalXZ.y = 0.0f;
@@ -205,8 +206,10 @@ const CVector3& CharacterControllerToBox::Execute(float deltaTime, CVector3& mov
 				//押し返すベクトルは壁の法線に射影されためり込みベクトル+半径。
 				CVector3 vOffset;
 				vOffset = hitNormalXZ;
-				vOffset.x *= fT0 + m_halfLength.x;
-				vOffset.z *= fT0 + m_halfLength.z;
+				vOffset.x *= fT0;
+				//vOffset.x += vv.x * moveForward.x;
+				vOffset.z *= fT0;
+				//vOffset.z += vv.z * moveForward.z;
 				nextPosition += vOffset;
 				CVector3 currentDir;
 				currentDir = nextPosition - m_position;
@@ -255,7 +258,7 @@ const CVector3& CharacterControllerToBox::Execute(float deltaTime, CVector3& mov
 		start.setOrigin(
 			btVector3(
 				m_position.x,
-				m_position.y + m_halfLength.y * 0.5f,
+				m_position.y + m_halfLength.y,
 				m_position.z
 			)
 		);

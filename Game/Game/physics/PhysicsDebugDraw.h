@@ -23,6 +23,7 @@ public:
 	void BeginDraw();
 
 	void EndDraw();
+	void EndDraw(int i);
 	void drawLine(const btVector3& from, const btVector3& to, const btVector3& color) override;
 	void drawContactPoint(const btVector3&, const btVector3&, btScalar, int, const btVector3&) override
 	{

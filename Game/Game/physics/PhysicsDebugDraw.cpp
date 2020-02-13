@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "PhysicsDebugDraw.h"
 
-
 void PhysicsDebugDraw::Init()
 {
 	{
@@ -94,6 +93,42 @@ void PhysicsDebugDraw::EndDraw()
 	
 	//表示処理
 	
+	UINT ofset = 0;
+	UINT stride = sizeof(CVector4);
+	(*DeviceContext).IASetVertexBuffers(0, 1, &(m_VertexBuffer), &stride, &ofset);
+	//プリミティブのトポロジーを設定。
+	(*DeviceContext).IASetPrimitiveTopology(m_topology);
+	//描画。
+	(*DeviceContext).Draw(m_numLine * 2, 0);
+}
+void PhysicsDebugDraw::EndDraw(int i)
+{
+	//定数バッファの更新。
+	SConstantBuffer cb;
+	cb.mView = g_gameCamera3D[i]->GetCamera().GetViewMatrix();
+	cb.mProj = g_gameCamera3D[i]->GetCamera().GetProjectionMatrix();
+	DeviceContext->VSSetShader((ID3D11VertexShader*)m_vs.GetBody(), NULL, 0);
+	DeviceContext->PSSetShader((ID3D11PixelShader*)m_ps.GetBody(), NULL, 0);
+	{
+		//色決定
+		CVector4 colr;
+		colr = { 0.0f,1.0f,0.0f,1.0f };
+		DeviceContext->UpdateSubresource(m_cb2, 0, NULL, &colr, 0, 0);
+		DeviceContext->PSSetConstantBuffers(1, 1, &(m_cb2));
+	}
+	{
+
+		DeviceContext->UpdateSubresource(m_cb, 0, NULL, &cb, 0, 0);
+		DeviceContext->VSSetConstantBuffers(0, 1, &(m_cb));
+	}
+
+	//入力レイアウトを設定。
+	DeviceContext->IASetInputLayout(m_vs.GetInputLayout());
+	DeviceContext->UpdateSubresource(m_VertexBuffer, 0, NULL, &m_vertexBuffer[0], 0, 0);
+	//m_primitive.Draw(*DeviceContext, m_numLine * 2);
+
+	//表示処理
+
 	UINT ofset = 0;
 	UINT stride = sizeof(CVector4);
 	(*DeviceContext).IASetVertexBuffers(0, 1, &(m_VertexBuffer), &stride, &ofset);

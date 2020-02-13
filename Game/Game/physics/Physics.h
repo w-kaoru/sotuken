@@ -19,6 +19,7 @@ public:
 	void Init();
 	void Update();
 	void DebubDrawWorld();
+	void DebubDrawWorld(int i);
 	void Release();
 	/*!
 	* @brief	ダイナミックワールドを取得。

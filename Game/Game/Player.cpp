@@ -89,17 +89,22 @@ void Player::FireBullets(float speed)
 	m_gunForward.y = rotMatrix.m[2][1];
 	m_gunForward.z = rotMatrix.m[2][2];
 	m_gunForward.Normalize();
-	m_gunForward = m_gunForward * 90.0f;
-	m_gunForward += m_pos;
-	m_gunForward.y = 45.0f;
+	if (m_tankData->GetTankType() == TankType::tiha) {
+		m_gunForward *= 50.0f;
+		m_gunForward.y += 90.0f;
+	}
+	else {
+		m_gunForward = m_gunForward * 110.0f;
+		m_gunForward.y += 100.0f;
+	}
+		m_gunForward += m_pos;
 	Bullet* bullet = m_bulletmaneger->NewBullet(enCollisionAttr_PlayerBullet, m_number);
 	bullet->SetMoveSpeed(g_gameCamera3D[m_number]->GetForward() * m_bulletChange->GetTankBulletInfo()->bulletSpeed);
-	CVector3 pos = m_pos;
-	pos.y += 90.0f;
+	CVector3 pos = m_gunForward;
 	m_smokeEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(
-		m_smokeEffect, m_gunForward.x, m_gunForward.y, m_gunForward.z
+		m_smokeEffect, pos.x, pos.y, pos.z
 	);
-	bullet->SetPosition(m_gunForward);
+	bullet->SetPosition(pos);
 }
 
 void Player::Move()
@@ -155,12 +160,11 @@ void Player::Move()
 		}
 	}
 
-	m_moveSpeed.y += -1800.0f * m_deltatime;
+	m_moveSpeed.y += -980.0f * m_deltatime;
 }
 
 void Player::Update()
 {
-
 	if (m_game->GetEndFlag() == true)
 	{
 		this->SetIsStop(true);
@@ -230,7 +234,7 @@ void Player::Update()
 		m_bulletmaneger->SetDamegeFlag(false);
 		m_tankDamageNumber = player->GetNumber();
 	}
-	if (m_playerHP <= 0.0f || m_pos.y <= -1000.0f)
+	if (m_playerHP <= 0.0f || m_pos.y <= -10000.0f)
 	{
 		playerdeth = true;
 		m_bakuhtuEffectHandle = g_graphicsEngine->GetEffekseerManager()->Play(

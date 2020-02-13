@@ -172,7 +172,10 @@ void Game::Update()
 		if (m_time.GetSeconds() >= CountDownTime && MoveFlag == false)
 		{
 			player->SetIsStop(false);
-			MoveFlag = true;
+			m_moveCount++;
+			if (m_moveCount >= player_total) {
+				MoveFlag = true;
+			}
 		}
 		if (player->GetPlayerDeth() == true)
 		{
@@ -225,8 +228,6 @@ void Game::Draw()
 
 void Game::PostDraw(int player_num)
 {
-	
-	
 	int time;
 	m_time.TimerStop();
 	m_font.BeginDraw();

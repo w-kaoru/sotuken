@@ -25,6 +25,9 @@ enum Stagenum
 struct SSelectInfo
 {
 	wchar_t* filePath;
+	CVector3 position;					//座標。
+	CVector3 scale;					//拡大率。
+	CQuaternion rotation;		//回転。
 };
 
 struct STankBulletInfo {

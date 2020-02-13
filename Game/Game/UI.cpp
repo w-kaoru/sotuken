@@ -44,7 +44,7 @@ void UI::Update()
 	m_aiming.Update(m_aimingpos, CQuaternion::Identity(), m_aimingScale);
 
 	//HPスプライトの更新
-	m_playerhp.Update({ 400.0f,300.0f,0.0f }, CQuaternion::Identity(), { m_hp / 10.0f, 1.0f, 1.0f }, {1.0f,0.5f});
+	m_playerhp.Update({ 600.0f,300.0f,0.0f }, CQuaternion::Identity(), { m_hp / 10.0f, 1.0f, 1.0f }, {1.0f,0.5f});
 }
 
 void UI::PostDraw()
@@ -110,8 +110,30 @@ void UI::PostDraw(int player_num)
 			swprintf_s(m_moji, L"AP弾");		//表示用にデータを加工
 			break;
 		}
-
-		if (player_total >= 3) {
+		switch (player_total)
+		{
+		case 1://1人。
+			m_font.Draw(
+				m_moji,		//表示する文字列。
+				{ -500.0f,-200.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ 1.0f,0.0f,0.0f,1.0f },
+				0.0f,
+				m_fontsize,
+				{ 0.0f,1.0f }
+			);
+			break;
+		case 2://2人。
+			m_font.Draw(
+				m_moji,		//表示する文字列。
+				{ -00.0f,-200.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ 1.0f,0.0f,0.0f,1.0f },
+				0.0f,
+				m_fontsize,
+				{ 0.0f,1.0f }
+			);
+			break;
+		case 3:
+		case 4:
 			//3人以上。
 			m_font.Draw(
 				m_moji,		//表示する文字列。
@@ -121,16 +143,7 @@ void UI::PostDraw(int player_num)
 				m_fontsize,
 				{ 0.0f,1.0f }
 			);
-		}
-		else {//2人未満。
-			m_font.Draw(
-				m_moji,		//表示する文字列。
-				{ -500.0f,-200.0f },			//表示する座標。0.0f, 0.0が画面の中心。
-				{ 1.0f,0.0f,0.0f,1.0f },
-				0.0f,
-				m_fontsize,
-				{ 0.0f,1.0f }
-			);
+			break;
 		}
 		m_font.EndDraw();
 	}
