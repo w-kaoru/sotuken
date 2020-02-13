@@ -71,8 +71,7 @@ private:
 	float m_bulletdamage = 10.0f;
 	int m_number = 0;
 	int m_hitNumber = 0;
-	prefab::CSoundSource*  m_explosionse;
-	prefab::CSoundSource*  m_attsckse;
+
 	Effekseer::Effect* m_testEffect = nullptr;//テストエフェクト
 	Effekseer::Handle m_testEffectHandle = -1;
 };

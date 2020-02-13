@@ -16,6 +16,12 @@ Bullet::~Bullet()
 
 bool Bullet::Start()
 {	
+	m_explosionse = NewGO<prefab::CSoundSource>(0);
+	m_attsckse = NewGO<prefab::CSoundSource>(0);
+	m_explosionse->Init(L"Assets/sound/explosion.wav", true);
+	m_explosionse->SetVolume(0.5f);
+	m_attsckse->Init(L"Assets/sound/battery1.wav", true);
+	m_attsckse->Play(false);
 	m_model.Init(L"Assets/modelData/bullet1.cmo");
 	m_bulletCon->SetPosition(m_position);
 	//Œü‚«‚ð•Ï‚¦‚éB
@@ -43,11 +49,13 @@ void Bullet::Update()
 	m_bulletDeleteTime++;
 	BulletMove();
 	if (m_bulletCon->GetBulletHit() == true) {
+		m_explosionse->Play(false);
 		m_hitpos = m_bulletCon->GetHitPos();
 		m_hitFlag = true;
 	}
 	if (m_bulletCon->Gethit() == true)
 	{
+		m_explosionse->Play(false);
 		m_hitpos = m_bulletCon->GetHitPos();
 		IsHit = true;
 	}
