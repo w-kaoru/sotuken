@@ -13,12 +13,12 @@ ShadowMap::~ShadowMap()
 void ShadowMap::Init()
 {
 	m_shadowMapRT.Create(
-		2048,
-		2048,
+		2048*2,
+		2048*2,
 		DXGI_FORMAT_R32_FLOAT
 	); 
-	m_width = 3000.0f;
-	m_height = 3000.0f;
+	m_width = 4000.0f;
+	m_height = 4000.0f;
 	InitConstantBuffer();
 }
 
@@ -47,7 +47,7 @@ void ShadowMap::UpdateFromLightDirection(CVector3 lightCameraPos, CVector3 light
 		m_width,
 		m_height,
 		0.1f,
-		5000.0f
+		10000.0f
 	);
 }
 void ShadowMap::UpdateFromLightTarget(CVector3 lightCameraPos, CVector3 lightCameraTarget)

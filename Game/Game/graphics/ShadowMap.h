@@ -72,6 +72,6 @@ private:
 	std::vector<SkinModel*> m_shadowCasters;			//シャドウキャスターの配列。
 	ID3D11Buffer* m_shadowMapCB = nullptr;
 	SLightCameraParam m_ligCamParam;
-	float m_width = 1500.0f;
-	float m_height = 1500.0f;
+	float m_width = 2000.0f;
+	float m_height = 2000.0f;
 };

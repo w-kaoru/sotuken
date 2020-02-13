@@ -208,7 +208,7 @@ void Game::Update()
 	CVector3 ligdir = m_LigDirection;
 	ligdir *= -1.0f;
 	ligdir.Normalize();
-	ligdir *= 1000.0f;
+	ligdir *= 2000.0f;
 	//ligdir += m_player->GetPosition();
 	g_graphicsEngine->GetShadowMap()->UpdateFromLightTarget(
 		ligdir,

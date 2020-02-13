@@ -70,7 +70,7 @@ private:
 	Effekseer::Handle m_testEffectHandle = -1;
 	prefab::DirectionLight* m_directionLight = nullptr;
 	CVector3 m_LigDirection = CVector3::Zero();
-	int GameTime = 15;
+	int GameTime = 185;
 	int GameEndtime = 0;
 	int	CountDownTime = 5;
 	bool MoveFlag = false;
