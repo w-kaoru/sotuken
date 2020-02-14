@@ -233,38 +233,125 @@ void Game::PostDraw(int player_num)
 	m_font.BeginDraw();
 	time = (int)m_time.GetSeconds();
 	if (MoveFlag == true) {
-		swprintf_s(moji, L"時間%03d秒", (GameTime - time));		//表示用にデータを加工
-		m_font.Draw(
-			moji,		//表示する文字列。
-			{ -150.0f,FRAME_BUFFER_H / 2.0f },			//表示する座標。0.0f, 0.0が画面の中心。
-			{ 1.0f,0.0f,0.0f,1.0f },
-			0.0f,
-			0.8f/player_total,
-			{ 0.0f,1.0f }
-		);
+		switch (player_total)
+		{
+		case 1://1人。
+			swprintf_s(moji, L"時間%03d秒", (GameTime - time));		//表示用にデータを加工
+			m_font.Draw(
+				moji,		//表示する文字列。
+				{ -150.0f,FRAME_BUFFER_H / 2.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ 1.0f,0.0f,0.0f,1.0f },
+				0.0f,
+				0.8f,
+				{ 0.0f,1.0f }
+			);
+			break;
+		case 2://2人。
+			swprintf_s(moji, L"時間%03d秒", (GameTime - time));		//表示用にデータを加工
+			m_font.Draw(
+				moji,		//表示する文字列。
+				{ -420.0f, 350.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ 1.0f,0.0f,0.0f,1.0f },
+				0.0f,
+				0.8f/2.0f,
+				{ 0.0f,1.0f }
+			);
+			break;
+		case 3:
+		case 4:
+			//3人以上。
+			swprintf_s(moji, L"時間%03d秒", (GameTime - time));		//表示用にデータを加工
+			m_font.Draw(
+				moji,		//表示する文字列。
+				{ -350.0f,360.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ 1.0f,0.0f,0.0f,1.0f },
+				0.0f,
+				0.8f/3.0f,
+				{ 0.0f,1.0f }
+			);
+			break;
+		}
 	}
 	if (MoveFlag == false) {
-		swprintf_s(moji, L"%d", (CountDownTime - time));		//表示用にデータを加工
-		m_font.Draw(
-			moji,		//表示する文字列。
-			{ -60.0f,60.0f},//表示する座標。0.0f, 0.0が画面の中心。
-			{ 0.0f,0.0f,0.0f,1.0f },
-			0.0f,
-			1.5f/player_total,
-			{ 0.0f,1.0f }
-		);
+		switch (player_total)
+		{
+		case 1://1人。
+			swprintf_s(moji, L"%d", (CountDownTime - time));		//表示用にデータを加工
+			m_font.Draw(
+				moji,		//表示する文字列。
+				{ -150.0f,100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ 0.0f,0.0f,0.0f,1.0f },
+				0.0f,
+				1.5f,
+				{ 0.0f,1.0f }
+			);
+			break;
+		case 2://2人。
+			swprintf_s(moji, L"%d", (CountDownTime - time));		//表示用にデータを加工
+			m_font.Draw(
+				moji,		//表示する文字列。
+				{ -350.0f, 100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ 0.0f,0.0f,0.0f,1.0f },
+				0.0f,
+				1.5f/2.0,
+				{ 0.0f,1.0f }
+			);
+			break;
+		case 3:
+		case 4:
+			//3人以上。
+			swprintf_s(moji, L"%d", (CountDownTime - time));		//表示用にデータを加工
+			m_font.Draw(
+				moji,		//表示する文字列。
+				{ -350.0f,200.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ 0.0f,0.0f,0.0f,1.0f },
+				0.0f,
+				1.5f/3.0f,
+				{ 0.0f,1.0f }
+			);
+			break;
+		}
 	}
 	if (m_time.GetSeconds() >= GameTime)
 	{
-		swprintf_s(moji, L"そこまで");		//表示用にデータを加工
-		m_font.Draw(
-			moji,		//表示する文字列。
-			{ -300.0f,100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
-			{ 1.0f,0.0f,0.0f,1.0f },
-			0.0f,
-			1.5f / player_total,
-			{ 0.0f,1.0f }
-		);
+		switch (player_total)
+		{
+		case 1://1人。
+			swprintf_s(moji, L"そこまで");		//表示用にデータを加工
+			m_font.Draw(
+				moji,		//表示する文字列。
+				{ -300.0f,100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ 1.0f,0.0f,0.0f,1.0f },
+				0.0f,
+				1.5f,
+				{ 0.0f,1.0f }
+			);
+			break;
+		case 2://2人。
+			swprintf_s(moji, L"そこまで");		//表示用にデータを加工
+			m_font.Draw(
+				moji,		//表示する文字列。
+				{ -450.0f,100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ 1.0f,0.0f,0.0f,1.0f },
+				0.0f,
+				1.5f/2.0f,
+				{ 0.0f,1.0f }
+			);
+			break;
+		case 3:
+		case 4:
+			//3人以上。
+			swprintf_s(moji, L"そこまで");		//表示用にデータを加工
+			m_font.Draw(
+				moji,		//表示する文字列。
+				{ -400.0f,200.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ 1.0f,0.0f,0.0f,1.0f },
+				0.0f,
+				1.5f/3.0f,
+				{ 0.0f,1.0f }
+			);
+			break;
+		}
 	}
 	m_font.EndDraw();
 	

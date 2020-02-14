@@ -228,9 +228,26 @@ void GameSelect::FontDraw()
 		}
 		break;
 	case Stage1:
-
+		swprintf_s(m_moji, L"Stage1");		//表示用にデータを加工
+		m_font.Draw(
+			m_moji,		//表示する文字列。
+			{ -150.0f, 350.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+			{ 1.0f,0.0f,0.0f,1.0f },
+			0.0f,
+			1.0f,
+			{ 0.0f,1.0f }
+		);
 		break;
 	case Stage2:
+		swprintf_s(m_moji, L"Stage2");		//表示用にデータを加工
+		m_font.Draw(
+			m_moji,		//表示する文字列。
+			{ -150.0f, 350.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+			{ 1.0f,0.0f,0.0f,1.0f },
+			0.0f,
+			1.0f,
+			{ 0.0f,1.0f }
+		);
 		break;
 	}
 	m_font.EndDraw();

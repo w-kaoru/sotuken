@@ -125,7 +125,7 @@ void UI::PostDraw(int player_num)
 		case 2://2人。
 			m_font.Draw(
 				m_moji,		//表示する文字列。
-				{ -00.0f,-200.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ -600.0f,-200.0f },			//表示する座標。0.0f, 0.0が画面の中心。
 				{ 1.0f,0.0f,0.0f,1.0f },
 				0.0f,
 				m_fontsize,
@@ -137,10 +137,10 @@ void UI::PostDraw(int player_num)
 			//3人以上。
 			m_font.Draw(
 				m_moji,		//表示する文字列。
-				{ -600.0f,100.0f },			//表示する座標。0.0f, 0.0が画面の中心。
+				{ -570.0f,80.0f },			//表示する座標。0.0f, 0.0が画面の中心。
 				{ 1.0f,0.0f,0.0f,1.0f },
 				0.0f,
-				m_fontsize,
+				m_fontsize/2.0f,
 				{ 0.0f,1.0f }
 			);
 			break;
